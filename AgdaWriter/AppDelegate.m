@@ -25,6 +25,7 @@
 
 -(BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
 {
+    // if NO, application stays minimized
     return YES;
 }
 @end
