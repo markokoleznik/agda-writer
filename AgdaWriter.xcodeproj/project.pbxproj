@@ -1,0 +1,433 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D583562819EEEEC4009534C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D583562719EEEEC4009534C1 /* main.m */; };
+		D583562B19EEEEC4009534C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D583562A19EEEEC4009534C1 /* AppDelegate.m */; };
+		D583562D19EEEEC4009534C1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D583562C19EEEEC4009534C1 /* Images.xcassets */; };
+		D583563019EEEEC4009534C1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D583562E19EEEEC4009534C1 /* MainMenu.xib */; };
+		D583563C19EEEEC4009534C1 /* AgdaWriterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D583563B19EEEEC4009534C1 /* AgdaWriterTests.m */; };
+		D583565119EEFCB3009534C1 /* AWMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D583565019EEFCB3009534C1 /* AWMainWindow.m */; };
+		D583565419EF207C009534C1 /* AWToolTip.m in Sources */ = {isa = PBXBuildFile; fileRef = D583565319EF207C009534C1 /* AWToolTip.m */; };
+		D583565719EF213E009534C1 /* MAAttachedWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D583565619EF213E009534C1 /* MAAttachedWindow.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D583563619EEEEC4009534C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D583561A19EEEEC4009534C1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D583562119EEEEC4009534C1;
+			remoteInfo = AgdaWriter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D583562219EEEEC4009534C1 /* AgdaWriter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgdaWriter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D583562619EEEEC4009534C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D583562719EEEEC4009534C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D583562919EEEEC4009534C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D583562A19EEEEC4009534C1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D583562C19EEEEC4009534C1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D583562F19EEEEC4009534C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		D583563519EEEEC4009534C1 /* AgdaWriterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgdaWriterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D583563A19EEEEC4009534C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D583563B19EEEEC4009534C1 /* AgdaWriterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgdaWriterTests.m; sourceTree = "<group>"; };
+		D583564F19EEFCB3009534C1 /* AWMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWMainWindow.h; sourceTree = "<group>"; };
+		D583565019EEFCB3009534C1 /* AWMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWMainWindow.m; sourceTree = "<group>"; };
+		D583565219EF207C009534C1 /* AWToolTip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWToolTip.h; sourceTree = "<group>"; };
+		D583565319EF207C009534C1 /* AWToolTip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWToolTip.m; sourceTree = "<group>"; };
+		D583565519EF213E009534C1 /* MAAttachedWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAAttachedWindow.h; sourceTree = "<group>"; };
+		D583565619EF213E009534C1 /* MAAttachedWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAAttachedWindow.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D583561F19EEEEC4009534C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D583563219EEEEC4009534C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D583561919EEEEC4009534C1 = {
+			isa = PBXGroup;
+			children = (
+				D583562419EEEEC4009534C1 /* AgdaWriter */,
+				D583563819EEEEC4009534C1 /* AgdaWriterTests */,
+				D583562319EEEEC4009534C1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D583562319EEEEC4009534C1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D583562219EEEEC4009534C1 /* AgdaWriter.app */,
+				D583563519EEEEC4009534C1 /* AgdaWriterTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D583562419EEEEC4009534C1 /* AgdaWriter */ = {
+			isa = PBXGroup;
+			children = (
+				D583565519EF213E009534C1 /* MAAttachedWindow.h */,
+				D583565619EF213E009534C1 /* MAAttachedWindow.m */,
+				D583562919EEEEC4009534C1 /* AppDelegate.h */,
+				D583562A19EEEEC4009534C1 /* AppDelegate.m */,
+				D583562C19EEEEC4009534C1 /* Images.xcassets */,
+				D583562E19EEEEC4009534C1 /* MainMenu.xib */,
+				D583562519EEEEC4009534C1 /* Supporting Files */,
+				D583564F19EEFCB3009534C1 /* AWMainWindow.h */,
+				D583565019EEFCB3009534C1 /* AWMainWindow.m */,
+				D583565219EF207C009534C1 /* AWToolTip.h */,
+				D583565319EF207C009534C1 /* AWToolTip.m */,
+			);
+			path = AgdaWriter;
+			sourceTree = "<group>";
+		};
+		D583562519EEEEC4009534C1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D583562619EEEEC4009534C1 /* Info.plist */,
+				D583562719EEEEC4009534C1 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D583563819EEEEC4009534C1 /* AgdaWriterTests */ = {
+			isa = PBXGroup;
+			children = (
+				D583563B19EEEEC4009534C1 /* AgdaWriterTests.m */,
+				D583563919EEEEC4009534C1 /* Supporting Files */,
+			);
+			path = AgdaWriterTests;
+			sourceTree = "<group>";
+		};
+		D583563919EEEEC4009534C1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D583563A19EEEEC4009534C1 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D583562119EEEEC4009534C1 /* AgdaWriter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D583563F19EEEEC4009534C1 /* Build configuration list for PBXNativeTarget "AgdaWriter" */;
+			buildPhases = (
+				D583561E19EEEEC4009534C1 /* Sources */,
+				D583561F19EEEEC4009534C1 /* Frameworks */,
+				D583562019EEEEC4009534C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AgdaWriter;
+			productName = AgdaWriter;
+			productReference = D583562219EEEEC4009534C1 /* AgdaWriter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D583563419EEEEC4009534C1 /* AgdaWriterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D583564219EEEEC4009534C1 /* Build configuration list for PBXNativeTarget "AgdaWriterTests" */;
+			buildPhases = (
+				D583563119EEEEC4009534C1 /* Sources */,
+				D583563219EEEEC4009534C1 /* Frameworks */,
+				D583563319EEEEC4009534C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D583563719EEEEC4009534C1 /* PBXTargetDependency */,
+			);
+			name = AgdaWriterTests;
+			productName = AgdaWriterTests;
+			productReference = D583563519EEEEC4009534C1 /* AgdaWriterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D583561A19EEEEC4009534C1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = koleznik.net;
+				TargetAttributes = {
+					D583562119EEEEC4009534C1 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					D583563419EEEEC4009534C1 = {
+						CreatedOnToolsVersion = 6.0.1;
+						TestTargetID = D583562119EEEEC4009534C1;
+					};
+				};
+			};
+			buildConfigurationList = D583561D19EEEEC4009534C1 /* Build configuration list for PBXProject "AgdaWriter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D583561919EEEEC4009534C1;
+			productRefGroup = D583562319EEEEC4009534C1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D583562119EEEEC4009534C1 /* AgdaWriter */,
+				D583563419EEEEC4009534C1 /* AgdaWriterTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D583562019EEEEC4009534C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D583562D19EEEEC4009534C1 /* Images.xcassets in Resources */,
+				D583563019EEEEC4009534C1 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D583563319EEEEC4009534C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D583561E19EEEEC4009534C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D583562B19EEEEC4009534C1 /* AppDelegate.m in Sources */,
+				D583565719EF213E009534C1 /* MAAttachedWindow.m in Sources */,
+				D583565419EF207C009534C1 /* AWToolTip.m in Sources */,
+				D583565119EEFCB3009534C1 /* AWMainWindow.m in Sources */,
+				D583562819EEEEC4009534C1 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D583563119EEEEC4009534C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D583563C19EEEEC4009534C1 /* AgdaWriterTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D583563719EEEEC4009534C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D583562119EEEEC4009534C1 /* AgdaWriter */;
+			targetProxy = D583563619EEEEC4009534C1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D583562E19EEEEC4009534C1 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D583562F19EEEEC4009534C1 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D583563D19EEEEC4009534C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D583563E19EEEEC4009534C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D583564019EEEEC4009534C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = AgdaWriter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D583564119EEEEC4009534C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = AgdaWriter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D583564319EEEEC4009534C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = AgdaWriterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgdaWriter.app/Contents/MacOS/AgdaWriter";
+			};
+			name = Debug;
+		};
+		D583564419EEEEC4009534C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = AgdaWriterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AgdaWriter.app/Contents/MacOS/AgdaWriter";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D583561D19EEEEC4009534C1 /* Build configuration list for PBXProject "AgdaWriter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D583563D19EEEEC4009534C1 /* Debug */,
+				D583563E19EEEEC4009534C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D583563F19EEEEC4009534C1 /* Build configuration list for PBXNativeTarget "AgdaWriter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D583564019EEEEC4009534C1 /* Debug */,
+				D583564119EEEEC4009534C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D583564219EEEEC4009534C1 /* Build configuration list for PBXNativeTarget "AgdaWriterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D583564319EEEEC4009534C1 /* Debug */,
+				D583564419EEEEC4009534C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D583561A19EEEEC4009534C1 /* Project object */;
+}
