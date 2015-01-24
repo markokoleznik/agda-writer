@@ -9,7 +9,8 @@
 
 #define MAATTACHEDWINDOW_DEFAULT_BACKGROUND_COLOR [NSColor colorWithCalibratedWhite:0.1 alpha:0.75]
 #define MAATTACHEDWINDOW_DEFAULT_BORDER_COLOR [NSColor whiteColor]
-#define MAATTACHEDWINDOW_SCALE_FACTOR [[NSScreen mainScreen] userSpaceScaleFactor]
+//#define MAATTACHEDWINDOW_SCALE_FACTOR [[NSScreen mainScreen] userSpaceScaleFactor]
+#define MAATTACHEDWINDOW_SCALE_FACTOR 1
 
 @interface MAAttachedWindow (MAPrivateMethods)
 
@@ -220,7 +221,7 @@
     }
     
     // Position frame origin appropriately for _side, accounting for arrow-inset.
-    contentRect.origin = (_window) ? [_window convertBaseToScreen:_point] : _point;
+    contentRect.origin = _point;
     float arrowInset = [self _arrowInset];
     float halfWidth = contentRect.size.width / 2.0;
     float halfHeight = contentRect.size.height / 2.0;
@@ -312,12 +313,15 @@
     } else {
          screenFrame = [[NSScreen mainScreen] visibleFrame];
     }
-    NSPoint pointOnScreen = (_window) ? [_window convertBaseToScreen:_point] : _point;
+//    NSPoint pointOnScreen = (_window) ? [_window convertBaseToScreen:_point] : _point;
+    NSPoint pointOnScreen = _point;
     NSSize viewSize = [_view frame].size;
-    viewSize.width += (viewMargin * MAATTACHEDWINDOW_SCALE_FACTOR) * 2.0;
-    viewSize.height += (viewMargin * MAATTACHEDWINDOW_SCALE_FACTOR) * 2.0;
+//    viewSize.width += (viewMargin * MAATTACHEDWINDOW_SCALE_FACTOR) * 2.0;
+    viewSize.width += (viewMargin) * 2.0;
+//    viewSize.height += (viewMargin * MAATTACHEDWINDOW_SCALE_FACTOR) * 2.0;
+    viewSize.height += (viewMargin) * 2.0;
     MAWindowPosition side = MAPositionBottom; // By default, position us centered below.
-    float scaledArrowHeight = (arrowHeight * MAATTACHEDWINDOW_SCALE_FACTOR) + _distance;
+    float scaledArrowHeight = (arrowHeight) + _distance;
     
     // We'd like to display directly below the specified point, since this gives a 
     // sense of a relationship between the point and this window. Check there's room.
@@ -473,7 +477,8 @@
      6. cornerRadius
      */
     
-    float scaleFactor = MAATTACHEDWINDOW_SCALE_FACTOR;
+//    float scaleFactor = MAATTACHEDWINDOW_SCALE_FACTOR;
+    float scaleFactor = 1;
     float scaledRadius = cornerRadius * scaleFactor;
     float scaledArrowWidth = arrowBaseWidth * scaleFactor;
     float halfArrowWidth = scaledArrowWidth / 2.0;

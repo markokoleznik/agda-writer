@@ -12,7 +12,7 @@
 
 @property IBOutlet NSTextView *mainTextView;
 @property IBOutlet NSTextField *numberLabel;
-@property (assign) IBOutlet id delegate;
+@property BOOL isHelperWindowOpened;
 
 - (void) textDidChange:(NSNotification *)notification;
 @end

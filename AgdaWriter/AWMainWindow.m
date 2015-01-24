@@ -8,6 +8,8 @@
 
 #import "AWMainWindow.h"
 #import "MAAttachedWindow.h"
+#import "TestView.h"
+#import "AWNotifications.h"
 
 @implementation AWMainWindow
 
@@ -17,69 +19,101 @@
 
 -(void)awakeFromNib
 {
-    NSLog(@"Zdaj sem se zbudil");
+    // Called, when xib is loaded
     self.mainTextView.delegate = self;
-    [self.mainTextView setString:@"Tukaj je nek text"];
+    [self.mainTextView setString:@""];
+    
+    // Add this class as observer, when font (in Prefrences) is changed. It might be reusable in other classes as well.
+    // Don't forget to remove observer in dealloc, because it has strong pointer to self.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontSizeFromNotification:) name:fontSizeChanged object:nil];
     
 }
 
 -(void) textDidBeginEditing:(NSNotification *)notification
 {
-    NSLog(@"Text did begin editing");
+    // Called, when user pressed a key in our "editor" window.
+    // This method is called before any visual change is made. After this method, textDidChange is called.
+    
+    NSLog(@"tabulator: %@", notification.object);
+
 }
+
 
 - (void) textDidChange:(NSNotification *)notification
 {
-    NSLog(@"Text did change");
+    // Here we can send typed words to Agda.
+    
+
+}
+
+-(void)changeFontSizeFromNotification:(NSNotification *)notification
+{
+    // When "fontSizeChanged" notification is recieved, change font to our editor
+    if ([notification.object isKindOfClass:[NSNumber class]]) {
+        
+        NSNumber *fontSize = (NSNumber *) notification.object;
+        NSFont *font = self.mainTextView.font;
+        font = [[NSFontManager sharedFontManager] convertFont:font toSize:[fontSize floatValue]];
+        [self.mainTextView setFont:font];
+        
+    }
 }
 
 - (void)textViewDidChangeSelection:(NSNotification *)notification
 {
+    // Called, when we select text
+    
+    // Check for selected range, and put rectangle around it.
     NSRange selectedText = [self.mainTextView selectedRange];
+    NSRect rectangle = [self.mainTextView firstRectForCharacterRange:selectedText actualRange:nil];
     
-    xpc_connection_create(<#const char *name#>, <#dispatch_queue_t targetq#>)
     
-    int location = (int)selectedText.location;
+//    int location = (int)selectedText.location;
     int lenght = (int) selectedText.length;
-    NSLog(@"Število označenih znakov: %i, lokacija: %i", lenght, location);
     if (lenght > 0) {
         [self.numberLabel setStringValue:[NSString stringWithFormat:@"%i", lenght]];
         
-//        [self.mainTextView setToolTip:@"Hover"];
         [self.mainTextView addToolTipRect:NSMakeRect(100, 100, 300, 300) owner:self userData:nil];
         
-        [self showHelpWindowAtRect:NSMakeRect(110, 600, 60, 30)];
-    
-//        [textStorage  addAttribute: NSToolTipAttributeName
-//                             value:error.description
-//                             range:range];
+        // Open help window
+        [self showHelpWindowAtRect:rectangle];
     }
     else
     {
+        // Remove window!
+        // TODO: use delegation to remove help window.
         [self.numberLabel setStringValue:@""];
         for (NSWindow *window in self.childWindows) {
             if ([window.identifier isEqualToString:@"Helper"]) {
                 [self removeChildWindow:window];
+                self.isHelperWindowOpened = NO;
             }
         }
     }
 }
 
+
 -(void) showHelpWindowAtRect: (NSRect) rect
 {
-//    NSWindow *window = [[NSWindow alloc] initWithContentRect:rect styleMask:0 backing:NSBackingStoreBuffered defer:YES];
-//    [window setBackgroundColor:[NSColor redColor]];
-//    window.identifier = @"Helper";
-//    
-//    [self addChildWindow:window ordered:1];
+    // If one instance of window is already opened, return.
+    if (self.isHelperWindowOpened) {
+        return;
+    }
     
+
+    // TODO: Change fixed values. For testing only.
+    NSView * view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 300, 300)];
     
-    NSView * view = [[NSView alloc] initWithFrame:NSMakeRect(20, 20, 300, 70)];
+    NSImageView * imageView = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 90, 180, 200)];
+    NSString *myImagePath = [[NSBundle mainBundle] pathForResource:@"xcode_pic" ofType:@"png"];
+    NSImage * image = [[NSImage alloc] initWithContentsOfFile:myImagePath];
+    [imageView setImage:image];
+    [view addSubview:imageView];
     
 #pragma mark - handling subviews
     
-    NSTextField *subview = [[NSTextField alloc] initWithFrame:NSMakeRect(10, 10, 200, 50)];
-    [subview setStringValue:@"Nek tekst"];
+    NSTextField *subview = [[NSTextField alloc] initWithFrame:NSMakeRect(5, 10, 200, 50)];
+    [subview setStringValue:@"Some help text here."];
     [subview setTextColor:[NSColor whiteColor]];
     [subview setDrawsBackground:NO];
     [subview setBezeled:NO];
@@ -88,25 +122,41 @@
     [subview setSelectable:NO];
     [view addSubview:subview];
     
-    NSLog(@"število besed: %@", self.mainTextView.textStorage.words);
-//    self.mainTextView.textStorage.st
     
-    CGPoint currentMousePosition = [NSEvent mouseLocation];
-    MAAttachedWindow * window = [[MAAttachedWindow alloc] initWithView:view attachedToPoint:NSMakePoint(currentMousePosition.x, currentMousePosition.y)];
+    // Set origin of the window to the center-bottom of selected word.
+    MAAttachedWindow * window = [[MAAttachedWindow alloc] initWithView:view attachedToPoint:NSMakePoint(rect.origin.x + rect.size.width/2, rect.origin.y)];
     window.identifier = @"Helper";
-    [window setTitle:@"Naslov"];
+    [window setTitle:@"Title"];
+    // Animation upon opening.
+    [window setAnimationBehavior:NSWindowAnimationBehaviorAlertPanel];
     [self addChildWindow:window ordered:1];
     
-//    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-//        context.duration = 2.f;
-//        view.animator.frame = CGRectOffset(view.frame, 100, 0);
-//    } completionHandler:nil];
+    // Animation inside window (on it's child view) -> For experimenting only.
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        context.duration = 0.5f;
+        view.animator.frame = CGRectOffset(view.frame, 20, 0);
+    } completionHandler:^{
+        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+            context.duration = 1.0f;
+            view.animator.frame = CGRectOffset(view.frame, -20, 0);
+        } completionHandler:nil];
+        
+    }];
+    
+    self.isHelperWindowOpened = YES;
 
 }
 
+
+
 -(NSString *) description
 {
-    return @"Ta klas se uporablja za marsikaj";
+    return @"Tooltip effect";
+}
+
+-(void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
