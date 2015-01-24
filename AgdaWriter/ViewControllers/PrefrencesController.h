@@ -9,7 +9,14 @@
 #import <Cocoa/Cocoa.h>
 
 @interface PrefrencesController : NSWindow
+
 @property (weak) IBOutlet NSPopUpButton *fontsizePopUp;
 - (IBAction)fontSizeSelected:(NSPopUpButton *)sender;
+
+@property (weak) IBOutlet NSPopUpButton *fontFamilyPopUp;
+- (IBAction)fontFamilySelected:(NSPopUpButton *)sender;
+
+
+
 
 @end

@@ -21,11 +21,13 @@
 {
     // Called, when xib is loaded
     self.mainTextView.delegate = self;
-    [self.mainTextView setString:@""];
+    [self.mainTextView setString:@"Some pre-entered text! :)"];
+//    NSLog(@"Font description: %@",self.mainTextView.font.description);
     
     // Add this class as observer, when font (in Prefrences) is changed. It might be reusable in other classes as well.
     // Don't forget to remove observer in dealloc, because it has strong pointer to self.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontSizeFromNotification:) name:fontSizeChanged object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontFamilyFromNotification:) name:fontFamilyChanged object:nil];
     
 }
 
@@ -34,7 +36,6 @@
     // Called, when user pressed a key in our "editor" window.
     // This method is called before any visual change is made. After this method, textDidChange is called.
     
-    NSLog(@"tabulator: %@", notification.object);
 
 }
 
@@ -56,6 +57,15 @@
         font = [[NSFontManager sharedFontManager] convertFont:font toSize:[fontSize floatValue]];
         [self.mainTextView setFont:font];
         
+    }
+}
+- (void) changeFontFamilyFromNotification:(NSNotification *)notification
+{
+    if ([notification.object isKindOfClass:[NSString class]]) {
+        NSString *fontFamily = (NSString *) notification.object;
+        NSFont *font = self.mainTextView.font;
+        font = [[NSFontManager sharedFontManager] convertFont:font toFamily:fontFamily];
+        [self.mainTextView setFont:font];
     }
 }
 
