@@ -10,6 +10,8 @@
 
 NSString * const fontSizeChanged = @"net.koleznik.fontSizeChanged";
 NSString * const fontFamilyChanged = @"net.koleznik.fontFamilyChanged";
+NSString * const FONT_SIZE_KEY = @"fontSize";
+NSString * const FONT_FAMILY_KEY = @"fontFamily";
 
 @implementation AWNotifications
 

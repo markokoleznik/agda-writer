@@ -10,6 +10,8 @@
 
 extern NSString * const fontSizeChanged;
 extern NSString * const fontFamilyChanged;
+extern NSString * const FONT_SIZE_KEY;
+extern NSString * const FONT_FAMILY_KEY;
 
 @interface AWNotifications : NSObject
 

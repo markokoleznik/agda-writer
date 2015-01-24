@@ -11,6 +11,7 @@
 #import "TestView.h"
 #import "AWNotifications.h"
 
+
 @implementation AWMainWindow
 
 @synthesize delegate;
@@ -22,6 +23,10 @@
     // Called, when xib is loaded
     self.mainTextView.delegate = self;
     [self.mainTextView setString:@"Some pre-entered text! :)"];
+    // TODO: Get font from NSDefaults!
+    [self setUserDefaults];
+    
+    
 //    NSLog(@"Font description: %@",self.mainTextView.font.description);
     
     // Add this class as observer, when font (in Prefrences) is changed. It might be reusable in other classes as well.
@@ -29,6 +34,32 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontSizeFromNotification:) name:fontSizeChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontFamilyFromNotification:) name:fontFamilyChanged object:nil];
     
+}
+
+- (void) setUserDefaults
+{
+    
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    // Default font will be Helvetica, 12pt.
+    if (![ud objectForKey:FONT_SIZE_KEY]) {
+        [ud setObject:[NSNumber numberWithInt:12] forKey:FONT_SIZE_KEY]; // Default value
+    }
+    if (![ud stringForKey:FONT_FAMILY_KEY]) {
+        [ud setObject:@"Helvetica" forKey:FONT_FAMILY_KEY]; // Default value
+    }
+    // Write changes to disk.
+    [ud synchronize];
+    
+    // Both keys/values are in NSUserDefaults
+    NSNumber * fontSize = (NSNumber *)[ud objectForKey:FONT_SIZE_KEY];
+    NSNotification * notif1 = [[NSNotification alloc] initWithName:fontSizeChanged object:fontSize userInfo:nil];
+    
+    NSString *fontFamily = (NSString *)[ud stringForKey:FONT_FAMILY_KEY];
+    NSNotification * notif2 = [[NSNotification alloc] initWithName:fontFamilyChanged object:fontFamily userInfo:nil];
+    
+    [self changeFontSizeFromNotification:notif1];
+    [self changeFontFamilyFromNotification:notif2];
+
 }
 
 -(void) textDidBeginEditing:(NSNotification *)notification
@@ -57,6 +88,11 @@
         font = [[NSFontManager sharedFontManager] convertFont:font toSize:[fontSize floatValue]];
         [self.mainTextView setFont:font];
         
+        // Save changes to NSUserDefaults!
+        NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+        [ud setObject:fontSize forKey:FONT_SIZE_KEY];
+        [ud synchronize];
+        
     }
 }
 - (void) changeFontFamilyFromNotification:(NSNotification *)notification
@@ -66,6 +102,11 @@
         NSFont *font = self.mainTextView.font;
         font = [[NSFontManager sharedFontManager] convertFont:font toFamily:fontFamily];
         [self.mainTextView setFont:font];
+        
+        // Save changes to NSUserDefaults!
+        NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+        [ud setObject:fontFamily forKey:FONT_FAMILY_KEY];
+        [ud synchronize];
     }
 }
 

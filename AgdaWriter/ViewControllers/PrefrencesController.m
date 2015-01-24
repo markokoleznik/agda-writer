@@ -19,11 +19,13 @@
 
 - (void) fillFontSizes
 {
-    for (int i = 8; i < 25; i++) {
+    for (int i = 8; i <= 25; i++) {
         [self.fontsizePopUp addItemWithTitle:[NSString stringWithFormat:@"%i",i]];
     }
     
-    [self.fontsizePopUp selectItemWithTitle:@"12"];
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSNumber *fontSize = (NSNumber *)[ud objectForKey:FONT_SIZE_KEY];
+    [self.fontsizePopUp selectItemWithTitle:[NSString stringWithFormat:@"%i", [fontSize intValue]]];
 }
 
 - (void) fillFontFamilies
@@ -34,6 +36,9 @@
     }
     
     [self.fontFamilyPopUp selectItemWithTitle:@"Helvetica"];
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSString *fontFamily = (NSString *)[ud stringForKey:FONT_FAMILY_KEY];
+    [self.fontFamilyPopUp selectItemWithTitle:fontFamily];
 }
 
 - (IBAction)fontSizeSelected:(NSPopUpButton *)sender {
