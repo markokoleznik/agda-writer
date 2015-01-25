@@ -870,5 +870,6 @@
             </connections>
             <point key="canvasLocation" x="633" y="-96"/>
         </window>
+        <userDefaultsController representsSharedInstance="YES" id="C0o-Wl-c3c"/>
     </objects>
 </document>

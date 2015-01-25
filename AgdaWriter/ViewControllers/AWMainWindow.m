@@ -8,8 +8,8 @@
 
 #import "AWMainWindow.h"
 #import "MAAttachedWindow.h"
-#import "TestView.h"
 #import "AWNotifications.h"
+#import "AWHelperView.h"
 
 
 @implementation AWMainWindow
@@ -153,46 +153,66 @@
     
 
     // TODO: Change fixed values. For testing only.
-    NSView * view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 300, 300)];
-    
-    NSImageView * imageView = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 90, 180, 200)];
-    NSString *myImagePath = [[NSBundle mainBundle] pathForResource:@"xcode_pic" ofType:@"png"];
-    NSImage * image = [[NSImage alloc] initWithContentsOfFile:myImagePath];
-    [imageView setImage:image];
-    [view addSubview:imageView];
-    
-#pragma mark - handling subviews
-    
-    NSTextField *subview = [[NSTextField alloc] initWithFrame:NSMakeRect(5, 10, 200, 50)];
-    [subview setStringValue:@"Some help text here."];
-    [subview setTextColor:[NSColor whiteColor]];
-    [subview setDrawsBackground:NO];
-    [subview setBezeled:NO];
-    [subview setDrawsBackground:NO];
-    [subview setEditable:NO];
-    [subview setSelectable:NO];
-    [view addSubview:subview];
-    
-    
-    // Set origin of the window to the center-bottom of selected word.
-    MAAttachedWindow * window = [[MAAttachedWindow alloc] initWithView:view attachedToPoint:NSMakePoint(rect.origin.x + rect.size.width/2, rect.origin.y)];
-    window.identifier = @"Helper";
-    [window setTitle:@"Title"];
-    // Animation upon opening.
+    NSRect contentRect = NSMakeRect(0, 0, 300, 300);
+    NSView * view = [[NSView alloc] initWithFrame:contentRect];
+    NSTextField * textField = [[NSTextField alloc] initWithFrame:contentRect];
+    [textField setStringValue:@"Test"];
+    [view addSubview:textField];
+    NSWindow *window = [[NSWindow alloc] initWithContentRect:contentRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
     [window setAnimationBehavior:NSWindowAnimationBehaviorAlertPanel];
+    AWHelperView * helperView = [[AWHelperView alloc] initWithNibName:@"AWHelperView" bundle:[NSBundle mainBundle]];
+    [[window contentView] addSubview:view];
+    [[window contentView] addSubview:helperView.view];
+    
+    window.identifier = @"Helper";
+    
     [self addChildWindow:window ordered:1];
     
+    
+//    NSImageView * imageView = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 90, 180, 200)];
+//    NSString *myImagePath = [[NSBundle mainBundle] pathForResource:@"xcode_pic" ofType:@"png"];
+//    NSImage * image = [[NSImage alloc] initWithContentsOfFile:myImagePath];
+//    [imageView setImage:image];
+//    [view addSubview:imageView];
+//    
+//#pragma mark - handling subviews
+//    
+//    NSTextField *subview = [[NSTextField alloc] initWithFrame:NSMakeRect(5, 10, 200, 50)];
+//    [subview setStringValue:@"Some help text here."];
+//    [subview setTextColor:[NSColor whiteColor]];
+//    [subview setDrawsBackground:NO];
+//    [subview setBezeled:NO];
+//    [subview setDrawsBackground:NO];
+//    [subview setEditable:NO];
+//    [subview setSelectable:NO];
+//    [view addSubview:subview];
+    
+    
+//    AWHelperView * helperView = [[AWHelperView alloc] initWithNibName:@"AWHelperView" bundle:[NSBundle mainBundle]];
+//    helperView.view.frame = NSOffsetRect(helperView.view.frame, 5, 5);
+//
+//    [view addSubview:[helperView view]];
+    
+    // Set origin of the window to the center-bottom of selected word.
+//    MAAttachedWindow * window = [[MAAttachedWindow alloc] initWithView:view attachedToPoint:NSMakePoint(rect.origin.x + rect.size.width/2, rect.origin.y)];
+//    
+//    window.identifier = @"Helper";
+//    [window setTitle:@"Title"];
+//    // Animation upon opening.
+//    [window setAnimationBehavior:NSWindowAnimationBehaviorAlertPanel];
+//    [self addChildWindow:window ordered:1];
+    
     // Animation inside window (on it's child view) -> For experimenting only.
-    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-        context.duration = 0.5f;
-        view.animator.frame = CGRectOffset(view.frame, 20, 0);
-    } completionHandler:^{
-        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-            context.duration = 1.0f;
-            view.animator.frame = CGRectOffset(view.frame, -20, 0);
-        } completionHandler:nil];
-        
-    }];
+//    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+//        context.duration = 0.5f;
+//        view.animator.frame = CGRectOffset(view.frame, 20, 0);
+//    } completionHandler:^{
+//        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+//            context.duration = 1.0f;
+//            view.animator.frame = CGRectOffset(view.frame, -20, 0);
+//        } completionHandler:nil];
+//        
+//    }];
     
     self.isHelperWindowOpened = YES;
 
