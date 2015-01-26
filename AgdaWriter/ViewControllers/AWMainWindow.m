@@ -22,9 +22,23 @@
 {
     // Called, when xib is loaded
     self.mainTextView.delegate = self;
+    self.lineNumbersView.delegate = self;
+    
+    NSString *line = @"";
+    for (int i = 1; i < 100; i++) {
+        line = [line stringByAppendingFormat:@"%i\n",i];
+    }
+    NSLog(@"%@", line);
+    [self.lineNumbersView setString:line];
+    
     [self.mainTextView setString:@"Some pre-entered text! :)"];
     // TODO: Get font from NSDefaults!
     [self setUserDefaults];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(synchronizedViewContentBoundsDidChange:)
+                                                 name:NSViewBoundsDidChangeNotification
+                                               object:[self.mainTextView.enclosingScrollView contentView]];
     
     
 //    NSLog(@"Font description: %@",self.mainTextView.font.description);
@@ -34,6 +48,36 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontSizeFromNotification:) name:fontSizeChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontFamilyFromNotification:) name:fontFamilyChanged object:nil];
     
+}
+
+- (void)synchronizedViewContentBoundsDidChange:(NSNotification *)notification
+{
+    // get the changed content view from the notification
+    NSClipView *changedContentView = [notification object];
+    
+    // get the origin of the NSClipView of the scroll view that
+    // we're watching
+    NSPoint changedBoundsOrigin = [changedContentView documentVisibleRect].origin;;
+    
+    // get our current origin
+    NSPoint curOffset = [[self contentView] bounds].origin;
+    NSPoint newOffset = curOffset;
+    
+    // scrolling is synchronized in the vertical plane
+    // so only modify the y component of the offset
+    newOffset.y = changedBoundsOrigin.y;
+    
+    // if our synced position is different from our current
+    // position, reposition our content view
+    if (!NSEqualPoints(curOffset, changedBoundsOrigin))
+    {
+        // note that a scroll view watching this one will
+        // get notified here
+        [[self.lineNumbersView.enclosingScrollView contentView] scrollToPoint:newOffset];
+        // we have to tell the NSScrollView to update its
+        // scrollers
+//        [self.lineNumbersView.enclosingScrollView reflectScrolledClipView:[self.lineNumbersView.enclosingScrollView contentView]];
+    }
 }
 
 - (void) setUserDefaults
@@ -62,6 +106,9 @@
 
 }
 
+
+
+
 -(void) textDidBeginEditing:(NSNotification *)notification
 {
     // Called, when user pressed a key in our "editor" window.
@@ -87,6 +134,7 @@
         NSFont *font = self.mainTextView.font;
         font = [[NSFontManager sharedFontManager] convertFont:font toSize:[fontSize floatValue]];
         [self.mainTextView setFont:font];
+        [self.lineNumbersView setFont:font];
         
         // Save changes to NSUserDefaults!
         NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
@@ -102,6 +150,7 @@
         NSFont *font = self.mainTextView.font;
         font = [[NSFontManager sharedFontManager] convertFont:font toFamily:fontFamily];
         [self.mainTextView setFont:font];
+        [self.lineNumbersView setFont:font];
         
         // Save changes to NSUserDefaults!
         NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
@@ -144,6 +193,7 @@
 }
 
 
+
 -(void) showHelpWindowAtRect: (NSRect) rect
 {
     // If one instance of window is already opened, return.
@@ -154,11 +204,11 @@
 
     // TODO: Change fixed values. For testing only.
 
-    if (!self.helperView) {
-        self.helperView = [[AWPopupAlertViewController alloc] initWithNibName:@"AWPopupAlertViewController" bundle:[NSBundle mainBundle]];
-    }
+    self.helperView = [[AWPopupAlertViewController alloc] initWithNibName:@"AWPopupAlertViewController" bundle:[NSBundle mainBundle]];
     MAAttachedWindow * MAAwindow = [[MAAttachedWindow alloc] initWithView:self.helperView.view attachedToPoint:NSMakePoint(rect.origin.x + rect.size.width/2, rect.origin.y)];
-    [self.helperView.view setFrame:NSMakeRect(5, 5, self.helperView.view.frame.size.width - 5, self.helperView.view.frame.size.height - 5)];
+    [self.helperView.view setFrame:NSMakeRect(4, 5, self.helperView.view.frame.size.width - 5, self.helperView.view.frame.size.height - 5)];
+    [self.helperView.view becomeFirstResponder];
+    NSLog(@"%i", [self.helperView.view becomeFirstResponder]);
     [MAAwindow setAnimationBehavior:NSWindowAnimationBehaviorAlertPanel];
     MAAwindow.identifier = @"Helper";
     
