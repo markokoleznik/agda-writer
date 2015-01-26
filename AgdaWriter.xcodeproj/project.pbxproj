@@ -19,12 +19,11 @@
 		D55773161A73D8D300EEF94B /* icon_256.png in Resources */ = {isa = PBXBuildFile; fileRef = D557730F1A73D8D300EEF94B /* icon_256.png */; };
 		D55773171A73D8D300EEF94B /* icon_512.png in Resources */ = {isa = PBXBuildFile; fileRef = D55773101A73D8D300EEF94B /* icon_512.png */; };
 		D55773181A73D8D300EEF94B /* icon_1024.png in Resources */ = {isa = PBXBuildFile; fileRef = D55773111A73D8D300EEF94B /* icon_1024.png */; };
-		D55773201A740E8700EEF94B /* AWHelperView.m in Sources */ = {isa = PBXBuildFile; fileRef = D557731E1A740E8700EEF94B /* AWHelperView.m */; };
+		D55773201A740E8700EEF94B /* AWHelperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D557731E1A740E8700EEF94B /* AWHelperViewController.m */; };
 		D55773211A740E8700EEF94B /* AWHelperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D557731F1A740E8700EEF94B /* AWHelperView.xib */; };
 		D55773241A74191A00EEF94B /* AWCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D55773231A74191900EEF94B /* AWCustomCell.m */; };
-		D55773311A7443F100EEF94B /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D557732F1A7443F100EEF94B /* TestViewController.m */; };
-		D55773321A7443F100EEF94B /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D55773301A7443F100EEF94B /* TestViewController.xib */; };
-		D55773361A74442B00EEF94B /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = D55773351A74442B00EEF94B /* TestView.m */; };
+		D55C211E1A766F110005D33A /* AWPopupAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D55C211C1A766F110005D33A /* AWPopupAlertViewController.m */; };
+		D55C211F1A766F110005D33A /* AWPopupAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D55C211D1A766F110005D33A /* AWPopupAlertViewController.xib */; };
 		D583562819EEEEC4009534C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D583562719EEEEC4009534C1 /* main.m */; };
 		D583562B19EEEEC4009534C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D583562A19EEEEC4009534C1 /* AppDelegate.m */; };
 		D583562D19EEEEC4009534C1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D583562C19EEEEC4009534C1 /* Images.xcassets */; };
@@ -59,16 +58,14 @@
 		D557730F1A73D8D300EEF94B /* icon_256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_256.png; path = "AgdaWriter/Icon set/icon_256.png"; sourceTree = "<group>"; };
 		D55773101A73D8D300EEF94B /* icon_512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_512.png; path = "AgdaWriter/Icon set/icon_512.png"; sourceTree = "<group>"; };
 		D55773111A73D8D300EEF94B /* icon_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_1024.png; path = "AgdaWriter/Icon set/icon_1024.png"; sourceTree = "<group>"; };
-		D557731D1A740E8700EEF94B /* AWHelperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWHelperView.h; path = ViewControllers/Helpers/AWHelperView.h; sourceTree = "<group>"; };
-		D557731E1A740E8700EEF94B /* AWHelperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWHelperView.m; path = ViewControllers/Helpers/AWHelperView.m; sourceTree = "<group>"; };
+		D557731D1A740E8700EEF94B /* AWHelperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWHelperViewController.h; path = ViewControllers/Helpers/AWHelperViewController.h; sourceTree = "<group>"; };
+		D557731E1A740E8700EEF94B /* AWHelperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWHelperViewController.m; path = ViewControllers/Helpers/AWHelperViewController.m; sourceTree = "<group>"; };
 		D557731F1A740E8700EEF94B /* AWHelperView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AWHelperView.xib; path = ViewControllers/Helpers/AWHelperView.xib; sourceTree = "<group>"; };
 		D55773221A74191900EEF94B /* AWCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWCustomCell.h; path = ViewControllers/Helpers/AWCustomCell.h; sourceTree = "<group>"; };
 		D55773231A74191900EEF94B /* AWCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWCustomCell.m; path = ViewControllers/Helpers/AWCustomCell.m; sourceTree = "<group>"; };
-		D557732E1A7443F100EEF94B /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		D557732F1A7443F100EEF94B /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
-		D55773301A7443F100EEF94B /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
-		D55773341A74442B00EEF94B /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
-		D55773351A74442B00EEF94B /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
+		D55C211B1A766F110005D33A /* AWPopupAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWPopupAlertViewController.h; path = ViewControllers/Helpers/AWPopupAlertViewController.h; sourceTree = "<group>"; };
+		D55C211C1A766F110005D33A /* AWPopupAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWPopupAlertViewController.m; path = ViewControllers/Helpers/AWPopupAlertViewController.m; sourceTree = "<group>"; };
+		D55C211D1A766F110005D33A /* AWPopupAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AWPopupAlertViewController.xib; path = ViewControllers/Helpers/AWPopupAlertViewController.xib; sourceTree = "<group>"; };
 		D583562219EEEEC4009534C1 /* AgdaWriter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgdaWriter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D583562619EEEEC4009534C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D583562719EEEEC4009534C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -147,26 +144,16 @@
 		D55773191A7400EA00EEF94B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				D557731D1A740E8700EEF94B /* AWHelperView.h */,
-				D557731E1A740E8700EEF94B /* AWHelperView.m */,
+				D557731D1A740E8700EEF94B /* AWHelperViewController.h */,
+				D557731E1A740E8700EEF94B /* AWHelperViewController.m */,
 				D557731F1A740E8700EEF94B /* AWHelperView.xib */,
 				D55773221A74191900EEF94B /* AWCustomCell.h */,
 				D55773231A74191900EEF94B /* AWCustomCell.m */,
-				D55773331A74440400EEF94B /* TestView */,
+				D55C211B1A766F110005D33A /* AWPopupAlertViewController.h */,
+				D55C211C1A766F110005D33A /* AWPopupAlertViewController.m */,
+				D55C211D1A766F110005D33A /* AWPopupAlertViewController.xib */,
 			);
 			name = Helpers;
-			sourceTree = "<group>";
-		};
-		D55773331A74440400EEF94B /* TestView */ = {
-			isa = PBXGroup;
-			children = (
-				D55773301A7443F100EEF94B /* TestViewController.xib */,
-				D557732E1A7443F100EEF94B /* TestViewController.h */,
-				D557732F1A7443F100EEF94B /* TestViewController.m */,
-				D55773341A74442B00EEF94B /* TestView.h */,
-				D55773351A74442B00EEF94B /* TestView.m */,
-			);
-			name = TestView;
 			sourceTree = "<group>";
 		};
 		D583561919EEEEC4009534C1 = {
@@ -311,6 +298,7 @@
 			files = (
 				D583562D19EEEEC4009534C1 /* Images.xcassets in Resources */,
 				D55773171A73D8D300EEF94B /* icon_512.png in Resources */,
+				D55C211F1A766F110005D33A /* AWPopupAlertViewController.xib in Resources */,
 				D55773161A73D8D300EEF94B /* icon_256.png in Resources */,
 				D55773131A73D8D300EEF94B /* icon_32.png in Resources */,
 				D55773181A73D8D300EEF94B /* icon_1024.png in Resources */,
@@ -319,7 +307,6 @@
 				D55773121A73D8D300EEF94B /* icon_16.png in Resources */,
 				D55772ED1A73ACE500EEF94B /* xcode_pic.png in Resources */,
 				D55773211A740E8700EEF94B /* AWHelperView.xib in Resources */,
-				D55773321A7443F100EEF94B /* TestViewController.xib in Resources */,
 				D583563019EEEEC4009534C1 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,12 +327,11 @@
 			files = (
 				D583562B19EEEEC4009534C1 /* AppDelegate.m in Sources */,
 				D55773091A73D89100EEF94B /* PrefrencesController.m in Sources */,
-				D55773361A74442B00EEF94B /* TestView.m in Sources */,
 				D55772F01A73AF5C00EEF94B /* AWNotifications.m in Sources */,
-				D55773201A740E8700EEF94B /* AWHelperView.m in Sources */,
+				D55773201A740E8700EEF94B /* AWHelperViewController.m in Sources */,
 				D55773241A74191A00EEF94B /* AWCustomCell.m in Sources */,
+				D55C211E1A766F110005D33A /* AWPopupAlertViewController.m in Sources */,
 				D55773081A73D89100EEF94B /* MAAttachedWindow.m in Sources */,
-				D55773311A7443F100EEF94B /* TestViewController.m in Sources */,
 				D55773071A73D89100EEF94B /* AWMainWindow.m in Sources */,
 				D583562819EEEEC4009534C1 /* main.m in Sources */,
 			);

@@ -3,4 +3,6 @@ agda-writer
 
 A simple GUI wrapper for Agda
 
-- AgdaWriter.zip contains compiled & built app for testing.
+Functionalities:
+- Autolayout
+- Built for Mac OS X 10.9 (Mavericks) and 10.10 (Yosemite)

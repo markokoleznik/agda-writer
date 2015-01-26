@@ -9,6 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 @interface AWCustomCell : NSView
-@property NSTextField *textLabel;
+@property (strong) NSTextField *textLabel;
 
 @end

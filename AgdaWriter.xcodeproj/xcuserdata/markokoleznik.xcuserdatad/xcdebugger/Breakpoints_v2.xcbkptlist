@@ -183,36 +183,20 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AgdaWriter/ViewControllers/Helpers/AWHelperView.m"
-            timestampString = "443831751.285999"
+            filePath = "AgdaWriter/ViewControllers/Helpers/AWHelperViewController.m"
+            timestampString = "443965490.566198"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "-numberOfRowsInTableView:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AgdaWriter/ViewControllers/Helpers/AWHelperView.m"
-            timestampString = "443817658.634754"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "-initWithNibName:bundle:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             scope = "0"
@@ -225,13 +209,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AgdaWriter/ViewControllers/Helpers/AWHelperView.m"
-            timestampString = "443832637.87708"
+            filePath = "AgdaWriter/ViewControllers/Helpers/AWHelperViewController.m"
+            timestampString = "443965490.566198"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "-tableView:viewForTableColumn:row:"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "-awakeFromNib"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -241,13 +225,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AgdaWriter/ViewControllers/Helpers/AWHelperView.m"
-            timestampString = "443831751.285999"
+            filePath = "AgdaWriter/ViewControllers/Helpers/AWHelperViewController.m"
+            timestampString = "443965517.352049"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "-initWithNibName:bundle:"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "-initWithWindowNibName:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
