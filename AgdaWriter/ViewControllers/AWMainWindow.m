@@ -28,7 +28,6 @@
     for (int i = 1; i < 100; i++) {
         line = [line stringByAppendingFormat:@"%i\n",i];
     }
-    NSLog(@"%@", line);
     [self.lineNumbersView setString:line];
     
     [self.mainTextView setString:@"Some pre-entered text! :)"];
@@ -116,6 +115,62 @@
     
 
 }
+
+
+- (IBAction)saveAs:(id)sender {
+
+    NSSavePanel * savePanel = [NSSavePanel savePanel];
+    [savePanel beginWithCompletionHandler:^(NSInteger result) {
+        NSInteger choice = result;
+        if (choice == NSFileHandlingPanelOKButton) {
+            NSURL *directoryToSave = [savePanel directoryURL];
+            NSURL *fileName = [savePanel URL];
+            [self writeToTextFile:directoryToSave filename:fileName];
+            
+        }
+        else if (choice == NSCancelButton) {
+            
+        }
+        else {
+            
+        }
+        
+        
+    }];
+    
+}
+
+- (IBAction)doOpen:(id)sender {
+    
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    openPanel.allowedFileTypes = @[@"txt"];
+    [openPanel beginWithCompletionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            NSURL * directory = [openPanel directoryURL];
+            NSURL * filename = [openPanel URL];
+            
+            NSLog(@"Directory: %@, Filename: %@", directory, filename);
+            NSString * fullPath = [NSString stringWithFormat:@"%@/%@", [directory path], [filename lastPathComponent]];
+            NSString * fileContent = [NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:nil];
+            [self.mainTextView setString:fileContent];
+        }
+    }];
+    
+}
+
+-(void) writeToTextFile: (NSURL *)directoryToSave filename:(NSURL *)filename {
+    
+    NSString *directory = [directoryToSave path];
+    NSString *fileName = [[filename absoluteString] lastPathComponent];
+    NSError * error;
+    NSString *content = [[self.mainTextView textStorage] string];
+    [content writeToFile:[NSString stringWithFormat:@"%@/%@.txt",directory, fileName]
+              atomically:YES
+                encoding:NSStringEncodingConversionAllowLossy
+                   error:&error];
+    
+}
+
 
 
 - (void) textDidChange:(NSNotification *)notification
@@ -229,6 +284,8 @@
     self.isHelperWindowOpened = YES;
 
 }
+
+
 
 
 

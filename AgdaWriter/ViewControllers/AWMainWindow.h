@@ -21,6 +21,10 @@
 
 
 
+- (IBAction)saveAs:(id)sender;
+- (IBAction)doOpen:(id)sender;
+
+
 
 
 - (void) textDidChange:(NSNotification *)notification;
