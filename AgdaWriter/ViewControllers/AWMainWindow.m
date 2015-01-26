@@ -8,8 +8,8 @@
 
 #import "AWMainWindow.h"
 #import "MAAttachedWindow.h"
-#import "TestView.h"
 #import "AWNotifications.h"
+#import "AWPopupAlertViewController.h"
 
 
 @implementation AWMainWindow
@@ -153,46 +153,28 @@
     
 
     // TODO: Change fixed values. For testing only.
-    NSView * view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 300, 300)];
+
+    if (!self.helperView) {
+        self.helperView = [[AWPopupAlertViewController alloc] initWithNibName:@"AWPopupAlertViewController" bundle:[NSBundle mainBundle]];
+    }
+    MAAttachedWindow * MAAwindow = [[MAAttachedWindow alloc] initWithView:self.helperView.view attachedToPoint:NSMakePoint(rect.origin.x + rect.size.width/2, rect.origin.y)];
+    [self.helperView.view setFrame:NSMakeRect(5, 5, self.helperView.view.frame.size.width - 5, self.helperView.view.frame.size.height - 5)];
+    [MAAwindow setAnimationBehavior:NSWindowAnimationBehaviorAlertPanel];
+    MAAwindow.identifier = @"Helper";
     
-    NSImageView * imageView = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 90, 180, 200)];
-    NSString *myImagePath = [[NSBundle mainBundle] pathForResource:@"xcode_pic" ofType:@"png"];
-    NSImage * image = [[NSImage alloc] initWithContentsOfFile:myImagePath];
-    [imageView setImage:image];
-    [view addSubview:imageView];
-    
-#pragma mark - handling subviews
-    
-    NSTextField *subview = [[NSTextField alloc] initWithFrame:NSMakeRect(5, 10, 200, 50)];
-    [subview setStringValue:@"Some help text here."];
-    [subview setTextColor:[NSColor whiteColor]];
-    [subview setDrawsBackground:NO];
-    [subview setBezeled:NO];
-    [subview setDrawsBackground:NO];
-    [subview setEditable:NO];
-    [subview setSelectable:NO];
-    [view addSubview:subview];
-    
-    
-    // Set origin of the window to the center-bottom of selected word.
-    MAAttachedWindow * window = [[MAAttachedWindow alloc] initWithView:view attachedToPoint:NSMakePoint(rect.origin.x + rect.size.width/2, rect.origin.y)];
-    window.identifier = @"Helper";
-    [window setTitle:@"Title"];
-    // Animation upon opening.
-    [window setAnimationBehavior:NSWindowAnimationBehaviorAlertPanel];
-    [self addChildWindow:window ordered:1];
-    
+    [self addChildWindow:MAAwindow ordered:1];
+
     // Animation inside window (on it's child view) -> For experimenting only.
-    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-        context.duration = 0.5f;
-        view.animator.frame = CGRectOffset(view.frame, 20, 0);
-    } completionHandler:^{
-        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-            context.duration = 1.0f;
-            view.animator.frame = CGRectOffset(view.frame, -20, 0);
-        } completionHandler:nil];
-        
-    }];
+//    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+//        context.duration = 0.5f;
+//        view.animator.frame = CGRectOffset(view.frame, 20, 0);
+//    } completionHandler:^{
+//        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+//            context.duration = 1.0f;
+//            view.animator.frame = CGRectOffset(view.frame, -20, 0);
+//        } completionHandler:nil];
+//        
+//    }];
     
     self.isHelperWindowOpened = YES;
 
