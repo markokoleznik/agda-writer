@@ -25,7 +25,7 @@
     self.lineNumbersView.delegate = self;
     
     NSString *line = @"";
-    for (int i = 1; i < 100; i++) {
+    for (int i = 1; i < 10000; i++) {
         line = [line stringByAppendingFormat:@"%i\n",i];
     }
     [self.lineNumbersView setString:line];
@@ -129,7 +129,7 @@
             
         }
         else if (choice == NSCancelButton) {
-            
+        
         }
         else {
             
@@ -247,7 +247,32 @@
     }
 }
 
+- (IBAction)copy:(id)sender {
+    NSRange selectedTextRange = [self.mainTextView selectedRange];
+    NSString *content = [[self.mainTextView textStorage] string];
+    NSString * substring = [content substringWithRange:selectedTextRange];
+    if (substring) {
+        NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+        [pasteboard clearContents];
+        NSArray *copiedObjects = [NSArray arrayWithObject:substring];
+        [pasteboard writeObjects:copiedObjects];
+    }
+}
 
+-(IBAction)paste:(id)sender {
+    NSPasteboard * pasteboard = [NSPasteboard generalPasteboard];
+    NSArray * classArray = [NSArray arrayWithObject:[NSString class]];
+    // for we have empty options.
+    NSDictionary * options = [NSDictionary dictionary];
+    
+    BOOL ok = [pasteboard canReadObjectForClasses:classArray options:options];
+    if (ok) {
+        NSArray * objectsToPaste = [pasteboard readObjectsForClasses:classArray options:options];
+        NSString * content = [objectsToPaste objectAtIndex:0];
+        NSString * oldText = [[self.mainTextView textStorage] string];
+        [self.mainTextView setString:[oldText stringByAppendingString:content]];
+    }
+}
 
 -(void) showHelpWindowAtRect: (NSRect) rect
 {
@@ -271,12 +296,12 @@
 
     // Animation inside window (on it's child view) -> For experimenting only.
 //    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-//        context.duration = 0.5f;
-//        view.animator.frame = CGRectOffset(view.frame, 20, 0);
+//        context.duration = 0.4f;
+//        self.helperView.view.animator.frame = CGRectOffset(self.helperView.view.frame, 20, 0);
 //    } completionHandler:^{
 //        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-//            context.duration = 1.0f;
-//            view.animator.frame = CGRectOffset(view.frame, -20, 0);
+//            context.duration = 0.3f;
+//            self.helperView.view.animator.frame = CGRectOffset(self.helperView.view.frame, -20, 0);
 //        } completionHandler:nil];
 //        
 //    }];

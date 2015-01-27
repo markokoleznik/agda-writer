@@ -24,6 +24,8 @@
 - (IBAction)saveAs:(id)sender;
 - (IBAction)doOpen:(id)sender;
 
+- (IBAction)copy:sender;
+- (IBAction)paste:sender;
 
 
 
