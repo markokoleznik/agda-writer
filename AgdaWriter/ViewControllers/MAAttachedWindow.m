@@ -100,6 +100,8 @@
                                                      name:NSWindowDidResizeNotification 
                                                    object:self];
     }
+    
+    
     return self;
 }
 
@@ -946,6 +948,8 @@
         [self setBackgroundColor:[NSColor colorWithPatternImage:value]];
     }
 }
+
+
 
 
 @end

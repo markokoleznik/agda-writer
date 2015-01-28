@@ -12,15 +12,18 @@
 #import "AWPopupAlertViewController.h"
 
 
+
 @implementation AWMainWindow
 
-@synthesize delegate;
 
 #pragma mark - initialize
+
+
 
 -(void)awakeFromNib
 {
     // Called, when xib is loaded
+    NSLog(@"%@", self.mainTextView);
     self.mainTextView.delegate = self;
     self.lineNumbersView.delegate = self;
     
@@ -30,14 +33,36 @@
     }
     [self.lineNumbersView setString:line];
     
-    [self.mainTextView setString:@"Some pre-entered text! :)"];
-    // TODO: Get font from NSDefaults!
+    [self.mainTextView setString:@"Some pre-entered text! \n\n\n:)"];
     [self setUserDefaults];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(synchronizedViewContentBoundsDidChange:)
                                                  name:NSViewBoundsDidChangeNotification
                                                object:[self.mainTextView.enclosingScrollView contentView]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeController:) name:REMOVE_CONTROLLER object:nil];
+    
+    NSArray * words = @[@"eeee", @"iiii", @"ijij", @"ABCZ"];
+    for (NSString * word in words) {
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        NSNumber *fontSize = (NSNumber *)[ud objectForKey:FONT_SIZE_KEY];
+        NSString *fontFamily = [ud stringForKey:FONT_FAMILY_KEY];
+        NSDictionary * attributes = @{NSFontAttributeName: [NSFont fontWithName:fontFamily size:[fontSize floatValue]]};
+        CGSize size = [word sizeWithAttributes:attributes];
+        NSLog(@"height for word: %@: %f",word, size.height);
+        
+        
+        
+    }
+    
+    
+//    lineNumberView = [[MarkerLineNumberView alloc] initWithScrollView:scrollView];
+//    [scrollView setVerticalRulerView:lineNumberView];
+//    [scrollView setHasHorizontalRuler:NO];
+//    [scrollView setHasVerticalRuler:YES];
+//    [scrollView setRulersVisible:YES];
+
+    
     
     
 //    NSLog(@"Font description: %@",self.mainTextView.font.description);
@@ -46,6 +71,23 @@
     // Don't forget to remove observer in dealloc, because it has strong pointer to self.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontSizeFromNotification:) name:fontSizeChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontFamilyFromNotification:) name:fontFamilyChanged object:nil];
+    
+}
+
+- (void)removeController:(NSNotification *)notification
+{
+    NSLog(@"Removing view controller");
+    NSViewController * vc = (NSViewController *)notification.object;
+    if ([vc isKindOfClass:[AWPopupAlertViewController class]]) {
+        for (NSWindow *window in self.childWindows) {
+            if ([window.identifier isEqualToString:@"Helper"]) {
+                [self removeChildWindow:window];
+                self.isHelperWindowOpened = NO;
+            }
+        }
+    }
+    [self makeKeyWindow];
+    
     
 }
 
@@ -112,8 +154,14 @@
 {
     // Called, when user pressed a key in our "editor" window.
     // This method is called before any visual change is made. After this method, textDidChange is called.
+}
+- (void) textDidChange:(NSNotification *)notification
+{
+    // Here we can send typed words to Agda.
     
+//    NSLog(@"text changed: %li", text.);
 
+    
 }
 
 
@@ -173,12 +221,7 @@
 
 
 
-- (void) textDidChange:(NSNotification *)notification
-{
-    // Here we can send typed words to Agda.
-    
 
-}
 
 -(void)changeFontSizeFromNotification:(NSNotification *)notification
 {
@@ -226,7 +269,7 @@
 //    int location = (int)selectedText.location;
     int lenght = (int) selectedText.length;
     if (lenght > 0) {
-        [self.numberLabel setStringValue:[NSString stringWithFormat:@"%i", lenght]];
+//        [self.numberLabel setStringValue:[NSString stringWithFormat:@"%i", lenght]];
         
         [self.mainTextView addToolTipRect:NSMakeRect(100, 100, 300, 300) owner:self userData:nil];
         
@@ -237,7 +280,7 @@
     {
         // Remove window!
         // TODO: use delegation to remove help window.
-        [self.numberLabel setStringValue:@""];
+//        [self.numberLabel setStringValue:@""];
         for (NSWindow *window in self.childWindows) {
             if ([window.identifier isEqualToString:@"Helper"]) {
                 [self removeChildWindow:window];
@@ -274,6 +317,8 @@
     }
 }
 
+
+
 -(void) showHelpWindowAtRect: (NSRect) rect
 {
     // If one instance of window is already opened, return.
@@ -292,7 +337,10 @@
     [MAAwindow setAnimationBehavior:NSWindowAnimationBehaviorAlertPanel];
     MAAwindow.identifier = @"Helper";
     
+    
+    
     [self addChildWindow:MAAwindow ordered:1];
+    [MAAwindow makeKeyWindow];
 
     // Animation inside window (on it's child view) -> For experimenting only.
 //    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
@@ -309,9 +357,6 @@
     self.isHelperWindowOpened = YES;
 
 }
-
-
-
 
 
 -(NSString *) description

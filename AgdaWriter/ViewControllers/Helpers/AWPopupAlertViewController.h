@@ -10,6 +10,9 @@
 
 @interface AWPopupAlertViewController : NSViewController<NSTableViewDataSource, NSTableViewDelegate>{
     NSMutableArray * items;
+
 }
+
+@property IBOutlet NSTableView * table;
 
 @end

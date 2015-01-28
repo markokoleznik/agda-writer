@@ -12,6 +12,11 @@ NSString * const fontSizeChanged = @"net.koleznik.fontSizeChanged";
 NSString * const fontFamilyChanged = @"net.koleznik.fontFamilyChanged";
 NSString * const FONT_SIZE_KEY = @"fontSize";
 NSString * const FONT_FAMILY_KEY = @"fontFamily";
+NSString * const KEY_ON_TABLE_PRESSED = @"net.koleznik.keyReturnPressed";
+NSString * const REMOVE_CONTROLLER = @"net.koleznik.removeController";
+
+
+
 
 @implementation AWNotifications
 
@@ -26,5 +31,14 @@ NSString * const FONT_FAMILY_KEY = @"fontFamily";
     [[NSNotificationCenter defaultCenter] postNotificationName:fontFamilyChanged object:fontFamily];
 }
 
++ (void) notifyKeyReturnPressed: (NSInteger) key;
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:KEY_ON_TABLE_PRESSED object:[NSNumber numberWithInteger:key]];
+}
+
++ (void) notifyRemoveViewController:(NSViewController *)viewController
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:REMOVE_CONTROLLER object:viewController];
+}
 
 @end
