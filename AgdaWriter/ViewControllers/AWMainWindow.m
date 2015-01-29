@@ -24,9 +24,7 @@
 {
     // Called, when xib is loaded
     NSLog(@"%@", self.mainTextView);
-    self.mainTextView.delegate = self;
     
-    [self.mainTextView setString:@"Some pre-entered text! \n\n\n:)"];
     [self setUserDefaults];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -206,14 +204,20 @@
     // When "fontSizeChanged" notification is recieved, change font to our editor
     if ([notification.object isKindOfClass:[NSNumber class]]) {
         
+        
+        NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+        
         NSNumber *fontSize = (NSNumber *) notification.object;
         NSFont *font = self.mainTextView.font;
+        if (!font) {
+            NSString * fontFamily = [ud stringForKey:FONT_FAMILY_KEY];
+            font = [NSFont fontWithName:fontFamily size:[fontSize floatValue]];
+        }
         font = [[NSFontManager sharedFontManager] convertFont:font toSize:[fontSize floatValue]];
         [self.mainTextView setFont:font];
         [self.lineNumbersView setFont:font];
         
         // Save changes to NSUserDefaults!
-        NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
         [ud setObject:fontSize forKey:FONT_SIZE_KEY];
         [ud synchronize];
         
@@ -304,6 +308,8 @@
         return;
     }
     
+    // TODO: Remove this! Don't show helper for now.
+    return;
 
     // TODO: Change fixed values. For testing only.
 
