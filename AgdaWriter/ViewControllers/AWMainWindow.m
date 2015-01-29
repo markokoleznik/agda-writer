@@ -25,13 +25,6 @@
     // Called, when xib is loaded
     NSLog(@"%@", self.mainTextView);
     self.mainTextView.delegate = self;
-    self.lineNumbersView.delegate = self;
-    
-    NSString *line = @"";
-    for (int i = 1; i < 10000; i++) {
-        line = [line stringByAppendingFormat:@"%i\n",i];
-    }
-    [self.lineNumbersView setString:line];
     
     [self.mainTextView setString:@"Some pre-entered text! \n\n\n:)"];
     [self setUserDefaults];
@@ -42,27 +35,15 @@
                                                object:[self.mainTextView.enclosingScrollView contentView]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeController:) name:REMOVE_CONTROLLER object:nil];
     
-    NSArray * words = @[@"eeee", @"iiii", @"ijij", @"ABCZ"];
-    for (NSString * word in words) {
-        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-        NSNumber *fontSize = (NSNumber *)[ud objectForKey:FONT_SIZE_KEY];
-        NSString *fontFamily = [ud stringForKey:FONT_FAMILY_KEY];
-        NSDictionary * attributes = @{NSFontAttributeName: [NSFont fontWithName:fontFamily size:[fontSize floatValue]]};
-        CGSize size = [word sizeWithAttributes:attributes];
-        NSLog(@"height for word: %@: %f",word, size.height);
-        
-        
-        
-    }
-    
-    
-//    lineNumberView = [[MarkerLineNumberView alloc] initWithScrollView:scrollView];
-//    [scrollView setVerticalRulerView:lineNumberView];
-//    [scrollView setHasHorizontalRuler:NO];
-//    [scrollView setHasVerticalRuler:YES];
-//    [scrollView setRulersVisible:YES];
-
-    
+//    NSArray * words = @[@"eeee", @"iiii", @"ijij", @"ABCZ"];
+//    for (NSString * word in words) {
+//        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+//        NSNumber *fontSize = (NSNumber *)[ud objectForKey:FONT_SIZE_KEY];
+//        NSString *fontFamily = [ud stringForKey:FONT_FAMILY_KEY];
+//        NSDictionary * attributes = @{NSFontAttributeName: [NSFont fontWithName:fontFamily size:[fontSize floatValue]]};
+//        CGSize size = [word sizeWithAttributes:attributes];
+//        NSLog(@"height for word: %@: %f",word, size.height);
+//    }
     
     
 //    NSLog(@"Font description: %@",self.mainTextView.font.description);
@@ -115,9 +96,6 @@
         // note that a scroll view watching this one will
         // get notified here
         [[self.lineNumbersView.enclosingScrollView contentView] scrollToPoint:newOffset];
-        // we have to tell the NSScrollView to update its
-        // scrollers
-//        [self.lineNumbersView.enclosingScrollView reflectScrolledClipView:[self.lineNumbersView.enclosingScrollView contentView]];
     }
 }
 

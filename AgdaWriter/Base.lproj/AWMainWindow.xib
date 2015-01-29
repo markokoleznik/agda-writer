@@ -663,15 +663,15 @@
         <window title="AgdaWriter" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g" customClass="AWMainWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES"/>
-            <rect key="contentRect" x="0.0" y="496" width="613" height="382"/>
+            <rect key="contentRect" x="0.0" y="496" width="967" height="579"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <value key="minSize" type="size" width="0.0" height="150"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="613" height="382"/>
+                <rect key="frame" x="0.0" y="0.0" width="967" height="579"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxB-hT-218">
-                        <rect key="frame" x="61" y="25" width="396" height="298"/>
+                        <rect key="frame" x="37" y="25" width="774" height="495"/>
                         <clipView key="contentView" id="LOc-gi-PiG">
                             <rect key="frame" x="1" y="1" width="223" height="133"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -680,11 +680,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="223" height="335"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="394" height="296"/>
-                                    <size key="maxSize" width="463" height="10000000"/>
+                                    <size key="minSize" width="772" height="493"/>
+                                    <size key="maxSize" width="772" height="10000000"/>
                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="394" height="296"/>
-                                    <size key="maxSize" width="463" height="10000000"/>
+                                    <size key="minSize" width="772" height="493"/>
+                                    <size key="maxSize" width="772" height="10000000"/>
                                 </textView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -702,47 +702,47 @@
                         </scroller>
                     </scrollView>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fXz-Ki-m2a">
-                        <rect key="frame" x="14" y="336" width="82" height="32"/>
+                        <rect key="frame" x="14" y="533" width="82" height="32"/>
                         <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7IC-be-GpM">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xwf-dB-YP8">
-                        <rect key="frame" x="435" y="336" width="82" height="32"/>
+                        <rect key="frame" x="789" y="533" width="82" height="32"/>
                         <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Sq9-wR-H0g">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e7v-zB-ypc">
-                        <rect key="frame" x="517" y="336" width="82" height="32"/>
+                        <rect key="frame" x="871" y="533" width="82" height="32"/>
                         <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AGn-fn-q9c">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eX7-cx-cKm">
-                        <rect key="frame" x="265" y="336" width="82" height="32"/>
+                        <rect key="frame" x="443" y="533" width="82" height="32"/>
                         <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oOq-lC-hii">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Br8-ZO-rQx">
-                        <rect key="frame" x="-1" y="25" width="61" height="298"/>
+                        <rect key="frame" x="-1" y="25" width="39" height="495"/>
                         <clipView key="contentView" id="1Xg-0b-PDD">
                             <rect key="frame" x="1" y="1" width="223" height="133"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView editable="NO" selectable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="Ab6-OT-EOb">
+                                <textView editable="NO" selectable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="Ab6-OT-EOb" customClass="AWLineNumbersTextView">
                                     <rect key="frame" x="0.0" y="0.0" width="223" height="296"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="59" height="296"/>
+                                    <size key="minSize" width="37" height="493"/>
                                     <size key="maxSize" width="463" height="10000000"/>
                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="59" height="296"/>
+                                    <size key="minSize" width="37" height="493"/>
                                     <size key="maxSize" width="463" height="10000000"/>
                                 </textView>
                             </subviews>
@@ -760,7 +760,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="e7v-zB-ypc" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="18" id="0em-ba-xJP"/>
-                    <constraint firstItem="wxB-hT-218" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="61" id="8WM-zg-dgl"/>
+                    <constraint firstItem="wxB-hT-218" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="37" id="8WM-zg-dgl"/>
                     <constraint firstAttribute="trailing" secondItem="e7v-zB-ypc" secondAttribute="trailing" constant="20" symbolic="YES" id="Gns-ba-3KA"/>
                     <constraint firstItem="xwf-dB-YP8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eX7-cx-cKm" secondAttribute="trailing" constant="12" id="Jpn-AU-AUU"/>
                     <constraint firstItem="eX7-cx-cKm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fXz-Ki-m2a" secondAttribute="trailing" constant="12" id="P3k-Ho-4tw"/>
@@ -776,7 +776,7 @@
                     <constraint firstItem="fXz-Ki-m2a" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="18" id="ur3-7A-pcw"/>
                     <constraint firstAttribute="bottom" secondItem="wxB-hT-218" secondAttribute="bottom" constant="25" id="vVL-lZ-L1a"/>
                     <constraint firstItem="eX7-cx-cKm" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="18" id="vcT-wt-Tef"/>
-                    <constraint firstItem="wxB-hT-218" firstAttribute="leading" secondItem="Br8-ZO-rQx" secondAttribute="trailing" constant="1" id="xbi-dz-tBe"/>
+                    <constraint firstItem="wxB-hT-218" firstAttribute="leading" secondItem="Br8-ZO-rQx" secondAttribute="trailing" constant="-1" id="xbi-dz-tBe"/>
                 </constraints>
             </view>
             <connections>
@@ -784,7 +784,7 @@
                 <outlet property="lineNumbersView" destination="Ab6-OT-EOb" id="6v3-fg-zvw"/>
                 <outlet property="mainTextView" destination="O95-wS-29x" id="WL1-8p-GAy"/>
             </connections>
-            <point key="canvasLocation" x="356.5" y="341"/>
+            <point key="canvasLocation" x="530.5" y="439.5"/>
         </window>
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="E06-Bb-SRl" customClass="PrefrencesController">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
