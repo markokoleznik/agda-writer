@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D55772ED1A73ACE500EEF94B /* xcode_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = D55772EC1A73ACE500EEF94B /* xcode_pic.png */; };
 		D55772F01A73AF5C00EEF94B /* AWNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = D55772EF1A73AF5C00EEF94B /* AWNotifications.m */; };
 		D55773071A73D89100EEF94B /* AWMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D55773021A73D89100EEF94B /* AWMainWindow.m */; };
 		D55773081A73D89100EEF94B /* MAAttachedWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D55773041A73D89100EEF94B /* MAAttachedWindow.m */; };
@@ -42,7 +41,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D55772EC1A73ACE500EEF94B /* xcode_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = xcode_pic.png; path = AgdaWriter/xcode_pic.png; sourceTree = "<group>"; };
 		D55772EE1A73AF5C00EEF94B /* AWNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWNotifications.h; path = AgdaWriter/AWNotifications/AWNotifications.h; sourceTree = "<group>"; };
 		D55772EF1A73AF5C00EEF94B /* AWNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWNotifications.m; path = AgdaWriter/AWNotifications/AWNotifications.m; sourceTree = "<group>"; };
 		D55773011A73D89100EEF94B /* AWMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWMainWindow.h; path = ViewControllers/AWMainWindow.h; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 		D55772EB1A73ACCB00EEF94B /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				D55772EC1A73ACE500EEF94B /* xcode_pic.png */,
 				D55772FA1A73C8A300EEF94B /* Icons */,
 			);
 			name = Images;
@@ -307,7 +304,6 @@
 				D55773151A73D8D300EEF94B /* icon_128.png in Resources */,
 				D55773141A73D8D300EEF94B /* icon_64.png in Resources */,
 				D55773121A73D8D300EEF94B /* icon_16.png in Resources */,
-				D55772ED1A73ACE500EEF94B /* xcode_pic.png in Resources */,
 				D583563019EEEEC4009534C1 /* AWMainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

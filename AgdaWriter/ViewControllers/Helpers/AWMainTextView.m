@@ -128,7 +128,7 @@
         
         NSDate *methodStart = [NSDate date];
         
-        NSLog(@"number of matches %li", matches.count);
+//        NSLog(@"number of matches %li", matches.count);
         [self setTextColor:[NSColor blackColor]];
         [self.textStorage beginEditing];
         for (NSString * stringRange in matches) {
@@ -139,7 +139,7 @@
         [self.textStorage endEditing];
         NSDate *methodFinish = [NSDate date];
         NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
-        NSLog(@"regex execution time: %f s, execution time for coloring: %f s", [methodStart timeIntervalSinceDate:regexStart], executionTime);
+//        NSLog(@"regex execution time: %f s, execution time for coloring: %f s", [methodStart timeIntervalSinceDate:regexStart], executionTime);
     }];
 }
 
