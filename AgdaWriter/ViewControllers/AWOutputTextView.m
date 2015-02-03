@@ -31,4 +31,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (IBAction)clearContet:(id)sender
+{
+    [self setString:@""];
+}
+
 @end

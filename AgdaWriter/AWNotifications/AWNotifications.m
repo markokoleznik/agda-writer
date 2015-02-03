@@ -52,4 +52,27 @@ NSString * const AWAgdaReplied = @"net.koleznik.agdaReplied";
     [[NSNotificationCenter defaultCenter] postNotificationName:AWAgdaReplied object:reply];
 }
 
++ (NSURL *) defaultUrl
+{
+    return [[NSBundle mainBundle] URLForResource:@"defaults" withExtension:@"plist"];
+}
+
++ (NSDictionary *) dictionaryOfDefaults
+{
+    NSDictionary *plistContent = [NSDictionary dictionaryWithContentsOfURL: [self defaultUrl]];
+    
+    return plistContent;
+}
+
++ (NSString *) agdaLaunchPath
+{
+    NSDictionary *plistContent = [self dictionaryOfDefaults];
+    return [plistContent objectForKey:@"agdaLaunchPath"];
+    
+}
+
+
+
+
+
 @end

@@ -49,6 +49,7 @@
     
 }
 
+
 - (void) stopTask
 {
     [task terminate];
@@ -58,7 +59,7 @@
 {
     task = [NSTask new];
     // PATH TO AGDA
-    task.launchPath = @"/Users/markokoleznik/Library/Haskell/bin/agda";
+    task.launchPath = [AWNotifications agdaLaunchPath];
     task.arguments = @[@"--interaction"];
     task.standardInput = outputPipe;
     task.standardOutput = inputPipe;

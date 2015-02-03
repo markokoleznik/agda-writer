@@ -14,7 +14,7 @@
 {
 //    NSLog(@"%@", self.description);
     if (!initialize) {
-        [self setDefaultText];
+        [self openLastDocument];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChangedInRangeWithReplacementString:) name:@"textChangedInRangeWithReplacementString" object:nil];
         
         
@@ -22,6 +22,17 @@
     }
     
     
+}
+
+- (void) openLastDocument
+{
+    NSUserDefaults *ud = [[NSUserDefaults alloc] init];
+    NSString * path = [ud objectForKey:@"currentFile"];
+    if (path) {
+        
+        NSString * fileContent = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        [self setString:fileContent];
+    }
 }
 
 - (void) recolorText

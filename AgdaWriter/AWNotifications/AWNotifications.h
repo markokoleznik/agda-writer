@@ -31,5 +31,8 @@ typedef NS_ENUM(NSInteger, KeyPressed) {
 + (void) notifyTextChangedInRange: (NSRange) affectedRange replacementString: (NSString *) replacementString;
 + (void) notifyAgdaReplied: (NSString *) reply;
 
++ (NSDictionary *) dictionaryOfDefaults;
++ (NSString *) agdaLaunchPath;
+
 
 @end

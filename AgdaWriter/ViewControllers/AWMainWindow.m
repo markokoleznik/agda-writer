@@ -48,6 +48,7 @@
     
     
     
+    
 //    NSLog(@"Terminal output");
 //    int pid = [[NSProcessInfo processInfo] processIdentifier];
 //    NSLog(@"PID: %i", pid);
@@ -78,6 +79,8 @@
 //    NSLog (@"grep returned:\n%@", grepOutput);
     
 }
+
+
 
 - (void)removeController:(NSNotification *)notification
 {
@@ -161,7 +164,10 @@
 
 
 - (IBAction)writeToAgda:(id)sender {
-    NSString * writeToAgda = @"IOTCM \"/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda\" NonInteractive Indirect ( Cmd_load \"/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda\" [] )";
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    NSString * writeToAgda = [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_load \"%@\" [] )", fullPath, fullPath];
+//    NSString * writeToAgda2 = @"IOTCM \"/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda\" NonInteractive Indirect ( Cmd_load \"/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda\" [] )";
     [self.communicator writeData:writeToAgda];
 }
 
@@ -191,7 +197,7 @@
 - (IBAction)doOpen:(id)sender {
     
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-    openPanel.allowedFileTypes = @[@"txt"];
+    openPanel.allowedFileTypes = @[@"txt", @"agda"];
     [openPanel beginWithCompletionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
             NSURL * directory = [openPanel directoryURL];
@@ -200,6 +206,9 @@
             NSLog(@"Directory: %@, Filename: %@", directory, filename);
             NSString * fullPath = [NSString stringWithFormat:@"%@/%@", [directory path], [filename lastPathComponent]];
             NSString * fileContent = [NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:nil];
+            NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+            [ud setObject:fullPath forKey:@"currentFile"];
+            [ud synchronize];
             [self.mainTextView setString:fileContent];
         }
     }];

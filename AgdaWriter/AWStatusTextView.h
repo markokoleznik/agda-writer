@@ -1,5 +1,5 @@
 //
-//  AWOutputTextView.h
+//  AWStatusTextView.h
 //  AgdaWriter
 //
 //  Created by Marko Koležnik on 3. 02. 15.
@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AWOutputTextView : NSTextView
+@interface AWStatusTextView : NSTextView
 - (IBAction)clearContet:(id)sender;
 @end
