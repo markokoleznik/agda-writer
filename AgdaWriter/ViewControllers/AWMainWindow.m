@@ -13,6 +13,7 @@
 
 
 
+
 @implementation AWMainWindow
 
 
@@ -23,7 +24,7 @@
 -(void)awakeFromNib
 {
     // Called, when xib is loaded
-    NSLog(@"%@", self.mainTextView);
+//    NSLog(@"%@", self.mainTextView);
     
     [self setUserDefaults];
     
@@ -33,23 +34,48 @@
                                                object:[self.mainTextView.enclosingScrollView contentView]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeController:) name:REMOVE_CONTROLLER object:nil];
     
-//    NSArray * words = @[@"eeee", @"iiii", @"ijij", @"ABCZ"];
-//    for (NSString * word in words) {
-//        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-//        NSNumber *fontSize = (NSNumber *)[ud objectForKey:FONT_SIZE_KEY];
-//        NSString *fontFamily = [ud stringForKey:FONT_FAMILY_KEY];
-//        NSDictionary * attributes = @{NSFontAttributeName: [NSFont fontWithName:fontFamily size:[fontSize floatValue]]};
-//        CGSize size = [word sizeWithAttributes:attributes];
-//        NSLog(@"height for word: %@: %f",word, size.height);
-//    }
-    
-    
-//    NSLog(@"Font description: %@",self.mainTextView.font.description);
-    
     // Add this class as observer, when font (in Prefrences) is changed. It might be reusable in other classes as well.
     // Don't forget to remove observer in dealloc, because it has strong pointer to self.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontSizeFromNotification:) name:fontSizeChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontFamilyFromNotification:) name:fontFamilyChanged object:nil];
+    
+    
+    
+    if (!self.communicator) {
+        self.communicator = [[AWCommunitacion alloc] init];
+    }
+    
+    
+    
+    
+//    NSLog(@"Terminal output");
+//    int pid = [[NSProcessInfo processInfo] processIdentifier];
+//    NSLog(@"PID: %i", pid);
+//    
+//    NSPipe *inputPipe = [NSPipe pipe];
+//    NSPipe *outputPipe = [NSPipe pipe];
+//    NSFileHandle *fileReading = inputPipe.fileHandleForReading;
+//    NSFileHandle *fileWriting = outputPipe.fileHandleForWriting;
+//    
+//    NSTask *task = [NSTask new];
+////    task.launchPath = @"/bin/cat";
+//    task.launchPath = @"/Users/markokoleznik/Library/Haskell/bin/agda";
+//    task.arguments = @[@"--interaction"];
+//    task.standardInput = outputPipe;
+//    task.standardOutput = inputPipe;
+//    
+//    
+//    [task launch];
+//    
+//    NSString * string = @"foo\nbar\nbaz\n";
+//    [fileWriting writeData:[string dataUsingEncoding:NSUTF8StringEncoding]];
+//    [fileWriting closeFile];
+//    
+//    NSData *data = [fileReading availableData];
+//    [fileReading closeFile];
+//    
+//    NSString *grepOutput = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+//    NSLog (@"grep returned:\n%@", grepOutput);
     
 }
 
@@ -69,6 +95,8 @@
     
     
 }
+
+
 
 - (void)synchronizedViewContentBoundsDidChange:(NSNotification *)notification
 {
@@ -124,22 +152,18 @@
 }
 
 
-
-
--(void) textDidBeginEditing:(NSNotification *)notification
+-(BOOL)textView:(NSTextView *)textView shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(NSString *)replacementString
 {
-    // Called, when user pressed a key in our "editor" window.
-    // This method is called before any visual change is made. After this method, textDidChange is called.
-}
-- (void) textDidChange:(NSNotification *)notification
-{
-    // Here we can send typed words to Agda.
+    [AWNotifications notifyTextChangedInRange:affectedCharRange replacementString:replacementString];
     
-//    NSLog(@"text changed: %li", text.);
-
-    
+    return YES;
 }
 
+
+- (IBAction)writeToAgda:(id)sender {
+    NSString * writeToAgda = @"IOTCM \"/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda\" NonInteractive Indirect ( Cmd_load \"/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda\" [] )";
+    [self.communicator writeData:writeToAgda];
+}
 
 - (IBAction)saveAs:(id)sender {
 
@@ -243,6 +267,8 @@
 {
     // Called, when we select text
     
+//    return;
+    
     // Check for selected range, and put rectangle around it.
     NSRange selectedText = [self.mainTextView selectedRange];
     NSRect rectangle = [self.mainTextView firstRectForCharacterRange:selectedText actualRange:nil];
@@ -309,7 +335,7 @@
     }
     
     // TODO: Remove this! Don't show helper for now.
-    return;
+//    return;
 
     // TODO: Change fixed values. For testing only.
 

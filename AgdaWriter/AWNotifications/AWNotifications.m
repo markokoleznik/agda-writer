@@ -14,6 +14,7 @@ NSString * const FONT_SIZE_KEY = @"fontSize";
 NSString * const FONT_FAMILY_KEY = @"fontFamily";
 NSString * const KEY_ON_TABLE_PRESSED = @"net.koleznik.keyReturnPressed";
 NSString * const REMOVE_CONTROLLER = @"net.koleznik.removeController";
+NSString * const AWAgdaReplied = @"net.koleznik.agdaReplied";
 
 
 
@@ -39,6 +40,16 @@ NSString * const REMOVE_CONTROLLER = @"net.koleznik.removeController";
 + (void) notifyRemoveViewController:(NSViewController *)viewController
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:REMOVE_CONTROLLER object:viewController];
+}
+
++ (void) notifyTextChangedInRange: (NSRange) affectedRange replacementString: (NSString *) replacementString
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"textChangedInRangeWithReplacementString" object:@{@"range":[NSValue valueWithRange:affectedRange], @"replacementString":replacementString}];
+}
+
++ (void) notifyAgdaReplied:(NSString *)reply
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:AWAgdaReplied object:reply];
 }
 
 @end

@@ -28,6 +28,8 @@
 		D583562D19EEEEC4009534C1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D583562C19EEEEC4009534C1 /* Images.xcassets */; };
 		D583563019EEEEC4009534C1 /* AWMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D583562E19EEEEC4009534C1 /* AWMainWindow.xib */; };
 		D583563C19EEEEC4009534C1 /* AgdaWriterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D583563B19EEEEC4009534C1 /* AgdaWriterTests.m */; };
+		D5C56BA41A811AE100422B5E /* AWCommunitacion.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C56BA31A811AE100422B5E /* AWCommunitacion.m */; };
+		D5C56BA71A81464D00422B5E /* AWOutputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C56BA61A81464D00422B5E /* AWOutputTextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,10 @@
 		D583563519EEEEC4009534C1 /* AgdaWriterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgdaWriterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D583563A19EEEEC4009534C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D583563B19EEEEC4009534C1 /* AgdaWriterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgdaWriterTests.m; sourceTree = "<group>"; };
+		D5C56BA21A811AE100422B5E /* AWCommunitacion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWCommunitacion.h; path = AgdaWriter/AWCommunitacion.h; sourceTree = "<group>"; };
+		D5C56BA31A811AE100422B5E /* AWCommunitacion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWCommunitacion.m; path = AgdaWriter/AWCommunitacion.m; sourceTree = "<group>"; };
+		D5C56BA51A81464D00422B5E /* AWOutputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWOutputTextView.h; path = ViewControllers/AWOutputTextView.h; sourceTree = "<group>"; };
+		D5C56BA61A81464D00422B5E /* AWOutputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWOutputTextView.m; path = ViewControllers/AWOutputTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +146,8 @@
 				D56A0E3F1A7A27CF006493D3 /* AWLineNumbersTextView.m */,
 				D56A0E411A7A3468006493D3 /* AWMainTextView.h */,
 				D56A0E421A7A3468006493D3 /* AWMainTextView.m */,
+				D5C56BA51A81464D00422B5E /* AWOutputTextView.h */,
+				D5C56BA61A81464D00422B5E /* AWOutputTextView.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -159,6 +167,7 @@
 		D583561919EEEEC4009534C1 = {
 			isa = PBXGroup;
 			children = (
+				D5C56BA11A811AB900422B5E /* AWCommunications */,
 				D55772F11A73AF6200EEF94B /* AWNotifications */,
 				D583562419EEEEC4009534C1 /* AgdaWriter */,
 				D583563819EEEEC4009534C1 /* AgdaWriterTests */,
@@ -213,6 +222,15 @@
 				D583563A19EEEEC4009534C1 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D5C56BA11A811AB900422B5E /* AWCommunications */ = {
+			isa = PBXGroup;
+			children = (
+				D5C56BA21A811AE100422B5E /* AWCommunitacion.h */,
+				D5C56BA31A811AE100422B5E /* AWCommunitacion.m */,
+			);
+			name = AWCommunications;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,9 +346,11 @@
 				D55772F01A73AF5C00EEF94B /* AWNotifications.m in Sources */,
 				D55C211E1A766F110005D33A /* AWPopupAlertViewController.m in Sources */,
 				D55773081A73D89100EEF94B /* MAAttachedWindow.m in Sources */,
+				D5C56BA41A811AE100422B5E /* AWCommunitacion.m in Sources */,
 				D55773071A73D89100EEF94B /* AWMainWindow.m in Sources */,
 				D56A0E401A7A27CF006493D3 /* AWLineNumbersTextView.m in Sources */,
 				D56A0E431A7A3468006493D3 /* AWMainTextView.m in Sources */,
+				D5C56BA71A81464D00422B5E /* AWOutputTextView.m in Sources */,
 				D583562819EEEEC4009534C1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AWMainTextView : NSTextView
+@interface AWMainTextView : NSTextView {
+    BOOL initialize;
+}
 
 @end
