@@ -21,7 +21,7 @@
         
         
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(dataAvaliabe:)
+                                                 selector:@selector(dataAvailabe:)
                                                      name:NSFileHandleDataAvailableNotification
                                                    object:nil];
 
@@ -33,20 +33,15 @@
 }
 
 
-- (void) dataAvaliabe:(NSNotification *) notification;
-{
-
+- (void) dataAvailabe:(NSNotification *) notification {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [NSThread sleepForTimeInterval:0.1];
         dispatch_async(dispatch_get_main_queue(), ^{
             NSData *data = [fileReading availableData];
             NSString * reply = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             [AWNotifications notifyAgdaReplied:reply];
-            
         });
-        
     });
-    
 }
 
 

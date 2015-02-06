@@ -4,7 +4,7 @@ module Foo where
     true : bool
 
   f : bool → bool → bool
-  f p q = q
+  f p q = ?
 
   g : bool → bool
   g x = x
@@ -13,5 +13,7 @@ module Foo where
   id x = x
 
   neg : bool → bool
-  neg p = {!!}
+  neg x = ?
 
+  test : bool → bool
+  test x = ?

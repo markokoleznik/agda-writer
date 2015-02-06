@@ -12,4 +12,6 @@
     BOOL initialize;
 }
 
+- (IBAction)save:(id)sender;
+
 @end

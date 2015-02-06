@@ -11,6 +11,8 @@
 #import "AWNotifications.h"
 #import "AWPopupAlertViewController.h"
 
+#import "AWAgdaParser.h"
+
 
 
 
@@ -45,38 +47,6 @@
         self.communicator = [[AWCommunitacion alloc] init];
     }
     
-    
-    
-    
-    
-//    NSLog(@"Terminal output");
-//    int pid = [[NSProcessInfo processInfo] processIdentifier];
-//    NSLog(@"PID: %i", pid);
-//    
-//    NSPipe *inputPipe = [NSPipe pipe];
-//    NSPipe *outputPipe = [NSPipe pipe];
-//    NSFileHandle *fileReading = inputPipe.fileHandleForReading;
-//    NSFileHandle *fileWriting = outputPipe.fileHandleForWriting;
-//    
-//    NSTask *task = [NSTask new];
-////    task.launchPath = @"/bin/cat";
-//    task.launchPath = @"/Users/markokoleznik/Library/Haskell/bin/agda";
-//    task.arguments = @[@"--interaction"];
-//    task.standardInput = outputPipe;
-//    task.standardOutput = inputPipe;
-//    
-//    
-//    [task launch];
-//    
-//    NSString * string = @"foo\nbar\nbaz\n";
-//    [fileWriting writeData:[string dataUsingEncoding:NSUTF8StringEncoding]];
-//    [fileWriting closeFile];
-//    
-//    NSData *data = [fileReading availableData];
-//    [fileReading closeFile];
-//    
-//    NSString *grepOutput = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-//    NSLog (@"grep returned:\n%@", grepOutput);
     
 }
 
@@ -162,10 +132,38 @@
     return YES;
 }
 
+- (void)saveCurrentWork
+{
+    // TODO: error handling
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    NSError * error;
+    NSString *content = [[self.mainTextView textStorage] string];
+    [content writeToFile:fullPath
+              atomically:YES
+                encoding:NSUTF8StringEncoding
+                   error:&error];
+    
+}
+
+- (IBAction)hideOutputs:(id)sender {
+//    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+//        context.duration = 0.4f;
+//        self.mainTextView.animator.frame = CGRectOffset(self.mainTextView.frame, 20, 0);
+//    } completionHandler:^{
+//        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+//            context.duration = 0.3f;
+//            self.mainTextView.animator.frame = CGRectOffset(self.mainTextView.frame, -20, 0);
+//        } completionHandler:nil];
+//        
+//    }];
+
+}
 
 - (IBAction)writeToAgda:(id)sender {
     NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
     NSString * fullPath = [ud objectForKey:@"currentFile"];
+    [self saveCurrentWork];
     NSString * writeToAgda = [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_load \"%@\" [] )", fullPath, fullPath];
 //    NSString * writeToAgda2 = @"IOTCM \"/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda\" NonInteractive Indirect ( Cmd_load \"/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda\" [] )";
     [self.communicator writeData:writeToAgda];
@@ -336,6 +334,8 @@
 
 
 
+
+
 -(void) showHelpWindowAtRect: (NSRect) rect
 {
     // If one instance of window is already opened, return.
@@ -344,7 +344,7 @@
     }
     
     // TODO: Remove this! Don't show helper for now.
-//    return;
+    return;
 
     // TODO: Change fixed values. For testing only.
 

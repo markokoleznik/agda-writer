@@ -18,11 +18,17 @@
 		D55773161A73D8D300EEF94B /* icon_256.png in Resources */ = {isa = PBXBuildFile; fileRef = D557730F1A73D8D300EEF94B /* icon_256.png */; };
 		D55773171A73D8D300EEF94B /* icon_512.png in Resources */ = {isa = PBXBuildFile; fileRef = D55773101A73D8D300EEF94B /* icon_512.png */; };
 		D55773181A73D8D300EEF94B /* icon_1024.png in Resources */ = {isa = PBXBuildFile; fileRef = D55773111A73D8D300EEF94B /* icon_1024.png */; };
+		D55792F41A82D6C500DB83BD /* AWAgdaParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D55792F31A82D6C500DB83BD /* AWAgdaParser.m */; };
 		D55C211E1A766F110005D33A /* AWPopupAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D55C211C1A766F110005D33A /* AWPopupAlertViewController.m */; };
 		D55C211F1A766F110005D33A /* AWPopupAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D55C211D1A766F110005D33A /* AWPopupAlertViewController.xib */; };
 		D56A0E3D1A797377006493D3 /* AWPopupAlertTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D56A0E3C1A797377006493D3 /* AWPopupAlertTableView.m */; };
 		D56A0E401A7A27CF006493D3 /* AWLineNumbersTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D56A0E3F1A7A27CF006493D3 /* AWLineNumbersTextView.m */; };
 		D56A0E431A7A3468006493D3 /* AWMainTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D56A0E421A7A3468006493D3 /* AWMainTextView.m */; };
+		D56A16F41A84DEA100AC82DB /* AWContainerOutputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D56A16F31A84DEA100AC82DB /* AWContainerOutputTextView.m */; };
+		D56A16F71A84DF8900AC82DB /* AWContainerStatusTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D56A16F61A84DF8900AC82DB /* AWContainerStatusTextView.m */; };
+		D56A16FA1A84E06B00AC82DB /* AWColors.m in Sources */ = {isa = PBXBuildFile; fileRef = D56A16F91A84E06B00AC82DB /* AWColors.m */; };
+		D56A16FD1A84E4E700AC82DB /* AWMainSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D56A16FC1A84E4E700AC82DB /* AWMainSplitView.m */; };
+		D56A17001A84FB9800AC82DB /* NSSplitView+DMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D56A16FF1A84FB9800AC82DB /* NSSplitView+DMAdditions.m */; };
 		D583562819EEEEC4009534C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D583562719EEEEC4009534C1 /* main.m */; };
 		D583562B19EEEEC4009534C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D583562A19EEEEC4009534C1 /* AppDelegate.m */; };
 		D583562D19EEEEC4009534C1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D583562C19EEEEC4009534C1 /* Images.xcassets */; };
@@ -60,6 +66,8 @@
 		D557730F1A73D8D300EEF94B /* icon_256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_256.png; path = "AgdaWriter/Icon set/icon_256.png"; sourceTree = "<group>"; };
 		D55773101A73D8D300EEF94B /* icon_512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_512.png; path = "AgdaWriter/Icon set/icon_512.png"; sourceTree = "<group>"; };
 		D55773111A73D8D300EEF94B /* icon_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_1024.png; path = "AgdaWriter/Icon set/icon_1024.png"; sourceTree = "<group>"; };
+		D55792F21A82D6C500DB83BD /* AWAgdaParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWAgdaParser.h; path = AgdaWriter/AWAgdaParser.h; sourceTree = "<group>"; };
+		D55792F31A82D6C500DB83BD /* AWAgdaParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWAgdaParser.m; path = AgdaWriter/AWAgdaParser.m; sourceTree = "<group>"; };
 		D55C211B1A766F110005D33A /* AWPopupAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWPopupAlertViewController.h; path = ViewControllers/Helpers/AWPopupAlertViewController.h; sourceTree = "<group>"; };
 		D55C211C1A766F110005D33A /* AWPopupAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWPopupAlertViewController.m; path = ViewControllers/Helpers/AWPopupAlertViewController.m; sourceTree = "<group>"; };
 		D55C211D1A766F110005D33A /* AWPopupAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AWPopupAlertViewController.xib; path = ViewControllers/Helpers/AWPopupAlertViewController.xib; sourceTree = "<group>"; };
@@ -69,6 +77,16 @@
 		D56A0E3F1A7A27CF006493D3 /* AWLineNumbersTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWLineNumbersTextView.m; path = ViewControllers/Helpers/AWLineNumbersTextView.m; sourceTree = "<group>"; };
 		D56A0E411A7A3468006493D3 /* AWMainTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWMainTextView.h; path = ViewControllers/Helpers/AWMainTextView.h; sourceTree = "<group>"; };
 		D56A0E421A7A3468006493D3 /* AWMainTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWMainTextView.m; path = ViewControllers/Helpers/AWMainTextView.m; sourceTree = "<group>"; };
+		D56A16F21A84DEA100AC82DB /* AWContainerOutputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWContainerOutputTextView.h; sourceTree = "<group>"; };
+		D56A16F31A84DEA100AC82DB /* AWContainerOutputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWContainerOutputTextView.m; sourceTree = "<group>"; };
+		D56A16F51A84DF8900AC82DB /* AWContainerStatusTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWContainerStatusTextView.h; sourceTree = "<group>"; };
+		D56A16F61A84DF8900AC82DB /* AWContainerStatusTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWContainerStatusTextView.m; sourceTree = "<group>"; };
+		D56A16F81A84E06B00AC82DB /* AWColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWColors.h; sourceTree = "<group>"; };
+		D56A16F91A84E06B00AC82DB /* AWColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWColors.m; sourceTree = "<group>"; };
+		D56A16FB1A84E4E700AC82DB /* AWMainSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWMainSplitView.h; sourceTree = "<group>"; };
+		D56A16FC1A84E4E700AC82DB /* AWMainSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWMainSplitView.m; sourceTree = "<group>"; };
+		D56A16FE1A84FB9800AC82DB /* NSSplitView+DMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSSplitView+DMAdditions.h"; path = "AgdaWriter/NSSplitView+DMAdditions.h"; sourceTree = "<group>"; };
+		D56A16FF1A84FB9800AC82DB /* NSSplitView+DMAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSSplitView+DMAdditions.m"; path = "AgdaWriter/NSSplitView+DMAdditions.m"; sourceTree = "<group>"; };
 		D583562219EEEEC4009534C1 /* AgdaWriter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgdaWriter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D583562619EEEEC4009534C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D583562719EEEEC4009534C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -121,6 +139,7 @@
 				D55772EF1A73AF5C00EEF94B /* AWNotifications.m */,
 			);
 			name = AWNotifications;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		D55772FA1A73C8A300EEF94B /* Icons */ = {
@@ -140,21 +159,13 @@
 		D557730A1A73D8A700EEF94B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D56A16EA1A84DD2800AC82DB /* Preferences */,
+				D56A16E91A84DD0900AC82DB /* Main View Controller */,
 				D583562E19EEEEC4009534C1 /* AWMainWindow.xib */,
 				D55773011A73D89100EEF94B /* AWMainWindow.h */,
 				D55773021A73D89100EEF94B /* AWMainWindow.m */,
 				D55773031A73D89100EEF94B /* MAAttachedWindow.h */,
 				D55773041A73D89100EEF94B /* MAAttachedWindow.m */,
-				D55773051A73D89100EEF94B /* PrefrencesController.h */,
-				D55773061A73D89100EEF94B /* PrefrencesController.m */,
-				D56A0E3E1A7A27CF006493D3 /* AWLineNumbersTextView.h */,
-				D56A0E3F1A7A27CF006493D3 /* AWLineNumbersTextView.m */,
-				D56A0E411A7A3468006493D3 /* AWMainTextView.h */,
-				D56A0E421A7A3468006493D3 /* AWMainTextView.m */,
-				D5C56BA51A81464D00422B5E /* AWOutputTextView.h */,
-				D5C56BA61A81464D00422B5E /* AWOutputTextView.m */,
-				D5C56BAA1A816FF300422B5E /* AWStatusTextView.h */,
-				D5C56BAB1A816FF300422B5E /* AWStatusTextView.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -167,16 +178,88 @@
 				D55C211D1A766F110005D33A /* AWPopupAlertViewController.xib */,
 				D56A0E3B1A797377006493D3 /* AWPopupAlertTableView.h */,
 				D56A0E3C1A797377006493D3 /* AWPopupAlertTableView.m */,
+				D56A16F81A84E06B00AC82DB /* AWColors.h */,
+				D56A16F91A84E06B00AC82DB /* AWColors.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		D56A16E91A84DD0900AC82DB /* Main View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D56A16EB1A84DD4200AC82DB /* Split View */,
+			);
+			name = "Main View Controller";
+			sourceTree = "<group>";
+		};
+		D56A16EA1A84DD2800AC82DB /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				D55773051A73D89100EEF94B /* PrefrencesController.h */,
+				D55773061A73D89100EEF94B /* PrefrencesController.m */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
+		D56A16EB1A84DD4200AC82DB /* Split View */ = {
+			isa = PBXGroup;
+			children = (
+				D56A16FB1A84E4E700AC82DB /* AWMainSplitView.h */,
+				D56A16FC1A84E4E700AC82DB /* AWMainSplitView.m */,
+				D56A16EC1A84DD5500AC82DB /* Horizontal - Left */,
+				D56A16ED1A84DD6E00AC82DB /* Horizontal - Right */,
+			);
+			name = "Split View";
+			sourceTree = "<group>";
+		};
+		D56A16EC1A84DD5500AC82DB /* Horizontal - Left */ = {
+			isa = PBXGroup;
+			children = (
+				D56A0E3E1A7A27CF006493D3 /* AWLineNumbersTextView.h */,
+				D56A0E3F1A7A27CF006493D3 /* AWLineNumbersTextView.m */,
+				D56A0E411A7A3468006493D3 /* AWMainTextView.h */,
+				D56A0E421A7A3468006493D3 /* AWMainTextView.m */,
+			);
+			name = "Horizontal - Left";
+			sourceTree = "<group>";
+		};
+		D56A16ED1A84DD6E00AC82DB /* Horizontal - Right */ = {
+			isa = PBXGroup;
+			children = (
+				D56A16EE1A84DD8000AC82DB /* Vertical - Up */,
+				D56A16EF1A84DD8900AC82DB /* Vertical - Down */,
+			);
+			name = "Horizontal - Right";
+			sourceTree = "<group>";
+		};
+		D56A16EE1A84DD8000AC82DB /* Vertical - Up */ = {
+			isa = PBXGroup;
+			children = (
+				D5C56BA51A81464D00422B5E /* AWOutputTextView.h */,
+				D5C56BA61A81464D00422B5E /* AWOutputTextView.m */,
+				D56A16F21A84DEA100AC82DB /* AWContainerOutputTextView.h */,
+				D56A16F31A84DEA100AC82DB /* AWContainerOutputTextView.m */,
+			);
+			name = "Vertical - Up";
+			sourceTree = "<group>";
+		};
+		D56A16EF1A84DD8900AC82DB /* Vertical - Down */ = {
+			isa = PBXGroup;
+			children = (
+				D5C56BAA1A816FF300422B5E /* AWStatusTextView.h */,
+				D5C56BAB1A816FF300422B5E /* AWStatusTextView.m */,
+				D56A16F51A84DF8900AC82DB /* AWContainerStatusTextView.h */,
+				D56A16F61A84DF8900AC82DB /* AWContainerStatusTextView.m */,
+			);
+			name = "Vertical - Down";
 			sourceTree = "<group>";
 		};
 		D583561919EEEEC4009534C1 = {
 			isa = PBXGroup;
 			children = (
+				D56A16FE1A84FB9800AC82DB /* NSSplitView+DMAdditions.h */,
+				D56A16FF1A84FB9800AC82DB /* NSSplitView+DMAdditions.m */,
 				D5C56BA81A815F7D00422B5E /* defaults.plist */,
-				D5C56BA11A811AB900422B5E /* AWCommunications */,
-				D55772F11A73AF6200EEF94B /* AWNotifications */,
 				D583562419EEEEC4009534C1 /* AgdaWriter */,
 				D583563819EEEEC4009534C1 /* AgdaWriterTests */,
 				D583562319EEEEC4009534C1 /* Products */,
@@ -196,6 +279,8 @@
 		D583562419EEEEC4009534C1 /* AgdaWriter */ = {
 			isa = PBXGroup;
 			children = (
+				D5C56BA11A811AB900422B5E /* AWCommunications */,
+				D55772F11A73AF6200EEF94B /* AWNotifications */,
 				D55773191A7400EA00EEF94B /* Helpers */,
 				D557730A1A73D8A700EEF94B /* View Controllers */,
 				D583562919EEEEC4009534C1 /* AppDelegate.h */,
@@ -237,8 +322,11 @@
 			children = (
 				D5C56BA21A811AE100422B5E /* AWCommunitacion.h */,
 				D5C56BA31A811AE100422B5E /* AWCommunitacion.m */,
+				D55792F21A82D6C500DB83BD /* AWAgdaParser.h */,
+				D55792F31A82D6C500DB83BD /* AWAgdaParser.m */,
 			);
 			name = AWCommunications;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,15 +441,21 @@
 				D583562B19EEEEC4009534C1 /* AppDelegate.m in Sources */,
 				D55773091A73D89100EEF94B /* PrefrencesController.m in Sources */,
 				D55772F01A73AF5C00EEF94B /* AWNotifications.m in Sources */,
+				D56A16FD1A84E4E700AC82DB /* AWMainSplitView.m in Sources */,
 				D55C211E1A766F110005D33A /* AWPopupAlertViewController.m in Sources */,
+				D56A16F71A84DF8900AC82DB /* AWContainerStatusTextView.m in Sources */,
+				D56A17001A84FB9800AC82DB /* NSSplitView+DMAdditions.m in Sources */,
+				D56A16F41A84DEA100AC82DB /* AWContainerOutputTextView.m in Sources */,
 				D5C56BAC1A816FF300422B5E /* AWStatusTextView.m in Sources */,
 				D55773081A73D89100EEF94B /* MAAttachedWindow.m in Sources */,
 				D5C56BA41A811AE100422B5E /* AWCommunitacion.m in Sources */,
 				D55773071A73D89100EEF94B /* AWMainWindow.m in Sources */,
+				D56A16FA1A84E06B00AC82DB /* AWColors.m in Sources */,
 				D56A0E401A7A27CF006493D3 /* AWLineNumbersTextView.m in Sources */,
 				D56A0E431A7A3468006493D3 /* AWMainTextView.m in Sources */,
 				D5C56BA71A81464D00422B5E /* AWOutputTextView.m in Sources */,
 				D583562819EEEEC4009534C1 /* main.m in Sources */,
+				D55792F41A82D6C500DB83BD /* AWAgdaParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

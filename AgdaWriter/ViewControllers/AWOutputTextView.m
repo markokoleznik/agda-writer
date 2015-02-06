@@ -15,6 +15,7 @@
 {
     // Add observer for Agda replies:
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaReplied:) name:AWAgdaReplied object:nil];
+
 }
 
 - (void)agdaReplied:(NSNotification *)notification

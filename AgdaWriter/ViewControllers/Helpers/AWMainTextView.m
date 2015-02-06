@@ -35,6 +35,25 @@
     }
 }
 
+- (void)saveCurrentWork
+{
+    // TODO: error handling
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    NSError * error;
+    NSString *content = [[self textStorage] string];
+    [content writeToFile:fullPath
+              atomically:YES
+                encoding:NSUTF8StringEncoding
+                   error:&error];
+
+}
+
+- (IBAction)save:(id)sender
+{
+    [self saveCurrentWork];
+}
+
 - (void) recolorText
 {
     [self setTextColor:[NSColor blackColor]];

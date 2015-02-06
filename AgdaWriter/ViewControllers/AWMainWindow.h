@@ -22,6 +22,9 @@
 @property AWCommunitacion * communicator;
 
 
+- (IBAction)hideOutputs:(id)sender;
+
+
 - (IBAction)writeToAgda:(id)sender;
 
 - (IBAction)saveAs:(id)sender;

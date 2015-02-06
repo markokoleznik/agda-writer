@@ -9,5 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface AWStatusTextView : NSTextView
+
 - (IBAction)clearContet:(id)sender;
+
 @end
