@@ -4,16 +4,20 @@ module Foo where
     true : bool
 
   f : bool → bool → bool
-  f p q = ?
-
+  f p q = p
   g : bool → bool
   g x = x
 
   id : bool → bool
-  id x = x
+  id x = ?
+
+baz : bool → bool
 
   neg : bool → bool
   neg x = ?
 
   test : bool → bool
   test x = ?
+
+  bar : bool → bool → bool
+  bar p q = ?

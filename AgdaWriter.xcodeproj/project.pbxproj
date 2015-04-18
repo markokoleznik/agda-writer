@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D52FB5171A8543B600A8CB4F /* SExpressionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D52FB5161A8543B600A8CB4F /* SExpressionParser.m */; };
+		D52FB51A1A85447800A8CB4F /* SExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = D52FB5191A85447800A8CB4F /* SExpression.m */; };
 		D55772F01A73AF5C00EEF94B /* AWNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = D55772EF1A73AF5C00EEF94B /* AWNotifications.m */; };
 		D55773071A73D89100EEF94B /* AWMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D55773021A73D89100EEF94B /* AWMainWindow.m */; };
 		D55773081A73D89100EEF94B /* MAAttachedWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D55773041A73D89100EEF94B /* MAAttachedWindow.m */; };
@@ -51,6 +53,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D52FB5151A8543B600A8CB4F /* SExpressionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SExpressionParser.h; path = AgdaWriter/SExpressionParser.h; sourceTree = "<group>"; };
+		D52FB5161A8543B600A8CB4F /* SExpressionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SExpressionParser.m; path = AgdaWriter/SExpressionParser.m; sourceTree = "<group>"; };
+		D52FB5181A85447800A8CB4F /* SExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SExpression.h; path = AgdaWriter/SExpression.h; sourceTree = "<group>"; };
+		D52FB5191A85447800A8CB4F /* SExpression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SExpression.m; path = AgdaWriter/SExpression.m; sourceTree = "<group>"; };
 		D55772EE1A73AF5C00EEF94B /* AWNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWNotifications.h; path = AgdaWriter/AWNotifications/AWNotifications.h; sourceTree = "<group>"; };
 		D55772EF1A73AF5C00EEF94B /* AWNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWNotifications.m; path = AgdaWriter/AWNotifications/AWNotifications.m; sourceTree = "<group>"; };
 		D55773011A73D89100EEF94B /* AWMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWMainWindow.h; path = ViewControllers/AWMainWindow.h; sourceTree = "<group>"; };
@@ -324,6 +330,10 @@
 				D5C56BA31A811AE100422B5E /* AWCommunitacion.m */,
 				D55792F21A82D6C500DB83BD /* AWAgdaParser.h */,
 				D55792F31A82D6C500DB83BD /* AWAgdaParser.m */,
+				D52FB5151A8543B600A8CB4F /* SExpressionParser.h */,
+				D52FB5161A8543B600A8CB4F /* SExpressionParser.m */,
+				D52FB5181A85447800A8CB4F /* SExpression.h */,
+				D52FB5191A85447800A8CB4F /* SExpression.m */,
 			);
 			name = AWCommunications;
 			path = ..;
@@ -438,6 +448,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D56A0E3D1A797377006493D3 /* AWPopupAlertTableView.m in Sources */,
+				D52FB51A1A85447800A8CB4F /* SExpression.m in Sources */,
 				D583562B19EEEEC4009534C1 /* AppDelegate.m in Sources */,
 				D55773091A73D89100EEF94B /* PrefrencesController.m in Sources */,
 				D55772F01A73AF5C00EEF94B /* AWNotifications.m in Sources */,
@@ -455,6 +466,7 @@
 				D56A0E431A7A3468006493D3 /* AWMainTextView.m in Sources */,
 				D5C56BA71A81464D00422B5E /* AWOutputTextView.m in Sources */,
 				D583562819EEEEC4009534C1 /* main.m in Sources */,
+				D52FB5171A8543B600A8CB4F /* SExpressionParser.m in Sources */,
 				D55792F41A82D6C500DB83BD /* AWAgdaParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

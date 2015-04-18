@@ -12,6 +12,8 @@
 #import "AWPopupAlertViewController.h"
 
 #import "AWAgdaParser.h"
+#import "SExpression.h"
+#import "SExpressionParser.h"
 
 
 
@@ -47,6 +49,41 @@
         self.communicator = [[AWCommunitacion alloc] init];
     }
     
+    AWAgdaParser * parser = [[AWAgdaParser alloc] init];
+    [parser parseResponse:@"((last . 1) . (agda2-goals-action '(0 1 2)))"];
+    
+    
+    SExpressionParser *sex = [[SExpressionParser alloc] init];
+    NSMutableArray * array = [[NSMutableArray alloc] init];
+    
+    [array addObject:[sex expand:@"(a b)"]];
+    [array addObject:[sex expand:@"(a b)"]];
+    [array addObject:[sex expand:@"(a b c d e)"]];
+    [array addObject:[sex expand:@"(a b c d e f g h i j k l m n o p r)"]];
+    [array addObject:[sex expand:@"(agda2-info-action \"*All Goals*\" \"?0 : bool\n?1 : bool\n?2 : bool\n\" nil)"]];
+    [array addObject:[sex expand:@"(a b . (c . nil))"]];
+    [array addObject:[sex expand:@"((a b) . (c . nil))"]];
+    [array addObject:[sex expand:@"((last . 1) . (agda2-goals-action '(0 1 2)))"]];
+    [array addObject:[sex expand:@"(agda2-status-action \"\")"]];
+    [array addObject:[sex expand:@"(agda2-info-action \"*Type-checking*\" \"\" nil)"]];
+    [array addObject:[sex expand:@"(agda2-highlight-clear)"]];
+    [array addObject:[sex expand:@"(agda2-info-action \"*Type-checking*\" \"Checking Foo (/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda).\n\" t)"]];
+    [array addObject:[sex expand:@"(agda2-highlight-load-and-delete-action \"/var/folders/c6/1rfd2v_n4f32q66rsjbfqb340000gn/T/agda2-mode6063\")"]];
+    [array addObject:[sex expand:@"(agda2-info-action \"*Type-checking*\" \"Finished Foo.\n\" t)"]];
+    [array addObject:[sex expand:@"(agda2-status-action \"\")"]];
+    [array addObject:[sex expand:@"(* (+ 2 5) (+ 3 4))"]];
+    for (NSString *expanded in array) {
+        NSLog(@"expanded: \n%@", expanded);
+    }
+    
+    SExpression * tree = [[SExpression alloc] init];
+    tree.value = @"nivo1";
+    tree.left = [[SExpression alloc] initWithValue:@"levo1"];
+    tree.right = [[SExpression alloc] initWithValue:@"desno1"];
+    tree.right.left = [[SExpression alloc] initWithValue:@"desno1-levo2"];
+    tree.right.right = [[SExpression alloc] initWithValue:@"desno1-desno2"];
+    
+    SExpression *tree2 = [sex treeWithExpandedSExpression:@"(* . (2 . ((+ . (3 . (4 . nil) . nil) . nil))))" tree:[[SExpression alloc] init]];
     
 }
 
@@ -345,8 +382,6 @@
     
     // TODO: Remove this! Don't show helper for now.
     return;
-
-    // TODO: Change fixed values. For testing only.
 
     self.helperView = [[AWPopupAlertViewController alloc] initWithNibName:@"AWPopupAlertViewController" bundle:[NSBundle mainBundle]];
     MAAttachedWindow * MAAwindow = [[MAAttachedWindow alloc] initWithView:self.helperView.view attachedToPoint:NSMakePoint(rect.origin.x + rect.size.width/2, rect.origin.y)];
