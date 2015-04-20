@@ -21,7 +21,7 @@
         [self openPipes];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(dataAvailabe:)
-                                                     name:NSFileHandleDataAvailableNotification
+                                                     name:NSFileHandleReadToEndOfFileCompletionNotification
                                                    object:nil];
         [self startTask];
 
@@ -31,18 +31,13 @@
 
 
 - (void) dataAvailabe:(NSNotification *) notification {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        [NSThread sleepForTimeInterval:0.1];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSData *data = [fileReading availableData];
-            NSString * reply = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            reply = [reply stringByAppendingString:@"\n------\n"];
-            
-            NSArray * actions = [AWAgdaParser makeArrayOfActions:reply];
-            [AWNotifications notifyExecuteActions:actions];
-            [AWNotifications notifyAgdaReplied:reply];
-        });
-    });
+    
+    NSData *data = [[notification userInfo] objectForKey:NSFileHandleNotificationDataItem];
+    NSString * reply = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSArray * actions = [AWAgdaParser makeArrayOfActions:reply];
+    [AWNotifications notifyExecuteActions:actions];
+    [AWNotifications notifyAgdaReplied:reply];
 }
 
 
@@ -68,7 +63,7 @@
     inputPipe = [NSPipe pipe];
     outputPipe = [NSPipe pipe];
     fileReading = inputPipe.fileHandleForReading;
-    [fileReading waitForDataInBackgroundAndNotify];
+    [fileReading readToEndOfFileInBackgroundAndNotify];
     
     fileWriting = outputPipe.fileHandleForWriting;
 }
