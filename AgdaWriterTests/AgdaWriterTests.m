@@ -30,8 +30,8 @@
     XCTAssert(YES, @"Pass");
 }
 
-- (void)testSexpression {
-    XCTAssert(YES, @"Pass");
+- (void)testAgdaParser {
+    
 }
 
 - (void)testPerformanceExample {

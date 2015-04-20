@@ -11,6 +11,6 @@
 @interface AWAgdaParser : NSObject
 
 -(void) parseResponse:(NSString *)response;
-
++(NSDictionary *)parseAction:(NSString *) action;
 +(NSArray *)makeArrayOfActions:(NSString *)reply;
 @end

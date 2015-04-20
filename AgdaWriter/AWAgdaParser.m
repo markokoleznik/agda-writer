@@ -59,7 +59,6 @@
     
     while (i < action.length) {
         j = i;
-        NSLog(@"substring to %i: %@", i, [action substringToIndex:i + 1]);
         if ([action characterAtIndex:i] == '"') {
             j++;
             while (j < action.length) {
@@ -72,7 +71,7 @@
             }
             i = j + 2;
         }
-        else if ([[action substringWithRange:NSMakeRange(i, 2)] isEqualToString:@"'("])
+        else if (i < action.length - 2 && [[action substringWithRange:NSMakeRange(i, 2)] isEqualToString:@"'("])
         {
             while (j < action.length) {
                 if ([action characterAtIndex:j] == ')') {
@@ -85,9 +84,14 @@
         }
         else
         {
-            j++;
+//            j++;
             while (j < action.length) {
-                if ([action characterAtIndex:j] == ' ') {
+                if ([action characterAtIndex:j] == ' ' || j + 1 == action.length) {
+                    
+                    if (j + 1 == action.length) {
+                        [actions addObject:[action substringWithRange:NSMakeRange(i, j - i + 1)]];
+                        break;
+                    }
                     
                     // add substring to "actions"
                     [actions addObject:[action substringWithRange:NSMakeRange(i, j - i)]];
@@ -101,7 +105,6 @@
     if (actions.count > 0) {
         dict = @{actions[0]: [actions subarrayWithRange:NSMakeRange(1, actions.count - 1)]};
     }
-    NSLog(@"Dictionary: %@", dict);
     return dict;
 }
 
@@ -121,7 +124,7 @@
         }
         
     }
-    
+    NSLog(@"actions: %@", actionsWithDictionaries);
     return actionsWithDictionaries;
 }
 
