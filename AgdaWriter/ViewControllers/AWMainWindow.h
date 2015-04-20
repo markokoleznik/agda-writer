@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "AWPopupAlertViewController.h"
 #import "AWCommunitacion.h"
+#import "AWAgdaActions.h"
 
 //@interface AWMainWindow : NSWindow <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate, NSTableViewDataSource, NSTableViewDelegate>{
 @interface AWMainWindow : NSWindow <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate>{

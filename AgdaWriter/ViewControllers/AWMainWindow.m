@@ -11,6 +11,7 @@
 #import "AWNotifications.h"
 #import "AWPopupAlertViewController.h"
 
+#import "AWAgdaActions.h"
 #import "AWAgdaParser.h"
 
 
@@ -40,6 +41,7 @@
     // Don't forget to remove observer in dealloc, because it has strong pointer to self.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontSizeFromNotification:) name:fontSizeChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontFamilyFromNotification:) name:fontFamilyChanged object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(executeActions:) name:AWExecuteActions object:nil];
     
     
     
@@ -164,11 +166,9 @@
     NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
     NSString * fullPath = [ud objectForKey:@"currentFile"];
     [self saveCurrentWork];
-//    NSString * writeToAgda = [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_load \"%@\" [] )", fullPath, fullPath];
-    NSString * message = [AWCommunitacion actionLoadWithFilePath:fullPath andIncludeDir:@""];
-//    NSString * message1 = [AWCommunitacion actionAutoWithFilePath:fullPath goalIndex:0 startCharIndex:0 startRow:0 startColumn:0 endCharIndex:0 endRow:0 endColumn:0 content:@""];
+    NSString * message = [AWAgdaActions actionLoadWithFilePath:fullPath andIncludeDir:@""];
+
     [self.communicator writeData:message];
-//    [self.communicator writeData:message1];
 }
 
 - (IBAction)saveAs:(id)sender {
@@ -375,6 +375,12 @@
     
 //    self.isHelperWindowOpened = YES;
 
+}
+
+-(void)executeActions:(NSNotification *)actions
+{
+    
+    [AWAgdaActions executeArrayOfActions:(NSArray *)actions.object];
 }
 
 

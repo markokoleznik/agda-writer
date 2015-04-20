@@ -35,6 +35,7 @@
 		D583563019EEEEC4009534C1 /* AWMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D583562E19EEEEC4009534C1 /* AWMainWindow.xib */; };
 		D583563C19EEEEC4009534C1 /* AgdaWriterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D583563B19EEEEC4009534C1 /* AgdaWriterTests.m */; };
 		D59A76FA1AE5A13400E6099E /* AgdaParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D59A76F91AE5A13400E6099E /* AgdaParserTests.m */; };
+		D59A76FD1AE5ADD200E6099E /* AWAgdaActions.m in Sources */ = {isa = PBXBuildFile; fileRef = D59A76FC1AE5ADD200E6099E /* AWAgdaActions.m */; };
 		D5C56BA41A811AE100422B5E /* AWCommunitacion.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C56BA31A811AE100422B5E /* AWCommunitacion.m */; };
 		D5C56BA71A81464D00422B5E /* AWOutputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C56BA61A81464D00422B5E /* AWOutputTextView.m */; };
 		D5C56BA91A815F7D00422B5E /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5C56BA81A815F7D00422B5E /* defaults.plist */; };
@@ -99,6 +100,8 @@
 		D583563A19EEEEC4009534C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D583563B19EEEEC4009534C1 /* AgdaWriterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgdaWriterTests.m; sourceTree = "<group>"; };
 		D59A76F91AE5A13400E6099E /* AgdaParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgdaParserTests.m; sourceTree = "<group>"; };
+		D59A76FB1AE5ADD200E6099E /* AWAgdaActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWAgdaActions.h; path = AgdaWriter/AWAgdaActions.h; sourceTree = "<group>"; };
+		D59A76FC1AE5ADD200E6099E /* AWAgdaActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWAgdaActions.m; path = AgdaWriter/AWAgdaActions.m; sourceTree = "<group>"; };
 		D5C56BA21A811AE100422B5E /* AWCommunitacion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWCommunitacion.h; path = AgdaWriter/AWCommunitacion.h; sourceTree = "<group>"; };
 		D5C56BA31A811AE100422B5E /* AWCommunitacion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWCommunitacion.m; path = AgdaWriter/AWCommunitacion.m; sourceTree = "<group>"; };
 		D5C56BA51A81464D00422B5E /* AWOutputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWOutputTextView.h; path = ViewControllers/AWOutputTextView.h; sourceTree = "<group>"; };
@@ -327,6 +330,8 @@
 				D5C56BA31A811AE100422B5E /* AWCommunitacion.m */,
 				D55792F21A82D6C500DB83BD /* AWAgdaParser.h */,
 				D55792F31A82D6C500DB83BD /* AWAgdaParser.m */,
+				D59A76FB1AE5ADD200E6099E /* AWAgdaActions.h */,
+				D59A76FC1AE5ADD200E6099E /* AWAgdaActions.m */,
 			);
 			name = AWCommunications;
 			path = ..;
@@ -452,6 +457,7 @@
 				D5C56BAC1A816FF300422B5E /* AWStatusTextView.m in Sources */,
 				D55773081A73D89100EEF94B /* MAAttachedWindow.m in Sources */,
 				D5C56BA41A811AE100422B5E /* AWCommunitacion.m in Sources */,
+				D59A76FD1AE5ADD200E6099E /* AWAgdaActions.m in Sources */,
 				D55773071A73D89100EEF94B /* AWMainWindow.m in Sources */,
 				D56A16FA1A84E06B00AC82DB /* AWColors.m in Sources */,
 				D56A0E401A7A27CF006493D3 /* AWLineNumbersTextView.m in Sources */,
