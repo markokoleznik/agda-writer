@@ -8,6 +8,7 @@
 
 #import "AWCommunitacion.h"
 #import "AWNotifications.h"
+#import "AWAgdaParser.h"
 
 @implementation AWCommunitacion
 
@@ -35,7 +36,10 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             NSData *data = [fileReading availableData];
             NSString * reply = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            reply = [reply stringByAppendingString:@"\n"];
+            reply = [reply stringByAppendingString:@"\n------\n"];
+            
+            NSArray * actions = [AWAgdaParser makeArrayOfActions:reply];
+            [AWNotifications notifyExecuteActions:actions];
             [AWNotifications notifyAgdaReplied:reply];
         });
     });
@@ -83,6 +87,10 @@
     [fileWriting closeFile];
 }
 
+
+#pragma mark -
+#pragma mark Agda actions
+
 +(NSString *)actionLoadWithFilePath:(NSString *)filePath andIncludeDir:(NSString *)includeDir
 {
     return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_load \"%@\" [\".\", \"%@\"])",filePath, filePath, includeDir];
@@ -119,7 +127,7 @@
 {
     return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_goal_type_context_infer Simplified %li noRange \"%@\" )", filePath, goalIndex, content];
 }
-
+#pragma mark -
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

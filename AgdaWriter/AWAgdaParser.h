@@ -12,4 +12,5 @@
 
 -(void) parseResponse:(NSString *)response;
 
++(NSArray *)makeArrayOfActions:(NSString *)reply;
 @end

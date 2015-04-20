@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1077" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication"/>
@@ -683,6 +683,36 @@
                             <action selector="writeToAgda:" target="QvC-M9-y7g" id="3uf-zy-ryw"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="649-An-B4E">
+                        <rect key="frame" x="116" y="533" width="70" height="32"/>
+                        <buttonCell key="cell" type="push" title="Auto" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xE4-ZH-B9X">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="writeToAgda:" target="QvC-M9-y7g" id="jAK-t9-5KZ"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AOM-lr-4zR">
+                        <rect key="frame" x="186" y="533" width="71" height="32"/>
+                        <buttonCell key="cell" type="push" title="Load" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yCR-EI-4ea">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="writeToAgda:" target="QvC-M9-y7g" id="bGe-7F-XWg"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5bX-qt-4jA">
+                        <rect key="frame" x="257" y="533" width="68" height="32"/>
+                        <buttonCell key="cell" type="push" title="Give" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ggJ-DH-boT">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="writeToAgda:" target="QvC-M9-y7g" id="m0R-cU-n2n"/>
+                        </connections>
+                    </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xwf-dB-YP8">
                         <rect key="frame" x="1018" y="533" width="82" height="32"/>
                         <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Sq9-wR-H0g">
@@ -931,6 +961,16 @@ AAAAAAEGA
                             <real value="250"/>
                         </holdingPriorities>
                     </splitView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOg-jt-R6a">
+                        <rect key="frame" x="325" y="533" width="80" height="32"/>
+                        <buttonCell key="cell" type="push" title="Refine" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="S4O-l7-tW4">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="writeToAgda:" target="QvC-M9-y7g" id="9j9-E3-0bY"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="e7v-zB-ypc" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="18" id="0em-ba-xJP"/>
@@ -954,7 +994,7 @@ AAAAAAEGA
                 <outlet property="lineNumbersView" destination="Ab6-OT-EOb" id="6v3-fg-zvw"/>
                 <outlet property="mainTextView" destination="O95-wS-29x" id="WL1-8p-GAy"/>
             </connections>
-            <point key="canvasLocation" x="396.5" y="439.5"/>
+            <point key="canvasLocation" x="407.5" y="534.5"/>
         </window>
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="E06-Bb-SRl" customClass="PrefrencesController">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>

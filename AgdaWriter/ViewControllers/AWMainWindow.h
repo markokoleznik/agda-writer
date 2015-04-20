@@ -25,7 +25,7 @@
 - (IBAction)hideOutputs:(id)sender;
 
 
-- (IBAction)writeToAgda:(id)sender;
+- (IBAction)writeToAgda:(NSButton *)sender;
 
 - (IBAction)saveAs:(id)sender;
 - (IBAction)doOpen:(id)sender;

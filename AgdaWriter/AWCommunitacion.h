@@ -25,6 +25,8 @@
 - (void) writeData: (NSString * ) message;
 
 //********* Actions *********
+#pragma mark -
+#pragma mark Agda actions
 
 
 // Load
@@ -83,4 +85,6 @@
 +(NSString *)actionGoalTypeAndInferredTypeWithFilePath:(NSString *)filePath
                                         goalIndex:(NSInteger)goalIndex
                                           content:(NSString *)content;
+
+
 @end

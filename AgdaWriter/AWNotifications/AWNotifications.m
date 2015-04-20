@@ -15,6 +15,7 @@ NSString * const FONT_FAMILY_KEY = @"fontFamily";
 NSString * const KEY_ON_TABLE_PRESSED = @"net.koleznik.keyReturnPressed";
 NSString * const REMOVE_CONTROLLER = @"net.koleznik.removeController";
 NSString * const AWAgdaReplied = @"net.koleznik.agdaReplied";
+NSString * const AWExecuteActions = @"net.koleznik.executeActions";
 
 
 
@@ -69,6 +70,11 @@ NSString * const AWAgdaReplied = @"net.koleznik.agdaReplied";
     NSDictionary *plistContent = [self dictionaryOfDefaults];
     return [plistContent objectForKey:@"agdaLaunchPath"];
     
+}
+
++ (void) notifyExecuteActions:(NSArray *)actions
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:AWExecuteActions object:actions];
 }
 
 

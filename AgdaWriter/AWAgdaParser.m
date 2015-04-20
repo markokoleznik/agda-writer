@@ -8,241 +8,121 @@
 
 #import "AWAgdaParser.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
-
-enum { S_NONE, S_LIST, S_STRING, S_SYMBOL };
-
-typedef struct {
-    int type;
-    size_t len;
-    void *buf;
-} s_expr, *expr;
-
-void whine(const char *s)
-{
-    fprintf(stderr, "parse error before ==>%.10s\n", s);
-}
-
-expr parse_string(const char *s, char **e)
-{
-    expr ex = calloc(sizeof(s_expr), 1);
-    char buf[256] = {0};
-    int i = 0;
-    
-    while (*s) {
-        if (i >= 256) {
-            fprintf(stderr, "string too long:\n");
-            whine(s);
-            goto fail;
-        }
-        switch (*s) {
-            case '\\':
-                switch (*++s) {
-                    case '\\':
-                    case '"':	buf[i++] = *s++;
-                        continue;
-                        
-                    default:	whine(s);
-                        goto fail;
-                }
-            case '"':	goto success;
-            default:	buf[i++] = *s++;
-        }
-    }
-fail:
-    free(ex);
-    return 0;
-    
-success:
-    *(const char **)e = s + 1;
-    ex->type = S_STRING;
-    ex->buf = strdup(buf);
-    ex->len = strlen(buf);
-    return ex;
-}
-
-expr parse_symbol(const char *s, char **e)
-{
-    expr ex = calloc(sizeof(s_expr), 1);
-    char buf[256] = {0};
-    int i = 0;
-    
-    while (*s) {
-        if (i >= 256) {
-            fprintf(stderr, "symbol too long:\n");
-            whine(s);
-            goto fail;
-        }
-        if (isspace(*s)) goto success;
-        if (*s == ')' || *s == '(') {
-            s--;
-            goto success;
-        }
-        
-        switch (*s) {
-            case '\\':
-                switch (*++s) {
-                    case '\\': case '"': case '(': case ')':
-                        buf[i++] = *s++;
-                        continue;
-                    default:	whine(s);
-                        goto fail;
-                }
-            case '"':	whine(s);
-                goto success;
-            default:	buf[i++] = *s++;
-        }
-    }
-fail:
-    free(ex);
-    return 0;
-    
-success:
-    *(const char **)e = s + 1;
-    ex->type = S_SYMBOL;
-    ex->buf = strdup(buf);
-    ex->len = strlen(buf);
-    return ex;
-}
-
-void append(expr list, expr ele)
-{
-    list->buf = realloc(list->buf, sizeof(expr) * ++list->len);
-    ((expr*)(list->buf))[list->len - 1] = ele;
-}
-
-expr parse_list(const char *s, char **e)
-{
-    expr ex = calloc(sizeof(s_expr), 1), chld;
-    char *next;
-    
-    ex->len = 0;
-    
-    while (*s) {
-        if (isspace(*s)) {
-            s++;
-            continue;
-        }
-        
-        switch (*s) {
-            case '"':
-                chld = parse_string(s+1, &next);
-                if (!chld) goto fail;
-                append(ex, chld);
-                s = next;
-                continue;
-            case '(':
-                chld = parse_list(s+1, &next);
-                if (!chld) goto fail;
-                append(ex, chld);
-                s = next;
-                continue;
-            case ')':
-                goto success;
-                
-            default:
-                chld = parse_symbol(s, &next);
-                if (!chld) goto fail;
-                append(ex, chld);
-                s = next;
-                continue;
-        }
-    }
-    
-fail:
-    whine(s);
-    free(ex);
-    return 0;
-    
-success:
-    *(const char **)e = s+1;
-    ex->type = S_LIST;
-    return ex;
-}
-
-expr parse_term(const char *s, char **e)
-{
-    while (*s) {
-        if (isspace(*s)) {
-            s++;
-            continue;
-        }
-        switch(*s) {
-            case '(':
-                return parse_list(s+1, e);
-            case '"':
-                return parse_string(s+1, e);
-            default:
-                return parse_symbol(s+1, e);
-        }
-    }
-    return 0;
-}
-
-void print_expr(expr e, int depth)
-{
-#define sep() for(i = 0; i < depth; i++) printf("    ")
-    int i;
-    if (!e) return;
-    
-    
-    switch(e->type) {
-        case S_LIST:
-            sep();
-            puts("(");
-            for (i = 0; i < e->len; i++)
-                print_expr(((expr*)e->buf)[i], depth + 1);
-            sep();
-            puts(")");
-            return;
-        case S_SYMBOL:
-        case S_STRING:
-            sep();
-            if (e->type == S_STRING) putchar('"');
-            for (i = 0; i < e->len; i++) {
-                switch(((char*)e->buf)[i]) {
-                    case '"':
-                    case '\\':
-                        putchar('\\');
-                        break;
-                    case ')': case '(':
-                        if (e->type == S_SYMBOL)
-                            putchar('\\');
-                }
-                
-                putchar(((char*)e->buf)[i]);
-            }
-            if (e->type == S_STRING) putchar('"');
-            putchar('\n');
-            return;
-    }
-}
 
 @implementation AWAgdaParser
 
 -(void) parseResponse:(NSString *)response
 {
-    char * next;
-    const char * input = "((last . 1) . (agda2-goals-action '(0 1)))";
-    expr x = parse_term(input, &next);
-    printf("input is:\n%s\n", input);
-    printf("parsed as: \n");
-    print_expr(x, 0);
     
+}
 
+/*!
+@method Parses actions from Agda response
+@param String action, which is response from Agda
+@return returns NSDictionary with key as string (operation to perform) and array of string with parameters of operation
+ */
+
++(NSDictionary *)parseAction:(NSString *) action
+{
+    // delete prefixes on weird responses, so for example
+    // ((last . 1) . (agda2-goals-action '(0 1)))
+    // should go to
+    // (agda2-goals-action '(0 1))
     
-//    char *next;
-//    const char *in = "((data da\\(\\)ta \"quot\\\\ed data\" 123 4.5)\n"
-//    " (\"data\" (!@# (4.5) \"(mo\\\"re\" \"data)\")))";
-//    
-//    expr x = parse_term(in, &next);
-//    
-//    printf("input is:\n%s\n", in);
-//    printf("parsed as:\n");
-//    print_expr(x, 0);
+    if ([action hasPrefix:@"((last"]) {
+        // delete last character and first two ((
+        action = [action substringWithRange:NSMakeRange(5, action.length - 5 - 1)];
+        int i = 0;
+        while (i < action.length) {
+            if ([action characterAtIndex:i] == '(') {
+                action = [action substringFromIndex:i];
+                break;
+            }
+            i++;
+        }
+        
+        
+    }
+    
+    NSDictionary * dict;
+    if (![action hasPrefix:@"(agda2-"]) {
+        return nil;
+    }
+    
+    
+    // We have agda action.
+    action = [action substringWithRange:NSMakeRange(1, action.length - 2)];
+    
+    NSMutableArray * actions = [[NSMutableArray alloc] init];
+    int i = 0;
+    int j = 0;
+    
+    while (i < action.length) {
+        j = i;
+        NSLog(@"substring to %i: %@", i, [action substringToIndex:i + 1]);
+        if ([action characterAtIndex:i] == '"') {
+            j++;
+            while (j < action.length) {
+                if ([action characterAtIndex:j] == '"') {
+                    // add substring between quotation marks to array "actions"
+                    [actions addObject:[action substringWithRange:NSMakeRange(i, j - i + 1)]];
+                    break;
+                }
+                j++;
+            }
+            i = j + 2;
+        }
+        else if ([[action substringWithRange:NSMakeRange(i, 2)] isEqualToString:@"'("])
+        {
+            while (j < action.length) {
+                if ([action characterAtIndex:j] == ')') {
+                    // add lisp comments to "actions"
+                    [actions addObject:[action substringWithRange:NSMakeRange(i, j - i + 1)]];
+                }
+                j++;
+            }
+            i = j + 2;
+        }
+        else
+        {
+            j++;
+            while (j < action.length) {
+                if ([action characterAtIndex:j] == ' ') {
+                    
+                    // add substring to "actions"
+                    [actions addObject:[action substringWithRange:NSMakeRange(i, j - i)]];
+                    break;
+                }
+                j++;
+            }
+            i = j + 1;
+        }
+    }
+    if (actions.count > 0) {
+        dict = @{actions[0]: [actions subarrayWithRange:NSMakeRange(1, actions.count - 1)]};
+    }
+    NSLog(@"Dictionary: %@", dict);
+    return dict;
+}
+
++(NSArray *)makeArrayOfActions:(NSString *)reply
+{
+    // Array contains NSDictionary objects with key as main action and array of strings as its parameters
+    // Example:
+    //    (agda2-highlight-load-and-delete-action "/var/folders/c6/1rfd2v_n4f32q66rsjbfqb340000gn/T/agda2-mode2743")
+    //    @{@"agda2-highlight-load-and-delete-action" : @[@"/var/folders/c6/1rfd2v_n4f32q66rsjbfqb340000gn/T/agda2-mode2743"]}
+    NSMutableArray * actionsWithDictionaries = [[NSMutableArray alloc] init];
+    reply = [reply stringByReplacingOccurrencesOfString:@"Agda2> " withString:@""];
+    NSArray * actions = [reply componentsSeparatedByString:@"\n"];
+    for (NSString * action in actions) {
+        NSDictionary * dict = [self parseAction:action];
+        if (dict) {
+            [actionsWithDictionaries addObject:dict];
+        }
+        
+    }
+    
+    return actionsWithDictionaries;
 }
 
 @end

@@ -197,13 +197,15 @@
 
 }
 
-- (IBAction)writeToAgda:(id)sender {
+- (IBAction)writeToAgda:(NSButton *)sender {
     NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
     NSString * fullPath = [ud objectForKey:@"currentFile"];
     [self saveCurrentWork];
-    NSString * writeToAgda = [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_load \"%@\" [] )", fullPath, fullPath];
-//    NSString * writeToAgda2 = @"IOTCM \"/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda\" NonInteractive Indirect ( Cmd_load \"/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda\" [] )";
-    [self.communicator writeData:writeToAgda];
+//    NSString * writeToAgda = [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_load \"%@\" [] )", fullPath, fullPath];
+    NSString * message = [AWCommunitacion actionLoadWithFilePath:fullPath andIncludeDir:@""];
+//    NSString * message1 = [AWCommunitacion actionAutoWithFilePath:fullPath goalIndex:0 startCharIndex:0 startRow:0 startColumn:0 endCharIndex:0 endRow:0 endColumn:0 content:@""];
+    [self.communicator writeData:message];
+//    [self.communicator writeData:message1];
 }
 
 - (IBAction)saveAs:(id)sender {
@@ -383,18 +385,18 @@
     // TODO: Remove this! Don't show helper for now.
     return;
 
-    self.helperView = [[AWPopupAlertViewController alloc] initWithNibName:@"AWPopupAlertViewController" bundle:[NSBundle mainBundle]];
-    MAAttachedWindow * MAAwindow = [[MAAttachedWindow alloc] initWithView:self.helperView.view attachedToPoint:NSMakePoint(rect.origin.x + rect.size.width/2, rect.origin.y)];
-    [self.helperView.view setFrame:NSMakeRect(4, 5, self.helperView.view.frame.size.width - 5, self.helperView.view.frame.size.height - 5)];
-    [self.helperView.view becomeFirstResponder];
-    NSLog(@"%i", [self.helperView.view becomeFirstResponder]);
-    [MAAwindow setAnimationBehavior:NSWindowAnimationBehaviorAlertPanel];
-    MAAwindow.identifier = @"Helper";
-    
-    
-    
-    [self addChildWindow:MAAwindow ordered:1];
-    [MAAwindow makeKeyWindow];
+//    self.helperView = [[AWPopupAlertViewController alloc] initWithNibName:@"AWPopupAlertViewController" bundle:[NSBundle mainBundle]];
+//    MAAttachedWindow * MAAwindow = [[MAAttachedWindow alloc] initWithView:self.helperView.view attachedToPoint:NSMakePoint(rect.origin.x + rect.size.width/2, rect.origin.y)];
+//    [self.helperView.view setFrame:NSMakeRect(4, 5, self.helperView.view.frame.size.width - 5, self.helperView.view.frame.size.height - 5)];
+//    [self.helperView.view becomeFirstResponder];
+//    NSLog(@"%i", [self.helperView.view becomeFirstResponder]);
+//    [MAAwindow setAnimationBehavior:NSWindowAnimationBehaviorAlertPanel];
+//    MAAwindow.identifier = @"Helper";
+//    
+//    
+//    
+//    [self addChildWindow:MAAwindow ordered:1];
+//    [MAAwindow makeKeyWindow];
 
     // Animation inside window (on it's child view) -> For experimenting only.
 //    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
@@ -408,7 +410,7 @@
 //        
 //    }];
     
-    self.isHelperWindowOpened = YES;
+//    self.isHelperWindowOpened = YES;
 
 }
 
