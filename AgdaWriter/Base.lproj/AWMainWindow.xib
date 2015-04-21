@@ -683,34 +683,34 @@
                             <action selector="writeToAgda:" target="QvC-M9-y7g" id="3uf-zy-ryw"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="649-An-B4E">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="649-An-B4E">
                         <rect key="frame" x="116" y="533" width="70" height="32"/>
                         <buttonCell key="cell" type="push" title="Auto" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xE4-ZH-B9X">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="writeToAgda:" target="QvC-M9-y7g" id="jAK-t9-5KZ"/>
+                            <action selector="autoAction:" target="QvC-M9-y7g" id="FNI-BZ-9ND"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AOM-lr-4zR">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AOM-lr-4zR">
                         <rect key="frame" x="186" y="533" width="71" height="32"/>
                         <buttonCell key="cell" type="push" title="Load" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yCR-EI-4ea">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="writeToAgda:" target="QvC-M9-y7g" id="bGe-7F-XWg"/>
+                            <action selector="loadAction:" target="QvC-M9-y7g" id="ODo-un-Iq4"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5bX-qt-4jA">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5bX-qt-4jA">
                         <rect key="frame" x="257" y="533" width="68" height="32"/>
                         <buttonCell key="cell" type="push" title="Give" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ggJ-DH-boT">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="writeToAgda:" target="QvC-M9-y7g" id="m0R-cU-n2n"/>
+                            <action selector="giveAction:" target="QvC-M9-y7g" id="m9P-bc-ymq"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xwf-dB-YP8">
@@ -866,8 +866,12 @@
                                                     <action selector="clearContet:" target="tme-o1-klp" id="aMp-2p-D7A"/>
                                                 </connections>
                                             </button>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5My-50-ebm">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5My-50-ebm">
                                                 <rect key="frame" x="18" y="215" width="83" height="17"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="79" id="DPq-8x-emp"/>
+                                                    <constraint firstAttribute="height" constant="17" id="qa1-MM-gDk"/>
+                                                </constraints>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Agda output" id="pnK-55-eLg">
                                                     <font key="font" metaFont="system" size="10"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -880,7 +884,9 @@
                                             <constraint firstAttribute="bottom" secondItem="7f0-UD-3me" secondAttribute="bottom" constant="21" id="7kf-FJ-Rk6"/>
                                             <constraint firstItem="7f0-UD-3me" firstAttribute="top" secondItem="7Wt-wO-INo" secondAttribute="top" constant="20" id="FGe-Z9-fn5"/>
                                             <constraint firstItem="f5n-Le-Sm0" firstAttribute="trailing" secondItem="7f0-UD-3me" secondAttribute="trailing" constant="-3" id="UhQ-yM-wE9"/>
+                                            <constraint firstItem="5My-50-ebm" firstAttribute="top" secondItem="7Wt-wO-INo" secondAttribute="top" constant="5" id="dnl-x4-xbd"/>
                                             <constraint firstItem="7f0-UD-3me" firstAttribute="leading" secondItem="7Wt-wO-INo" secondAttribute="leading" id="xla-QQ-5gt"/>
+                                            <constraint firstItem="5My-50-ebm" firstAttribute="leading" secondItem="7Wt-wO-INo" secondAttribute="leading" constant="20" symbolic="YES" id="yp9-JJ-bJg"/>
                                             <constraint firstAttribute="trailing" secondItem="7f0-UD-3me" secondAttribute="trailing" id="zNj-ON-hHf"/>
                                         </constraints>
                                         <animations>
@@ -961,35 +967,65 @@ AAAAAAEGA
                             <real value="250"/>
                         </holdingPriorities>
                     </splitView>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOg-jt-R6a">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hOg-jt-R6a">
                         <rect key="frame" x="325" y="533" width="80" height="32"/>
                         <buttonCell key="cell" type="push" title="Refine" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="S4O-l7-tW4">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="writeToAgda:" target="QvC-M9-y7g" id="9j9-E3-0bY"/>
+                            <action selector="refineAction:" target="QvC-M9-y7g" id="UdP-tB-0ob"/>
                         </connections>
                     </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LcD-UC-ANK">
+                        <rect key="frame" x="933" y="522" width="284" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="280" id="bdh-1f-E0v"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" id="hTf-dI-GK2">
+                            <font key="font" metaFont="system" size="10"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="C0o-Wl-c3c" name="displayPatternValue1" keyPath="values.agdaVersion" id="a3F-Zq-Fel">
+                                <dictionary key="options">
+                                    <string key="NSDisplayPattern">%{value1}@</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="e7v-zB-ypc" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="18" id="0em-ba-xJP"/>
                     <constraint firstAttribute="trailing" secondItem="sG2-35-N6b" secondAttribute="trailing" constant="20" id="5pI-1A-iDt"/>
                     <constraint firstAttribute="trailing" secondItem="e7v-zB-ypc" secondAttribute="trailing" constant="20" symbolic="YES" id="Gns-ba-3KA"/>
                     <constraint firstItem="xwf-dB-YP8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eX7-cx-cKm" secondAttribute="trailing" constant="12" id="Jpn-AU-AUU"/>
+                    <constraint firstItem="5bX-qt-4jA" firstAttribute="leading" secondItem="AOM-lr-4zR" secondAttribute="trailing" constant="12" symbolic="YES" id="MGw-SJ-dcd"/>
                     <constraint firstItem="eX7-cx-cKm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fXz-Ki-m2a" secondAttribute="trailing" constant="12" id="P3k-Ho-4tw"/>
+                    <constraint firstItem="649-An-B4E" firstAttribute="leading" secondItem="fXz-Ki-m2a" secondAttribute="trailing" constant="12" symbolic="YES" id="Rem-DI-5wd"/>
                     <constraint firstItem="eX7-cx-cKm" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" priority="500" id="U5N-H8-ink"/>
+                    <constraint firstItem="AOM-lr-4zR" firstAttribute="leading" secondItem="649-An-B4E" secondAttribute="trailing" constant="12" symbolic="YES" id="Uwt-ui-o48"/>
                     <constraint firstItem="sG2-35-N6b" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="59" id="ZU3-pW-LwU"/>
+                    <constraint firstItem="LcD-UC-ANK" firstAttribute="top" secondItem="e7v-zB-ypc" secondAttribute="bottom" constant="5" id="axl-Zr-71P"/>
                     <constraint firstAttribute="bottom" secondItem="sG2-35-N6b" secondAttribute="bottom" constant="25" id="bww-Ys-7xC"/>
+                    <constraint firstItem="649-An-B4E" firstAttribute="baseline" secondItem="fXz-Ki-m2a" secondAttribute="baseline" id="c65-1b-CyW"/>
                     <constraint firstItem="e7v-zB-ypc" firstAttribute="leading" secondItem="xwf-dB-YP8" secondAttribute="trailing" constant="12" id="hxM-8s-a8e"/>
+                    <constraint firstItem="AOM-lr-4zR" firstAttribute="baseline" secondItem="649-An-B4E" secondAttribute="baseline" id="j1w-qc-AGa"/>
+                    <constraint firstItem="AOM-lr-4zR" firstAttribute="baseline" secondItem="5bX-qt-4jA" secondAttribute="baseline" id="np1-yF-ccA"/>
                     <constraint firstItem="xwf-dB-YP8" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="18" id="nuu-g0-Iua"/>
+                    <constraint firstItem="hOg-jt-R6a" firstAttribute="leading" secondItem="5bX-qt-4jA" secondAttribute="trailing" constant="12" symbolic="YES" id="oaW-WX-Uif"/>
                     <constraint firstItem="sG2-35-N6b" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="-1" id="qJl-Uy-2ke"/>
+                    <constraint firstAttribute="trailing" secondItem="LcD-UC-ANK" secondAttribute="trailing" constant="20" id="rCi-8a-aQ5"/>
                     <constraint firstItem="fXz-Ki-m2a" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="sgr-X4-mjH"/>
                     <constraint firstItem="fXz-Ki-m2a" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="18" id="ur3-7A-pcw"/>
                     <constraint firstItem="eX7-cx-cKm" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="18" id="vcT-wt-Tef"/>
+                    <constraint firstItem="5bX-qt-4jA" firstAttribute="baseline" secondItem="hOg-jt-R6a" secondAttribute="baseline" id="vlD-hJ-Udy"/>
+                    <constraint firstItem="LcD-UC-ANK" firstAttribute="trailing" secondItem="e7v-zB-ypc" secondAttribute="trailing" id="yyF-Dr-285"/>
                 </constraints>
             </view>
             <connections>
+                <outlet property="agdaVersion" destination="LcD-UC-ANK" id="Ch7-ud-FYv"/>
                 <outlet property="delegate" destination="-2" id="1cA-Z9-8mk"/>
                 <outlet property="lineNumbersView" destination="Ab6-OT-EOb" id="6v3-fg-zvw"/>
                 <outlet property="mainTextView" destination="O95-wS-29x" id="WL1-8p-GAy"/>

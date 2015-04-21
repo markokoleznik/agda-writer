@@ -7,6 +7,7 @@
 //
 
 #import "AWAgdaActions.h"
+#import "AWNotifications.h"
 
 
 @implementation AWAgdaActions
@@ -51,6 +52,10 @@
 {
     return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_goal_type_context_infer Simplified %li noRange \"%@\" )", filePath, goalIndex, content];
 }
++(NSString *)actionShowVersionOfAgdaWithFilePath:(NSString *)filePath
+{
+    return [NSString stringWithFormat:@"IOTCM \"%@\" None Indirect ( Cmd_show_version )", filePath];
+}
 
 
 #pragma mark -
@@ -82,6 +87,10 @@
         {
             [self executeGoalsAction:actions];
         }
+        else if ([key isEqualToString:@"agda2-give-action"])
+        {
+            [self executeGiveAction:actions];
+        }
 
 
     }
@@ -95,7 +104,29 @@
 #pragma mark -
 +(void)executeInfoAction:(NSArray *)actions
 {
-    
+    /*
+     "Insert TEXT into the Agda info buffer and display it.
+     NAME is displayed in the buffer's mode line.
+     If APPEND is non-nil, then TEXT is appended at the end of the
+     buffer, and point placed after this text.
+     If APPEND is nil, then any previous text is removed before TEXT
+     is inserted, and point is placed before this text."
+     
+     (agda2-info-action "*Type-checking*" "Finished Foo.\n" t)
+     
+    */
+    if (actions.count > 2) {
+        if ([actions[0] isEqualToString:@"\"*Agda Version*\""]) {
+            [AWNotifications notifyAgdaVersion:actions[1]];
+            
+        }
+        else
+        {
+            NSString * bufferDescription = actions[1];
+            [AWNotifications notifyAgdaBufferDataAvaliable:bufferDescription];
+        }
+        
+    }
 }
 +(void)executeHighlightClearAction:(NSArray *)actions
 {
@@ -130,6 +161,23 @@
     
 }
 +(void)executeGoalsAction:(NSArray *)actions
+{
+    /*
+     
+     "Annotates the goals in the current buffer with text properties.
+     GOALS is a list of the buffer's goal numbers, in the order in
+     which they appear in the buffer. Note that this function should
+     be run /after/ syntax highlighting information has been loaded,
+     because the two highlighting mechanisms interact in unfortunate
+     ways."
+     
+     
+    */
+    if (actions.count > 0) {
+        
+    }
+}
++(void)executeGiveAction:(NSArray *)actions
 {
     
 }

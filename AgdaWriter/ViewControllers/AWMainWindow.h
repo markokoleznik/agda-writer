@@ -16,8 +16,10 @@
     
 }
 
+
 @property IBOutlet NSTextView *mainTextView;
 @property IBOutlet NSTextView *lineNumbersView;
+@property (weak) IBOutlet NSTextField *agdaVersion;
 @property BOOL isHelperWindowOpened;
 @property AWPopupAlertViewController * helperView;
 @property AWCommunitacion * communicator;
@@ -27,6 +29,10 @@
 
 
 - (IBAction)writeToAgda:(NSButton *)sender;
+- (IBAction)autoAction:(NSButton *)sender;
+- (IBAction)loadAction:(NSButton *)sender;
+- (IBAction)giveAction:(NSButton *)sender;
+- (IBAction)refineAction:(NSButton *)sender;
 
 - (IBAction)saveAs:(id)sender;
 - (IBAction)doOpen:(id)sender;

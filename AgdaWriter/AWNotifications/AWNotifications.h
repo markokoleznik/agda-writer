@@ -17,6 +17,8 @@ extern NSString * const KEY_ON_TABLE_PRESSED;
 extern NSString * const REMOVE_CONTROLLER;
 extern NSString * const AWAgdaReplied;
 extern NSString * const AWExecuteActions;
+extern NSString * const AWAgdaBufferDataAvaliable;
+extern NSString * const AWAgdaVersionAvaliable;
 
 typedef NS_ENUM(NSInteger, KeyPressed) {
     AWEnterPressed,
@@ -32,6 +34,8 @@ typedef NS_ENUM(NSInteger, KeyPressed) {
 + (void) notifyTextChangedInRange: (NSRange) affectedRange replacementString: (NSString *) replacementString;
 + (void) notifyAgdaReplied: (NSString *) reply;
 + (void) notifyExecuteActions: (NSArray *) actions;
++ (void) notifyAgdaBufferDataAvaliable:(NSString *)buffer;
++ (void) notifyAgdaVersion:(NSString *)version;
 
 + (NSDictionary *) dictionaryOfDefaults;
 + (NSString *) agdaLaunchPath;

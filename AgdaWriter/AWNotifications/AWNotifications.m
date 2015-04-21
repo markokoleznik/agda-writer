@@ -16,7 +16,8 @@ NSString * const KEY_ON_TABLE_PRESSED = @"net.koleznik.keyReturnPressed";
 NSString * const REMOVE_CONTROLLER = @"net.koleznik.removeController";
 NSString * const AWAgdaReplied = @"net.koleznik.agdaReplied";
 NSString * const AWExecuteActions = @"net.koleznik.executeActions";
-
+NSString * const AWAgdaBufferDataAvaliable = @"net.koleznik.agdaBufferDataAvaliable";
+NSString * const AWAgdaVersionAvaliable = @"net.koleznik.agdaVersionAvaliable";
 
 
 
@@ -77,7 +78,15 @@ NSString * const AWExecuteActions = @"net.koleznik.executeActions";
     [[NSNotificationCenter defaultCenter] postNotificationName:AWExecuteActions object:actions];
 }
 
++ (void) notifyAgdaBufferDataAvaliable:(NSString *)buffer
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:AWAgdaBufferDataAvaliable object:buffer];
+}
 
++ (void)notifyAgdaVersion:(NSString *)version
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:AWAgdaVersionAvaliable object:version];
+}
 
 
 

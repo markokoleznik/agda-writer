@@ -72,6 +72,8 @@
 +(NSString *)actionGoalTypeAndInferredTypeWithFilePath:(NSString *)filePath
                                              goalIndex:(NSInteger)goalIndex
                                                content:(NSString *)content;
++(NSString *)actionShowVersionOfAgdaWithFilePath:(NSString *)filePath;
+
 
 #pragma mark -
 #pragma mark Agda Actions

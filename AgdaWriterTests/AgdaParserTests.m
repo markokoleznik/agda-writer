@@ -95,12 +95,25 @@
     
     [parsedObj isEqualToDictionary:expectedObj] ? XCTAssertTrue(self.testPassedDescription) : XCTAssertFalse([self.testFailedDescription stringByAppendingString:self.dictionariesNotEqualDescription]);
 }
+- (void) testAgdaResponse9 {
+    NSString * agdaResponse = @"(agda2-info-action \"*Agda Version*\" \"Agda version 2.4.2.2\" nil)";
+    NSDictionary * parsedObj = [AWAgdaParser parseAction:agdaResponse];
+    NSDictionary * expectedObj = @{@"agda2-info-action" : @[@"\"*Agda Version*\"", @"\"Agda version 2.4.2.2\"", @"nil"]};
+    
+    [parsedObj isEqualToDictionary:expectedObj] ? XCTAssertTrue(self.testPassedDescription) : XCTAssertFalse([self.testFailedDescription stringByAppendingString:self.dictionariesNotEqualDescription]);
+}
+- (void) testAgdaResponse10 {
+    NSString * agdaResponse = @"(agda2-give-action 0 \"x\")";
+    NSDictionary * parsedObj = [AWAgdaParser parseAction:agdaResponse];
+    NSDictionary * expectedObj = @{@"agda2-give-action" : @[@"0", @"\"x\""]};
+    
+    [parsedObj isEqualToDictionary:expectedObj] ? XCTAssertTrue(self.testPassedDescription) : XCTAssertFalse([self.testFailedDescription stringByAppendingString:self.dictionariesNotEqualDescription]);
+}
 
 
 
-
-
-
+//(agda2-give-action 0 "x")
+//(agda2-info-action "*Agda Version*" "Agda version 2.4.2.2" nil)
 
 
 

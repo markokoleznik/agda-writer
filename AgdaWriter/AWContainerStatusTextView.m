@@ -8,6 +8,7 @@
 
 #import "AWContainerStatusTextView.h"
 #import "AWColors.h"
+#import "AWNotifications.h"
 
 @implementation AWContainerStatusTextView
 
@@ -20,6 +21,9 @@
     [self.layer setBackgroundColor:[AWColors defaultBackgroundColor]];
     
     [self.layer setBorderColor:[AWColors defaultSeparatorColor]];
+    
 }
+
+
 
 @end

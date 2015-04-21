@@ -38,6 +38,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontSizeFromNotification:) name:fontSizeChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontFamilyFromNotification:) name:fontFamilyChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(executeActions:) name:AWExecuteActions object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaVersionAvaliable:) name:AWAgdaVersionAvaliable object:nil];
     
     
     
@@ -158,14 +159,63 @@
 
 }
 
+#pragma mark -
+#pragma mark Agda Actions
+
 - (IBAction)writeToAgda:(NSButton *)sender {
     NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
     NSString * fullPath = [ud objectForKey:@"currentFile"];
     [self saveCurrentWork];
     NSString * message = [AWAgdaActions actionLoadWithFilePath:fullPath andIncludeDir:@""];
+    message = [NSString stringWithFormat:@"IOTCM \"%@\" None Indirect ( Cmd_show_version )", fullPath];
 
     [self.communicator writeData:message];
 }
+
+- (IBAction)autoAction:(NSButton *)sender {
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    [self saveCurrentWork];
+    NSString * load = [AWAgdaActions actionLoadWithFilePath:fullPath andIncludeDir:@""];
+    
+    NSString * message = [AWAgdaActions actionAutoWithFilePath:fullPath goalIndex:0 startCharIndex:0 startRow:0 startColumn:0 endCharIndex:0 endRow:0 endColumn:0 content:@""];
+    
+    [self.communicator writeData:[NSString stringWithFormat:@"%@\n%@", load, message]];
+}
+
+- (IBAction)loadAction:(NSButton *)sender {
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    [self saveCurrentWork];
+    NSString * message = [AWAgdaActions actionLoadWithFilePath:fullPath andIncludeDir:@""];
+    
+    [self.communicator writeData:message];
+
+}
+
+- (IBAction)giveAction:(NSButton *)sender {
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    [self saveCurrentWork];
+    NSString * load = [AWAgdaActions actionLoadWithFilePath:fullPath andIncludeDir:@""];
+    
+    NSString * message = [AWAgdaActions actionGiveWithFilePath:fullPath goalIndex:0 startCharIndex:0 startRow:0 startColumn:0 endCharIndex:0 endRow:0 endColumn:0 content:@""];
+    
+    [self.communicator writeData:[NSString stringWithFormat:@"%@\n%@", load, message]];
+}
+
+- (IBAction)refineAction:(NSButton *)sender {
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    [self saveCurrentWork];
+    NSString * message = [AWAgdaActions actionRefineWithFilePath:fullPath goalIndex:0 startCharIndex:0 startRow:0 startColumn:0 endCharIndex:0 endRow:0 endColumn:0 content:@""];
+    
+    [self.communicator writeData:message];
+}
+
+
+
+#pragma mark -
 
 - (IBAction)saveAs:(id)sender {
 
@@ -371,6 +421,19 @@
     
 //    self.isHelperWindowOpened = YES;
 
+}
+-(void)agdaVersionAvaliable:(NSNotification *) notification
+{
+    if ([notification.object isKindOfClass:[NSString class]]) {
+        // Show agda version
+        NSString * agdaVersion = notification.object;
+        if (agdaVersion) {
+            NSString * version = [agdaVersion componentsSeparatedByString:@" "][2];
+            version = [version substringToIndex:version.length - 1];
+            [self.agdaVersion setStringValue:[NSString stringWithFormat:@"Agda is now running... Version: %@", version]];
+        }
+        
+    }
 }
 
 -(void)executeActions:(NSNotification *)actions
