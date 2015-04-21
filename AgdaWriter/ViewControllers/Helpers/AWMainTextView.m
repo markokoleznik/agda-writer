@@ -31,7 +31,10 @@
     if (path) {
         
         NSString * fileContent = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-        [self setString:fileContent];
+        if (fileContent) {
+            [self setString:fileContent];
+        }
+        
     }
 }
 
@@ -42,10 +45,16 @@
     NSString * fullPath = [ud objectForKey:@"currentFile"];
     NSError * error;
     NSString *content = [[self textStorage] string];
-    [content writeToFile:fullPath
-              atomically:YES
-                encoding:NSUTF8StringEncoding
-                   error:&error];
+    if (content) {
+        [content writeToFile:fullPath
+                  atomically:YES
+                    encoding:NSUTF8StringEncoding
+                       error:&error];
+        if (error) {
+            NSLog(@"Error saving file. Reason: %@", error.description);
+        }
+    }
+    
 
 }
 

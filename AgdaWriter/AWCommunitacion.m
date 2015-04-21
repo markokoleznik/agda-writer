@@ -54,7 +54,17 @@
     task.arguments = @[@"--interaction"];
     task.standardInput = outputPipe;
     task.standardOutput = inputPipe;
-    [task launch];
+    BOOL exists = [[NSFileManager defaultManager] isExecutableFileAtPath:[task launchPath]];
+    if (exists) {
+        [task launch];
+    }
+    else
+    {
+        // File can't be lauched!
+        NSLog(@"File can't be launched!\nLaunch path not accessible.");
+        // TODO: set launch path manually;
+    }
+    
 }
 
 - (void) openPipes

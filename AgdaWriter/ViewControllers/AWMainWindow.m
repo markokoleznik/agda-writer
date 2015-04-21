@@ -26,11 +26,7 @@
 
 -(void)awakeFromNib
 {
-    // Called, when xib is loaded
-//    NSLog(@"%@", self.mainTextView);
-    
     [self setUserDefaults];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(synchronizedViewContentBoundsDidChange:)
                                                  name:NSViewBoundsDidChangeNotification
@@ -383,11 +379,6 @@
     [AWAgdaActions executeArrayOfActions:(NSArray *)actions.object];
 }
 
-
--(NSString *) description
-{
-    return @"Tooltip effect";
-}
 
 -(void) dealloc
 {

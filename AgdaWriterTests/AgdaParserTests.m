@@ -11,7 +11,9 @@
 #import "AWAgdaParser.h"
 
 @interface AgdaParserTests : XCTestCase
-
+@property NSString * testPassedDescription;
+@property NSString * testFailedDescription;
+@property NSString * dictionariesNotEqualDescription;
 @end
 
 @implementation AgdaParserTests
@@ -19,6 +21,10 @@
 - (void)setUp {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    self.testPassedDescription = @"Test passed.";
+    self.testFailedDescription = @"Test failed. Reason: ";
+    self.dictionariesNotEqualDescription = @"Dictionaries are not equal!";
 }
 
 - (void)tearDown {
@@ -29,32 +35,73 @@
 #pragma mark-
 #pragma mark Responses
 
-- (void) testAgdaResponses1 {
+//TODO: Add missing tests
+
+- (void) testAgdaResponse1 {
     NSString * agdaResponse = @"(agda2-status-action \"\")";
     NSDictionary * parsedObj = [AWAgdaParser parseAction:agdaResponse];
     NSDictionary * expectedObj = @{@"agda2-status-action" : @[@"\"\""]};
     
-    // Check for equal keys
-    if ([parsedObj isEqualToDictionary:expectedObj]) {
-        XCTAssertTrue(@"Test Passed");
-    }
-    else {
-        XCTAssertFalse(@"Dictionaries are not equal!");
-    }
+    // Check for equal dictionaries (have dictionaries same keys and corresponding values?
+    
+    [parsedObj isEqualToDictionary:expectedObj] ? XCTAssertTrue(self.testPassedDescription) : XCTAssertFalse([self.testFailedDescription stringByAppendingString:self.dictionariesNotEqualDescription]);
 }
-- (void) testAgdaResponses2 {
-//    NSString * agdaResponse = @"(agda2-info-action \"*Type-checking*\" \"\" nil)";
-//    NSDictionary * parsedObj = [AWAgdaParser parseAction:agdaResponse];
-//    NSDictionary * expectedObj = @{@"agda2-status-action" : @[@"\"\""]};
-//    
-//    // Check for equal keys
-//    if ([parsedObj isEqualToDictionary:expectedObj]) {
-//        XCTAssertTrue(@"Test Passed");
-//    }
-//    else
-//    {
-//        XCTAssertFalse(@"Dictionaries are not equal!");
-//    }
+- (void) testAgdaResponse2 {
+    NSString * agdaResponse = @"(agda2-info-action \"*Type-checking*\" \"\" nil)";
+    NSDictionary * parsedObj = [AWAgdaParser parseAction:agdaResponse];
+    NSDictionary * expectedObj = @{@"agda2-info-action" : @[@"\"*Type-checking*\"", @"\"\"", @"nil"]};
+
+    [parsedObj isEqualToDictionary:expectedObj] ? XCTAssertTrue(self.testPassedDescription) : XCTAssertFalse([self.testFailedDescription stringByAppendingString:self.dictionariesNotEqualDescription]);
 }
+- (void) testAgdaResponse3 {
+    NSString * agdaResponse = @"(agda2-info-action \"*Type-checking*\" \"Finished Foo.\n\" t)";
+    NSDictionary * parsedObj = [AWAgdaParser parseAction:agdaResponse];
+    NSDictionary * expectedObj = @{@"agda2-info-action" : @[@"\"*Type-checking*\"", @"\"Finished Foo.\n\"", @"t"]};
+    
+    [parsedObj isEqualToDictionary:expectedObj] ? XCTAssertTrue(self.testPassedDescription) : XCTAssertFalse([self.testFailedDescription stringByAppendingString:self.dictionariesNotEqualDescription]);
+}
+- (void) testAgdaResponse4 {
+    NSString * agdaResponse = @"(agda2-status-action \"\")";
+    NSDictionary * parsedObj = [AWAgdaParser parseAction:agdaResponse];
+    NSDictionary * expectedObj = @{@"agda2-status-action" : @[@"\"\""]};
+    
+    [parsedObj isEqualToDictionary:expectedObj] ? XCTAssertTrue(self.testPassedDescription) : XCTAssertFalse([self.testFailedDescription stringByAppendingString:self.dictionariesNotEqualDescription]);
+}
+- (void) testAgdaResponse5 {
+    NSString * agdaResponse = @"(agda2-info-action \"*All Goals*\" \"?0 : bool\n?1 : bool\n\" nil)";
+    NSDictionary * parsedObj = [AWAgdaParser parseAction:agdaResponse];
+    NSDictionary * expectedObj = @{@"agda2-info-action" : @[@"\"*All Goals*\"", @"\"?0 : bool\n?1 : bool\n\"", @"nil"]};
+    
+    [parsedObj isEqualToDictionary:expectedObj] ? XCTAssertTrue(self.testPassedDescription) : XCTAssertFalse([self.testFailedDescription stringByAppendingString:self.dictionariesNotEqualDescription]);
+}
+- (void) testAgdaResponse6 {
+    NSString * agdaResponse = @"((last . 1) . (agda2-goals-action '(0 1)))";
+    NSDictionary * parsedObj = [AWAgdaParser parseAction:agdaResponse];
+    NSDictionary * expectedObj = @{@"agda2-goals-action" : @[@"'(0 1)"]};
+    
+    [parsedObj isEqualToDictionary:expectedObj] ? XCTAssertTrue(self.testPassedDescription) : XCTAssertFalse([self.testFailedDescription stringByAppendingString:self.dictionariesNotEqualDescription]);
+}
+- (void) testAgdaResponse7 {
+    NSString * agdaResponse = @"(agda2-highlight-clear)";
+    NSDictionary * parsedObj = [AWAgdaParser parseAction:agdaResponse];
+    NSDictionary * expectedObj = @{@"agda2-highlight-clear" : @[]};
+    
+    [parsedObj isEqualToDictionary:expectedObj] ? XCTAssertTrue(self.testPassedDescription) : XCTAssertFalse([self.testFailedDescription stringByAppendingString:self.dictionariesNotEqualDescription]);
+}
+- (void) testAgdaResponse8 {
+    NSString * agdaResponse = @"(agda2-info-action \"*Type-checking*\" \"Checking Foo (/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda).\n\" t)";
+    NSDictionary * parsedObj = [AWAgdaParser parseAction:agdaResponse];
+    NSDictionary * expectedObj = @{@"agda2-info-action" : @[@"\"*Type-checking*\"", @"\"Checking Foo (/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda).\n\"", @"t"]};
+    
+    [parsedObj isEqualToDictionary:expectedObj] ? XCTAssertTrue(self.testPassedDescription) : XCTAssertFalse([self.testFailedDescription stringByAppendingString:self.dictionariesNotEqualDescription]);
+}
+
+
+
+
+
+
+
+
 
 @end
