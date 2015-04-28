@@ -13,6 +13,7 @@
 
 -(void) awakeFromNib
 {
+    NSLog(@"Prefrences Controller is awake");
     [self fillFontSizes];
     [self fillFontFamilies];
 }

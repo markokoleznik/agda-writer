@@ -62,9 +62,34 @@
     {
         // File can't be lauched!
         NSLog(@"File can't be launched!\nLaunch path not accessible.");
-        // TODO: set launch path manually;
+        // TODO: set launch path by user
+        [self setPathToAgdaByUser];
     }
     
+}
+
+- (void) setPathToAgdaByUser
+{
+    
+    // loading bar, spinning style
+//    NSProgressIndicator * indicator = [[NSProgressIndicator alloc] initWithFrame:NSMakeRect(20, 20, 30, 30)];
+//    [indicator setStyle:NSProgressIndicatorSpinningStyle];
+//    
+//    [indicator startAnimation:nil];
+    
+    // try to find agda automatically (in Haskell file)
+        // asynchronously find file
+    
+    // Text input with Browse Button
+    
+    // Save file path
+    
+    // Check if file at that path is executable
+    
+    // Test Agda (check Agda Version)
+    
+    // if success, launch task
+        // [task launch];
 }
 
 - (void) openPipes
@@ -74,7 +99,6 @@
     outputPipe = [NSPipe pipe];
     fileReading = inputPipe.fileHandleForReading;
     [fileReading readToEndOfFileInBackgroundAndNotify];
-    
     fileWriting = outputPipe.fileHandleForWriting;
 }
 

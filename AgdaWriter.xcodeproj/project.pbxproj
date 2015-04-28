@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D50256E61AE7ED4F00F57E2F /* AWToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = D50256E41AE7ED4F00F57E2F /* AWToastView.m */; };
+		D50256E71AE7ED4F00F57E2F /* AWToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D50256E51AE7ED4F00F57E2F /* AWToastView.xib */; };
+		D54AAE041AF012760022445F /* AWAgdaBufferWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D54AAE031AF012760022445F /* AWAgdaBufferWindow.m */; };
 		D55772F01A73AF5C00EEF94B /* AWNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = D55772EF1A73AF5C00EEF94B /* AWNotifications.m */; };
 		D55773071A73D89100EEF94B /* AWMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D55773021A73D89100EEF94B /* AWMainWindow.m */; };
 		D55773081A73D89100EEF94B /* MAAttachedWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D55773041A73D89100EEF94B /* MAAttachedWindow.m */; };
@@ -53,6 +56,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D50256E31AE7ED4F00F57E2F /* AWToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWToastView.h; sourceTree = "<group>"; };
+		D50256E41AE7ED4F00F57E2F /* AWToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWToastView.m; sourceTree = "<group>"; };
+		D50256E51AE7ED4F00F57E2F /* AWToastView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AWToastView.xib; sourceTree = "<group>"; };
+		D54AAE021AF012760022445F /* AWAgdaBufferWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWAgdaBufferWindow.h; path = ViewControllers/AWAgdaBufferWindow.h; sourceTree = "<group>"; };
+		D54AAE031AF012760022445F /* AWAgdaBufferWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWAgdaBufferWindow.m; path = ViewControllers/AWAgdaBufferWindow.m; sourceTree = "<group>"; };
 		D55772EE1A73AF5C00EEF94B /* AWNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWNotifications.h; path = AgdaWriter/AWNotifications/AWNotifications.h; sourceTree = "<group>"; };
 		D55772EF1A73AF5C00EEF94B /* AWNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWNotifications.m; path = AgdaWriter/AWNotifications/AWNotifications.m; sourceTree = "<group>"; };
 		D55773011A73D89100EEF94B /* AWMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWMainWindow.h; path = ViewControllers/AWMainWindow.h; sourceTree = "<group>"; };
@@ -129,6 +137,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D54AAE051AF0127E0022445F /* Agda Buffer */ = {
+			isa = PBXGroup;
+			children = (
+				D54AAE021AF012760022445F /* AWAgdaBufferWindow.h */,
+				D54AAE031AF012760022445F /* AWAgdaBufferWindow.m */,
+			);
+			name = "Agda Buffer";
+			sourceTree = "<group>";
+		};
 		D55772EB1A73ACCB00EEF94B /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +181,7 @@
 		D557730A1A73D8A700EEF94B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D54AAE051AF0127E0022445F /* Agda Buffer */,
 				D56A16EA1A84DD2800AC82DB /* Preferences */,
 				D56A16E91A84DD0900AC82DB /* Main View Controller */,
 				D583562E19EEEEC4009534C1 /* AWMainWindow.xib */,
@@ -185,6 +203,9 @@
 				D56A0E3C1A797377006493D3 /* AWPopupAlertTableView.m */,
 				D56A16F81A84E06B00AC82DB /* AWColors.h */,
 				D56A16F91A84E06B00AC82DB /* AWColors.m */,
+				D50256E31AE7ED4F00F57E2F /* AWToastView.h */,
+				D50256E41AE7ED4F00F57E2F /* AWToastView.m */,
+				D50256E51AE7ED4F00F57E2F /* AWToastView.xib */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -419,6 +440,7 @@
 			files = (
 				D583562D19EEEEC4009534C1 /* Images.xcassets in Resources */,
 				D55773171A73D8D300EEF94B /* icon_512.png in Resources */,
+				D50256E71AE7ED4F00F57E2F /* AWToastView.xib in Resources */,
 				D55C211F1A766F110005D33A /* AWPopupAlertViewController.xib in Resources */,
 				D55773161A73D8D300EEF94B /* icon_256.png in Resources */,
 				D55773131A73D8D300EEF94B /* icon_32.png in Resources */,
@@ -449,6 +471,7 @@
 				D583562B19EEEEC4009534C1 /* AppDelegate.m in Sources */,
 				D55773091A73D89100EEF94B /* PrefrencesController.m in Sources */,
 				D55772F01A73AF5C00EEF94B /* AWNotifications.m in Sources */,
+				D50256E61AE7ED4F00F57E2F /* AWToastView.m in Sources */,
 				D56A16FD1A84E4E700AC82DB /* AWMainSplitView.m in Sources */,
 				D55C211E1A766F110005D33A /* AWPopupAlertViewController.m in Sources */,
 				D56A16F71A84DF8900AC82DB /* AWContainerStatusTextView.m in Sources */,
@@ -456,6 +479,7 @@
 				D56A16F41A84DEA100AC82DB /* AWContainerOutputTextView.m in Sources */,
 				D5C56BAC1A816FF300422B5E /* AWStatusTextView.m in Sources */,
 				D55773081A73D89100EEF94B /* MAAttachedWindow.m in Sources */,
+				D54AAE041AF012760022445F /* AWAgdaBufferWindow.m in Sources */,
 				D5C56BA41A811AE100422B5E /* AWCommunitacion.m in Sources */,
 				D59A76FD1AE5ADD200E6099E /* AWAgdaActions.m in Sources */,
 				D55773071A73D89100EEF94B /* AWMainWindow.m in Sources */,

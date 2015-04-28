@@ -19,18 +19,34 @@
         
         
         initialize = YES;
+        
+        [self drawViewBackgroundInRect:NSMakeRect(100, 100, 100, 100)];
+
     }
     
     
+    
 }
+
+//- (void)drawViewBackgroundInRect:(NSRect)rect
+//{
+//    NSLog(@"blabla");
+//    [super drawViewBackgroundInRect:rect];
+//}
+
 
 - (void) openLastDocument
 {
     NSUserDefaults *ud = [[NSUserDefaults alloc] init];
     NSString * path = [ud objectForKey:@"currentFile"];
     if (path) {
-        
-        NSString * fileContent = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        NSError * error;
+        NSString * fileContent = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+        if (error) {
+            NSLog(@"Error occoured when opening document: %@", error.description);
+            return;
+        }
+        // double check if fileContent is initialized.
         if (fileContent) {
             [self setString:fileContent];
         }

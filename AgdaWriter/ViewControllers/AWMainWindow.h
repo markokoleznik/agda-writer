@@ -24,7 +24,6 @@
 @property AWPopupAlertViewController * helperView;
 @property AWCommunitacion * communicator;
 
-
 - (IBAction)hideOutputs:(id)sender;
 
 

@@ -35,8 +35,6 @@
 #pragma mark-
 #pragma mark Responses
 
-//TODO: Add missing tests
-
 - (void) testAgdaResponse1 {
     NSString * agdaResponse = @"(agda2-status-action \"\")";
     NSDictionary * parsedObj = [AWAgdaParser parseAction:agdaResponse];

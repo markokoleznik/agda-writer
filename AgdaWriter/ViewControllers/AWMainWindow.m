@@ -14,6 +14,8 @@
 #import "AWAgdaActions.h"
 #import "AWAgdaParser.h"
 
+#import "AWToastView.h"
+
 
 
 
@@ -46,7 +48,7 @@
         self.communicator = [[AWCommunitacion alloc] init];
     }
     
-
+    
 }
 
 
@@ -342,7 +344,6 @@
     else
     {
         // Remove window!
-        // TODO: use delegation to remove help window.
 //        [self.numberLabel setStringValue:@""];
         for (NSWindow *window in self.childWindows) {
             if ([window.identifier isEqualToString:@"Helper"]) {
@@ -382,44 +383,9 @@
 
 
 
-
-
 -(void) showHelpWindowAtRect: (NSRect) rect
 {
-    // If one instance of window is already opened, return.
-    if (self.isHelperWindowOpened) {
-        return;
-    }
-    
-    // TODO: Remove this! Don't show helper for now.
-    return;
 
-//    self.helperView = [[AWPopupAlertViewController alloc] initWithNibName:@"AWPopupAlertViewController" bundle:[NSBundle mainBundle]];
-//    MAAttachedWindow * MAAwindow = [[MAAttachedWindow alloc] initWithView:self.helperView.view attachedToPoint:NSMakePoint(rect.origin.x + rect.size.width/2, rect.origin.y)];
-//    [self.helperView.view setFrame:NSMakeRect(4, 5, self.helperView.view.frame.size.width - 5, self.helperView.view.frame.size.height - 5)];
-//    [self.helperView.view becomeFirstResponder];
-//    NSLog(@"%i", [self.helperView.view becomeFirstResponder]);
-//    [MAAwindow setAnimationBehavior:NSWindowAnimationBehaviorAlertPanel];
-//    MAAwindow.identifier = @"Helper";
-//    
-//    
-//    
-//    [self addChildWindow:MAAwindow ordered:1];
-//    [MAAwindow makeKeyWindow];
-
-    // Animation inside window (on it's child view) -> For experimenting only.
-//    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-//        context.duration = 0.4f;
-//        self.helperView.view.animator.frame = CGRectOffset(self.helperView.view.frame, 20, 0);
-//    } completionHandler:^{
-//        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-//            context.duration = 0.3f;
-//            self.helperView.view.animator.frame = CGRectOffset(self.helperView.view.frame, -20, 0);
-//        } completionHandler:nil];
-//        
-//    }];
-    
-//    self.isHelperWindowOpened = YES;
 
 }
 -(void)agdaVersionAvaliable:(NSNotification *) notification
