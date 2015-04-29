@@ -10,6 +10,7 @@
 		D50256E61AE7ED4F00F57E2F /* AWToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = D50256E41AE7ED4F00F57E2F /* AWToastView.m */; };
 		D50256E71AE7ED4F00F57E2F /* AWToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D50256E51AE7ED4F00F57E2F /* AWToastView.xib */; };
 		D54AAE041AF012760022445F /* AWAgdaBufferWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D54AAE031AF012760022445F /* AWAgdaBufferWindow.m */; };
+		D54AAE0E1AF0E67F0022445F /* ok_sign.png in Resources */ = {isa = PBXBuildFile; fileRef = D54AAE0D1AF0E67F0022445F /* ok_sign.png */; };
 		D55772F01A73AF5C00EEF94B /* AWNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = D55772EF1A73AF5C00EEF94B /* AWNotifications.m */; };
 		D55773071A73D89100EEF94B /* AWMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D55773021A73D89100EEF94B /* AWMainWindow.m */; };
 		D55773081A73D89100EEF94B /* MAAttachedWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D55773041A73D89100EEF94B /* MAAttachedWindow.m */; };
@@ -61,6 +62,7 @@
 		D50256E51AE7ED4F00F57E2F /* AWToastView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AWToastView.xib; sourceTree = "<group>"; };
 		D54AAE021AF012760022445F /* AWAgdaBufferWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWAgdaBufferWindow.h; path = ViewControllers/AWAgdaBufferWindow.h; sourceTree = "<group>"; };
 		D54AAE031AF012760022445F /* AWAgdaBufferWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWAgdaBufferWindow.m; path = ViewControllers/AWAgdaBufferWindow.m; sourceTree = "<group>"; };
+		D54AAE0D1AF0E67F0022445F /* ok_sign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok_sign.png; sourceTree = "<group>"; };
 		D55772EE1A73AF5C00EEF94B /* AWNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWNotifications.h; path = AgdaWriter/AWNotifications/AWNotifications.h; sourceTree = "<group>"; };
 		D55772EF1A73AF5C00EEF94B /* AWNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWNotifications.m; path = AgdaWriter/AWNotifications/AWNotifications.m; sourceTree = "<group>"; };
 		D55773011A73D89100EEF94B /* AWMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWMainWindow.h; path = ViewControllers/AWMainWindow.h; sourceTree = "<group>"; };
@@ -146,9 +148,18 @@
 			name = "Agda Buffer";
 			sourceTree = "<group>";
 		};
+		D54AAE0C1AF0E6650022445F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				D54AAE0D1AF0E67F0022445F /* ok_sign.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		D55772EB1A73ACCB00EEF94B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D54AAE0C1AF0E6650022445F /* Assets */,
 				D55772FA1A73C8A300EEF94B /* Icons */,
 			);
 			name = Images;
@@ -445,6 +456,7 @@
 				D55773161A73D8D300EEF94B /* icon_256.png in Resources */,
 				D55773131A73D8D300EEF94B /* icon_32.png in Resources */,
 				D55773181A73D8D300EEF94B /* icon_1024.png in Resources */,
+				D54AAE0E1AF0E67F0022445F /* ok_sign.png in Resources */,
 				D5C56BA91A815F7D00422B5E /* defaults.plist in Resources */,
 				D55773151A73D8D300EEF94B /* icon_128.png in Resources */,
 				D55773141A73D8D300EEF94B /* icon_64.png in Resources */,

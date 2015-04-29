@@ -17,6 +17,7 @@
 }
 
 
+
 @property IBOutlet NSTextView *mainTextView;
 @property IBOutlet NSTextView *lineNumbersView;
 @property (weak) IBOutlet NSTextField *agdaVersion;

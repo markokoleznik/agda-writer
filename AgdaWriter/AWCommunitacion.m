@@ -23,7 +23,7 @@
                                                  selector:@selector(dataAvailabe:)
                                                      name:NSFileHandleReadToEndOfFileCompletionNotification
                                                    object:nil];
-        [self startTask];
+//        [self startTask];
 
     }
     return self;
@@ -46,17 +46,37 @@
     [task terminate];
 }
 
+
+
 - (void) startTask
 {
     task = [NSTask new];
     // PATH TO AGDA
     task.launchPath = [AWNotifications agdaLaunchPath];
+    NSLog(@"launch path: %@", task.launchPath);
     task.arguments = @[@"--interaction"];
     task.standardInput = outputPipe;
     task.standardOutput = inputPipe;
     BOOL exists = [[NSFileManager defaultManager] isExecutableFileAtPath:[task launchPath]];
     if (exists) {
-        [task launch];
+        @try {
+            [task launch];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Exception: %@", exception.reason);
+            NSAlert * alert = [[NSAlert alloc] init];
+            [alert addButtonWithTitle:@"Open Prefreneces..."];
+            [alert setMessageText:@"Task can't be launched!\nCheck your path in Settings."];
+            [alert setAlertStyle:NSWarningAlertStyle];
+            if ([alert runModal] == NSAlertFirstButtonReturn) {
+                NSLog(@"Open preferences");
+                [AWNotifications notifyOpenPreferences];
+            }
+        }
+        @finally {
+
+        }
+        
     }
     else
     {
@@ -94,7 +114,6 @@
 
 - (void) openPipes
 {
-//    [[NSProcessInfo processInfo] processIdentifier];
     inputPipe = [NSPipe pipe];
     outputPipe = [NSPipe pipe];
     fileReading = inputPipe.fileHandleForReading;
@@ -109,7 +128,6 @@
 
 - (void) writeData: (NSString * ) message
 {
-//    [self stopTask];
     [self openPipes];
     [self startTask];
     [fileWriting writeData:[message dataUsingEncoding:NSUTF8StringEncoding]];

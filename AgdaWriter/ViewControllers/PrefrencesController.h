@@ -8,13 +8,33 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PrefrencesController : NSWindow
+typedef enum : NSUInteger {
+    TabViewFonts = 0,
+    TabViewPaths = 1
+} TabViews;
 
-@property (weak) IBOutlet NSPopUpButton *fontsizePopUp;
-- (IBAction)fontSizeSelected:(NSPopUpButton *)sender;
+@interface PrefrencesController : NSWindow <NSTabViewDelegate>
+@property (weak) IBOutlet NSTabView *preferencesTabView;
 
-@property (weak) IBOutlet NSPopUpButton *fontFamilyPopUp;
-- (IBAction)fontFamilySelected:(NSPopUpButton *)sender;
+#pragma mark -
+#pragma mark Fonts View
+
+@property (weak) IBOutlet NSPopUpButton *fontSizePopUpButton;
+- (IBAction)fontSizeAction:(NSPopUpButton *)sender;
+
+@property (weak) IBOutlet NSPopUpButton *fontFamilyPopUpButton;
+- (IBAction)fontFamilyAction:(NSPopUpButton *)sender;
+
+#pragma mark -
+#pragma mark Path View
+
+@property (weak) IBOutlet NSTextField *pathToAgdaTextField;
+- (IBAction)pathToAgdaSelected:(NSTextField *)sender;
+
+@property (weak) IBOutlet NSButton *browsePathButton;
+- (IBAction)browsePathAction:(NSButton *)sender;
+@property (weak) IBOutlet NSProgressIndicator *searchForAgdaIndicator;
+@property (weak) IBOutlet NSImageView *okSign;
 
 
 

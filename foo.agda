@@ -1,3 +1,4 @@
+
 module Foo where
   data bool : Set where
     false : bool

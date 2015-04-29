@@ -18,6 +18,7 @@ NSString * const AWAgdaReplied = @"net.koleznik.agdaReplied";
 NSString * const AWExecuteActions = @"net.koleznik.executeActions";
 NSString * const AWAgdaBufferDataAvaliable = @"net.koleznik.agdaBufferDataAvaliable";
 NSString * const AWAgdaVersionAvaliable = @"net.koleznik.agdaVersionAvaliable";
+NSString * const AWOpenPreferences = @"net.koleznik.openPreferences";
 
 
 
@@ -66,6 +67,13 @@ NSString * const AWAgdaVersionAvaliable = @"net.koleznik.agdaVersionAvaliable";
     return plistContent;
 }
 
++ (void) setAgdaLaunchPath:(NSString *)path
+{
+    NSDictionary *plistContent = [self dictionaryOfDefaults];
+    [plistContent setValue:path forKey:@"agdaLaunchPath"];
+    [plistContent writeToURL:[self defaultUrl] atomically:YES];
+}
+
 + (NSString *) agdaLaunchPath
 {
     NSDictionary *plistContent = [self dictionaryOfDefaults];
@@ -86,6 +94,10 @@ NSString * const AWAgdaVersionAvaliable = @"net.koleznik.agdaVersionAvaliable";
 + (void)notifyAgdaVersion:(NSString *)version
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:AWAgdaVersionAvaliable object:version];
+}
+
++ (void) notifyOpenPreferences {
+    [[NSNotificationCenter defaultCenter] postNotificationName:AWOpenPreferences object:nil];
 }
 
 

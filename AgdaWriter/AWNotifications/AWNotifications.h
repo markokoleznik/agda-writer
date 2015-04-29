@@ -19,6 +19,7 @@ extern NSString * const AWAgdaReplied;
 extern NSString * const AWExecuteActions;
 extern NSString * const AWAgdaBufferDataAvaliable;
 extern NSString * const AWAgdaVersionAvaliable;
+extern NSString * const AWOpenPreferences;
 
 typedef NS_ENUM(NSInteger, KeyPressed) {
     AWEnterPressed,
@@ -37,8 +38,11 @@ typedef NS_ENUM(NSInteger, KeyPressed) {
 + (void) notifyAgdaBufferDataAvaliable:(NSString *)buffer;
 + (void) notifyAgdaVersion:(NSString *)version;
 
++ (void) notifyOpenPreferences;
+
 + (NSDictionary *) dictionaryOfDefaults;
 + (NSString *) agdaLaunchPath;
++ (void) setAgdaLaunchPath:(NSString *)path;
 
 
 @end
