@@ -12,4 +12,4 @@ module Foo where
   id y = ?
 
   baz : bool → bool
-  baz x = ?￼￼
+  baz x = ?￼￼￼

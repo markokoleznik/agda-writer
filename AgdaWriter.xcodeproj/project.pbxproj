@@ -614,7 +614,7 @@
 		D583564019EEEEC4009534C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon New";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = AgdaWriter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -625,7 +625,7 @@
 		D583564119EEEEC4009534C1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon New";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = AgdaWriter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
