@@ -16,16 +16,24 @@
     if (!initialize) {
         [self openLastDocument];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChangedInRangeWithReplacementString:) name:@"textChangedInRangeWithReplacementString" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showHelp) name:@"showHelp" object:nil];
         
         
         initialize = YES;
         
-        [self drawViewBackgroundInRect:NSMakeRect(100, 100, 100, 100)];
+        
+
 
     }
     
     
     
+}
+
+-(void)drawRect:(NSRect)dirtyRect
+{
+//    [NSBezierPath fillRect:dirtyRect];
+    [super drawRect:dirtyRect];
 }
 
 //- (void)drawViewBackgroundInRect:(NSRect)rect
@@ -143,6 +151,40 @@
     });
 }
 
+- (void)asynchronouslyFindRangesOfQuestionMarksWithCompletion:(void (^)(NSArray *))matches;
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        // Asynchronously find all ranges with regex
+        // Regex pattern: //.*
+        // Finds all strings that begins with // and returns its range to the end of the line.
+        NSMutableArray * results = [NSMutableArray new];
+        
+        NSRange searchRange = NSMakeRange(0, self.textStorage.length);
+        NSRange foundRange;
+        while (searchRange.location < self.textStorage.length) {
+            searchRange.length = self.textStorage.length - searchRange.location;
+            foundRange = [self.textStorage.string rangeOfString:@"?" options:NSCaseInsensitiveSearch range:searchRange];
+            if (foundRange.location != NSNotFound) {
+                // found an occurrence of the substring! do stuff here
+                
+                
+                searchRange.location = foundRange.location + foundRange.length;
+            } else {
+                // no more substring to find
+                break;
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (matches) {
+                
+                matches(results);
+            }
+        });
+    });
+}
+
 - (void) setDefaultText
 {
     NSDate *currDate = [NSDate date];
@@ -150,12 +192,43 @@
     [dateFormatter setDateFormat:@"dd. MM. YY."];
     NSString *dateString = [dateFormatter stringFromDate:currDate];
     
+    
     NSString * welcomeString = @"";
     welcomeString = [welcomeString stringByAppendingString:@"//  \n"];
     welcomeString = [welcomeString stringByAppendingFormat:@"//  Created by %@ on %@ \n", NSFullUserName(), dateString];
     welcomeString = [welcomeString stringByAppendingString:@"//  \n"];
     [self setString: welcomeString];
+    
+    
 
+}
+
+
+- (void) showHelp
+{
+    NSRange searchRange = NSMakeRange(0, self.textStorage.length);
+    NSRange foundRange;
+    while (searchRange.location < self.textStorage.length) {
+        searchRange.length = self.textStorage.length - searchRange.location;
+        foundRange = [self.textStorage.string rangeOfString:@"?" options:NSCaseInsensitiveSearch range:searchRange];
+        if (foundRange.location != NSNotFound) {
+            // found an occurrence of the substring! do stuff here
+            
+            [self showFindIndicatorForRange:foundRange];
+            NSLayoutManager * layout = [self layoutManager];
+            
+            NSRect rect = [layout boundingRectForGlyphRange:foundRange inTextContainer:self.textContainer];
+            NSBezierPath * path = [NSBezierPath bezierPathWithRect:rect];
+            [path fill];
+            [NSBezierPath fillRect:rect];
+            [self drawRect:rect];
+//            [self scrollRectToVisible:rect];
+            searchRange.location = foundRange.location + foundRange.length;
+        } else {
+            // no more substring to find
+            break;
+        }
+    }
 }
 
 -(void)dealloc

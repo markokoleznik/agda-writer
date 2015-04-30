@@ -378,6 +378,7 @@
         NSString * content = [objectsToPaste objectAtIndex:0];
         NSString * oldText = [[self.mainTextView textStorage] string];
         [self.mainTextView setString:[oldText stringByAppendingString:content]];
+
     }
 }
 
@@ -398,7 +399,6 @@
             version = [version substringToIndex:version.length - 1];
             [self.agdaVersion setStringValue:[NSString stringWithFormat:@"Agda is now running... Version: %@", version]];
         }
-        
     }
 }
 
@@ -415,4 +415,7 @@
 }
 
 
+- (IBAction)showHelp:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showHelp" object:nil];
+}
 @end

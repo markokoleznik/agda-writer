@@ -7,11 +7,11 @@ module Foo where
   f : bool → bool → bool
   f p q = p
   g : bool → bool
-  g x = x
+  g x = ?
 
   id : bool → bool
-  id y = ?
+  id y = y
 
   baz : bool → bool
-  baz x = x
-
+  baz x = ?
+  
