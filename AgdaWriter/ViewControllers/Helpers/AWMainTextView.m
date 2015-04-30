@@ -7,6 +7,7 @@
 //
 
 #import "AWMainTextView.h"
+#import "AWNotifications.h"
 
 @implementation AWMainTextView
 
@@ -14,15 +15,34 @@
 {
 //    NSLog(@"%@", self.description);
     if (!initialize) {
-        [self openLastDocument];
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChangedInRangeWithReplacementString:) name:@"textChangedInRangeWithReplacementString" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showHelp) name:@"showHelp" object:nil];
         
         
         initialize = YES;
         
+        mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:self.textStorage.string];
+        // Set Attributes for attributed string
+        NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+        defaultAttributes = @{
+                              NSForegroundColorAttributeName : [NSColor blackColor],
+                              NSFontAttributeName : [NSFont fontWithName:[ud objectForKey:FONT_FAMILY_KEY] size:[[ud objectForKey:FONT_SIZE_KEY] doubleValue]],
+                              NSBackgroundColorAttributeName : [NSColor whiteColor]
+                              };
         
-
+        goalsAttributes = @{
+                            NSForegroundColorAttributeName : [NSColor blueColor],
+                            NSBackgroundColorAttributeName : [NSColor yellowColor]
+                            };
+        
+        [mutableAttributedString addAttributes:defaultAttributes range:NSMakeRange(0, mutableAttributedString.length)];
+        goalsArray = [NSMutableArray new];
+        
+        // Method to remove attribute (parameter is attribute name
+//        [self.textStorage removeAttribute:<#(NSString *)#> range:<#(NSRange)#>
+        
+        [self openLastDocument];
 
     }
     
@@ -30,18 +50,15 @@
     
 }
 
--(void)drawRect:(NSRect)dirtyRect
+
+-(void)setString:(NSString *)string
 {
-//    [NSBezierPath fillRect:dirtyRect];
-    [super drawRect:dirtyRect];
+    // Overrride this method to set Attributed string!
+    [super setString:string];
+    mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:self.textStorage.string];
+    [mutableAttributedString addAttributes:defaultAttributes range:NSMakeRange(0, mutableAttributedString.length)];
+    [[self textStorage] setAttributedString:mutableAttributedString];
 }
-
-//- (void)drawViewBackgroundInRect:(NSRect)rect
-//{
-//    NSLog(@"blabla");
-//    [super drawViewBackgroundInRect:rect];
-//}
-
 
 - (void) openLastDocument
 {
@@ -203,6 +220,14 @@
 
 }
 
+- (NSRange) replaceQuestionMarkInRange:(NSRange)range WithType:(NSString *)type
+{
+    [self replaceCharactersInRange:range withString:type];
+    
+    NSRange newRange = NSMakeRange(range.location, type.length);
+    return newRange;
+}
+
 
 - (void) showHelp
 {
@@ -212,17 +237,27 @@
         searchRange.length = self.textStorage.length - searchRange.location;
         foundRange = [self.textStorage.string rangeOfString:@"?" options:NSCaseInsensitiveSearch range:searchRange];
         if (foundRange.location != NSNotFound) {
-            // found an occurrence of the substring! do stuff here
+            // found an occurrence of the substring!
             
+            // Show all questionmarks
             [self showFindIndicatorForRange:foundRange];
-            NSLayoutManager * layout = [self layoutManager];
             
-            NSRect rect = [layout boundingRectForGlyphRange:foundRange inTextContainer:self.textContainer];
-            NSBezierPath * path = [NSBezierPath bezierPathWithRect:rect];
-            [path fill];
-            [NSBezierPath fillRect:rect];
-            [self drawRect:rect];
-//            [self scrollRectToVisible:rect];
+//            NSLayoutManager * layout = [self layoutManager];
+//            NSRect rect = [layout boundingRectForGlyphRange:foundRange inTextContainer:self.textContainer];
+//            NSRange newRange = [self replaceQuestionMarkInRange:foundRange WithType:@"?(bool)"];
+//            NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:self.textStorage.string];
+//            
+//            NSDictionary *attributes = @{
+//                                         NSForegroundColorAttributeName : [NSColor blueColor],
+//                                         NSFontAttributeName : [NSFont fontWithName:@"HelveticaNeue-Bold" size:20.f],
+//                                         NSBackgroundColorAttributeName : [NSColor yellowColor]
+//                                         };
+//            
+//            [string addAttributes:attributes range:newRange];
+//            
+//            [self.textStorage setAttributedString:string];
+
+            
             searchRange.location = foundRange.location + foundRange.length;
         } else {
             // no more substring to find

@@ -10,9 +10,14 @@
 
 @interface AWMainTextView : NSTextView {
     BOOL initialize;
+    NSDictionary * defaultAttributes;
+    NSDictionary * goalsAttributes;
+    NSMutableAttributedString * mutableAttributedString;
+    NSMutableArray * goalsArray;
 }
 
 - (IBAction)save:(id)sender;
+
 
 
 @end

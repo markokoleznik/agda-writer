@@ -1041,7 +1041,7 @@ AAAAAAEGA
                 <outlet property="lineNumbersView" destination="Ab6-OT-EOb" id="6v3-fg-zvw"/>
                 <outlet property="mainTextView" destination="O95-wS-29x" id="WL1-8p-GAy"/>
             </connections>
-            <point key="canvasLocation" x="407.5" y="534.5"/>
+            <point key="canvasLocation" x="339.5" y="595.5"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="C0o-Wl-c3c"/>
         <window title="Agda Buffer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="7uh-bF-bzh" userLabel="AgdaBuffer" customClass="AWAgdaBufferWindow">
@@ -1226,13 +1226,13 @@ AAAAAAEGA
                                     </constraints>
                                 </view>
                             </tabViewItem>
-                            <tabViewItem label="Path" identifier="2" id="Xga-DZ-UeT">
+                            <tabViewItem label="___" identifier="2" id="Xga-DZ-UeT">
                                 <view key="view" id="2mC-lu-Yco">
                                     <rect key="frame" x="10" y="33" width="434" height="215"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>
-                            <tabViewItem label="Path" identifier="2" id="IyY-83-Jd1">
+                            <tabViewItem label="___" identifier="2" id="IyY-83-Jd1">
                                 <view key="view" id="dgW-IO-sBy">
                                     <rect key="frame" x="10" y="33" width="434" height="215"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1257,7 +1257,7 @@ AAAAAAEGA
                 <outlet property="preferencesTabView" destination="f0i-qs-7cD" id="RxD-18-bLi"/>
                 <outlet property="searchForAgdaIndicator" destination="rsa-fB-bFq" id="cFn-Oz-g38"/>
             </connections>
-            <point key="canvasLocation" x="627" y="277.5"/>
+            <point key="canvasLocation" x="546" y="183.5"/>
         </window>
     </objects>
     <resources>
