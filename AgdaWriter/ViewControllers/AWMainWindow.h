@@ -11,6 +11,7 @@
 #import "AWCommunitacion.h"
 #import "AWAgdaActions.h"
 
+
 //@interface AWMainWindow : NSWindow <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate, NSTableViewDataSource, NSTableViewDelegate>{
 @interface AWMainWindow : NSWindow <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate>{
     
@@ -25,6 +26,7 @@
 @property BOOL isHelperWindowOpened;
 @property AWPopupAlertViewController * helperView;
 @property AWCommunitacion * communicator;
+
 
 - (IBAction)hideOutputs:(id)sender;
 

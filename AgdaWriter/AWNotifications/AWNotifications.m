@@ -20,6 +20,7 @@ NSString * const AWAgdaBufferDataAvaliable = @"net.koleznik.agdaBufferDataAvalia
 NSString * const AWAgdaVersionAvaliable = @"net.koleznik.agdaVersionAvaliable";
 NSString * const AWOpenPreferences = @"net.koleznik.openPreferences";
 NSString * const AWAllGoals = @"net.koleznik.allGoals";
+NSString * const AWPossibleAgdaPathFound = @"net.koleznik.possibleAgdaPathFound";
 
 
 
@@ -105,6 +106,10 @@ NSString * const AWAllGoals = @"net.koleznik.allGoals";
     [[NSNotificationCenter defaultCenter] postNotificationName:AWAllGoals object:allGoals];
 }
 
++ (void) notifyPossibleAgdaPathFound:(NSString *)agdaPaths
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:AWPossibleAgdaPathFound object:agdaPaths];
+}
 
 
 @end

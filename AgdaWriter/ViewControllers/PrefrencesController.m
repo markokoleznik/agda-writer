@@ -8,6 +8,7 @@
 
 #import "PrefrencesController.h"
 #import "AWNotifications.h"
+#import "AWCommunitacion.h"
 
 @implementation PrefrencesController
 
@@ -20,7 +21,7 @@
     [self fillFontSizes];
     [self fillFontFamilies];
     [self.searchForAgdaIndicator setHidden:YES];
-//    [[self.searchForAgdaIndicator animator] startAnimation:nil];
+    [[self.searchForAgdaIndicator animator] startAnimation:nil];
 }
 
 - (void) fillFontSizes
@@ -98,7 +99,7 @@
             NSLog(@"Did select Paths tab");
             // Load spinning wheel
             // Try to find agda
-//            [self tryToFindAgda];
+            [self tryToFindAgda];
             break;
             
         default:
@@ -136,18 +137,40 @@
 
 - (void) tryToFindAgda
 {
-    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    if (!paths || paths.count < 1) {
-        // We didn't find user Library folder. Abort.
-        return;
-    }
     // My path to agda
     // /Users/markokoleznik/Library/Haskell/bin/agda
-    NSString * userDirectory = [paths objectAtIndex:0];
-    NSString * filePathToAgda = [userDirectory stringByAppendingPathComponent:@"Haskell/bin/agda"];
-    [self testAgda:filePathToAgda];
+    [self.searchForAgdaIndicator setHidden:NO];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(possibleAgdaPathsFound:) name:AWPossibleAgdaPathFound object:nil];
+    AWCommunitacion * comm = [[AWCommunitacion alloc] init];
+    
+    [comm searchForAgda];
+    
+    
+    
+    
     
 }
+
+-(void)possibleAgdaPathsFound:(NSNotification *)notification
+{
+    NSLog(@"possible path: %@", notification.object);
+    NSString * reply = notification.object;
+    [self.searchForAgdaIndicator setHidden:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AWPossibleAgdaPathFound object:nil];
+    NSArray * possiblePaths = [reply componentsSeparatedByString:@"\n"];
+    
+    if (possiblePaths && possiblePaths.count > 0) {
+        for (NSString * possiblePath in possiblePaths) {
+            if ([possiblePath hasPrefix:NSHomeDirectory()]) {
+                // TODO: test agda here
+                [self.pathToAgdaTextField setStringValue:possiblePath];
+                [AWNotifications setAgdaLaunchPath:possiblePath];
+            }
+        }
+    }
+    
+}
+
 -(void)showOKsign
 {
     [self.okSign setHidden:NO];

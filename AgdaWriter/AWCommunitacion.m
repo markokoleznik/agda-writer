@@ -23,8 +23,6 @@
                                                  selector:@selector(dataAvailabe:)
                                                      name:NSFileHandleReadToEndOfFileCompletionNotification
                                                    object:nil];
-//        [self startTask];
-
     }
     return self;
 }
@@ -35,9 +33,15 @@
     NSData *data = [[notification userInfo] objectForKey:NSFileHandleNotificationDataItem];
     NSString * reply = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
-    NSArray * actions = [AWAgdaParser makeArrayOfActions:reply];
-    [AWNotifications notifyExecuteActions:actions];
-    [AWNotifications notifyAgdaReplied:reply];
+    if ([reply hasPrefix:NSHomeDirectory()]) {
+        [AWNotifications notifyPossibleAgdaPathFound:reply];
+    }
+    else {
+        
+        NSArray * actions = [AWAgdaParser makeArrayOfActions:reply];
+        [AWNotifications notifyExecuteActions:actions];
+        [AWNotifications notifyAgdaReplied:reply];
+    }
 }
 
 
@@ -85,6 +89,31 @@
         // TODO: set launch path by user
         [self setPathToAgdaByUser];
     }
+    
+}
+
+-(void) searchForAgda
+{
+    [self openPipes];
+    task = [NSTask new];
+    // PATH TO AGDA
+    task.launchPath = @"/usr/bin/find";
+    NSLog(@"launch path: %@", task.launchPath);
+    task.arguments = @[NSHomeDirectory(), @"-name", @"agda"];
+    task.standardInput = outputPipe;
+    task.standardOutput = inputPipe;
+    
+    @try {
+        [task launch];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"exception: %@", exception.description);
+    }
+    @finally {
+        
+    }
+    
+
     
 }
 

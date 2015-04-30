@@ -48,6 +48,11 @@
         self.communicator = [[AWCommunitacion alloc] init];
     }
     
+
+    
+    
+    // search agda path
+//    [self.communicator searchForAgda];
     
 }
 

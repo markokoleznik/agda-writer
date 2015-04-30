@@ -25,6 +25,6 @@
 
 - (void) writeData: (NSString * ) message;
 
-
+-(void) searchForAgda;
 
 @end

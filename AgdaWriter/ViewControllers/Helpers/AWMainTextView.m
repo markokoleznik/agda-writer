@@ -295,9 +295,8 @@
 //                [mutableAttributedString addAttributes:goalsAttributes range:newRange];
 //                
 //                [self.textStorage setAttributedString:mutableAttributedString];
-//                
-//                
-                searchRange.location = foundRange.location + foundRange.length;
+//               
+//                searchRange.location = foundRange.location + foundRange.length;
             } else {
                 // no more substring to find
                 break;
