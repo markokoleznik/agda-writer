@@ -20,6 +20,7 @@ extern NSString * const AWExecuteActions;
 extern NSString * const AWAgdaBufferDataAvaliable;
 extern NSString * const AWAgdaVersionAvaliable;
 extern NSString * const AWOpenPreferences;
+extern NSString * const AWAllGoals;
 
 typedef NS_ENUM(NSInteger, KeyPressed) {
     AWEnterPressed,
@@ -37,6 +38,7 @@ typedef NS_ENUM(NSInteger, KeyPressed) {
 + (void) notifyExecuteActions: (NSArray *) actions;
 + (void) notifyAgdaBufferDataAvaliable:(NSString *)buffer;
 + (void) notifyAgdaVersion:(NSString *)version;
++ (void) notifyAllGoals: (NSString *)allGoals;
 
 + (void) notifyOpenPreferences;
 

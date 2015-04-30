@@ -1006,6 +1006,14 @@ AAAAAAEGA
                             </binding>
                         </connections>
                     </textField>
+                    <tokenField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aJP-uA-bqa">
+                        <rect key="frame" x="781" y="539" width="193" height="22"/>
+                        <tokenFieldCell key="cell" selectable="YES" editable="YES" borderStyle="bezel" alignment="left" placeholderString="something" drawsBackground="YES" allowsEditingTextAttributes="YES" tokenStyle="rounded" id="B5M-KL-C5Q">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </tokenFieldCell>
+                    </tokenField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="e7v-zB-ypc" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="18" id="0em-ba-xJP"/>

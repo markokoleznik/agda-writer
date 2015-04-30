@@ -64,6 +64,8 @@
 
 - (IBAction)pathToAgdaSelected:(NSTextField *)sender {
     NSLog(@"Path to agda selected");
+    [AWNotifications setAgdaLaunchPath:sender.stringValue];
+    
 }
 - (IBAction)browsePathAction:(NSButton *)sender {
 
@@ -96,7 +98,7 @@
             NSLog(@"Did select Paths tab");
             // Load spinning wheel
             // Try to find agda
-            [self tryToFindAgda];
+//            [self tryToFindAgda];
             break;
             
         default:

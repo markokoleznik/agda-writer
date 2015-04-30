@@ -16,8 +16,10 @@
 //    NSLog(@"%@", self.description);
     if (!initialize) {
         
+        self.delegate = self;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChangedInRangeWithReplacementString:) name:@"textChangedInRangeWithReplacementString" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showHelp) name:@"showHelp" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allGoalsAction:) name:AWAllGoals object:nil];
         
         
         initialize = YES;
@@ -33,7 +35,7 @@
         
         goalsAttributes = @{
                             NSForegroundColorAttributeName : [NSColor blueColor],
-                            NSBackgroundColorAttributeName : [NSColor yellowColor]
+                            NSBackgroundColorAttributeName : [NSColor colorWithRed:1.0 green:1.0 blue:0.0 alpha:0.5],
                             };
         
         [mutableAttributedString addAttributes:defaultAttributes range:NSMakeRange(0, mutableAttributedString.length)];
@@ -43,10 +45,30 @@
 //        [self.textStorage removeAttribute:<#(NSString *)#> range:<#(NSRange)#>
         
         [self openLastDocument];
+        
+        
+        // NOT WORKING!!!
+        NSTextAttachment * attachment = [NSTextAttachment new];
+//        NSTextAttachmentCell * attachmentCell = [[NSTextAttachmentCell alloc] initImageCell:[NSImage imageNamed:@"ok_sign"]];
+        NSTextAttachmentCell * attachmentCell = [[NSTextAttachmentCell alloc] initTextCell:@"hahahahhaahahahhahahahaha"];
+        [attachmentCell setBordered:YES];
+        [attachmentCell setBackgroundStyle:NSBackgroundStyleDark];
+        [attachment setAttachmentCell:attachmentCell];
+        [self insertText:[NSAttributedString attributedStringWithAttachment:attachment]];
 
     }
     
     
+    
+}
+
+
+-(void)textViewDidChangeSelection:(NSNotification *)notification
+{
+    NSLog(@"%@", notification.userInfo);
+    
+    NSRange range = [notification.userInfo[@"NSOldSelectedCharacterRange"] rangeValue];
+    NSLog(@"Selected range: (%li, %li)", range.location, range.length);
     
 }
 
@@ -223,6 +245,7 @@
 - (NSRange) replaceQuestionMarkInRange:(NSRange)range WithType:(NSString *)type
 {
     [self replaceCharactersInRange:range withString:type];
+    [mutableAttributedString replaceCharactersInRange:range withString:type];
     
     NSRange newRange = NSMakeRange(range.location, type.length);
     return newRange;
@@ -242,26 +265,43 @@
             // Show all questionmarks
             [self showFindIndicatorForRange:foundRange];
             
-//            NSLayoutManager * layout = [self layoutManager];
-//            NSRect rect = [layout boundingRectForGlyphRange:foundRange inTextContainer:self.textContainer];
-//            NSRange newRange = [self replaceQuestionMarkInRange:foundRange WithType:@"?(bool)"];
-//            NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:self.textStorage.string];
-//            
-//            NSDictionary *attributes = @{
-//                                         NSForegroundColorAttributeName : [NSColor blueColor],
-//                                         NSFontAttributeName : [NSFont fontWithName:@"HelveticaNeue-Bold" size:20.f],
-//                                         NSBackgroundColorAttributeName : [NSColor yellowColor]
-//                                         };
-//            
-//            [string addAttributes:attributes range:newRange];
-//            
-//            [self.textStorage setAttributedString:string];
-
-            
             searchRange.location = foundRange.location + foundRange.length;
         } else {
             // no more substring to find
             break;
+        }
+    }
+}
+
+
+-(void) allGoalsAction:(NSNotification *)notification
+{
+    if ([notification.object isKindOfClass:[NSString class]]) {
+        // Parse goals
+        
+        // change goals to ...
+        NSRange searchRange = NSMakeRange(0, self.textStorage.length);
+        NSRange foundRange;
+        while (searchRange.location < self.textStorage.length) {
+            searchRange.length = self.textStorage.length - searchRange.location;
+            foundRange = [self.textStorage.string rangeOfString:@"?" options:NSCaseInsensitiveSearch range:searchRange];
+            if (foundRange.location != NSNotFound) {
+                // found an occurrence of the substring!
+                
+                
+
+
+//                NSRange newRange = [self replaceQuestionMarkInRange:foundRange WithType:@"(bool)0"];
+//                [mutableAttributedString addAttributes:goalsAttributes range:newRange];
+//                
+//                [self.textStorage setAttributedString:mutableAttributedString];
+//                
+//                
+                searchRange.location = foundRange.location + foundRange.length;
+            } else {
+                // no more substring to find
+                break;
+            }
         }
     }
 }

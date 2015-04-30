@@ -355,31 +355,32 @@
 }
 
 - (IBAction)copy:(id)sender {
-    NSRange selectedTextRange = [self.mainTextView selectedRange];
-    NSString *content = [[self.mainTextView textStorage] string];
-    NSString * substring = [content substringWithRange:selectedTextRange];
-    if (substring) {
-        NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
-        [pasteboard clearContents];
-        NSArray *copiedObjects = [NSArray arrayWithObject:substring];
-        [pasteboard writeObjects:copiedObjects];
-    }
+    
+//    NSRange selectedTextRange = [self.mainTextView selectedRange];
+//    NSString *content = [[self.mainTextView textStorage] string];
+//    NSString * substring = [content substringWithRange:selectedTextRange];
+//    if (substring) {
+//        NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+//        [pasteboard clearContents];
+//        NSArray *copiedObjects = [NSArray arrayWithObject:substring];
+//        [pasteboard writeObjects:copiedObjects];
+//    }
 }
 
 -(IBAction)paste:(id)sender {
-    NSPasteboard * pasteboard = [NSPasteboard generalPasteboard];
-    NSArray * classArray = [NSArray arrayWithObject:[NSString class]];
-    // for we have empty options.
-    NSDictionary * options = [NSDictionary dictionary];
-    
-    BOOL ok = [pasteboard canReadObjectForClasses:classArray options:options];
-    if (ok) {
-        NSArray * objectsToPaste = [pasteboard readObjectsForClasses:classArray options:options];
-        NSString * content = [objectsToPaste objectAtIndex:0];
-        NSString * oldText = [[self.mainTextView textStorage] string];
-        [self.mainTextView setString:[oldText stringByAppendingString:content]];
-
-    }
+//    NSPasteboard * pasteboard = [NSPasteboard generalPasteboard];
+//    NSArray * classArray = [NSArray arrayWithObject:[NSString class]];
+//    // for we have empty options.
+//    NSDictionary * options = [NSDictionary dictionary];
+//    
+//    BOOL ok = [pasteboard canReadObjectForClasses:classArray options:options];
+//    if (ok) {
+//        NSArray * objectsToPaste = [pasteboard readObjectsForClasses:classArray options:options];
+//        NSString * content = [objectsToPaste objectAtIndex:0];
+//        NSString * oldText = [[self.mainTextView textStorage] string];
+//        [self.mainTextView setString:[oldText stringByAppendingString:content]];
+//
+//    }
 }
 
 

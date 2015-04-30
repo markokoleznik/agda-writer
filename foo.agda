@@ -1,5 +1,3 @@
-
-
 module Foo where
   data bool : Set where
     false : bool
@@ -15,4 +13,3 @@ module Foo where
 
   baz : bool → bool
   baz x = ?
-

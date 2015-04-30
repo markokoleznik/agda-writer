@@ -19,6 +19,7 @@ NSString * const AWExecuteActions = @"net.koleznik.executeActions";
 NSString * const AWAgdaBufferDataAvaliable = @"net.koleznik.agdaBufferDataAvaliable";
 NSString * const AWAgdaVersionAvaliable = @"net.koleznik.agdaVersionAvaliable";
 NSString * const AWOpenPreferences = @"net.koleznik.openPreferences";
+NSString * const AWAllGoals = @"net.koleznik.allGoals";
 
 
 
@@ -98,6 +99,10 @@ NSString * const AWOpenPreferences = @"net.koleznik.openPreferences";
 
 + (void) notifyOpenPreferences {
     [[NSNotificationCenter defaultCenter] postNotificationName:AWOpenPreferences object:nil];
+}
+
++ (void) notifyAllGoals: (NSString *)allGoals {
+    [[NSNotificationCenter defaultCenter] postNotificationName:AWAllGoals object:allGoals];
 }
 
 

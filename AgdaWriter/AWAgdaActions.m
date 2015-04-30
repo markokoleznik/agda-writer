@@ -120,6 +120,9 @@
             [AWNotifications notifyAgdaVersion:actions[1]];
             
         }
+        else if ([actions[0] isEqualToString:@"\"*All Goals*\""]) {
+            [AWNotifications notifyAllGoals:actions[1]];
+        }
         else
         {
             NSString * bufferDescription = actions[1];
