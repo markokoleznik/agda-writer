@@ -93,8 +93,18 @@
     NSURL * selectedFileURL = [[panel URLs] lastObject];
     NSString * selectedFilePath = [selectedFileURL path];
     
-    [self.pathToAgdaTextField setStringValue:selectedFilePath];
-    [AWNotifications setAgdaLaunchPath:selectedFilePath];
+    if ([self isAgdaAvaliableAtPath:selectedFilePath]) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:AWPossibleAgdaPathFound object:nil];
+        [self.pathToAgdaTextField setStringValue:selectedFilePath];
+        [AWNotifications setAgdaLaunchPath:selectedFilePath];
+        // Show OK sign
+        [self.searchForAgdaIndicator setHidden:YES];
+        [self showOKsign];
+        return;
+    }
+    else {
+        [self showAlertMessage];
+    }
 
     
 }
