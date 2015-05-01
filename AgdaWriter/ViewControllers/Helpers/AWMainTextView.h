@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AWMainTextView : NSTextView <NSTextViewDelegate> {
+@interface AWMainTextView : NSTextView <NSTextViewDelegate, NSApplicationDelegate> {
     BOOL initialize;
     NSDictionary * defaultAttributes;
     NSDictionary * goalsAttributes;

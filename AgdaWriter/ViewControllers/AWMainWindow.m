@@ -263,6 +263,9 @@
             [ud setObject:fullPath forKey:@"currentFile"];
             [ud synchronize];
             [self.mainTextView setString:fileContent];
+            
+            // Add this file to recent.
+            [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:filename];
         }
     }];
     

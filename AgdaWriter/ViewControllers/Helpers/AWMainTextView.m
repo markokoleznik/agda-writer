@@ -17,6 +17,7 @@
     if (!initialize) {
         
         self.delegate = self;
+        [NSApplication sharedApplication].delegate = self;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChangedInRangeWithReplacementString:) name:@"textChangedInRangeWithReplacementString" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showHelp) name:@"showHelp" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allGoalsAction:) name:AWAllGoals object:nil];
@@ -96,9 +97,16 @@
         // double check if fileContent is initialized.
         if (fileContent) {
             [self setString:fileContent];
+            [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL URLWithString:path]];
         }
         
     }
+}
+
+-(BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
+{
+    
+    return YES;
 }
 
 - (void)saveCurrentWork
