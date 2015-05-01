@@ -86,8 +86,10 @@
     [self hideOKSignAndSpinningWheel];
     NSOpenPanel * panel = [NSOpenPanel openPanel];
     [panel setAllowsMultipleSelection:NO];
-    [panel setCanChooseDirectories:YES];
-    [panel setCanChooseFiles:NO];
+    [panel setCanChooseDirectories:NO];
+    [panel setCanChooseFiles:YES];
+    [panel setShowsHiddenFiles:YES];
+    [panel setAllowedFileTypes:@[@""]];
     if ([panel runModal] != NSFileHandlingPanelOKButton) {
         return;
     }
