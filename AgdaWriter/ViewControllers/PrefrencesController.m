@@ -65,6 +65,7 @@
 #pragma mark Path View
 
 - (IBAction)pathToAgdaSelected:(NSTextField *)sender {
+    [self hideOKSignAndSpinningWheel];
     NSLog(@"Path to agda selected");
     if ([self isAgdaAvaliableAtPath:sender.stringValue]) {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:AWPossibleAgdaPathFound object:nil];
@@ -82,7 +83,7 @@
     
 }
 - (IBAction)browsePathAction:(NSButton *)sender {
-
+    [self hideOKSignAndSpinningWheel];
     NSOpenPanel * panel = [NSOpenPanel openPanel];
     [panel setAllowsMultipleSelection:NO];
     [panel setCanChooseDirectories:YES];
@@ -109,6 +110,7 @@
     
 }
 
+
 - (void) showAlertMessage
 {
     NSAlert * alert = [[NSAlert alloc] init];
@@ -124,7 +126,7 @@
                 [self tryToFindAgda];
                 break;
             case NSAlertSecondButtonReturn:
-                // cancel
+                // Cancel button pressed, do nothing.
                 break;
                 
             default:
@@ -135,7 +137,14 @@
     }];
 }
 
-
+//-(void)copy:(id) sender
+//{
+//    NSLog(@"Copy in agda path");
+//}
+//-(void)paste: (id)sender
+//{
+//    NSLog(@"Paste in agda path");
+//}
 -(void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {
     // Disable ok sign and progress indicator
@@ -145,6 +154,7 @@
     switch ([tabView indexOfTabViewItem:tabViewItem]) {
         case TabViewFonts:
             NSLog(@"Did select Fonts tab");
+            [self hideOKSignAndSpinningWheel];
             break;
             
         case TabViewPaths:
@@ -213,6 +223,14 @@
     
 }
 
+
+
+-(void) hideOKSignAndSpinningWheel
+{
+    [self.okSign setHidden:YES];
+    [self.searchForAgdaIndicator setHidden:YES];
+}
+
 -(BOOL)isAgdaAvaliableAtPath:(NSString *)path
 {
     AWCommunitacion * agdaComm = [[AWCommunitacion alloc] init];
@@ -234,5 +252,6 @@
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
 
 @end

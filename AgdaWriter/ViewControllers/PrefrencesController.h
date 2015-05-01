@@ -14,7 +14,7 @@ typedef enum : NSUInteger {
     TabViewPaths = 1
 } TabViews;
 
-@interface PrefrencesController : NSWindow <NSTabViewDelegate>
+@interface PrefrencesController : NSWindow <NSTabViewDelegate, NSTextDelegate>
 {
     AWCommunitacion * agdaCommunication;
 }

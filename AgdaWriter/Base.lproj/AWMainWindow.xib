@@ -146,12 +146,12 @@
                             </menuItem>
                             <menuItem title="Copy" keyEquivalent="c" id="x3v-GG-iWU">
                                 <connections>
-                                    <action selector="copy:" target="QvC-M9-y7g" id="BKO-Zh-den"/>
+                                    <action selector="copy:" target="-1" id="TdR-hN-jef"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Paste" keyEquivalent="v" id="gVA-U4-sdL">
                                 <connections>
-                                    <action selector="paste:" target="QvC-M9-y7g" id="3dC-m2-Zo8"/>
+                                    <action selector="paste:" target="-1" id="B1d-at-etv"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Paste and Match Style" keyEquivalent="V" id="WeT-3V-zwk">
@@ -1226,7 +1226,8 @@ AAAAAAEGA
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <action selector="pathToAgdaSelected:" target="RNO-9D-xgm" id="Z12-Z8-0bc"/>
+                                                <action selector="pathToAgdaSelected:" target="RNO-9D-xgm" id="2Cq-6g-it9"/>
+                                                <outlet property="delegate" destination="gVA-U4-sdL" id="X6V-J6-f9s"/>
                                             </connections>
                                         </textField>
                                     </subviews>

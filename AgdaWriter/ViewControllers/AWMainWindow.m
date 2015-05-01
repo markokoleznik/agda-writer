@@ -359,8 +359,8 @@
     }
 }
 
-- (IBAction)copy:(id)sender {
-    
+//- (IBAction)copy:(id)sender {
+
 //    NSRange selectedTextRange = [self.mainTextView selectedRange];
 //    NSString *content = [[self.mainTextView textStorage] string];
 //    NSString * substring = [content substringWithRange:selectedTextRange];
@@ -370,9 +370,9 @@
 //        NSArray *copiedObjects = [NSArray arrayWithObject:substring];
 //        [pasteboard writeObjects:copiedObjects];
 //    }
-}
+//}
 
--(IBAction)paste:(id)sender {
+//-(IBAction)paste:(id)sender {
 //    NSPasteboard * pasteboard = [NSPasteboard generalPasteboard];
 //    NSArray * classArray = [NSArray arrayWithObject:[NSString class]];
 //    // for we have empty options.
@@ -386,7 +386,7 @@
 //        [self.mainTextView setString:[oldText stringByAppendingString:content]];
 //
 //    }
-}
+//}
 
 
 
