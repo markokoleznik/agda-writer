@@ -48,13 +48,13 @@
         
         
         // NOT WORKING!!!
-        NSTextAttachment * attachment = [NSTextAttachment new];
-//        NSTextAttachmentCell * attachmentCell = [[NSTextAttachmentCell alloc] initImageCell:[NSImage imageNamed:@"ok_sign"]];
-        NSTextAttachmentCell * attachmentCell = [[NSTextAttachmentCell alloc] initTextCell:@"hahahahhaahahahhahahahaha"];
-        [attachmentCell setBordered:YES];
-        [attachmentCell setBackgroundStyle:NSBackgroundStyleDark];
-        [attachment setAttachmentCell:attachmentCell];
-        [self insertText:[NSAttributedString attributedStringWithAttachment:attachment]];
+//        NSTextAttachment * attachment = [NSTextAttachment new];
+////        NSTextAttachmentCell * attachmentCell = [[NSTextAttachmentCell alloc] initImageCell:[NSImage imageNamed:@"ok_sign"]];
+//        NSTextAttachmentCell * attachmentCell = [[NSTextAttachmentCell alloc] initTextCell:@"hahahahhaahahahhahahahaha"];
+//        [attachmentCell setBordered:YES];
+//        [attachmentCell setBackgroundStyle:NSBackgroundStyleDark];
+//        [attachment setAttachmentCell:attachmentCell];
+//        [self insertText:[NSAttributedString attributedStringWithAttachment:attachment]];
 
     }
     
@@ -296,7 +296,7 @@
 //                
 //                [self.textStorage setAttributedString:mutableAttributedString];
 //               
-//                searchRange.location = foundRange.location + foundRange.length;
+                searchRange.location = foundRange.location + foundRange.length;
             } else {
                 // no more substring to find
                 break;
