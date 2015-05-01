@@ -8,7 +8,8 @@
 
 #import "PrefrencesController.h"
 #import "AWNotifications.h"
-#import "AWCommunitacion.h"
+
+#import "AWAgdaActions.h"
 
 @implementation PrefrencesController
 
@@ -65,7 +66,19 @@
 
 - (IBAction)pathToAgdaSelected:(NSTextField *)sender {
     NSLog(@"Path to agda selected");
-    [AWNotifications setAgdaLaunchPath:sender.stringValue];
+    if ([self isAgdaAvaliableAtPath:sender.stringValue]) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:AWPossibleAgdaPathFound object:nil];
+        [self.pathToAgdaTextField setStringValue:sender.stringValue];
+        [AWNotifications setAgdaLaunchPath:sender.stringValue];
+        // Show OK sign
+        [self.searchForAgdaIndicator setHidden:YES];
+        [self showOKsign];
+        return;
+    }
+    else {
+        [self showAlertMessage];
+    }
+    
     
 }
 - (IBAction)browsePathAction:(NSButton *)sender {
@@ -79,8 +92,37 @@
     }
     NSURL * selectedFileURL = [[panel URLs] lastObject];
     NSString * selectedFilePath = [selectedFileURL path];
-    [self testAgda:selectedFilePath];
     
+    [self.pathToAgdaTextField setStringValue:selectedFilePath];
+    [AWNotifications setAgdaLaunchPath:selectedFilePath];
+
+    
+}
+
+- (void) showAlertMessage
+{
+    NSAlert * alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"Find automatically"];
+    [alert addButtonWithTitle:@"Cancel"];
+    [alert setMessageText:@"It seems that path to Agda isn't set correctly.\nFind automatically?"];
+    [alert setAlertStyle:NSInformationalAlertStyle];
+    
+    [alert beginSheetModalForWindow:self completionHandler:^(NSModalResponse returnCode) {
+        switch (returnCode) {
+            case NSAlertFirstButtonReturn:
+                // Automatically
+                [self tryToFindAgda];
+                break;
+            case NSAlertSecondButtonReturn:
+                // cancel
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+    }];
 }
 
 
@@ -97,9 +139,21 @@
             
         case TabViewPaths:
             NSLog(@"Did select Paths tab");
-            // Load spinning wheel
+
             // Try to find agda
-            [self tryToFindAgda];
+            if (![AWNotifications agdaLaunchPath]) {
+                
+                [self tryToFindAgda];
+            }
+            else
+            {
+                [self.pathToAgdaTextField setStringValue:[AWNotifications agdaLaunchPath]];
+                if (![self isAgdaAvaliableAtPath:[AWNotifications agdaLaunchPath]]) {
+                    // Ask to find it automaticaly
+                    [self showAlertMessage];
+                    
+                }
+            }
             break;
             
         default:
@@ -107,33 +161,7 @@
     }
 }
 
-- (void) testAgda:(NSString *) filePathToAgda
-{
-    // Test if agda exist
-    BOOL isAgdaAvaliable = [[NSFileManager defaultManager] isExecutableFileAtPath:filePathToAgda];
-    if (isAgdaAvaliable) {
-        // We found Agda!
-        
-        // Set filePath to self.pathToAgdaTextField
-        [self.pathToAgdaTextField setStringValue:filePathToAgda];
-        
-        // update User defaults
-        [AWNotifications setAgdaLaunchPath:filePathToAgda];
-        
-        // animate spinning wheel
-        [self.searchForAgdaIndicator setHidden:NO];
-        [self.searchForAgdaIndicator.animator startAnimation:nil];
-        
-        [self performSelector:@selector(showOKsign) withObject:nil afterDelay:0.5];
-        
-    }
-    else
-    {
-        // Agda not found.
-        [self.pathToAgdaTextField setPlaceholderString:@"Please search for Agda executable"];
-    }
 
-}
 
 - (void) tryToFindAgda
 {
@@ -141,33 +169,44 @@
     // /Users/markokoleznik/Library/Haskell/bin/agda
     [self.searchForAgdaIndicator setHidden:NO];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(possibleAgdaPathsFound:) name:AWPossibleAgdaPathFound object:nil];
-    AWCommunitacion * comm = [[AWCommunitacion alloc] init];
-    
-    [comm searchForAgda];
-    
-    
-    
-    
-    
+    agdaCommunication = [[AWCommunitacion alloc] init];
+    [agdaCommunication searchForAgda];
 }
 
 -(void)possibleAgdaPathsFound:(NSNotification *)notification
 {
     NSLog(@"possible path: %@", notification.object);
     NSString * reply = notification.object;
-    [self.searchForAgdaIndicator setHidden:YES];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:AWPossibleAgdaPathFound object:nil];
     NSArray * possiblePaths = [reply componentsSeparatedByString:@"\n"];
     
     if (possiblePaths && possiblePaths.count > 0) {
         for (NSString * possiblePath in possiblePaths) {
             if ([possiblePath hasPrefix:NSHomeDirectory()]) {
-                // TODO: test agda here
-                [self.pathToAgdaTextField setStringValue:possiblePath];
-                [AWNotifications setAgdaLaunchPath:possiblePath];
+                // Test if Agda is executable at path
+                
+                if ([self isAgdaAvaliableAtPath:possiblePath]) {
+                    [[NSNotificationCenter defaultCenter] removeObserver:self name:AWPossibleAgdaPathFound object:nil];
+                    [self.pathToAgdaTextField setStringValue:possiblePath];
+                    [AWNotifications setAgdaLaunchPath:possiblePath];
+                    // Show OK sign
+                    [self.searchForAgdaIndicator setHidden:YES];
+                    [self showOKsign];
+                    return;
+                }
             }
         }
     }
+    // Agda not found.
+    [self.searchForAgdaIndicator setHidden:YES];
+    [self.pathToAgdaTextField setPlaceholderString:@"Agda not found! Please browse it manually"];
+    
+    
+}
+
+-(BOOL)isAgdaAvaliableAtPath:(NSString *)path
+{
+    AWCommunitacion * agdaComm = [[AWCommunitacion alloc] init];
+    return [agdaComm isAgdaAvaliableAtPath:path];
     
 }
 

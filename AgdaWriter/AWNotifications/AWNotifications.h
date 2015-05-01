@@ -23,6 +23,7 @@ extern NSString * const AWOpenPreferences;
 extern NSString * const AWAllGoals;
 extern NSString * const AWPossibleAgdaPathFound;
 
+
 typedef NS_ENUM(NSInteger, KeyPressed) {
     AWEnterPressed,
     AWEscapePressed

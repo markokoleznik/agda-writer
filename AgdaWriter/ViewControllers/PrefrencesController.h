@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "AWCommunitacion.h"
 
 typedef enum : NSUInteger {
     TabViewFonts = 0,
@@ -14,6 +15,9 @@ typedef enum : NSUInteger {
 } TabViews;
 
 @interface PrefrencesController : NSWindow <NSTabViewDelegate>
+{
+    AWCommunitacion * agdaCommunication;
+}
 @property (weak) IBOutlet NSTabView *preferencesTabView;
 
 #pragma mark -

@@ -23,8 +23,39 @@
                                                  selector:@selector(dataAvailabe:)
                                                      name:NSFileHandleReadToEndOfFileCompletionNotification
                                                    object:nil];
+        
+        self.searchingForAgda = NO;
+        self.numberOfNotificationHits = 0;
+        
     }
     return self;
+}
+
+
+- (BOOL) isAgdaAvaliableAtPath:(NSString *)path
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    task = [NSTask new];
+    task.launchPath = path;
+    task.arguments = @[@"--interaction"];
+    task.standardInput = outputPipe;
+    task.standardOutput = inputPipe;
+    
+    // Potentialy unsafe code. Wrap it around try/catch block
+    @try {
+        [task launch];
+        // NSTask didn't throw exception. Return YES;
+        return YES;
+    }
+    @catch (NSException *exception) {
+        // Exception was thrown. Return NO;
+        NSLog(@"Failed to load Agda. Reason: %@", exception.reason);
+        return NO;
+    }
+    @finally {
+        // Pass.
+    }
+    
 }
 
 
@@ -33,17 +64,20 @@
     NSData *data = [[notification userInfo] objectForKey:NSFileHandleNotificationDataItem];
     NSString * reply = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
-    if ([reply hasPrefix:NSHomeDirectory()]) {
+    if (self.searchingForAgda) {
+        self.numberOfNotificationHits += 1;
+    }
+    
+    if (self.searchingForAgda && self.numberOfNotificationHits >= 2) {
         [AWNotifications notifyPossibleAgdaPathFound:reply];
     }
     else {
-        
         NSArray * actions = [AWAgdaParser makeArrayOfActions:reply];
         [AWNotifications notifyExecuteActions:actions];
         [AWNotifications notifyAgdaReplied:reply];
     }
 }
-
+        
 
 - (void) stopTask
 {
@@ -54,6 +88,8 @@
 
 - (void) startTask
 {
+    
+    
     task = [NSTask new];
     // PATH TO AGDA
     task.launchPath = [AWNotifications agdaLaunchPath];
@@ -87,7 +123,6 @@
         // File can't be lauched!
         NSLog(@"File can't be launched!\nLaunch path not accessible.");
         // TODO: set launch path by user
-        [self setPathToAgdaByUser];
     }
     
 }
@@ -105,6 +140,7 @@
     
     @try {
         [task launch];
+        self.searchingForAgda = YES;
     }
     @catch (NSException *exception) {
         NSLog(@"exception: %@", exception.description);
@@ -117,29 +153,7 @@
     
 }
 
-- (void) setPathToAgdaByUser
-{
-    
-    // loading bar, spinning style
-//    NSProgressIndicator * indicator = [[NSProgressIndicator alloc] initWithFrame:NSMakeRect(20, 20, 30, 30)];
-//    [indicator setStyle:NSProgressIndicatorSpinningStyle];
-//    
-//    [indicator startAnimation:nil];
-    
-    // try to find agda automatically (in Haskell file)
-        // asynchronously find file
-    
-    // Text input with Browse Button
-    
-    // Save file path
-    
-    // Check if file at that path is executable
-    
-    // Test Agda (check Agda Version)
-    
-    // if success, launch task
-        // [task launch];
-}
+
 
 - (void) openPipes
 {

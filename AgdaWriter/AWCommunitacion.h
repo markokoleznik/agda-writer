@@ -21,10 +21,15 @@
     
 }
 
+@property BOOL searchingForAgda;
+@property int numberOfNotificationHits;
+
+#pragma mark Init methods
 - (id) init;
 
+#pragma mark Communication methods
 - (void) writeData: (NSString * ) message;
-
--(void) searchForAgda;
+- (void) searchForAgda;
+- (BOOL) isAgdaAvaliableAtPath:(NSString *)path;
 
 @end
