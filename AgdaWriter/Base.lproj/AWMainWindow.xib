@@ -354,17 +354,7 @@
                             <action selector="giveAction:" target="QvC-M9-y7g" id="m9P-bc-ymq"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xwf-dB-YP8">
-                        <rect key="frame" x="1018" y="533" width="82" height="32"/>
-                        <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Sq9-wR-H0g">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="hideOutputs:" target="QvC-M9-y7g" id="KEq-5J-q18"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7v-zB-ypc">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e7v-zB-ypc">
                         <rect key="frame" x="1100" y="533" width="121" height="32"/>
                         <buttonCell key="cell" type="push" title="Hide outputs" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AGn-fn-q9c">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -639,33 +629,34 @@ AAAAAAEGA
                             </binding>
                         </connections>
                     </textField>
-                    <tokenField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aJP-uA-bqa">
-                        <rect key="frame" x="781" y="539" width="193" height="22"/>
-                        <tokenFieldCell key="cell" selectable="YES" editable="YES" borderStyle="bezel" alignment="left" placeholderString="something" drawsBackground="YES" allowsEditingTextAttributes="YES" tokenStyle="rounded" id="B5M-KL-C5Q">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xwf-dB-YP8">
+                        <rect key="frame" x="994" y="533" width="106" height="32"/>
+                        <buttonCell key="cell" type="push" title="Add Token" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Sq9-wR-H0g">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </tokenFieldCell>
-                    </tokenField>
+                        </buttonCell>
+                        <connections>
+                            <action selector="AddToken:" target="QvC-M9-y7g" id="UXk-QG-cNV"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="xwf-dB-YP8" firstAttribute="baseline" secondItem="e7v-zB-ypc" secondAttribute="baseline" id="0MW-5D-Q6y"/>
                     <constraint firstItem="e7v-zB-ypc" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="18" id="0em-ba-xJP"/>
                     <constraint firstAttribute="trailing" secondItem="sG2-35-N6b" secondAttribute="trailing" constant="20" id="5pI-1A-iDt"/>
                     <constraint firstAttribute="trailing" secondItem="e7v-zB-ypc" secondAttribute="trailing" constant="20" symbolic="YES" id="Gns-ba-3KA"/>
-                    <constraint firstItem="xwf-dB-YP8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eX7-cx-cKm" secondAttribute="trailing" constant="12" id="Jpn-AU-AUU"/>
                     <constraint firstItem="5bX-qt-4jA" firstAttribute="leading" secondItem="AOM-lr-4zR" secondAttribute="trailing" constant="12" symbolic="YES" id="MGw-SJ-dcd"/>
                     <constraint firstItem="eX7-cx-cKm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fXz-Ki-m2a" secondAttribute="trailing" constant="12" id="P3k-Ho-4tw"/>
                     <constraint firstItem="649-An-B4E" firstAttribute="leading" secondItem="fXz-Ki-m2a" secondAttribute="trailing" constant="12" symbolic="YES" id="Rem-DI-5wd"/>
                     <constraint firstItem="eX7-cx-cKm" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" priority="500" id="U5N-H8-ink"/>
                     <constraint firstItem="AOM-lr-4zR" firstAttribute="leading" secondItem="649-An-B4E" secondAttribute="trailing" constant="12" symbolic="YES" id="Uwt-ui-o48"/>
+                    <constraint firstItem="e7v-zB-ypc" firstAttribute="leading" secondItem="xwf-dB-YP8" secondAttribute="trailing" constant="12" symbolic="YES" id="ZOf-iB-YRc"/>
                     <constraint firstItem="sG2-35-N6b" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="59" id="ZU3-pW-LwU"/>
                     <constraint firstItem="LcD-UC-ANK" firstAttribute="top" secondItem="e7v-zB-ypc" secondAttribute="bottom" constant="5" id="axl-Zr-71P"/>
                     <constraint firstAttribute="bottom" secondItem="sG2-35-N6b" secondAttribute="bottom" constant="25" id="bww-Ys-7xC"/>
                     <constraint firstItem="649-An-B4E" firstAttribute="baseline" secondItem="fXz-Ki-m2a" secondAttribute="baseline" id="c65-1b-CyW"/>
-                    <constraint firstItem="e7v-zB-ypc" firstAttribute="leading" secondItem="xwf-dB-YP8" secondAttribute="trailing" constant="12" id="hxM-8s-a8e"/>
                     <constraint firstItem="AOM-lr-4zR" firstAttribute="baseline" secondItem="649-An-B4E" secondAttribute="baseline" id="j1w-qc-AGa"/>
                     <constraint firstItem="AOM-lr-4zR" firstAttribute="baseline" secondItem="5bX-qt-4jA" secondAttribute="baseline" id="np1-yF-ccA"/>
-                    <constraint firstItem="xwf-dB-YP8" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="18" id="nuu-g0-Iua"/>
                     <constraint firstItem="hOg-jt-R6a" firstAttribute="leading" secondItem="5bX-qt-4jA" secondAttribute="trailing" constant="12" symbolic="YES" id="oaW-WX-Uif"/>
                     <constraint firstItem="sG2-35-N6b" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="-1" id="qJl-Uy-2ke"/>
                     <constraint firstAttribute="trailing" secondItem="LcD-UC-ANK" secondAttribute="trailing" constant="20" id="rCi-8a-aQ5"/>
@@ -673,6 +664,7 @@ AAAAAAEGA
                     <constraint firstItem="fXz-Ki-m2a" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="18" id="ur3-7A-pcw"/>
                     <constraint firstItem="eX7-cx-cKm" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="18" id="vcT-wt-Tef"/>
                     <constraint firstItem="5bX-qt-4jA" firstAttribute="baseline" secondItem="hOg-jt-R6a" secondAttribute="baseline" id="vlD-hJ-Udy"/>
+                    <constraint firstAttribute="trailing" secondItem="xwf-dB-YP8" secondAttribute="trailing" constant="141" id="xzr-3J-v7d"/>
                     <constraint firstItem="LcD-UC-ANK" firstAttribute="trailing" secondItem="e7v-zB-ypc" secondAttribute="trailing" id="yyF-Dr-285"/>
                 </constraints>
             </view>
@@ -905,7 +897,7 @@ AAAAAAEGA
                 <outlet property="preferencesTabView" destination="f0i-qs-7cD" id="RxD-18-bLi"/>
                 <outlet property="searchForAgdaIndicator" destination="rsa-fB-bFq" id="cFn-Oz-g38"/>
             </connections>
-            <point key="canvasLocation" x="586.5" y="209.5"/>
+            <point key="canvasLocation" x="597.5" y="95.5"/>
         </window>
     </objects>
     <resources>

@@ -164,6 +164,10 @@
 
 }
 
+- (IBAction)AddToken:(NSButton *)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"AW.addToken" object:nil];
+}
+
 #pragma mark -
 #pragma mark Agda Actions
 

@@ -30,6 +30,7 @@
 
 - (IBAction)hideOutputs:(id)sender;
 
+- (IBAction)AddToken:(NSButton *)sender;
 
 - (IBAction)writeToAgda:(NSButton *)sender;
 - (IBAction)autoAction:(NSButton *)sender;

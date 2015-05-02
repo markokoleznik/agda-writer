@@ -122,7 +122,14 @@
     {
         // File can't be lauched!
         NSLog(@"File can't be launched!\nLaunch path not accessible.");
-        // TODO: set launch path by user
+        NSAlert * alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"Open Prefreneces..."];
+        [alert setMessageText:@"Task can't be launched!\nCheck your path in Settings."];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        if ([alert runModal] == NSAlertFirstButtonReturn) {
+            NSLog(@"Open preferences");
+            [AWNotifications notifyOpenPreferences];
+        }
     }
     
 }

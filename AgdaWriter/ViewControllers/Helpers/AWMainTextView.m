@@ -8,6 +8,7 @@
 
 #import "AWMainTextView.h"
 #import "AWNotifications.h"
+#import "CustomTokenCell.h"
 
 @implementation AWMainTextView
 
@@ -18,6 +19,7 @@
         
         self.delegate = self;
         [NSApplication sharedApplication].delegate = self;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addToken:) name:@"AW.addToken" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChangedInRangeWithReplacementString:) name:@"textChangedInRangeWithReplacementString" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showHelp) name:@"showHelp" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allGoalsAction:) name:AWAllGoals object:nil];
@@ -48,19 +50,19 @@
         [self openLastDocument];
         
         
-        // NOT WORKING!!!
-//        NSTextAttachment * attachment = [NSTextAttachment new];
-////        NSTextAttachmentCell * attachmentCell = [[NSTextAttachmentCell alloc] initImageCell:[NSImage imageNamed:@"ok_sign"]];
-//        NSTextAttachmentCell * attachmentCell = [[NSTextAttachmentCell alloc] initTextCell:@"hahahahhaahahahhahahahaha"];
-//        [attachmentCell setBordered:YES];
-//        [attachmentCell setBackgroundStyle:NSBackgroundStyleDark];
-//        [attachment setAttachmentCell:attachmentCell];
-//        [self insertText:[NSAttributedString attributedStringWithAttachment:attachment]];
+
 
     }
     
     
     
+}
+
+- (void)insertAttachmentCell:(NSTextAttachmentCell *)cell toTextView:(NSTextView *)textView
+{
+    NSTextAttachment *attachment = [NSTextAttachment new];
+    [attachment setAttachmentCell:cell];
+    [textView insertText:[NSAttributedString attributedStringWithAttachment:attachment]];
 }
 
 
@@ -312,6 +314,17 @@
         }
     }
 }
+
+- (void) addToken:(NSNotification *)notification
+{
+    NSTextAttachment * attachment = [[NSTextAttachment alloc] initWithFileWrapper:nil];
+    CustomTokenCell * tokenCell = [[CustomTokenCell alloc] init];
+    [tokenCell setTitle:@"Here is some token!"];
+    [attachment setAttachmentCell:tokenCell];
+    [self insertText:[NSAttributedString attributedStringWithAttachment:attachment]];
+}
+
+
 
 -(void)dealloc
 {
