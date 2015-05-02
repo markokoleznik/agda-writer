@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D583562119EEEEC4009534C1"
-               BuildableName = "AgdaWriter.app"
-               BlueprintName = "AgdaWriter"
+               BuildableName = "Agda Writer.app"
+               BlueprintName = "Agda Writer"
                ReferencedContainer = "container:AgdaWriter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -57,8 +57,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D583562119EEEEC4009534C1"
-            BuildableName = "AgdaWriter.app"
-            BlueprintName = "AgdaWriter"
+            BuildableName = "Agda Writer.app"
+            BlueprintName = "Agda Writer"
             ReferencedContainer = "container:AgdaWriter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -77,8 +77,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D583562119EEEEC4009534C1"
-            BuildableName = "AgdaWriter.app"
-            BlueprintName = "AgdaWriter"
+            BuildableName = "Agda Writer.app"
+            BlueprintName = "Agda Writer"
             ReferencedContainer = "container:AgdaWriter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -96,8 +96,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D583562119EEEEC4009534C1"
-            BuildableName = "AgdaWriter.app"
-            BlueprintName = "AgdaWriter"
+            BuildableName = "Agda Writer.app"
+            BlueprintName = "Agda Writer"
             ReferencedContainer = "container:AgdaWriter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

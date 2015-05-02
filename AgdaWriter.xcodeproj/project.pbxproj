@@ -372,9 +372,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D583562119EEEEC4009534C1 /* AgdaWriter */ = {
+		D583562119EEEEC4009534C1 /* Agda Writer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D583563F19EEEEC4009534C1 /* Build configuration list for PBXNativeTarget "AgdaWriter" */;
+			buildConfigurationList = D583563F19EEEEC4009534C1 /* Build configuration list for PBXNativeTarget "Agda Writer" */;
 			buildPhases = (
 				D583561E19EEEEC4009534C1 /* Sources */,
 				D583561F19EEEEC4009534C1 /* Frameworks */,
@@ -384,7 +384,7 @@
 			);
 			dependencies = (
 			);
-			name = AgdaWriter;
+			name = "Agda Writer";
 			productName = AgdaWriter;
 			productReference = D583562219EEEEC4009534C1 /* AgdaWriter.app */;
 			productType = "com.apple.product-type.application";
@@ -438,7 +438,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D583562119EEEEC4009534C1 /* AgdaWriter */,
+				D583562119EEEEC4009534C1 /* Agda Writer */,
 				D583563419EEEEC4009534C1 /* AgdaWriterTests */,
 			);
 		};
@@ -518,7 +518,7 @@
 /* Begin PBXTargetDependency section */
 		D583563719EEEEC4009534C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D583562119EEEEC4009534C1 /* AgdaWriter */;
+			target = D583562119EEEEC4009534C1 /* Agda Writer */;
 			targetProxy = D583563619EEEEC4009534C1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -681,7 +681,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D583563F19EEEEC4009534C1 /* Build configuration list for PBXNativeTarget "AgdaWriter" */ = {
+		D583563F19EEEEC4009534C1 /* Build configuration list for PBXNativeTarget "Agda Writer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D583564019EEEEC4009534C1 /* Debug */,
