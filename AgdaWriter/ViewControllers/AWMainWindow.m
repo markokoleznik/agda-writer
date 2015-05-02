@@ -10,10 +10,8 @@
 #import "MAAttachedWindow.h"
 #import "AWNotifications.h"
 #import "AWPopupAlertViewController.h"
-
 #import "AWAgdaActions.h"
 #import "AWAgdaParser.h"
-
 #import "AWToastView.h"
 
 
@@ -173,8 +171,7 @@
     NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
     NSString * fullPath = [ud objectForKey:@"currentFile"];
     [self saveCurrentWork];
-    NSString * message = [AWAgdaActions actionLoadWithFilePath:fullPath andIncludeDir:@""];
-    message = [NSString stringWithFormat:@"IOTCM \"%@\" None Indirect ( Cmd_show_version )", fullPath];
+    NSString * message = [NSString stringWithFormat:@"IOTCM \"%@\" None Indirect ( Cmd_show_version )", fullPath];
 
     [self.communicator writeData:message];
 }
@@ -361,35 +358,6 @@
         }
     }
 }
-
-//- (IBAction)copy:(id)sender {
-
-//    NSRange selectedTextRange = [self.mainTextView selectedRange];
-//    NSString *content = [[self.mainTextView textStorage] string];
-//    NSString * substring = [content substringWithRange:selectedTextRange];
-//    if (substring) {
-//        NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
-//        [pasteboard clearContents];
-//        NSArray *copiedObjects = [NSArray arrayWithObject:substring];
-//        [pasteboard writeObjects:copiedObjects];
-//    }
-//}
-
-//-(IBAction)paste:(id)sender {
-//    NSPasteboard * pasteboard = [NSPasteboard generalPasteboard];
-//    NSArray * classArray = [NSArray arrayWithObject:[NSString class]];
-//    // for we have empty options.
-//    NSDictionary * options = [NSDictionary dictionary];
-//    
-//    BOOL ok = [pasteboard canReadObjectForClasses:classArray options:options];
-//    if (ok) {
-//        NSArray * objectsToPaste = [pasteboard readObjectsForClasses:classArray options:options];
-//        NSString * content = [objectsToPaste objectAtIndex:0];
-//        NSString * oldText = [[self.mainTextView textStorage] string];
-//        [self.mainTextView setString:[oldText stringByAppendingString:content]];
-//
-//    }
-//}
 
 
 

@@ -17,6 +17,7 @@
     self.layer.masksToBounds = YES;
     self.layer.borderWidth = 1.0f ;
     
+    
     [self.layer setBackgroundColor:[AWColors defaultBackgroundColor]];
     
     [self.layer setBorderColor:[AWColors defaultSeparatorColor]];
