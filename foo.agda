@@ -14,3 +14,4 @@ module Foo where
 
   baz : bool → bool
   baz x = ?
+

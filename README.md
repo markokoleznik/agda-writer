@@ -9,8 +9,9 @@ Functionalities:
 
 
 TODO list:
-- Prepare new app icon
-- If user hasn't set path to Agda yet, try to find it (async), or ask him to enter path manually
-- Make empty boxes for unfinished "types"
+- Prepare new app icon (Completed)
+- If user hasn't set path to Agda yet, try to find it (async), or ask him to enter path manually **(Completed)**
+- Make empty boxes for unfinished "types" **(Partialy completed)**
 - Implement LaTeX typing support (or use third-party solution)
+- Reimplement Autolayout
 - ...
