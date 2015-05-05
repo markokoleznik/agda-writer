@@ -74,8 +74,6 @@ data ℕ : Set where
 -- Magic to write 3 rather than suc (suc (suc zero))
  
 {-# BUILTIN NATURAL ℕ    #-}
-{-# BUILTIN ZERO    zero #-}
-{-# BUILTIN SUC     suc  #-}
  
 -- Addition, equality and strict order of naturals
  

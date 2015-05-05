@@ -100,7 +100,7 @@
 		D56A16FC1A84E4E700AC82DB /* AWMainSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWMainSplitView.m; sourceTree = "<group>"; };
 		D56A16FE1A84FB9800AC82DB /* NSSplitView+DMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSSplitView+DMAdditions.h"; path = "AgdaWriter/NSSplitView+DMAdditions.h"; sourceTree = "<group>"; };
 		D56A16FF1A84FB9800AC82DB /* NSSplitView+DMAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSSplitView+DMAdditions.m"; path = "AgdaWriter/NSSplitView+DMAdditions.m"; sourceTree = "<group>"; };
-		D583562219EEEEC4009534C1 /* AgdaWriter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgdaWriter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D583562219EEEEC4009534C1 /* Agda Writer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agda Writer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D583562619EEEEC4009534C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D583562719EEEEC4009534C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D583562919EEEEC4009534C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -218,8 +218,8 @@
 				D56A16F81A84E06B00AC82DB /* AWColors.h */,
 				D56A16F91A84E06B00AC82DB /* AWColors.m */,
 				D50256E31AE7ED4F00F57E2F /* AWToastView.h */,
-				D50256E41AE7ED4F00F57E2F /* AWToastView.m */,
 				D50256E51AE7ED4F00F57E2F /* AWToastView.xib */,
+				D50256E41AE7ED4F00F57E2F /* AWToastView.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -312,7 +312,7 @@
 		D583562319EEEEC4009534C1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D583562219EEEEC4009534C1 /* AgdaWriter.app */,
+				D583562219EEEEC4009534C1 /* Agda Writer.app */,
 				D583563519EEEEC4009534C1 /* AgdaWriterTests.xctest */,
 			);
 			name = Products;
@@ -391,7 +391,7 @@
 			);
 			name = "Agda Writer";
 			productName = AgdaWriter;
-			productReference = D583562219EEEEC4009534C1 /* AgdaWriter.app */;
+			productReference = D583562219EEEEC4009534C1 /* Agda Writer.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D583563419EEEEC4009534C1 /* AgdaWriterTests */ = {

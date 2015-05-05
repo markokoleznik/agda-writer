@@ -385,8 +385,11 @@
 
 -(void)executeActions:(NSNotification *)actions
 {
-    
+    NSDate * date1 = [NSDate date];
     [AWAgdaActions executeArrayOfActions:(NSArray *)actions.object];
+    
+    NSDate * date2 = [NSDate date];
+    NSLog(@"Running time: %f", [date2 timeIntervalSinceDate:date1]);
 }
 
 

@@ -21,10 +21,13 @@
 {
     if ([notification.object isKindOfClass:[NSString class]]) {
         NSString *reply = notification.object;
-        reply = [reply stringByReplacingOccurrencesOfString:@"Agda2> " withString:@""];
-        reply = [reply stringByAppendingString:@"\n"];
-        [self.agdaTextView setString:[[self.agdaTextView.textStorage string] stringByAppendingString:reply]];
-        [self.agdaTextView scrollRangeToVisible:NSMakeRange(self.agdaTextView.string.length, 0)];
+//        reply = [reply stringByReplacingOccurrencesOfString:@"Agda2> " withString:@""];
+//        reply = [reply stringByAppendingString:@"\n"];
+        [self.agdaTextView.textStorage beginEditing];
+        [[self.agdaTextView.textStorage mutableString] appendString:reply];
+//        [self.agdaTextView setString:[[self.agdaTextView.textStorage string] stringByAppendingString:reply]];
+        [self.agdaTextView.textStorage endEditing];
+//        [self.agdaTextView scrollRangeToVisible:NSMakeRange(self.agdaTextView.string.length, 0)];
     }
 }
 

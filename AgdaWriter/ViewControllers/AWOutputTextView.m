@@ -21,10 +21,11 @@
 - (void)agdaReplied:(NSNotification *)notification
 {
     NSString *reply = notification.object;
+    NSMutableAttributedString * replyAttributed = [[NSMutableAttributedString alloc] initWithString:reply];
     NSLog(@"Agda replied: \n%@", reply);
-    
-    [self setString:[[self.textStorage string] stringByAppendingString:reply]];
-    
+    [self.textStorage beginEditing];
+    [self.textStorage appendAttributedString:replyAttributed];
+    [self.textStorage endEditing];
 }
 
 -(void) dealloc

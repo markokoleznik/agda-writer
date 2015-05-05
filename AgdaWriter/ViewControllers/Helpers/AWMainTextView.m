@@ -16,7 +16,10 @@
 {
 //    NSLog(@"%@", self.description);
     if (!initialize) {
+        [self toggleAutomaticDashSubstitution:NO];
+        [self toggleContinuousSpellChecking:NO];
         
+        [self setContinuousSpellCheckingEnabled:NO];
         self.delegate = self;
         [NSApplication sharedApplication].delegate = self;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addToken:) name:@"AW.addToken" object:nil];

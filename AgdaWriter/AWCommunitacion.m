@@ -74,7 +74,7 @@
     else {
         NSArray * actions = [AWAgdaParser makeArrayOfActions:reply];
         [AWNotifications notifyExecuteActions:actions];
-        [AWNotifications notifyAgdaReplied:reply];
+        [AWNotifications notifyAgdaReplied:reply]; // very slow!
     }
 }
         
