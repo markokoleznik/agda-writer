@@ -13,4 +13,5 @@
 -(void) parseResponse:(NSString *)response;
 +(NSDictionary *)parseAction:(NSString *) action;
 +(NSArray *)makeArrayOfActions:(NSString *)reply;
++(NSArray *)makeArrayOfGoalsWithSuggestions:(NSString *)goals;
 @end

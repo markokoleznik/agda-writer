@@ -128,6 +128,20 @@
     return actionsWithDictionaries;
 }
 
++(NSArray *)makeArrayOfGoalsWithSuggestions:(NSString *)goals
+{
+    NSMutableArray * goalsMutable = [[NSMutableArray alloc] init];
+    goals = [goals stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    NSArray * goalsArray = [goals componentsSeparatedByString:@"\\n"];
+    for (NSString * goal in goalsArray) {
+        NSArray * subGoalArray = [goal componentsSeparatedByString:@" : "];
+        if (subGoalArray.count >= 2) {
+            [goalsMutable addObject:subGoalArray[1]];
+        }
+    }
+    return goalsMutable;
+}
+
 @end
 
 

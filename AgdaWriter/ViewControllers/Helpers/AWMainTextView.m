@@ -9,6 +9,7 @@
 #import "AWMainTextView.h"
 #import "AWNotifications.h"
 #import "CustomTokenCell.h"
+#import "AWAgdaParser.h"
 
 @implementation AWMainTextView
 
@@ -47,9 +48,6 @@
         
         [mutableAttributedString addAttributes:defaultAttributes range:NSMakeRange(0, mutableAttributedString.length)];
         goalsArray = [NSMutableArray new];
-        
-        // Method to remove attribute (parameter is attribute name
-//        [self.textStorage removeAttribute:<#(NSString *)#> range:<#(NSRange)#>
         
         [self openLastDocument];
         
@@ -292,24 +290,23 @@
 {
     if ([notification.object isKindOfClass:[NSString class]]) {
         // Parse goals
+        NSArray * goals = [AWAgdaParser makeArrayOfGoalsWithSuggestions:notification.object];
         
         // change goals to ...
+
+        int i = 0;
         NSRange searchRange = NSMakeRange(0, self.textStorage.length);
         NSRange foundRange;
         while (searchRange.location < self.textStorage.length) {
             searchRange.length = self.textStorage.length - searchRange.location;
-            foundRange = [self.textStorage.string rangeOfString:@"?" options:NSCaseInsensitiveSearch range:searchRange];
+            foundRange = [self.textStorage.string rangeOfString:@" ?" options:NSCaseInsensitiveSearch range:searchRange];
             if (foundRange.location != NSNotFound) {
                 // found an occurrence of the substring!
                 
                 
+                [self addTokenAtRange:foundRange withGoalName:[goals objectAtIndex:i]];
+                i++;
 
-
-//                NSRange newRange = [self replaceQuestionMarkInRange:foundRange WithType:@"(bool)0"];
-//                [mutableAttributedString addAttributes:goalsAttributes range:newRange];
-//                
-//                [self.textStorage setAttributedString:mutableAttributedString];
-//               
                 searchRange.location = foundRange.location + foundRange.length;
             } else {
                 // no more substring to find
@@ -319,10 +316,21 @@
     }
 }
 
+-(void) addTokenAtRange:(NSRange)range withGoalName:(NSString *)goalName
+{
+    NSTextAttachment * attachment = [[NSTextAttachment alloc] initWithFileWrapper:nil];
+    CustomTokenCell * tokenCell = [[CustomTokenCell alloc] init];
+    [tokenCell setTitle:goalName];
+    [attachment setAttachmentCell:tokenCell];
+    [self insertText:[NSAttributedString attributedStringWithAttachment:attachment] replacementRange: NSMakeRange(range.location + 1, range.length - 1)];
+
+}
+
 - (void) addToken:(NSNotification *)notification
 {
     NSTextAttachment * attachment = [[NSTextAttachment alloc] initWithFileWrapper:nil];
     CustomTokenCell * tokenCell = [[CustomTokenCell alloc] init];
+    [tokenCell setValue:@"?"];
     [tokenCell setTitle:@"Here is some token!"];
     [attachment setAttachmentCell:tokenCell];
     [self insertText:[NSAttributedString attributedStringWithAttachment:attachment]];
