@@ -142,6 +142,7 @@
     NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
     NSString * fullPath = [ud objectForKey:@"currentFile"];
     NSError * error;
+    [self replaceTokensWithQuestionMarks];
     NSString *content = [[self.mainTextView textStorage] string];
     [content writeToFile:fullPath
               atomically:YES
@@ -251,7 +252,7 @@
 - (IBAction)doOpen:(id)sender {
     
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-    openPanel.allowedFileTypes = @[@"txt", @"agda"];
+    openPanel.allowedFileTypes = @[@"txt", @"rtf", @"agda"];
     [openPanel beginWithCompletionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
             NSURL * directory = [openPanel directoryURL];
@@ -277,16 +278,47 @@
     NSString *directory = [directoryToSave path];
     NSString *fileName = [[filename absoluteString] lastPathComponent];
     NSError * error;
+    // Replace tokens with question marks
+    [self replaceTokensWithQuestionMarks];
+    
     NSString *content = [[self.mainTextView textStorage] string];
     [content writeToFile:[NSString stringWithFormat:@"%@/%@.txt",directory, fileName]
               atomically:YES
-                encoding:NSStringEncodingConversionAllowLossy
+                encoding:NSUTF8StringEncoding
                    error:&error];
+    if (error) {
+        NSLog(@"Error writing to file: %@", error.description);
+    }
     
 }
 
 
+- (void)replaceTokensWithQuestionMarks
+{
+    NSMutableArray * arrayOfRangesOfAttachments = [NSMutableArray new];
+    [self.mainTextView.attributedString enumerateAttribute:@"NSAttachment" inRange:NSMakeRange(0, self.mainTextView.attributedString.length) options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
+        
+        if ([value isKindOfClass:[NSTextAttachment class]]) {
+            // Text attachments
+            NSLog(@"found in range: (%li, %li)", range.location, range.length);
+            [arrayOfRangesOfAttachments addObject:NSStringFromRange(range)];
+//            self.mainTextView.string = [self.mainTextView.string stringByReplacingCharactersInRange:range withString:@"?"];
+        }
+        
+    }];
+    for (NSString * stringRange in arrayOfRangesOfAttachments) {
+        NSRange range = NSRangeFromString(stringRange);
+        self.mainTextView.string = [self.mainTextView.string stringByReplacingCharactersInRange:range withString:@"?"];
+    }
+    
+//    [self.mainTextView.attributedString enumerateAttributesInRange:NSMakeRange(0, self.mainTextView.attributedString.length) options:0 usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
+//        NSLog(@"Found: %@ at range: (%li, %li)", attrs, range.location, range.length);
+//        if ([attrs objectForKey:@"NSAttachment"]) {
+//            self.mainTextView.string = [self.mainTextView.string stringByReplacingCharactersInRange:range withString:@"?"];
+//        }
+//    }];
 
+}
 
 
 -(void)changeFontSizeFromNotification:(NSNotification *)notification

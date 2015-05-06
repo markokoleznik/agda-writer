@@ -292,7 +292,7 @@
         // Parse goals
         NSArray * goals = [AWAgdaParser makeArrayOfGoalsWithSuggestions:notification.object];
         
-        // change goals to ...
+        // Add tokens on goals
 
         int i = 0;
         NSRange searchRange = NSMakeRange(0, self.textStorage.length);
@@ -319,10 +319,27 @@
 -(void) addTokenAtRange:(NSRange)range withGoalName:(NSString *)goalName
 {
     NSTextAttachment * attachment = [[NSTextAttachment alloc] initWithFileWrapper:nil];
+    NSMutableAttributedString * text = [NSMutableAttributedString new];
+//    [text appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"?"]];
     CustomTokenCell * tokenCell = [[CustomTokenCell alloc] init];
     [tokenCell setTitle:goalName];
+    
     [attachment setAttachmentCell:tokenCell];
-    [self insertText:[NSAttributedString attributedStringWithAttachment:attachment] replacementRange: NSMakeRange(range.location + 1, range.length - 1)];
+    [text appendAttributedString:[NSAttributedString attributedStringWithAttachment:attachment]];
+    [self insertText:text replacementRange: NSMakeRange(range.location + 1, range.length - 1)];
+    
+//    CustomTokenCell * gfsgfdgfds = (CustomTokenCell *)attachment.attachmentCell;
+//    NSLog(@"attachment cell name: %@", gfsgfdgfds.title);
+    
+//    NSError * error;
+//    NSFileWrapper * fileWrapper = [self.attributedString fileWrapperFromRange:NSMakeRange(0, self.attributedString.length) documentAttributes:@{NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType} error:&error];
+//    if (error){
+//        NSLog(@"Saving failed: %@", error.description);
+//    }
+//    [fileWrapper writeToURL:[NSURL fileURLWithPath:@"/Users/markokoleznik/Desktop/blablablalba"] options:NSFileWrapperWritingAtomic originalContentsURL:nil error:&error];
+//    if (error){
+//        NSLog(@"Saving failed: %@", error.description);
+//    }
 
 }
 
@@ -330,7 +347,6 @@
 {
     NSTextAttachment * attachment = [[NSTextAttachment alloc] initWithFileWrapper:nil];
     CustomTokenCell * tokenCell = [[CustomTokenCell alloc] init];
-    [tokenCell setValue:@"?"];
     [tokenCell setTitle:@"Here is some token!"];
     [attachment setAttachmentCell:tokenCell];
     [self insertText:[NSAttributedString attributedStringWithAttachment:attachment]];
