@@ -11,8 +11,9 @@
 @interface CustomTokenCell : NSTextAttachmentCell
 {
     BOOL highlighted;
+    NSFont * defaultFont;
 }
-
+-(id)init;
 -(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView;
 
 @end

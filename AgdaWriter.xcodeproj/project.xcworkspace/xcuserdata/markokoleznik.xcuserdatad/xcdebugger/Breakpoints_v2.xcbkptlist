@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../AgdaWriter/CustomTokenCell.m"
-            timestampString = "452260697.708973"
+            timestampString = "452610528.225926"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "-drawWithFrame:inView:characterIndex:layoutManager:"
             landmarkType = "5">
          </BreakpointContent>

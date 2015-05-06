@@ -26,6 +26,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChangedInRangeWithReplacementString:) name:@"textChangedInRangeWithReplacementString" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showHelp) name:@"showHelp" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allGoalsAction:) name:AWAllGoals object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(placeInsertionPointAtCharIndex:) name:AWPlaceInsertionPointAtCharIndex object:nil];
         
         
         initialize = YES;
@@ -327,6 +328,10 @@
     [self insertText:[NSAttributedString attributedStringWithAttachment:attachment]];
 }
 
+- (void) placeInsertionPointAtCharIndex:(NSNotification *) notification
+{
+    [self setSelectedRange:NSMakeRange([notification.object integerValue] + 1, 0)];
+}
 
 
 -(void)dealloc

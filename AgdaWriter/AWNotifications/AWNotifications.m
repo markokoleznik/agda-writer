@@ -21,6 +21,7 @@ NSString * const AWAgdaVersionAvaliable = @"net.koleznik.agdaVersionAvaliable";
 NSString * const AWOpenPreferences = @"net.koleznik.openPreferences";
 NSString * const AWAllGoals = @"net.koleznik.allGoals";
 NSString * const AWPossibleAgdaPathFound = @"net.koleznik.possibleAgdaPathFound";
+NSString * const AWPlaceInsertionPointAtCharIndex = @"net.koleznik.placeInsertionPointAtCharIndex";
 
 
 
@@ -109,6 +110,11 @@ NSString * const AWPossibleAgdaPathFound = @"net.koleznik.possibleAgdaPathFound"
 + (void) notifyPossibleAgdaPathFound:(NSString *)agdaPaths
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:AWPossibleAgdaPathFound object:agdaPaths];
+}
+
++ (void) notifyPlaceInsertionPointAtCharIndex:(NSUInteger) charIndex
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:AWPlaceInsertionPointAtCharIndex object:[NSNumber numberWithUnsignedInteger:charIndex]];
 }
 
 

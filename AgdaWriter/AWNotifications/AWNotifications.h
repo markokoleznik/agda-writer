@@ -22,6 +22,7 @@ extern NSString * const AWAgdaVersionAvaliable;
 extern NSString * const AWOpenPreferences;
 extern NSString * const AWAllGoals;
 extern NSString * const AWPossibleAgdaPathFound;
+extern NSString * const AWPlaceInsertionPointAtCharIndex;
 
 
 typedef NS_ENUM(NSInteger, KeyPressed) {
@@ -42,6 +43,8 @@ typedef NS_ENUM(NSInteger, KeyPressed) {
 + (void) notifyAgdaVersion:(NSString *)version;
 + (void) notifyAllGoals: (NSString *)allGoals;
 + (void) notifyPossibleAgdaPathFound: (NSString *)agdaPaths;
+
++ (void) notifyPlaceInsertionPointAtCharIndex:(NSUInteger) charIndex;
 
 + (void) notifyOpenPreferences;
 
