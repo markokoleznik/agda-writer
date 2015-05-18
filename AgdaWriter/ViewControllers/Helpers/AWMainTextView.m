@@ -215,7 +215,7 @@
         NSRange foundRange;
         while (searchRange.location < self.textStorage.length) {
             searchRange.length = self.textStorage.length - searchRange.location;
-            foundRange = [self.textStorage.string rangeOfString:@"?" options:NSCaseInsensitiveSearch range:searchRange];
+            foundRange = [self.textStorage.string rangeOfString:@" ?" options:NSCaseInsensitiveSearch range:searchRange];
             if (foundRange.location != NSNotFound) {
                 // found an occurrence of the substring! do stuff here
                 
@@ -302,8 +302,7 @@
             foundRange = [self.textStorage.string rangeOfString:@" ?" options:NSCaseInsensitiveSearch range:searchRange];
             if (foundRange.location != NSNotFound) {
                 // found an occurrence of the substring!
-                
-                
+
                 [self addTokenAtRange:foundRange withGoalName:[goals objectAtIndex:i]];
                 i++;
 
@@ -320,31 +319,18 @@
 {
     NSTextAttachment * attachment = [[NSTextAttachment alloc] initWithFileWrapper:nil];
     NSMutableAttributedString * text = [NSMutableAttributedString new];
-//    [text appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"?"]];
     CustomTokenCell * tokenCell = [[CustomTokenCell alloc] init];
     [tokenCell setTitle:goalName];
     
     [attachment setAttachmentCell:tokenCell];
     [text appendAttributedString:[NSAttributedString attributedStringWithAttachment:attachment]];
     [self insertText:text replacementRange: NSMakeRange(range.location + 1, range.length - 1)];
-    
-//    CustomTokenCell * gfsgfdgfds = (CustomTokenCell *)attachment.attachmentCell;
-//    NSLog(@"attachment cell name: %@", gfsgfdgfds.title);
-    
-//    NSError * error;
-//    NSFileWrapper * fileWrapper = [self.attributedString fileWrapperFromRange:NSMakeRange(0, self.attributedString.length) documentAttributes:@{NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType} error:&error];
-//    if (error){
-//        NSLog(@"Saving failed: %@", error.description);
-//    }
-//    [fileWrapper writeToURL:[NSURL fileURLWithPath:@"/Users/markokoleznik/Desktop/blablablalba"] options:NSFileWrapperWritingAtomic originalContentsURL:nil error:&error];
-//    if (error){
-//        NSLog(@"Saving failed: %@", error.description);
-//    }
 
 }
 
 - (void) addToken:(NSNotification *)notification
 {
+    // Test only!
     NSTextAttachment * attachment = [[NSTextAttachment alloc] initWithFileWrapper:nil];
     CustomTokenCell * tokenCell = [[CustomTokenCell alloc] init];
     [tokenCell setTitle:@"Here is some token!"];

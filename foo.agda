@@ -9,7 +9,4 @@ module Foo where
   g x = x
 
   id : bool → bool
-  id y = ?
-
-  baz : bool → bool
-  baz x = ?
+  id y =?

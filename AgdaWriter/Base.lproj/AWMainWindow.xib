@@ -361,7 +361,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="collapse:" target="sG2-35-N6b" id="x3Q-2c-ejB"/>
+                            <action selector="hideOutputs:" target="QvC-M9-y7g" id="8ji-Km-wFa"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eX7-cx-cKm">
@@ -898,6 +898,32 @@ AAAAAAEGA
                 <outlet property="searchForAgdaIndicator" destination="rsa-fB-bFq" id="cFn-Oz-g38"/>
             </connections>
             <point key="canvasLocation" x="597.5" y="95.5"/>
+        </window>
+        <window title="ToastWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" animationBehavior="default" id="4NT-if-vpH" customClass="AWToastView">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES" unifiedTitleAndToolbar="YES" fullSizeContentView="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
+            <rect key="contentRect" x="10" y="320" width="400" height="400"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <value key="minSize" type="size" width="400" height="400"/>
+            <value key="maxSize" type="size" width="400" height="400"/>
+            <view key="contentView" id="uca-ap-ckS">
+                <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IDE-f2-zhx">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="ok_sign" id="2sv-L5-dob"/>
+                    </imageView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Rz-K7-FYM">
+                        <rect key="frame" x="159" y="183" width="82" height="32"/>
+                        <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="A4d-A9-CRy">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="1263" y="400"/>
         </window>
     </objects>
     <resources>

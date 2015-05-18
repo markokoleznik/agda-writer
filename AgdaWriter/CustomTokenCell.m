@@ -9,6 +9,7 @@
 #import "CustomTokenCell.h"
 #import "AWNotifications.h"
 #import "AWHelper.h"
+#import "AWColors.h"
 
 @implementation CustomTokenCell
 
@@ -19,7 +20,11 @@
     self = [super init];
     if (self) {
         defaultFont = [AWHelper defaultFontInAgda];
-        defaultFont = [[NSFontManager sharedFontManager] convertFont:defaultFont toSize:defaultFont.pointSize * FONT_SCALAR];
+        // make font smaller by some arbitrary factor
+        if (defaultFont) {
+            defaultFont = [[NSFontManager sharedFontManager] convertFont:defaultFont toSize:defaultFont.pointSize * FONT_SCALAR];
+        }
+        
     }
     return self;
 }
@@ -53,8 +58,8 @@
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView characterIndex:(NSUInteger)charIndex layoutManager:(NSLayoutManager *)layoutManager
 {
-    NSColor* bgColor = [NSColor colorWithCalibratedRed:173.f/255.f green:179.f/255.f blue:182.f/255.f alpha:1.f];
-    NSColor* borderColor = [NSColor colorWithCalibratedRed:110.f/255.f green:116.f/255.f blue:114.f/255.f alpha:1.f];
+    NSColor* bgColor = [AWColors unselectedTokenColor];
+    NSColor* borderColor = [AWColors borderTokenColor];
     
     NSRect frame = cellFrame;
     CGFloat radius = ceilf([self cellSize].height / 2.f);
@@ -65,6 +70,8 @@
     [borderColor setStroke];
     [roundedRectanglePath setLineWidth: 1];
     [roundedRectanglePath stroke];
+    
+    
     
     CGSize size = [[self stringValue] sizeWithAttributes:@{NSFontAttributeName:defaultFont}];
     CGRect textFrame = CGRectMake(cellFrame.origin.x + (cellFrame.size.width - size.width)/2,

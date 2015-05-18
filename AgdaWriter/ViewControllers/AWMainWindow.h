@@ -10,6 +10,7 @@
 #import "AWPopupAlertViewController.h"
 #import "AWCommunitacion.h"
 #import "AWAgdaActions.h"
+#import "AWToastView.h"
 
 
 //@interface AWMainWindow : NSWindow <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate, NSTableViewDataSource, NSTableViewDelegate>{
@@ -26,6 +27,7 @@
 @property BOOL isHelperWindowOpened;
 @property AWPopupAlertViewController * helperView;
 @property AWCommunitacion * communicator;
+@property AWToastView * toastView;
 
 
 - (IBAction)hideOutputs:(id)sender;

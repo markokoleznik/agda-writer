@@ -13,6 +13,7 @@
 #import "AWAgdaActions.h"
 #import "AWAgdaParser.h"
 #import "AWToastView.h"
+#import "AWToastView.h"
 
 
 
@@ -41,17 +42,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaVersionAvaliable:) name:AWAgdaVersionAvaliable object:nil];
     
     
-    
     if (!self.communicator) {
         self.communicator = [[AWCommunitacion alloc] init];
     }
-    
 
-    
-    
-    // search agda path
-//    [self.communicator searchForAgda];
-    
 }
 
 
@@ -111,7 +105,7 @@
         [ud setObject:[NSNumber numberWithInt:12] forKey:FONT_SIZE_KEY]; // Default value
     }
     if (![ud stringForKey:FONT_FAMILY_KEY]) {
-        [ud setObject:@"Helvetica" forKey:FONT_FAMILY_KEY]; // Default value
+        [ud setObject:@"Menlo" forKey:FONT_FAMILY_KEY]; // Default value
     }
     // Write changes to disk.
     [ud synchronize];
@@ -152,6 +146,42 @@
 }
 
 - (IBAction)hideOutputs:(id)sender {
+    
+    AWToastView * toastView = [[AWToastView alloc] init];
+    NSRect frame = NSMakeRect(0, 0, 200, 200);
+    if (!self.toastView) {
+        self.toastView = [[AWToastView alloc] initWithContentRect:frame styleMask:NSBorderlessWindowMask backing:NSBackingStoreRetained defer:NO];
+        [self.toastView setBackgroundColor:[NSColor blueColor]];
+        [self.toastView setAlphaValue:0.0];
+    }
+    
+    [self.toastView makeKeyAndOrderFront:NSApp];
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        [context setDuration:0.5];
+        [self.toastView.animator setAlphaValue:1.0];
+    } completionHandler:^{
+        [self performSelector:@selector(closeToast) withObject:nil afterDelay:1.5];
+    }];
+    
+//    NSWindow* window  = [[[NSWindow alloc] initWithContentRect:frame
+//                                                     styleMask:NSBorderlessWindowMask
+//                                                       backing:NSBackingStoreBuffered
+//                                                         defer:NO] autorelease];
+//    [window setBackgroundColor:[NSColor blueColor]];
+//    [window makeKeyAndOrderFront:NSApp];
+    
+//    [toastView setOpaque:YES];
+//    [toastView setHasShadow:NO];
+//    [toastView setLevel:kCGOverlayWindowLevel];
+//    [toastView setBackgroundColor:[NSColor whiteColor]];
+    CGFloat xPos = NSWidth([[toastView screen] frame])/2 - NSWidth([toastView frame])/2;
+    CGFloat yPos = NSHeight([[toastView screen] frame])/2 - NSHeight([toastView frame])/2;
+//    [toastView setFrame:NSMakeRect(xPos, yPos, NSWidth([toastView frame]), NSHeight([toastView frame])) display:YES];
+//    [toastView setFrame:NSMakeRect(xPos, yPos, 300,300) display:YES];
+//    [self addChildWindow:toastView ordered:NSWindowAbove];
+    
+    
+    
 //    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
 //        context.duration = 0.4f;
 //        self.mainTextView.animator.frame = CGRectOffset(self.mainTextView.frame, 20, 0);
@@ -163,6 +193,17 @@
 //        
 //    }];
 
+}
+
+- (void)closeToast
+{
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        [context setDuration:0.5];
+        [self.toastView.animator setAlphaValue:0.0];
+    } completionHandler:^{
+//        [self.toastView ];
+    }];
+    
 }
 
 - (IBAction)AddToken:(NSButton *)sender {
@@ -297,26 +338,16 @@
 {
     NSMutableArray * arrayOfRangesOfAttachments = [NSMutableArray new];
     [self.mainTextView.attributedString enumerateAttribute:@"NSAttachment" inRange:NSMakeRange(0, self.mainTextView.attributedString.length) options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
-        
+        // Search all NSAttachments, fill them in array and then raplace tokens (attachments) with question marks
         if ([value isKindOfClass:[NSTextAttachment class]]) {
             // Text attachments
-            NSLog(@"found in range: (%li, %li)", range.location, range.length);
             [arrayOfRangesOfAttachments addObject:NSStringFromRange(range)];
-//            self.mainTextView.string = [self.mainTextView.string stringByReplacingCharactersInRange:range withString:@"?"];
         }
-        
     }];
     for (NSString * stringRange in arrayOfRangesOfAttachments) {
         NSRange range = NSRangeFromString(stringRange);
         self.mainTextView.string = [self.mainTextView.string stringByReplacingCharactersInRange:range withString:@"?"];
     }
-    
-//    [self.mainTextView.attributedString enumerateAttributesInRange:NSMakeRange(0, self.mainTextView.attributedString.length) options:0 usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
-//        NSLog(@"Found: %@ at range: (%li, %li)", attrs, range.location, range.length);
-//        if ([attrs objectForKey:@"NSAttachment"]) {
-//            self.mainTextView.string = [self.mainTextView.string stringByReplacingCharactersInRange:range withString:@"?"];
-//        }
-//    }];
 
 }
 
@@ -330,13 +361,14 @@
         NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
         
         NSNumber *fontSize = (NSNumber *) notification.object;
-        NSFont *font = self.mainTextView.font;
+        NSFont *font = self.mainTextView.textStorage.font;
         if (!font) {
             NSString * fontFamily = [ud stringForKey:FONT_FAMILY_KEY];
             font = [NSFont fontWithName:fontFamily size:[fontSize floatValue]];
         }
         font = [[NSFontManager sharedFontManager] convertFont:font toSize:[fontSize floatValue]];
-        [self.mainTextView setFont:font];
+//        [self.mainTextView.textStorage addAttribute:@"NSFontAttributeName" value:font range:NSMakeRange(0, self.mainTextView.textStorage.string.length)];
+        [self.mainTextView.textStorage setFont:font];
         [self.lineNumbersView setFont:font];
         
         // Save changes to NSUserDefaults!
@@ -348,14 +380,21 @@
 - (void) changeFontFamilyFromNotification:(NSNotification *)notification
 {
     if ([notification.object isKindOfClass:[NSString class]]) {
+        
+        NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+        
         NSString *fontFamily = (NSString *) notification.object;
-        NSFont *font = self.mainTextView.font;
+        NSFont *font = self.mainTextView.textStorage.font;
         font = [[NSFontManager sharedFontManager] convertFont:font toFamily:fontFamily];
-        [self.mainTextView setFont:font];
+        if (!font) {
+            NSNumber * fontSize = [ud objectForKey:FONT_SIZE_KEY];
+            font = [NSFont fontWithName:fontFamily size:[fontSize floatValue]];
+        }
+//        [self.mainTextView.textStorage addAttribute:@"NSFontAttributeName" value:font range:NSMakeRange(0, self.mainTextView.textStorage.string.length)];
+        [self.mainTextView.textStorage setFont:font];
         [self.lineNumbersView setFont:font];
         
         // Save changes to NSUserDefaults!
-        NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
         [ud setObject:fontFamily forKey:FONT_FAMILY_KEY];
         [ud synchronize];
     }

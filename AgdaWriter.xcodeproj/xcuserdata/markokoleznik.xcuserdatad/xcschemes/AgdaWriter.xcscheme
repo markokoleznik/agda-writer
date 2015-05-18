@@ -34,6 +34,20 @@
                ReferencedContainer = "container:AgdaWriter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D52D6D021B09F778006554E0"
+               BuildableName = "Agda Writer Parser Tests.xctest"
+               BlueprintName = "Agda Writer Parser Tests"
+               ReferencedContainer = "container:AgdaWriter.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -49,6 +63,16 @@
                BlueprintIdentifier = "D583563419EEEEC4009534C1"
                BuildableName = "AgdaWriterTests.xctest"
                BlueprintName = "AgdaWriterTests"
+               ReferencedContainer = "container:AgdaWriter.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D52D6D021B09F778006554E0"
+               BuildableName = "Agda Writer Parser Tests.xctest"
+               BlueprintName = "Agda Writer Parser Tests"
                ReferencedContainer = "container:AgdaWriter.xcodeproj">
             </BuildableReference>
          </TestableReference>
