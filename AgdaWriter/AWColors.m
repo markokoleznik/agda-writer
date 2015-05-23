@@ -25,7 +25,7 @@
 
 + (NSColor *) unselectedTokenColor
 {
-    return [NSColor colorWithCalibratedRed:246.0/COLOR_MAX_VALUE green:246.0/COLOR_MAX_VALUE blue:246.0/COLOR_MAX_VALUE alpha:1.0];
+    return [NSColor colorWithCalibratedRed:0/COLOR_MAX_VALUE green:64.0/COLOR_MAX_VALUE blue:153.0/COLOR_MAX_VALUE alpha:1.0];
 }
 
 + (NSColor *) borderTokenColor

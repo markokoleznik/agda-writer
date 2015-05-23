@@ -21,11 +21,9 @@
     if ([notification.object isKindOfClass:[NSString class]]) {
         NSString *reply = notification.object;
         reply = [reply substringWithRange:NSMakeRange(1, reply.length - 2)];
-        reply = [reply stringByAppendingString:@"\n"];
-        reply = [reply stringByReplacingOccurrencesOfString:@"\\\\" withString:@"\\"];
+        reply = [reply stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
         [self.textStorage beginEditing];
         [[self.textStorage mutableString] appendString:reply];
-//        [self setString:[[self.textStorage string] stringByAppendingString:reply]];
         [self.textStorage endEditing];
     }
 }

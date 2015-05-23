@@ -12,8 +12,6 @@
 #import "AWPopupAlertViewController.h"
 #import "AWAgdaActions.h"
 #import "AWAgdaParser.h"
-#import "AWToastView.h"
-#import "AWToastView.h"
 
 
 
@@ -143,55 +141,15 @@
                 encoding:NSUTF8StringEncoding
                    error:&error];
     
+
 }
+
 
 - (IBAction)hideOutputs:(id)sender {
     
-    AWToastView * toastView = [[AWToastView alloc] init];
-    NSRect frame = NSMakeRect(0, 0, 200, 200);
-    if (!self.toastView) {
-        self.toastView = [[AWToastView alloc] initWithContentRect:frame styleMask:NSBorderlessWindowMask backing:NSBackingStoreRetained defer:NO];
-        [self.toastView setBackgroundColor:[NSColor blueColor]];
-        [self.toastView setAlphaValue:0.0];
-    }
-    
-    [self.toastView makeKeyAndOrderFront:NSApp];
-    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-        [context setDuration:0.5];
-        [self.toastView.animator setAlphaValue:1.0];
-    } completionHandler:^{
-        [self performSelector:@selector(closeToast) withObject:nil afterDelay:1.5];
-    }];
-    
-//    NSWindow* window  = [[[NSWindow alloc] initWithContentRect:frame
-//                                                     styleMask:NSBorderlessWindowMask
-//                                                       backing:NSBackingStoreBuffered
-//                                                         defer:NO] autorelease];
-//    [window setBackgroundColor:[NSColor blueColor]];
-//    [window makeKeyAndOrderFront:NSApp];
-    
-//    [toastView setOpaque:YES];
-//    [toastView setHasShadow:NO];
-//    [toastView setLevel:kCGOverlayWindowLevel];
-//    [toastView setBackgroundColor:[NSColor whiteColor]];
-    CGFloat xPos = NSWidth([[toastView screen] frame])/2 - NSWidth([toastView frame])/2;
-    CGFloat yPos = NSHeight([[toastView screen] frame])/2 - NSHeight([toastView frame])/2;
-//    [toastView setFrame:NSMakeRect(xPos, yPos, NSWidth([toastView frame]), NSHeight([toastView frame])) display:YES];
-//    [toastView setFrame:NSMakeRect(xPos, yPos, 300,300) display:YES];
-//    [self addChildWindow:toastView ordered:NSWindowAbove];
-    
-    
-    
-//    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-//        context.duration = 0.4f;
-//        self.mainTextView.animator.frame = CGRectOffset(self.mainTextView.frame, 20, 0);
-//    } completionHandler:^{
-//        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-//            context.duration = 0.3f;
-//            self.mainTextView.animator.frame = CGRectOffset(self.mainTextView.frame, -20, 0);
-//        } completionHandler:nil];
-//        
-//    }];
+    self.toastView = [[AWToastWindow alloc] initWithToastType:ToastTypeLoadSuccessful];
+    [self.toastView show];
+
 
 }
 

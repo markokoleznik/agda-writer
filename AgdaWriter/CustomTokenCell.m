@@ -23,6 +23,7 @@
         // make font smaller by some arbitrary factor
         if (defaultFont) {
             defaultFont = [[NSFontManager sharedFontManager] convertFont:defaultFont toSize:defaultFont.pointSize * FONT_SCALAR];
+            
         }
         
     }
@@ -78,7 +79,7 @@
                                   cellFrame.origin.y + 2.f,
                                   size.width,
                                   size.height);
-    [[self stringValue] drawInRect:textFrame withAttributes:@{NSFontAttributeName:defaultFont}];
+    [[self stringValue] drawInRect:textFrame withAttributes:@{NSFontAttributeName:defaultFont, NSForegroundColorAttributeName:[NSColor whiteColor]}];
 }
 
 - (void)highlight:(BOOL)flag withFrame:(NSRect)cellFrame inView:(NSView *)controlView

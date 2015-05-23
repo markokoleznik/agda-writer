@@ -139,14 +139,6 @@
     }];
 }
 
-//-(void)copy:(id) sender
-//{
-//    NSLog(@"Copy in agda path");
-//}
-//-(void)paste: (id)sender
-//{
-//    NSLog(@"Paste in agda path");
-//}
 -(void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {
     // Disable ok sign and progress indicator

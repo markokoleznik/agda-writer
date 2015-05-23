@@ -145,6 +145,7 @@ test₃ = ?
 data Maybe (A : Set) : Set where
   just : A → Maybe A
   nothing : Maybe A
+   
  
 _==?_ : Maybe ℕ → Maybe ℕ → Bool
 nothing ==? nothing = true
