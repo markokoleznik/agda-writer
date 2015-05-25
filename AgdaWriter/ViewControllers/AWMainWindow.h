@@ -45,4 +45,10 @@
 
 //- (IBAction)copy:sender;
 //- (IBAction)paste:sender;
+
+@property (nonatomic, strong) __block NSTask *buildTask;
+@property (nonatomic) BOOL isRunning;
+@property (nonatomic, strong) NSPipe *outputPipe;
+@property (nonatomic, strong) NSPipe *inputPipe;
+
 @end

@@ -35,6 +35,9 @@
 		D59349D21B108B07002CD06F /* AWToastWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D59349D11B108B07002CD06F /* AWToastWindow.m */; };
 		D59A76FD1AE5ADD200E6099E /* AWAgdaActions.m in Sources */ = {isa = PBXBuildFile; fileRef = D59A76FC1AE5ADD200E6099E /* AWAgdaActions.m */; };
 		D5A7B8131AFA3F9600E6DE11 /* AWHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A7B8121AFA3F9600E6DE11 /* AWHelper.m */; };
+		D5A9E2971B10AA35006F7DE2 /* failed_default.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A9E2931B10AA35006F7DE2 /* failed_default.png */; };
+		D5A9E2981B10AA35006F7DE2 /* load_failed.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A9E2941B10AA35006F7DE2 /* load_failed.png */; };
+		D5A9E29A1B10AA35006F7DE2 /* successful_default.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A9E2961B10AA35006F7DE2 /* successful_default.png */; };
 		D5C56BA41A811AE100422B5E /* AWCommunitacion.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C56BA31A811AE100422B5E /* AWCommunitacion.m */; };
 		D5C56BA71A81464D00422B5E /* AWOutputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C56BA61A81464D00422B5E /* AWOutputTextView.m */; };
 		D5C56BA91A815F7D00422B5E /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5C56BA81A815F7D00422B5E /* defaults.plist */; };
@@ -107,6 +110,9 @@
 		D59A76FC1AE5ADD200E6099E /* AWAgdaActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWAgdaActions.m; path = AgdaWriter/AWAgdaActions.m; sourceTree = "<group>"; };
 		D5A7B8111AFA3F9600E6DE11 /* AWHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWHelper.h; sourceTree = "<group>"; };
 		D5A7B8121AFA3F9600E6DE11 /* AWHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWHelper.m; sourceTree = "<group>"; };
+		D5A9E2931B10AA35006F7DE2 /* failed_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = failed_default.png; path = AgdaWriter/Images/Alerts/failed_default.png; sourceTree = "<group>"; };
+		D5A9E2941B10AA35006F7DE2 /* load_failed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = load_failed.png; path = AgdaWriter/Images/Alerts/load_failed.png; sourceTree = "<group>"; };
+		D5A9E2961B10AA35006F7DE2 /* successful_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = successful_default.png; path = AgdaWriter/Images/Alerts/successful_default.png; sourceTree = "<group>"; };
 		D5C56BA21A811AE100422B5E /* AWCommunitacion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWCommunitacion.h; path = AgdaWriter/AWCommunitacion.h; sourceTree = "<group>"; };
 		D5C56BA31A811AE100422B5E /* AWCommunitacion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWCommunitacion.m; path = AgdaWriter/AWCommunitacion.m; sourceTree = "<group>"; };
 		D5C56BA51A81464D00422B5E /* AWOutputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWOutputTextView.h; path = ViewControllers/AWOutputTextView.h; sourceTree = "<group>"; };
@@ -163,6 +169,9 @@
 		D54AAE0C1AF0E6650022445F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D5A9E2931B10AA35006F7DE2 /* failed_default.png */,
+				D5A9E2941B10AA35006F7DE2 /* load_failed.png */,
+				D5A9E2961B10AA35006F7DE2 /* successful_default.png */,
 				D59349CE1B108441002CD06F /* load_successful.png */,
 				D54AAE0D1AF0E67F0022445F /* ok_sign.png */,
 			);
@@ -468,11 +477,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D583562D19EEEEC4009534C1 /* Images.xcassets in Resources */,
+				D5A9E29A1B10AA35006F7DE2 /* successful_default.png in Resources */,
 				D59349CF1B108441002CD06F /* load_successful.png in Resources */,
 				D55C211F1A766F110005D33A /* AWPopupAlertViewController.xib in Resources */,
+				D5A9E2981B10AA35006F7DE2 /* load_failed.png in Resources */,
 				D52D6D0F1B0A0589006554E0 /* todos in Resources */,
 				D54AAE0E1AF0E67F0022445F /* ok_sign.png in Resources */,
 				D5C56BA91A815F7D00422B5E /* defaults.plist in Resources */,
+				D5A9E2971B10AA35006F7DE2 /* failed_default.png in Resources */,
 				D583563019EEEEC4009534C1 /* AWMainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

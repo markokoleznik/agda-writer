@@ -19,6 +19,8 @@
         [self setMovableByWindowBackground:YES];
         [self setBackgroundColor:[NSColor clearColor]];
         [self setAlphaValue:0.0];
+        // Ensure that Toast always stays in front of every window
+        [self setLevel:kCGOverlayWindowLevelKey];
         
         // Prepare content view
         NSView * contentView = [[NSView alloc] initWithFrame:frame];
@@ -28,17 +30,26 @@
         [contentView.layer setBackgroundColor:backgroundColor.CGColor];
         
         NSImageView * imageView = [[NSImageView alloc] initWithFrame:frame];
-        // Prepare image
         
-        // TODO: implement other images!
+        // Prepare image
+        NSString * imageName;
         switch (toastType) {
             case ToastTypeLoadSuccessful:
-                [imageView setImage:[NSImage imageNamed:@"load_successful"]];
+                imageName = @"load_successful";
                 break;
-                
+            case ToastTypeLoadFailed:
+                imageName = @"load_failed";
+                break;
+            case ToastTypeFailed:
+                imageName = @"failed_default";
+                break;
+            case ToastTypeSuccess:
+                imageName = @"successful_default";
             default:
                 break;
         }
+        
+        [imageView setImage:[NSImage imageNamed:imageName]];
         
         [contentView addSubview:imageView];
         [self setContentView:contentView];

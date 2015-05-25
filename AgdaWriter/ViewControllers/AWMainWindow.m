@@ -43,7 +43,6 @@
     if (!self.communicator) {
         self.communicator = [[AWCommunitacion alloc] init];
     }
-
 }
 
 
@@ -147,7 +146,7 @@
 
 - (IBAction)hideOutputs:(id)sender {
     
-    self.toastView = [[AWToastWindow alloc] initWithToastType:ToastTypeLoadSuccessful];
+    self.toastView = [[AWToastWindow alloc] initWithToastType:ToastTypeSuccess];
     [self.toastView show];
 
 

@@ -292,8 +292,15 @@
         // Parse goals
         NSArray * goals = [AWAgdaParser makeArrayOfGoalsWithSuggestions:notification.object];
         
+        
+//        NSLayoutManager *layoutManager = myTextView.layoutManager; NSRange glyphRange = [layoutManager glyphRangeForBoundingRect: [self.textView visibleRect] inTextContainer: self.textView.textContainer]; NSRange charRange = [layoutManager characterRangeForGlyphRange: glyphRange actualGlyphRange: &glyphRange];
+        
+        // Save current "frame"
+        NSLayoutManager * layoutManager = self.layoutManager;
+        NSRange glyphRange = [layoutManager glyphRangeForBoundingRect:self.visibleRect inTextContainer:self.textContainer];
+        NSRange charRange = [layoutManager characterRangeForGlyphRange:glyphRange actualGlyphRange:&glyphRange];
+        
         // Add tokens on goals
-
         int i = 0;
         NSRange searchRange = NSMakeRange(0, self.textStorage.length);
         NSRange foundRange;
@@ -312,6 +319,9 @@
                 break;
             }
         }
+        
+        // Restore frame
+        [self scrollRangeToVisible:charRange];
     }
 }
 
