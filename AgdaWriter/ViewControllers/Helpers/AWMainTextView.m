@@ -70,10 +70,10 @@
 
 -(void)textViewDidChangeSelection:(NSNotification *)notification
 {
-    NSLog(@"%@", notification.userInfo);
+//    NSLog(@"%@", notification.userInfo);
     
-    NSRange range = [notification.userInfo[@"NSOldSelectedCharacterRange"] rangeValue];
-    NSLog(@"Selected range: (%li, %li)", range.location, range.length);
+//    NSRange range = [notification.userInfo[@"NSOldSelectedCharacterRange"] rangeValue];
+//    NSLog(@"Selected range: (%li, %li)", range.location, range.length);
     
 }
 

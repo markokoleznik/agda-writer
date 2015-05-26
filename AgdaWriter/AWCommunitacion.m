@@ -17,6 +17,7 @@
 {
     self = [super init];
     if (self) {
+
         
         [self openPipes];
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -31,6 +32,22 @@
     return self;
 }
 
+-(id) initForCommunicatingWithAgda
+{
+    self = [super init];
+    if (self) {
+        
+        // Create new thread
+        agdaQueue = dispatch_queue_create("net.koleznik.agdaQueue", NULL);
+//        agdaQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+        
+        // Initialize mutable string
+        partialAgdaResponse = [[NSMutableString alloc] init];
+        
+        self.hasOpenConnectionToAgda = NO;
+    }
+    return self;
+}
 
 - (BOOL) isAgdaAvaliableAtPath:(NSString *)path
 {
@@ -74,7 +91,7 @@
     else {
         NSArray * actions = [AWAgdaParser makeArrayOfActions:reply];
         [AWNotifications notifyExecuteActions:actions];
-        [AWNotifications notifyAgdaReplied:reply]; // very slow!
+        [AWNotifications notifyAgdaReplied:reply];
     }
 }
         
@@ -166,6 +183,7 @@
 {
     inputPipe = [NSPipe pipe];
     outputPipe = [NSPipe pipe];
+    
     fileReading = inputPipe.fileHandleForReading;
     [fileReading readToEndOfFileInBackgroundAndNotify];
     fileWriting = outputPipe.fileHandleForWriting;
@@ -174,6 +192,95 @@
 - (void) closePipes
 {
     
+}
+
+- (void) openConnectionToAgda
+{
+    // spawn task in a custom thread
+    dispatch_queue_t taskQueue = dispatch_queue_create("net.koleznik.AgdaQueue", NULL);
+    dispatch_async(taskQueue, ^{
+        task = [[NSTask alloc] init];
+        // set standard input, output and error. Error outputs will be in our outputs.
+        [task setStandardOutput: [NSPipe pipe]];
+        [task setStandardInput: [NSPipe pipe]];
+        [task setStandardError: [task standardOutput]];
+        
+        [task setLaunchPath:[AWNotifications agdaLaunchPath]];
+//        [task setLaunchPath:@"/Users/markokoleznik/Library/Haskell/bin/agda"];
+        [task setArguments:@[@"--interaction"]];
+        [[[task standardOutput] fileHandleForReading] waitForDataInBackgroundAndNotify];
+        
+        // Add observer
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAgdaResponse:) name:NSFileHandleDataAvailableNotification object:nil];
+        
+        // when everything is set, launch task
+
+        @try {
+            [task launch];
+            self.hasOpenConnectionToAgda = YES;
+            // Wait until exit; this would block the main thread, but we are on our own thread.
+            [task waitUntilExit];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Exeption launching the task, reason: %@", exception.reason);
+            // Open prefrences
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                NSAlert * alert = [[NSAlert alloc] init];
+                [alert addButtonWithTitle:@"Open Prefreneces..."];
+                [alert setMessageText:@"Task can't be launched!\nCheck your path in Settings."];
+                [alert setAlertStyle:NSWarningAlertStyle];
+                if ([alert runModal] == NSAlertFirstButtonReturn) {
+                    NSLog(@"Open preferences");
+                    [AWNotifications notifyOpenPreferences];
+                }
+            });
+            
+        }
+        @finally {
+            
+        }
+
+        
+
+    
+    });
+    
+}
+
+- (void) handleAgdaResponse:(NSNotification *) notification
+{
+    NSData * avaliableData = [[[task standardOutput] fileHandleForReading] availableData];
+    NSString * avaliableString = [[NSString alloc] initWithData:avaliableData encoding:NSUTF8StringEncoding];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        // Handle avaliable data on main thread
+        NSLog(@"%@", avaliableString);
+        // Append partial string and perform action if possible
+        // if possible, cut this part of the string.
+        [partialAgdaResponse appendString:avaliableString];
+        NSArray * actions = [AWAgdaParser makeArrayOfActionsAndDeleteActionFromString:partialAgdaResponse];
+        [AWNotifications notifyExecuteActions:actions];
+        NSLog(@"partial response: %@\nactions: %@", partialAgdaResponse, actions);
+        
+        
+    });
+    // we need to register for notifications everytime notification is recieved
+    [[[task standardOutput] fileHandleForReading] waitForDataInBackgroundAndNotify];
+}
+
+
+- (void) writeDataToAgda:(NSString *) message
+{
+    // Don't forget to append newline character at the end of message (if it has none)
+    // \n aka newline reacts as hitting enter in terminal. It flushes all the writing buffer. No need for closing the pipes.
+    // All messages to agda should end with '\n', since we are in interactive mode!
+    
+    if (![message hasSuffix:@"\n"]) {
+        message = [message stringByAppendingString:@"\n"];
+    }
+    if (!self.hasOpenConnectionToAgda) {
+        [self openConnectionToAgda];
+    }
+    [[[task standardInput] fileHandleForWriting] writeData:[message dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 - (void) writeData: (NSString * ) message
@@ -188,11 +295,12 @@
 #pragma mark -
 -(void)dealloc
 {
+    // Remove self as observer and terminate task if it's still running
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if ([task isRunning]) {
+        [task terminate];
+    }
 }
-
-
-
 
 
 

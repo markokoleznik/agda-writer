@@ -14,4 +14,5 @@
 +(NSDictionary *)parseAction:(NSString *) action;
 +(NSArray *)makeArrayOfActions:(NSString *)reply;
 +(NSArray *)makeArrayOfGoalsWithSuggestions:(NSString *)goals;
++(NSArray *)makeArrayOfActionsAndDeleteActionFromString:(NSMutableString *)reply;
 @end

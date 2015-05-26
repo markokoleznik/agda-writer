@@ -117,6 +117,8 @@
     NSMutableArray * actionsWithDictionaries = [[NSMutableArray alloc] init];
     reply = [reply stringByReplacingOccurrencesOfString:@"Agda2> " withString:@""];
     NSArray * actions = [reply componentsSeparatedByString:@"\n"];
+    
+    
     for (NSString * action in actions) {
         NSDictionary * dict = [self parseAction:action];
         if (dict) {
@@ -124,8 +126,51 @@
         }
         
     }
-//    NSLog(@"actions: %@", actionsWithDictionaries);
     return actionsWithDictionaries;
+}
+
++(NSArray *)makeArrayOfActionsAndDeleteActionFromString:(NSMutableString *)reply
+{
+    // 1.) step: make array of actions
+    NSMutableArray * actionsWithDictionaries = [[NSMutableArray alloc] init];
+    NSMutableArray * actions = [[NSMutableArray alloc] init];
+    [reply replaceOccurrencesOfString:@"Agda2> " withString:@"" options:NSLiteralSearch range:NSMakeRange(0, reply.length)];
+    
+    int numberOfLeftParenthesis = 0;
+    int start = 0;
+    int i = 0;
+    while (i < reply.length) {
+        if ([reply characterAtIndex:i] == '(') {
+            if (numberOfLeftParenthesis == 0) {
+                start = i;
+            }
+            numberOfLeftParenthesis ++;
+        }
+        else if ([reply characterAtIndex:i] == ')') {
+            numberOfLeftParenthesis --;
+            if (numberOfLeftParenthesis == 0) {
+                // End parsing
+                NSRange rangeOfAction = NSMakeRange(start, i + 1 - start);
+                [actions addObject:[reply substringWithRange:rangeOfAction]];
+                // delete that part of reply
+                [reply deleteCharactersInRange:NSMakeRange(0, i + 1)];
+                i = 0;
+            }
+        }
+        i++;
+    }
+    
+    
+    // 2.) step: create array of dictionaries {actionName: [arg1, arg2,...]}
+    for (NSString * action in actions) {
+        NSDictionary * dict = [self parseAction:action];
+        if (dict) {
+            [actionsWithDictionaries addObject:dict];
+        }
+    }
+    
+    return actionsWithDictionaries;
+    
 }
 
 +(NSArray *)makeArrayOfGoalsWithSuggestions:(NSString *)goals

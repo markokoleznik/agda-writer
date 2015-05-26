@@ -41,7 +41,8 @@
     
     
     if (!self.communicator) {
-        self.communicator = [[AWCommunitacion alloc] init];
+        self.communicator = [[AWCommunitacion alloc] initForCommunicatingWithAgda];
+        [self.communicator openConnectionToAgda];
     }
 }
 
@@ -176,7 +177,7 @@
     [self saveCurrentWork];
     NSString * message = [NSString stringWithFormat:@"IOTCM \"%@\" None Indirect ( Cmd_show_version )", fullPath];
 
-    [self.communicator writeData:message];
+    [self.communicator writeDataToAgda:message];
 }
 
 - (IBAction)autoAction:(NSButton *)sender {
@@ -195,8 +196,7 @@
     NSString * fullPath = [ud objectForKey:@"currentFile"];
     [self saveCurrentWork];
     NSString * message = [AWAgdaActions actionLoadWithFilePath:fullPath andIncludeDir:@""];
-    
-    [self.communicator writeData:message];
+    [self.communicator writeDataToAgda:message];
 
 }
 
