@@ -147,7 +147,7 @@
 
 - (IBAction)hideOutputs:(id)sender {
     
-    self.toastView = [[AWToastWindow alloc] initWithToastType:ToastTypeSuccess];
+    self.toastView = [[AWToastWindow alloc] initWithToastType:ToastTypeLoadSuccessful];
     [self.toastView show];
 
 

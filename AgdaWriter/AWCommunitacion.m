@@ -39,7 +39,6 @@
         
         // Create new thread
         agdaQueue = dispatch_queue_create("net.koleznik.agdaQueue", NULL);
-//        agdaQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
         
         // Initialize mutable string
         partialAgdaResponse = [[NSMutableString alloc] init];
@@ -256,10 +255,13 @@
         NSLog(@"%@", avaliableString);
         // Append partial string and perform action if possible
         // if possible, cut this part of the string.
-        [partialAgdaResponse appendString:avaliableString];
-        NSArray * actions = [AWAgdaParser makeArrayOfActionsAndDeleteActionFromString:partialAgdaResponse];
-        [AWNotifications notifyExecuteActions:actions];
-        NSLog(@"partial response: %@\nactions: %@", partialAgdaResponse, actions);
+        if (avaliableString) {
+            [partialAgdaResponse appendString:avaliableString];
+            [AWNotifications notifyAgdaReplied:avaliableString];
+            NSArray * actions = [AWAgdaParser makeArrayOfActionsAndDeleteActionFromString:partialAgdaResponse];
+            [AWNotifications notifyExecuteActions:actions];
+        }
+        
         
         
     });
@@ -280,6 +282,8 @@
     if (!self.hasOpenConnectionToAgda) {
         [self openConnectionToAgda];
     }
+    // Add output to buffer!
+    [AWNotifications notifyAgdaReplied:message];
     [[[task standardInput] fileHandleForWriting] writeData:[message dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
