@@ -62,6 +62,8 @@
 #pragma mark Agda Actions
 #pragma mark -
 
+// https://github.com/banacorn/agda-mode/wiki/List-of-interactions
+
 +(void)executeAction:(NSDictionary *)action
 {
     for (NSString * key in [action allKeys]) {

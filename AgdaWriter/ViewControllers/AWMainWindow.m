@@ -175,6 +175,79 @@
 #pragma mark -
 #pragma mark Agda Actions
 
+
+- (IBAction)actionLoad:(NSMenuItem *)sender {
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    [self saveCurrentWork];
+    NSString * message = [AWAgdaActions actionLoadWithFilePath:fullPath andIncludeDir:@""];
+    [self.communicator writeDataToAgda:message];
+}
+
+- (IBAction)actionQuitAndRestartAgda:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+- (IBAction)actionQuit:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+#pragma mark -
+
+- (IBAction)actionGive:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+- (IBAction)actionRefine:(NSMenuItem *)sender {
+    
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    [self saveCurrentWork];
+//    IOTCM "/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda" NonInteractive Indirect ( Cmd_refine_or_intro False 0 (Range [Interval (Pn (Just (mkAbsolute "/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda")) 172 12 12) (Pn (Just (mkAbsolute "/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda")) 173 12 13)]) "x" )
+
+    [self showNotImplementedAlert];
+}
+
+- (IBAction)actionAuto:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+- (IBAction)actionCase:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+- (IBAction)actionGoalType:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+- (IBAction)actionContextEnvironment:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+- (IBAction)actionGoalTypeAndContext:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+- (IBAction)actionGoalTypeAndInferredType:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+- (IBAction)actionComputeNormalForm:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+#pragma mark -
+-(void)showNotImplementedAlert
+{
+    NSAlert * alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"I will patiently wait for lazy developer to implement this..."];
+    [alert setMessageText:@"This method is not yet implemented!"];
+    [alert setAlertStyle:NSWarningAlertStyle];
+    if ([alert runModal] == NSAlertFirstButtonReturn) {
+
+    }
+}
+
+
 - (IBAction)writeToAgda:(NSButton *)sender {
     NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
     NSString * fullPath = [ud objectForKey:@"currentFile"];

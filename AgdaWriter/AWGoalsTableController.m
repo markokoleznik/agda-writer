@@ -54,15 +54,24 @@
     
 }
 
+
+
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
     NSTableView * tableView = notification.object;
-    NSLog(@"User pressed goal number: %li, name: %@", tableView.selectedRow, items[tableView.selectedRow]);
+    if (items.count > tableView.selectedRow) {
+        NSLog(@"User pressed goal number: %li, name: %@", tableView.selectedRow, items[tableView.selectedRow]);
+        
+        // Find all goals (ranges of goals) and show pressed goal.
+        NSRange selectedGoal = [self goalAtIndex:tableView.selectedRow textStorage:self.mainTextView.textStorage];
+        // Show pressed goal
+        [self.mainTextView scrollRangeToVisible:selectedGoal];
+        [self.mainTextView showFindIndicatorForRange:selectedGoal];
+    }
+    else
+    {
+        NSLog(@"Index %li out of bounds for array of length %li",tableView.selectedRow, items.count);
+    }
     
-    // Find all goals (ranges of goals) and show pressed goal.
-    NSRange selectedGoal = [self goalAtIndex:tableView.selectedRow textStorage:self.mainTextView.textStorage];
-    // Show pressed goal
-    [self.mainTextView scrollRangeToVisible:selectedGoal];
-    [self.mainTextView showFindIndicatorForRange:selectedGoal];
     
 }
 
@@ -76,9 +85,12 @@
     NSRegularExpression * regex = [[NSRegularExpression alloc] initWithPattern:regexPattern options:NSRegularExpressionAnchorsMatchLines error:&error];
     NSArray * matches = [regex matchesInString:textStorage.string options:0 range:NSMakeRange(0, textStorage.length)];
     
-    NSTextCheckingResult * result = [matches objectAtIndex:index];
-    foundRange = [result rangeAtIndex:1];
-    [self.mainTextView showFindIndicatorForRange:foundRange];
+    if (matches.count > index) {
+        NSTextCheckingResult * result = [matches objectAtIndex:index];
+        foundRange = [result rangeAtIndex:1];
+        [self.mainTextView showFindIndicatorForRange:foundRange];
+    }
+    
     return foundRange;
 
 }
