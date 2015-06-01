@@ -79,6 +79,8 @@
                                   cellFrame.origin.y + 2.f,
                                   size.width,
                                   size.height);
+    
+    [self setUsesSingleLineMode:YES];
     [[self stringValue] drawInRect:textFrame withAttributes:@{NSFontAttributeName:defaultFont, NSForegroundColorAttributeName:[NSColor whiteColor]}];
 }
 
@@ -95,6 +97,7 @@
 
 - (BOOL)wantsToTrackMouseForEvent:(NSEvent *)theEvent inRect:(NSRect)cellFrame ofView:(NSView *)controlView atCharacterIndex:(NSUInteger)charIndex
 {
+    // Hover
     return YES;
 }
 
@@ -105,6 +108,8 @@
 
 - (BOOL)trackMouse:(NSEvent *)theEvent inRect:(NSRect)cellFrame ofView:(NSView *)controlView atCharacterIndex:(NSUInteger)charIndex untilMouseUp:(BOOL)flag
 {
+    
+    NSLog(@"Event description: %@", theEvent.description);
     [self highlight:flag withFrame:cellFrame inView:controlView];
     NSLog(@"Mouse Pressed on Text Attachment at Index: %li", charIndex);
     // Put cursor in that place

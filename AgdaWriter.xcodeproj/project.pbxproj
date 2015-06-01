@@ -42,6 +42,7 @@
 		D5C56BA71A81464D00422B5E /* AWOutputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C56BA61A81464D00422B5E /* AWOutputTextView.m */; };
 		D5C56BA91A815F7D00422B5E /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5C56BA81A815F7D00422B5E /* defaults.plist */; };
 		D5C56BAC1A816FF300422B5E /* AWStatusTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C56BAB1A816FF300422B5E /* AWStatusTextView.m */; };
+		D5FD997E1B1C7C17000DBFEA /* AWGoalsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5FD997D1B1C7C17000DBFEA /* AWGoalsTableController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,8 @@
 		D5C56BA81A815F7D00422B5E /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaults.plist; path = AgdaWriter/defaults.plist; sourceTree = "<group>"; };
 		D5C56BAA1A816FF300422B5E /* AWStatusTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWStatusTextView.h; sourceTree = "<group>"; };
 		D5C56BAB1A816FF300422B5E /* AWStatusTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWStatusTextView.m; sourceTree = "<group>"; };
+		D5FD997C1B1C7C17000DBFEA /* AWGoalsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWGoalsTableController.h; sourceTree = "<group>"; };
+		D5FD997D1B1C7C17000DBFEA /* AWGoalsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWGoalsTableController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +297,8 @@
 				D5C56BA61A81464D00422B5E /* AWOutputTextView.m */,
 				D56A16F21A84DEA100AC82DB /* AWContainerOutputTextView.h */,
 				D56A16F31A84DEA100AC82DB /* AWContainerOutputTextView.m */,
+				D5FD997C1B1C7C17000DBFEA /* AWGoalsTableController.h */,
+				D5FD997D1B1C7C17000DBFEA /* AWGoalsTableController.m */,
 			);
 			name = "Vertical - Up";
 			sourceTree = "<group>";
@@ -528,6 +533,7 @@
 				D59349D21B108B07002CD06F /* AWToastWindow.m in Sources */,
 				D583562819EEEEC4009534C1 /* main.m in Sources */,
 				D55792F41A82D6C500DB83BD /* AWAgdaParser.m in Sources */,
+				D5FD997E1B1C7C17000DBFEA /* AWGoalsTableController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

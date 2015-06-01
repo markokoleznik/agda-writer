@@ -296,9 +296,10 @@
 //        NSLayoutManager *layoutManager = myTextView.layoutManager; NSRange glyphRange = [layoutManager glyphRangeForBoundingRect: [self.textView visibleRect] inTextContainer: self.textView.textContainer]; NSRange charRange = [layoutManager characterRangeForGlyphRange: glyphRange actualGlyphRange: &glyphRange];
         
         // Save current "frame"
-        NSLayoutManager * layoutManager = self.layoutManager;
-        NSRange glyphRange = [layoutManager glyphRangeForBoundingRect:self.visibleRect inTextContainer:self.textContainer];
-        NSRange charRange = [layoutManager characterRangeForGlyphRange:glyphRange actualGlyphRange:&glyphRange];
+//        NSRect visibleRect = self.visibleRect;
+//        NSLayoutManager * layoutManager = self.layoutManager;
+//        NSRange glyphRange = [layoutManager glyphRangeForBoundingRect:self.visibleRect inTextContainer:self.textContainer];
+//        NSRange charRange = [layoutManager characterRangeForGlyphRange:glyphRange actualGlyphRange:&glyphRange];
         
         // Add tokens on goals
         int i = 0;
@@ -310,7 +311,10 @@
             if (foundRange.location != NSNotFound) {
                 // found an occurrence of the substring!
 
-                [self addTokenAtRange:foundRange withGoalName:[goals objectAtIndex:i]];
+//                [self addTokenAtRange:foundRange withGoalName:[goals objectAtIndex:i]];
+                NSDictionary * attributes = @{NSBackgroundColorAttributeName : [NSColor lightGrayColor]};
+                NSAttributedString * attrString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"{!%i: %@!}",i ,[goals objectAtIndex:i]] attributes:attributes];
+                [self insertText:attrString replacementRange:NSMakeRange(foundRange.location + 1, foundRange.length - 1)];
                 i++;
 
                 searchRange.location = foundRange.location + foundRange.length;
@@ -321,7 +325,7 @@
         }
         
         // Restore frame
-        [self scrollRangeToVisible:charRange];
+//        [self scrollRangeToVisible:charRange];
     }
 }
 

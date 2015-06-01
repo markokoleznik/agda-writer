@@ -12,6 +12,7 @@
 #import "AWPopupAlertViewController.h"
 #import "AWAgdaActions.h"
 #import "AWAgdaParser.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 
@@ -31,6 +32,7 @@
                                                  name:NSViewBoundsDidChangeNotification
                                                object:[self.mainTextView.enclosingScrollView contentView]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeController:) name:REMOVE_CONTROLLER object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaBufferDataAvaliable:) name:AWAgdaBufferDataAvaliable object:nil];
     
     // Add this class as observer, when font (in Prefrences) is changed. It might be reusable in other classes as well.
     // Don't forget to remove observer in dealloc, because it has strong pointer to self.
@@ -44,6 +46,8 @@
         self.communicator = [[AWCommunitacion alloc] initForCommunicatingWithAgda];
         [self.communicator openConnectionToAgda];
     }
+    
+    
 }
 
 
@@ -357,6 +361,19 @@
     }
 }
 
+- (void) agdaBufferDataAvaliable:(NSNotification *)notification
+{
+    if ([notification.object isKindOfClass:[NSString class]]) {
+        NSString *reply = notification.object;
+        reply = [reply substringWithRange:NSMakeRange(1, reply.length - 2)];
+        reply = [reply stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
+        
+        [self.lastStatusTextField setStringValue:reply];
+        
+        
+    }
+}
+
 - (void)textViewDidChangeSelection:(NSNotification *)notification
 {
     // Called, when we select text
@@ -418,6 +435,27 @@
     
     NSDate * date2 = [NSDate date];
     NSLog(@"Running time: %f", [date2 timeIntervalSinceDate:date1]);
+}
+
+
+- (NSView *)tableView:(NSTableView *)tableView
+   viewForTableColumn:(NSTableColumn *)tableColumn
+                  row:(NSInteger)row {
+    
+    // Retrieve to get the @"MyView" from the pool or,
+    // if no version is available in the pool, load the Interface Builder version
+    NSTableCellView *result = [tableView makeViewWithIdentifier:@"GoalType" owner:self];
+    
+    // Set the stringValue of the cell's text field to the nameArray value at row
+    result.textField.stringValue = [NSString stringWithFormat:@"value %li",row];
+    
+    // Return the result
+    return result;
+}
+
+-(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+{
+    return 2;
 }
 
 
