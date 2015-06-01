@@ -12,15 +12,18 @@
 
 @implementation AWGoalsTableController {
     NSArray * items;
+    NSArray * goals;
 }
 
 -(void)awakeFromNib
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allGoalsAction:) name:AWAllGoals object:nil];
+    
 }
 
 - (void)allGoalsAction:(NSNotification *)notification
 {
+    // Create array of goals
     items = [AWAgdaParser makeArrayOfGoalsWithSuggestions:notification.object];
     [self.goalsTable reloadData];
 }
@@ -34,25 +37,17 @@
    viewForTableColumn:(NSTableColumn *)tableColumn
                   row:(NSInteger)row {
     
-    // Retrieve to get the @"MyView" from the pool or,
-    // if no version is available in the pool, load the Interface Builder version
     if ([tableColumn.identifier isEqualToString:@"GoalType"]) {
         NSTableCellView *result = [tableView makeViewWithIdentifier:@"GoalType" owner:self];
-        
-        // Set the stringValue of the cell's text field to the nameArray value at row
         result.textField.stringValue = [items objectAtIndex:row];
-        
-        // Return the result
+
         return result;
     }
     else if ([tableColumn.identifier isEqualToString:@"GoalNumber"])
     {
         NSTableCellView *result = [tableView makeViewWithIdentifier:@"GoalNumber" owner:self];
-        
-        // Set the stringValue of the cell's text field to the nameArray value at row
         result.textField.stringValue = [NSString stringWithFormat:@"%li", row];
-        
-        // Return the result
+
         return result;
     }
     return nil;
@@ -62,6 +57,30 @@
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
     NSTableView * tableView = notification.object;
     NSLog(@"User pressed goal number: %li, name: %@", tableView.selectedRow, items[tableView.selectedRow]);
+    
+    // Find all goals (ranges of goals) and show pressed goal.
+    NSRange selectedGoal = [self goalAtIndex:tableView.selectedRow textStorage:self.mainTextView.textStorage];
+    // Show pressed goal
+    [self.mainTextView scrollRangeToVisible:selectedGoal];
+    [self.mainTextView showFindIndicatorForRange:selectedGoal];
+    
+}
+
+-(NSRange) goalAtIndex: (NSInteger) index textStorage:(NSTextStorage *)textStorage
+{
+    NSRange foundRange;
+    [self.mainTextView showFindIndicatorForRange:foundRange];
+    // We'll use Regular Expressions to find goals range.
+    NSString * regexPattern = @"^(?!--).*(\\{![^!]*!\\})";
+    NSError * error;
+    NSRegularExpression * regex = [[NSRegularExpression alloc] initWithPattern:regexPattern options:NSRegularExpressionAnchorsMatchLines error:&error];
+    NSArray * matches = [regex matchesInString:textStorage.string options:0 range:NSMakeRange(0, textStorage.length)];
+    
+    NSTextCheckingResult * result = [matches objectAtIndex:index];
+    foundRange = [result rangeAtIndex:1];
+    [self.mainTextView showFindIndicatorForRange:foundRange];
+    return foundRange;
+
 }
 
 @end

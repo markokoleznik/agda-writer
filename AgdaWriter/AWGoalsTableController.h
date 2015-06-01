@@ -7,11 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "AWMainTextView.h"
 
 @interface AWGoalsTableController : NSObject <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (weak) IBOutlet NSTableView *goalsTable;
+@property (unsafe_unretained) IBOutlet AWMainTextView *mainTextView;
 
 
 
