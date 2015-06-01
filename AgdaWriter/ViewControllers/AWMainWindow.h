@@ -11,7 +11,9 @@
 #import "AWCommunitacion.h"
 #import "AWAgdaActions.h"
 #import "AWToastWindow.h"
+#import "AWMainTextView.h"
 
+@class AgdaGoal;
 
 @interface AWMainWindow : NSWindow <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate, NSTableViewDataSource, NSTableViewDelegate>{
     
@@ -20,7 +22,7 @@
 
 - (IBAction)showHelp:(id)sender;
 
-@property IBOutlet NSTextView *mainTextView;
+@property IBOutlet AWMainTextView *mainTextView;
 @property IBOutlet NSTextView *lineNumbersView;
 @property (weak) IBOutlet NSTextField *agdaVersion;
 @property BOOL isHelperWindowOpened;

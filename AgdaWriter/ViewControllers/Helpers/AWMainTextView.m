@@ -11,6 +11,11 @@
 #import "CustomTokenCell.h"
 #import "AWAgdaParser.h"
 
+@implementation AgdaGoal
+
+
+@end
+
 @implementation AWMainTextView
 
 -(void)awakeFromNib
@@ -58,6 +63,28 @@
     
     
     
+}
+
+- (AgdaGoal *)selectedGoal
+{
+    // User wants to know current goals.
+    // Find it and, if possible, create it.
+    
+//    @property NSInteger goalIndex;
+//    @property NSInteger startCharIndex;
+//    @property NSInteger startRow;
+//    @property NSInteger startColumn;
+//    @property NSInteger endCharIndex;
+//    @property NSInteger endRow;
+//    @property NSInteger endColumn;
+//    @property NSString * content;
+    
+    _selectedGoal = [[AgdaGoal alloc] init];
+    NSRange currentSelection = self.selectedRange;
+    _selectedGoal.startCharIndex = currentSelection.location;
+    _selectedGoal.endCharIndex = currentSelection.location + currentSelection.length;
+    
+    return _selectedGoal;
 }
 
 - (void)insertAttachmentCell:(NSTextAttachmentCell *)cell toTextView:(NSTextView *)textView
