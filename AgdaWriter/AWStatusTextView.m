@@ -16,7 +16,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaBufferDataAvaliable:) name:AWAgdaBufferDataAvaliable object:nil];
     
     
-    
+    [self.textStorage setFont:[NSFont systemFontOfSize:16.0]];
     
 }
 
@@ -26,6 +26,9 @@
         NSString *reply = notification.object;
         reply = [reply substringWithRange:NSMakeRange(1, reply.length - 2)];
         reply = [reply stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
+        if (![reply hasSuffix:@"\n"]) {
+            reply = [reply stringByAppendingString:@"\n"];
+        }
         [self.textStorage beginEditing];
         [[self.textStorage mutableString] appendString:reply];
         [self.textStorage endEditing];

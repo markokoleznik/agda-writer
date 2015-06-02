@@ -538,7 +538,4 @@
 }
 
 
-- (IBAction)showHelp:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"showHelp" object:nil];
-}
 @end

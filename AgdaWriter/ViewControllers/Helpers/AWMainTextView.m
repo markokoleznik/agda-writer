@@ -30,7 +30,6 @@
         [NSApplication sharedApplication].delegate = self;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addToken:) name:@"AW.addToken" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChangedInRangeWithReplacementString:) name:@"textChangedInRangeWithReplacementString" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showHelp) name:@"showHelp" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allGoalsAction:) name:AWAllGoals object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(placeInsertionPointAtCharIndex:) name:AWPlaceInsertionPointAtCharIndex object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaGaveAction:) name:AWAgdaGaveAction object:nil];
@@ -81,8 +80,6 @@
     
     
     NSDictionary * dict = [AWAgdaParser goalIndexAndRange:self.selectedRange textStorage:self.textStorage];
-//    dict = @{@"goalIndex" : @(goalIndex),
-//             @"foundRange" : NSStringFromRange(result.range)};
     if (dict) {
         _selectedGoal = [[AgdaGoal alloc] init];
         NSRange foundRange = NSRangeFromString(dict[@"foundRange"]);
@@ -312,26 +309,6 @@
 }
 
 
-- (void) showHelp
-{
-    NSRange searchRange = NSMakeRange(0, self.textStorage.length);
-    NSRange foundRange;
-    while (searchRange.location < self.textStorage.length) {
-        searchRange.length = self.textStorage.length - searchRange.location;
-        foundRange = [self.textStorage.string rangeOfString:@"?" options:NSCaseInsensitiveSearch range:searchRange];
-        if (foundRange.location != NSNotFound) {
-            // found an occurrence of the substring!
-            
-            // Show all questionmarks
-            [self showFindIndicatorForRange:foundRange];
-            
-            searchRange.location = foundRange.location + foundRange.length;
-        } else {
-            // no more substring to find
-            break;
-        }
-    }
-}
 
 - (void) agdaGaveAction:(NSNotification *)notification
 {
@@ -356,15 +333,6 @@
         // Parse goals
         NSArray * goals = [AWAgdaParser makeArrayOfGoalsWithSuggestions:notification.object];
         
-        
-//        NSLayoutManager *layoutManager = myTextView.layoutManager; NSRange glyphRange = [layoutManager glyphRangeForBoundingRect: [self.textView visibleRect] inTextContainer: self.textView.textContainer]; NSRange charRange = [layoutManager characterRangeForGlyphRange: glyphRange actualGlyphRange: &glyphRange];
-        
-        // Save current "frame"
-//        NSRect visibleRect = self.visibleRect;
-//        NSLayoutManager * layoutManager = self.layoutManager;
-//        NSRange glyphRange = [layoutManager glyphRangeForBoundingRect:self.visibleRect inTextContainer:self.textContainer];
-//        NSRange charRange = [layoutManager characterRangeForGlyphRange:glyphRange actualGlyphRange:&glyphRange];
-        
         // Add tokens on goals
         int i = 0;
         NSRange searchRange = NSMakeRange(0, self.textStorage.length);
@@ -376,9 +344,18 @@
                 // found an occurrence of the substring!
 
 //                [self addTokenAtRange:foundRange withGoalName:[goals objectAtIndex:i]];
-                NSDictionary * attributes = @{NSBackgroundColorAttributeName : [NSColor lightGrayColor]};
-                NSAttributedString * attrString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"{!%i: %@!}",i ,[goals objectAtIndex:i]] attributes:attributes];
+//                NSDictionary * attributes = @{NSBackgroundColorAttributeName : [NSColor lightGrayColor]};
+    
+                NSAttributedString * attrString = [[NSAttributedString alloc] initWithString:@"{!!}" attributes:nil];
                 [self insertText:attrString replacementRange:NSMakeRange(foundRange.location + 1, foundRange.length - 1)];
+                
+                NSDictionary * goal = [AWAgdaParser goalIndexAndRange:NSMakeRange(foundRange.location + 2, 0) textStorage:self.textStorage];
+                NSInteger index = [goal[@"goalIndex"] integerValue];
+                NSDictionary * goal2 = goals[index];
+                NSInteger goalIndex = [goal2[@"goalIndex"] integerValue];
+                NSString * goalType = goal2[@"goalType"];
+                [self.textStorage replaceCharactersInRange:NSRangeFromString(goal[@"foundRange"]) withString:[NSString stringWithFormat:@"{!%li: %@!}", goalIndex, goalType]];
+                
                 i++;
 
                 searchRange.location = foundRange.location + foundRange.length;
@@ -388,8 +365,18 @@
             }
         }
         
-        // Restore frame
-//        [self scrollRangeToVisible:charRange];
+        // reorder goals
+        NSArray * allRangesOfGoals = [AWAgdaParser allGoalsWithRanges:self.textStorage];
+        [self.textStorage beginEditing];
+        for (NSInteger j = allRangesOfGoals.count - 1; j > 0; j--) {
+            NSRange rangeOfGoal = NSRangeFromString(allRangesOfGoals[j]);
+            NSDictionary * goal = goals[j];
+            
+            [self.textStorage replaceCharactersInRange:rangeOfGoal withString:[NSString stringWithFormat:@"{!%li: %@!}", [goal[@"goalIndex"] integerValue], goal[@"goalType"]]];
+        }
+        [self.textStorage endEditing];
+        
+        
     }
 }
 

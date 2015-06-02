@@ -20,7 +20,7 @@
 }
 
 
-- (IBAction)showHelp:(id)sender;
+
 
 @property IBOutlet AWMainTextView *mainTextView;
 @property IBOutlet NSTextView *lineNumbersView;

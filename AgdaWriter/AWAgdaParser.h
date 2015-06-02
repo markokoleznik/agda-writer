@@ -18,4 +18,5 @@
 +(NSArray *)makeArrayOfActionsAndDeleteActionFromString:(NSMutableString *)reply;
 +(NSDictionary *)goalIndexAndRange:(NSRange)currentSelection textStorage:(NSTextStorage *)textStorage;
 +(NSRange) goalAtIndex: (NSInteger) index textStorage:(NSTextStorage *)textStorage;
++(NSArray *) allGoalsWithRanges:(NSTextStorage *) textStorage;
 @end

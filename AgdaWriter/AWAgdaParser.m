@@ -181,7 +181,12 @@
     for (NSString * goal in goalsArray) {
         NSArray * subGoalArray = [goal componentsSeparatedByString:@" : "];
         if (subGoalArray.count >= 2) {
-            [goalsMutable addObject:subGoalArray[1]];
+            NSString * goalIndex = subGoalArray[0];
+            goalIndex = [goalIndex substringFromIndex:1];
+            NSDictionary * dict = @{@"goalIndex" : @([goalIndex integerValue]),
+                                    @"goalType" : subGoalArray[1]};
+//            [goalsMutable addObject:subGoalArray[1]];
+            [goalsMutable addObject:dict];
         }
     }
     return goalsMutable;
@@ -215,6 +220,24 @@
     }
     return dict;
 }
+
++(NSArray *) allGoalsWithRanges:(NSTextStorage *) textStorage
+{
+    NSMutableArray * goals;
+    NSString * regexPattern = @"(?=(\\{!(?:[^!]|\\{![^!]*!\\})*!\\}))";
+    NSError * error;
+    NSRegularExpression * regex = [[NSRegularExpression alloc] initWithPattern:regexPattern options:NSRegularExpressionAnchorsMatchLines error:&error];
+    NSRange fullRange = NSMakeRange(0, textStorage.string.length);
+    NSArray * matches = [regex matchesInString:textStorage.string options:0 range:fullRange];
+    if (matches) {
+        goals = [[NSMutableArray alloc] initWithCapacity:matches.count];
+    }
+    for (NSTextCheckingResult * result in matches) {
+        [goals addObject:NSStringFromRange([result rangeAtIndex:1])];
+    }
+    return goals;
+}
+
 
 +(NSRange) goalAtIndex: (NSInteger) index textStorage:(NSTextStorage *)textStorage
 {

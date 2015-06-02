@@ -11,7 +11,8 @@
 #import "AWAgdaParser.h"
 
 @implementation AWGoalsTableController {
-    NSArray * items;
+    NSMutableArray * items;
+    NSMutableArray * goalIndexes;
     NSArray * goals;
 }
 
@@ -24,7 +25,14 @@
 - (void)allGoalsAction:(NSNotification *)notification
 {
     // Create array of goals
-    items = [AWAgdaParser makeArrayOfGoalsWithSuggestions:notification.object];
+    items = [[NSMutableArray alloc] init];
+    goalIndexes = [[NSMutableArray alloc] init];
+    NSArray * arrayOfDicts = [AWAgdaParser makeArrayOfGoalsWithSuggestions:notification.object];
+    for (NSDictionary * dict in arrayOfDicts) {
+        [items addObject:dict[@"goalType"]];
+        [goalIndexes addObject:dict[@"goalIndex"]];
+    }
+//    items = [AWAgdaParser makeArrayOfGoalsWithSuggestions:notification.object];
     [self.goalsTable reloadData];
 }
 
@@ -46,7 +54,7 @@
     else if ([tableColumn.identifier isEqualToString:@"GoalNumber"])
     {
         NSTableCellView *result = [tableView makeViewWithIdentifier:@"GoalNumber" owner:self];
-        result.textField.stringValue = [NSString stringWithFormat:@"%li", row];
+        result.textField.stringValue = [goalIndexes objectAtIndex:row];
 
         return result;
     }
@@ -75,24 +83,5 @@
     
 }
 
-//-(NSRange) goalAtIndex: (NSInteger) index textStorage:(NSTextStorage *)textStorage
-//{
-//    NSRange foundRange;
-//    [self.mainTextView showFindIndicatorForRange:foundRange];
-//    // We'll use Regular Expressions to find goals range.
-//    NSString * regexPattern = @"^(?!--).*(\\{![^!]*!\\})";
-//    NSError * error;
-//    NSRegularExpression * regex = [[NSRegularExpression alloc] initWithPattern:regexPattern options:NSRegularExpressionAnchorsMatchLines error:&error];
-//    NSArray * matches = [regex matchesInString:textStorage.string options:0 range:NSMakeRange(0, textStorage.length)];
-//    
-//    if (matches.count > index) {
-//        NSTextCheckingResult * result = [matches objectAtIndex:index];
-//        foundRange = [result rangeAtIndex:1];
-//        [self.mainTextView showFindIndicatorForRange:foundRange];
-//    }
-//    
-//    return foundRange;
-//
-//}
 
 @end
