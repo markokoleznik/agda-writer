@@ -33,6 +33,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showHelp) name:@"showHelp" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allGoalsAction:) name:AWAllGoals object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(placeInsertionPointAtCharIndex:) name:AWPlaceInsertionPointAtCharIndex object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaGaveAction:) name:AWAgdaGaveAction object:nil];
         
         
         initialize = YES;
@@ -70,19 +71,39 @@
     // User wants to know current goals.
     // Find it and, if possible, create it.
     
-//    @property NSInteger goalIndex;
-//    @property NSInteger startCharIndex;
-//    @property NSInteger startRow;
-//    @property NSInteger startColumn;
-//    @property NSInteger endCharIndex;
-//    @property NSInteger endRow;
-//    @property NSInteger endColumn;
-//    @property NSString * content;
+    NSInteger numberOfChars = 0;
+    NSString * string = self.textStorage.string;
     
-    _selectedGoal = [[AgdaGoal alloc] init];
-    NSRange currentSelection = self.selectedRange;
-    _selectedGoal.startCharIndex = currentSelection.location;
-    _selectedGoal.endCharIndex = currentSelection.location + currentSelection.length;
+    
+    
+    // Get all ranges of goals and look if our current selection is in one of them.
+    // From that, we will get goal index
+    
+    
+    NSDictionary * dict = [AWAgdaParser goalIndexAndRange:self.selectedRange textStorage:self.textStorage];
+//    dict = @{@"goalIndex" : @(goalIndex),
+//             @"foundRange" : NSStringFromRange(result.range)};
+    if (dict) {
+        _selectedGoal = [[AgdaGoal alloc] init];
+        NSRange foundRange = NSRangeFromString(dict[@"foundRange"]);
+        _selectedGoal.goalIndex = [dict[@"goalIndex"] integerValue];
+        _selectedGoal.startCharIndex = foundRange.location;
+        _selectedGoal.endCharIndex = foundRange.location + foundRange.length;
+        
+        NSArray * lines = [string componentsSeparatedByString:@"\n"];
+        for (NSInteger i = 0; i < lines.count; i++) {
+            NSString * line = lines[i];
+            if (numberOfChars + line.length >= foundRange.location + foundRange.length) {
+                _selectedGoal.startRow = i + 1;
+                _selectedGoal.endRow = i + 1;
+                _selectedGoal.startColumn = foundRange.location - numberOfChars;
+                _selectedGoal.endColumn = foundRange.location + foundRange.length - numberOfChars;
+                _selectedGoal.content = [string substringWithRange:NSMakeRange(foundRange.location + 2, foundRange.length - 4)];
+                return _selectedGoal;
+            }
+            numberOfChars += line.length + 1;
+        }
+    }
     
     return _selectedGoal;
 }
@@ -312,6 +333,22 @@
     }
 }
 
+- (void) agdaGaveAction:(NSNotification *)notification
+{
+    if ([notification.object isKindOfClass:[NSDictionary class]]) {
+        NSDictionary * action = notification.object;
+        NSInteger goalIndex = [action[@"goalIndex"] integerValue];
+        NSString * content = action[@"content"];
+        if ([content hasPrefix:@"\""] && [content hasSuffix:@"\""]) {
+            content = [content substringWithRange:NSMakeRange(1, content.length - 2)];
+        }
+        
+        // Replace given goal with content that Agda gave.
+        NSLog(@"Agda gave action: goal index: %li, content: %@", goalIndex, content);
+        NSRange rangeOfGoal = [AWAgdaParser goalAtIndex:goalIndex textStorage:self.textStorage];
+        [self.textStorage replaceCharactersInRange:rangeOfGoal withString:content];
+    }
+}
 
 -(void) allGoalsAction:(NSNotification *)notification
 {

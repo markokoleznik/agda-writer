@@ -204,9 +204,8 @@
     NSString * fullPath = [ud objectForKey:@"currentFile"];
     [self saveCurrentWork];
     AgdaGoal * goal = self.mainTextView.selectedGoal;
-//    IOTCM "/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda" NonInteractive Indirect ( Cmd_refine_or_intro False 0 (Range [Interval (Pn (Just (mkAbsolute "/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda")) 172 12 12) (Pn (Just (mkAbsolute "/Users/markokoleznik/Documents/os_x_development/agda-writer/foo.agda")) 173 12 13)]) "x" )
-
-    [self showNotImplementedAlert];
+    NSString * message = [AWAgdaActions actionRefineWithFilePath:fullPath goalIndex:goal.goalIndex startCharIndex:goal.startCharIndex startRow:goal.startRow startColumn:goal.startRow endCharIndex:goal.endCharIndex endRow:goal.endRow endColumn:goal.endColumn content:goal.content];
+    [self.communicator writeDataToAgda:message];
 }
 
 - (IBAction)actionAuto:(NSMenuItem *)sender {

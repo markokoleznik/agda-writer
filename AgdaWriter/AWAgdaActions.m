@@ -187,7 +187,14 @@
 }
 +(void)executeGiveAction:(NSArray *)actions
 {
-    
+    /*
+     
+     "Update the goal OLD-G with the expression in it."
+     
+     */
+    if (actions.count > 1) {
+        [AWNotifications notifyAgdaGaveAction:[actions[0] integerValue] content:actions[1]];
+    }
 }
 
 
