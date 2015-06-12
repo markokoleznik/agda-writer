@@ -22,6 +22,7 @@ NSString * const AWOpenPreferences = @"net.koleznik.openPreferences";
 NSString * const AWAllGoals = @"net.koleznik.allGoals";
 NSString * const AWPossibleAgdaPathFound = @"net.koleznik.possibleAgdaPathFound";
 NSString * const AWPlaceInsertionPointAtCharIndex = @"net.koleznik.placeInsertionPointAtCharIndex";
+NSString * const AWAgdaGaveAction = @"net.koleznik.AgdaGaveAction";
 
 
 
@@ -56,6 +57,12 @@ NSString * const AWPlaceInsertionPointAtCharIndex = @"net.koleznik.placeInsertio
 + (void) notifyAgdaReplied:(NSString *)reply
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:AWAgdaReplied object:reply];
+}
+
++ (void) notifyAgdaGaveAction:(NSInteger)goalIndex content:(NSString *)content
+{
+    NSDictionary * action = @{@"goalIndex" : @(goalIndex), @"content": content};
+    [[NSNotificationCenter defaultCenter] postNotificationName:AWAgdaGaveAction object:action];
 }
 
 + (NSURL *) defaultUrl

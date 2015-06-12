@@ -175,6 +175,79 @@
 #pragma mark -
 #pragma mark Agda Actions
 
+
+- (IBAction)actionLoad:(NSMenuItem *)sender {
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    [self saveCurrentWork];
+    NSString * message = [AWAgdaActions actionLoadWithFilePath:fullPath andIncludeDir:@""];
+    [self.communicator writeDataToAgda:message];
+}
+
+- (IBAction)actionQuitAndRestartAgda:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+- (IBAction)actionQuit:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+#pragma mark -
+
+- (IBAction)actionGive:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+- (IBAction)actionRefine:(NSMenuItem *)sender {
+    
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    [self saveCurrentWork];
+    AgdaGoal * goal = self.mainTextView.selectedGoal;
+    NSString * message = [AWAgdaActions actionRefineWithFilePath:fullPath goalIndex:goal.goalIndex startCharIndex:goal.startCharIndex startRow:goal.startRow startColumn:goal.startRow endCharIndex:goal.endCharIndex endRow:goal.endRow endColumn:goal.endColumn content:goal.content];
+    [self.communicator writeDataToAgda:message];
+}
+
+- (IBAction)actionAuto:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+- (IBAction)actionCase:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+- (IBAction)actionGoalType:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+- (IBAction)actionContextEnvironment:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+- (IBAction)actionGoalTypeAndContext:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+- (IBAction)actionGoalTypeAndInferredType:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+
+- (IBAction)actionComputeNormalForm:(NSMenuItem *)sender {
+    [self showNotImplementedAlert];
+}
+#pragma mark -
+-(void)showNotImplementedAlert
+{
+    NSAlert * alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"I will patiently wait for lazy developer to implement this..."];
+    [alert setMessageText:@"This method is not yet implemented!"];
+    [alert setAlertStyle:NSWarningAlertStyle];
+    if ([alert runModal] == NSAlertFirstButtonReturn) {
+
+    }
+}
+
+
 - (IBAction)writeToAgda:(NSButton *)sender {
     NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
     NSString * fullPath = [ud objectForKey:@"currentFile"];
@@ -465,7 +538,4 @@
 }
 
 
-- (IBAction)showHelp:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"showHelp" object:nil];
-}
 @end

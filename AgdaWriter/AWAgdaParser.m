@@ -181,10 +181,80 @@
     for (NSString * goal in goalsArray) {
         NSArray * subGoalArray = [goal componentsSeparatedByString:@" : "];
         if (subGoalArray.count >= 2) {
-            [goalsMutable addObject:subGoalArray[1]];
+            NSString * goalIndex = subGoalArray[0];
+            goalIndex = [goalIndex substringFromIndex:1];
+            NSDictionary * dict = @{@"goalIndex" : @([goalIndex integerValue]),
+                                    @"goalType" : subGoalArray[1]};
+//            [goalsMutable addObject:subGoalArray[1]];
+            [goalsMutable addObject:dict];
         }
     }
     return goalsMutable;
+}
+
+// Regex to find all the goals:
+// (?=(\{!(?:[^!]|\{![^!]*!\})*!\}))
+// By stribizhev
+// http://stackoverflow.com/questions/30574174/find-range-of-goals-that-arent-in-comments-with-regex
+
++(NSDictionary *)goalIndexAndRange:(NSRange)currentSelection textStorage:(NSTextStorage *)textStorage
+{
+    NSDictionary * dict;
+    NSString * regexPattern = @"(?=(\\{!(?:[^!]|\\{![^!]*!\\})*!\\}))";
+    NSError * error;
+    NSRegularExpression * regex = [[NSRegularExpression alloc] initWithPattern:regexPattern options:NSRegularExpressionAnchorsMatchLines error:&error];
+    NSRange fullRange = NSMakeRange(0, textStorage.string.length);
+    NSArray * matches = [regex matchesInString:textStorage.string options:0 range:fullRange];
+    NSInteger goalIndex = 0;
+    for (NSTextCheckingResult * result in matches) {
+        NSLog(@"selection range: %@, result range: %@", NSStringFromRange(currentSelection),NSStringFromRange([result rangeAtIndex:1]));
+        if (currentSelection.location > [result rangeAtIndex:1].location && (currentSelection.location + currentSelection.length) < ([result rangeAtIndex:1].location + [result rangeAtIndex:1].length)) {
+            // we found appropriate result
+            // Convert NSRange to string
+            
+            dict = @{@"goalIndex" : @(goalIndex),
+                     @"foundRange" : NSStringFromRange([result rangeAtIndex:1])};
+            return dict;
+        }
+        goalIndex ++;
+    }
+    return dict;
+}
+
++(NSArray *) allGoalsWithRanges:(NSTextStorage *) textStorage
+{
+    NSMutableArray * goals;
+    NSString * regexPattern = @"(?=(\\{!(?:[^!]|\\{![^!]*!\\})*!\\}))";
+    NSError * error;
+    NSRegularExpression * regex = [[NSRegularExpression alloc] initWithPattern:regexPattern options:NSRegularExpressionAnchorsMatchLines error:&error];
+    NSRange fullRange = NSMakeRange(0, textStorage.string.length);
+    NSArray * matches = [regex matchesInString:textStorage.string options:0 range:fullRange];
+    if (matches) {
+        goals = [[NSMutableArray alloc] initWithCapacity:matches.count];
+    }
+    for (NSTextCheckingResult * result in matches) {
+        [goals addObject:NSStringFromRange([result rangeAtIndex:1])];
+    }
+    return goals;
+}
+
+
++(NSRange) goalAtIndex: (NSInteger) index textStorage:(NSTextStorage *)textStorage
+{
+    NSRange foundRange;
+    // We'll use Regular Expressions to find goals range.
+    NSString * regexPattern = @"(?=(\\{!(?:[^!]|\\{![^!]*!\\})*!\\}))";
+    NSError * error;
+    NSRegularExpression * regex = [[NSRegularExpression alloc] initWithPattern:regexPattern options:NSRegularExpressionAnchorsMatchLines error:&error];
+    NSArray * matches = [regex matchesInString:textStorage.string options:0 range:NSMakeRange(0, textStorage.length)];
+    
+    if (matches.count > index) {
+        NSTextCheckingResult * result = [matches objectAtIndex:index];
+        foundRange = [result rangeAtIndex:1];
+    }
+    
+    return foundRange;
+    
 }
 
 @end

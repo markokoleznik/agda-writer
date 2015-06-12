@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
 @interface AWAgdaParser : NSObject
 
@@ -15,4 +16,7 @@
 +(NSArray *)makeArrayOfActions:(NSString *)reply;
 +(NSArray *)makeArrayOfGoalsWithSuggestions:(NSString *)goals;
 +(NSArray *)makeArrayOfActionsAndDeleteActionFromString:(NSMutableString *)reply;
++(NSDictionary *)goalIndexAndRange:(NSRange)currentSelection textStorage:(NSTextStorage *)textStorage;
++(NSRange) goalAtIndex: (NSInteger) index textStorage:(NSTextStorage *)textStorage;
++(NSArray *) allGoalsWithRanges:(NSTextStorage *) textStorage;
 @end

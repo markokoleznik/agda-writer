@@ -11,17 +11,19 @@
 #import "AWCommunitacion.h"
 #import "AWAgdaActions.h"
 #import "AWToastWindow.h"
+#import "AWMainTextView.h"
+
+@class AgdaGoal;
 
 
-//@interface AWMainWindow : NSWindow <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate, NSTableViewDataSource, NSTableViewDelegate>{
 @interface AWMainWindow : NSWindow <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate, NSTableViewDataSource, NSTableViewDelegate>{
     
 }
 
 
-- (IBAction)showHelp:(id)sender;
 
-@property IBOutlet NSTextView *mainTextView;
+
+@property IBOutlet AWMainTextView *mainTextView;
 @property IBOutlet NSTextView *lineNumbersView;
 @property (weak) IBOutlet NSTextField *agdaVersion;
 @property BOOL isHelperWindowOpened;
@@ -36,6 +38,29 @@
 
 - (IBAction)AddToken:(NSButton *)sender;
 
+#pragma mark -
+#pragma mark Global actions
+
+    // Global actions
+- (IBAction)actionLoad:(NSMenuItem *)sender;
+- (IBAction)actionQuitAndRestartAgda:(NSMenuItem *)sender;
+- (IBAction)actionQuit:(NSMenuItem *)sender;
+    // Goal specific actions
+#pragma mark Goal specific actions
+- (IBAction)actionGive:(NSMenuItem *)sender;
+- (IBAction)actionRefine:(NSMenuItem *)sender;
+- (IBAction)actionAuto:(NSMenuItem *)sender;
+- (IBAction)actionCase:(NSMenuItem *)sender;
+- (IBAction)actionGoalType:(NSMenuItem *)sender;
+- (IBAction)actionContextEnvironment:(NSMenuItem *)sender;
+- (IBAction)actionGoalTypeAndContext:(NSMenuItem *)sender;
+- (IBAction)actionGoalTypeAndInferredType:(NSMenuItem *)sender;
+- (IBAction)actionComputeNormalForm:(NSMenuItem *)sender;
+#pragma mark -
+
+
+
+
 - (IBAction)writeToAgda:(NSButton *)sender;
 - (IBAction)autoAction:(NSButton *)sender;
 - (IBAction)loadAction:(NSButton *)sender;
@@ -45,12 +70,5 @@
 - (IBAction)saveAs:(id)sender;
 - (IBAction)doOpen:(id)sender;
 
-//- (IBAction)copy:sender;
-//- (IBAction)paste:sender;
-
-@property (nonatomic, strong) __block NSTask *buildTask;
-@property (nonatomic) BOOL isRunning;
-@property (nonatomic, strong) NSPipe *outputPipe;
-@property (nonatomic, strong) NSPipe *inputPipe;
 
 @end

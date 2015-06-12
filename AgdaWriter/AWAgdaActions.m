@@ -62,6 +62,8 @@
 #pragma mark Agda Actions
 #pragma mark -
 
+// https://github.com/banacorn/agda-mode/wiki/List-of-interactions
+
 +(void)executeAction:(NSDictionary *)action
 {
     for (NSString * key in [action allKeys]) {
@@ -185,7 +187,14 @@
 }
 +(void)executeGiveAction:(NSArray *)actions
 {
-    
+    /*
+     
+     "Update the goal OLD-G with the expression in it."
+     
+     */
+    if (actions.count > 1) {
+        [AWNotifications notifyAgdaGaveAction:[actions[0] integerValue] content:actions[1]];
+    }
 }
 
 
