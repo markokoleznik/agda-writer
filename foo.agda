@@ -9,5 +9,4 @@ module Foo where
   g x = x
 
   id : bool → bool
-  id false = ?
-  id true = ?
+  id x = {!0: bool!}
