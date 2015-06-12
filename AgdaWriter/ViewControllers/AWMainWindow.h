@@ -14,7 +14,7 @@
 
 
 //@interface AWMainWindow : NSWindow <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate, NSTableViewDataSource, NSTableViewDelegate>{
-@interface AWMainWindow : NSWindow <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate>{
+@interface AWMainWindow : NSWindow <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate, NSTableViewDataSource, NSTableViewDelegate>{
     
 }
 
@@ -28,6 +28,8 @@
 @property AWPopupAlertViewController * helperView;
 @property AWCommunitacion * communicator;
 @property AWToastWindow * toastView;
+@property (weak) IBOutlet NSTextField *lastStatusTextField;
+
 
 
 - (IBAction)hideOutputs:(id)sender;

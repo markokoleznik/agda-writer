@@ -14,6 +14,10 @@
 -(void)awakeFromNib
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaBufferDataAvaliable:) name:AWAgdaBufferDataAvaliable object:nil];
+    
+    
+    
+    
 }
 
 -(void)agdaBufferDataAvaliable:(NSNotification *)notification
@@ -25,6 +29,7 @@
         [self.textStorage beginEditing];
         [[self.textStorage mutableString] appendString:reply];
         [self.textStorage endEditing];
+        [self scrollToEndOfDocument:nil];
     }
 }
 

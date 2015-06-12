@@ -149,7 +149,7 @@
      
      */
     
-    // NOTE: no highlighting yes, just delete the file
+    // NOTE: no highlighting yet, just delete the file
     
     NSError * error;
     NSString * filePath = [actions objectAtIndex:0];

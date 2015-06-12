@@ -8,24 +8,32 @@
 
 #import "AWOutputTextView.h"
 #import "AWNotifications.h"
+#import "AWAgdaParser.h"
 
 @implementation AWOutputTextView
 
 -(void)awakeFromNib
 {
     // Add observer for Agda replies:
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaReplied:) name:AWAgdaReplied object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allGoalsAction:) name:AWAllGoals object:nil];
 
 }
 
-- (void)agdaReplied:(NSNotification *)notification
+- (void)allGoalsAction:(NSNotification *)notification
 {
+    
     NSString *reply = notification.object;
-    NSMutableAttributedString * replyAttributed = [[NSMutableAttributedString alloc] initWithString:reply];
-    NSLog(@"Agda replied: \n%@", reply);
+    NSArray * goals = [AWAgdaParser makeArrayOfGoalsWithSuggestions:notification.object];
+    NSMutableAttributedString * replyAttributed = [[NSMutableAttributedString alloc] initWithString:[reply stringByAppendingString:@"\n"]];
     [self.textStorage beginEditing];
-    [self.textStorage appendAttributedString:replyAttributed];
+    [self.textStorage setAttributedString:[[NSAttributedString alloc] initWithString:@""]];
+    for (NSString * goal in goals) {
+        
+        [self.textStorage appendAttributedString:[[NSAttributedString alloc] initWithString:[goal stringByAppendingString:@"\n"]]];
+    }
+//    [self.textStorage setAttributedString:replyAttributed];
     [self.textStorage endEditing];
+    [self scrollToEndOfDocument:nil];
 }
 
 -(void) dealloc
