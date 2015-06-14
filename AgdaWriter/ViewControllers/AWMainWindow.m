@@ -318,6 +318,7 @@
 
 }
 
+
 - (IBAction)giveAction:(NSButton *)sender {
     NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
     NSString * fullPath = [ud objectForKey:@"currentFile"];
