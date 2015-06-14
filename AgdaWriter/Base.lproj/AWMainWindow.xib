@@ -8,16 +8,12 @@
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-<<<<<<< HEAD
-        <customObject id="Yrb-pj-ZVv" customClass="AWGoalsTableView"/>
-=======
         <customObject id="ShF-po-72s" customClass="AWGoalsTableController">
             <connections>
                 <outlet property="goalsTable" destination="Ve8-Xf-VdH" id="gqY-ui-5JS"/>
                 <outlet property="mainTextView" destination="O95-wS-29x" id="3Zz-tE-DXZ"/>
             </connections>
         </customObject>
->>>>>>> origin/master
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
@@ -417,21 +413,6 @@
                                         <subviews>
                                             <scrollView autohidesScrollers="YES" horizontalLineScroll="44" horizontalPageScroll="10" verticalLineScroll="44" verticalPageScroll="10" translatesAutoresizingMaskIntoConstraints="NO" id="IdA-Ow-DKJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="370" height="237"/>
-<<<<<<< HEAD
-                                                <clipView key="contentView" id="KW6-1m-u32">
-                                                    <rect key="frame" x="1" y="17" width="238" height="117"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <subviews>
-                                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="23" headerView="spW-gP-BTi" viewBased="YES" id="Ve8-Xf-VdH" customClass="AWGoalsTableView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="238" height="117"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <size key="intercellSpacing" width="20" height="4"/>
-                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
-                                                            <tableColumns>
-                                                                <tableColumn identifier="GoalNumber" width="30" minWidth="25" maxWidth="100" id="9qd-rT-Dw7">
-                                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Goal Number">
-=======
                                                 <clipView key="contentView" drawsBackground="NO" id="KW6-1m-u32">
                                                     <rect key="frame" x="1" y="17" width="238" height="117"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -446,7 +427,6 @@
                                                             <tableColumns>
                                                                 <tableColumn identifier="GoalNumber" width="30" minWidth="25" maxWidth="100" id="9qd-rT-Dw7">
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Goal Number">
->>>>>>> origin/master
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -464,11 +444,7 @@
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1gl-sD-Qst">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="17"/>
-<<<<<<< HEAD
-                                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="wMX-cE-kgD">
-=======
                                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" id="wMX-cE-kgD">
->>>>>>> origin/master
                                                                                         <font key="font" metaFont="system"/>
                                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -481,21 +457,13 @@
                                                                         </tableCellView>
                                                                     </prototypeCellViews>
                                                                 </tableColumn>
-<<<<<<< HEAD
-                                                                <tableColumn identifier="GoalType" width="300" minWidth="300" maxWidth="1000" id="qUf-59-va7">
-=======
                                                                 <tableColumn identifier="GoalType" width="1000" minWidth="1000" maxWidth="10000" id="qUf-59-va7">
->>>>>>> origin/master
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Goal Type">
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                     </tableHeaderCell>
-<<<<<<< HEAD
-                                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="PG4-ao-wzg">
-=======
                                                                     <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" usesSingleLineMode="YES" id="PG4-ao-wzg">
->>>>>>> origin/master
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -503,11 +471,7 @@
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView id="eF2-j5-LyT">
-<<<<<<< HEAD
-                                                                            <rect key="frame" x="54" y="1" width="300" height="17"/>
-=======
                                                                             <rect key="frame" x="60" y="2" width="1000" height="17"/>
->>>>>>> origin/master
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField identifier="GoalType" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YiM-Wf-F69">
@@ -527,21 +491,12 @@
                                                                 </tableColumn>
                                                             </tableColumns>
                                                             <connections>
-<<<<<<< HEAD
-                                                                <outlet property="dataSource" destination="Yrb-pj-ZVv" id="VgS-Us-1g4"/>
-                                                                <outlet property="delegate" destination="Yrb-pj-ZVv" id="Dkh-6q-nTC"/>
-                                                            </connections>
-                                                        </tableView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-=======
                                                                 <outlet property="dataSource" destination="ShF-po-72s" id="9Tf-im-phl"/>
                                                                 <outlet property="delegate" destination="ShF-po-72s" id="TPo-QZ-QlC"/>
                                                             </connections>
                                                         </tableView>
                                                     </subviews>
                                                     <nil key="backgroundColor"/>
->>>>>>> origin/master
                                                 </clipView>
                                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="b0R-7Y-1gd">
                                                     <rect key="frame" x="1" y="119" width="223" height="15"/>

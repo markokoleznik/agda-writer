@@ -334,7 +334,6 @@
         // Parse goals
         NSArray * goals = [AWAgdaParser makeArrayOfGoalsWithSuggestions:notification.object];
         
-
         // Add tokens on goals
         int i = 0;
         NSRange searchRange = NSMakeRange(0, self.textStorage.length);
@@ -345,9 +344,7 @@
             if (foundRange.location != NSNotFound) {
                 // found an occurrence of the substring!
 
-                NSDictionary * attributes = @{NSBackgroundColorAttributeName : [NSColor lightGrayColor]};
-                NSAttributedString * attrString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"{!%i: %@!}",i ,[goals objectAtIndex:i]] attributes:attributes];
-                [self insertText:attrString replacementRange:NSMakeRange(foundRange.location + 1, foundRange.length - 1)];
+//                [self addTokenAtRange:foundRange withGoalName:[goals objectAtIndex:i]];
 //                NSDictionary * attributes = @{NSBackgroundColorAttributeName : [NSColor lightGrayColor]};
     
                 NSAttributedString * attrString = [[NSAttributedString alloc] initWithString:@"{!!}" attributes:nil];
@@ -359,6 +356,7 @@
                 NSInteger goalIndex = [goal2[@"goalIndex"] integerValue];
                 NSString * goalType = goal2[@"goalType"];
                 [self.textStorage replaceCharactersInRange:NSRangeFromString(goal[@"foundRange"]) withString:[NSString stringWithFormat:@"{!%li: %@!}", goalIndex, goalType]];
+                
                 i++;
 
                 searchRange.location = foundRange.location + foundRange.length;
@@ -367,9 +365,7 @@
                 break;
             }
         }
-
-        // Restore frame
-//        [self scrollRangeToVisible:charRange];
+        
         // reorder goals
         NSArray * allRangesOfGoals = [AWAgdaParser allGoalsWithRanges:self.textStorage];
         [self.textStorage beginEditing];
@@ -380,7 +376,8 @@
             [self.textStorage replaceCharactersInRange:rangeOfGoal withString:[NSString stringWithFormat:@"{!%li: %@!}", [goal[@"goalIndex"] integerValue], goal[@"goalType"]]];
         }
         [self.textStorage endEditing];
-
+        
+        
     }
 }
 
