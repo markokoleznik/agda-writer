@@ -11,7 +11,11 @@ module Foo where
   g x = x
 
   id : bool → bool
+<<<<<<< HEAD
   id x = {!x!}
 
 -- fsjidogofd
 -- fsdgds
+=======
+  id x = {!0: bool!}
+>>>>>>> origin/master

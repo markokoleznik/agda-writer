@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D52D6D081B09F778006554E0 /* Agda_Writer_Parser_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D52D6D071B09F778006554E0 /* Agda_Writer_Parser_Tests.m */; };
 		D52D6D0F1B0A0589006554E0 /* todos in Resources */ = {isa = PBXBuildFile; fileRef = D52D6D0E1B0A0589006554E0 /* todos */; };
+		D54076661B1A467C004E8D7B /* AWGoalsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D54076651B1A467C004E8D7B /* AWGoalsTableView.m */; };
 		D54AAE041AF012760022445F /* AWAgdaBufferWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D54AAE031AF012760022445F /* AWAgdaBufferWindow.m */; };
 		D54AAE0E1AF0E67F0022445F /* ok_sign.png in Resources */ = {isa = PBXBuildFile; fileRef = D54AAE0D1AF0E67F0022445F /* ok_sign.png */; };
 		D55772F01A73AF5C00EEF94B /* AWNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = D55772EF1A73AF5C00EEF94B /* AWNotifications.m */; };
@@ -59,6 +60,8 @@
 		D52D6D061B09F778006554E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D52D6D071B09F778006554E0 /* Agda_Writer_Parser_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Agda_Writer_Parser_Tests.m; sourceTree = "<group>"; };
 		D52D6D0E1B0A0589006554E0 /* todos */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todos; sourceTree = "<group>"; };
+		D54076641B1A467C004E8D7B /* AWGoalsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWGoalsTableView.h; path = ViewControllers/Helpers/AWGoalsTableView.h; sourceTree = "<group>"; };
+		D54076651B1A467C004E8D7B /* AWGoalsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWGoalsTableView.m; path = ViewControllers/Helpers/AWGoalsTableView.m; sourceTree = "<group>"; };
 		D54AAE021AF012760022445F /* AWAgdaBufferWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWAgdaBufferWindow.h; path = ViewControllers/AWAgdaBufferWindow.h; sourceTree = "<group>"; };
 		D54AAE031AF012760022445F /* AWAgdaBufferWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWAgdaBufferWindow.m; path = ViewControllers/AWAgdaBufferWindow.m; sourceTree = "<group>"; };
 		D54AAE0D1AF0E67F0022445F /* ok_sign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok_sign.png; sourceTree = "<group>"; };
@@ -508,6 +511,7 @@
 				D583562B19EEEEC4009534C1 /* AppDelegate.m in Sources */,
 				D55773091A73D89100EEF94B /* PrefrencesController.m in Sources */,
 				D55772F01A73AF5C00EEF94B /* AWNotifications.m in Sources */,
+				D54076661B1A467C004E8D7B /* AWGoalsTableView.m in Sources */,
 				D5A7B8131AFA3F9600E6DE11 /* AWHelper.m in Sources */,
 				D56A16FD1A84E4E700AC82DB /* AWMainSplitView.m in Sources */,
 				D55C211E1A766F110005D33A /* AWPopupAlertViewController.m in Sources */,

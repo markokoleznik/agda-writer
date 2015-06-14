@@ -15,6 +15,7 @@
 
 @class AgdaGoal;
 
+
 @interface AWMainWindow : NSWindow <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate, NSTableViewDataSource, NSTableViewDelegate>{
     
 }

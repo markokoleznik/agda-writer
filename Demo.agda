@@ -66,7 +66,7 @@ data Bool : Set where
 _∧_ : Bool → Bool → Bool
 x ∧ y = {!1: Bool!}
  
--- A type for natural numbers
+-- A type for natural numbers 
  
 data ℕ : Set where
   zero : ℕ
@@ -81,9 +81,13 @@ data ℕ : Set where
 -- Addition, equality and strict order of naturals
  
 _+_ : ℕ → ℕ → ℕ
-x + y = ?
+x + y = {!2: ℕ!}
 _==_ : ℕ → ℕ → Bool
+<<<<<<< HEAD
 x == y = {!2: Bool!}
+=======
+x == y = {!3: Bool!}
+>>>>>>> origin/master
  
 _<_ : ℕ → ℕ → Bool
 x < zero = false
@@ -101,13 +105,22 @@ infixr 5 _::_
 -- Concatenation of lists
  
 _++_ : ∀ {A} → List A → List A → List A
+<<<<<<< HEAD
 xs ++ ys = {!3: List .A!}
+=======
+xs ++ ys = {!4: List .A!}
+>>>>>>> origin/master
  
 -- Custom static analysis: lists of a given length
  
 data List# (A : Set) : ℕ → Set where
+<<<<<<< HEAD
   [] : List# A {!4: ℕ!}
   _:::_ : ∀ {n} → A → List# A {!5: ℕ!} → List# A {!6: ℕ!}
+=======
+  [] : List# A {!5: ℕ!}
+  _:::_ : ∀ {n} → A → List# A {!6: ℕ!} → List# A {!7: ℕ!}
+>>>>>>> origin/master
  
 infixr 5 _:::_
  
@@ -115,7 +128,11 @@ infixr 5 _:::_
 -- (Note, we can cut-and-paste the code!)
  
 _+++_ : ∀ {A m n} → List# A m → List# A n → List# A (m + n)
+<<<<<<< HEAD
 xs +++ ys = {!7: List# .A (.m + .n)!}
+=======
+xs +++ ys = {!8: List# .A (.m + .n)!}
+>>>>>>> origin/master
  
 -- Type for unit tests
 -- ok has type [ b ] whenever b evaluates to true
@@ -126,6 +143,7 @@ data [_] : Bool → Set where
 -- Example unit tests
  
 test₁ : [ ¬ (1 < 1) ]
+<<<<<<< HEAD
 test₁ = {!8: [ ¬ (1 < 1) ]!}
  
 test₂ : [ ¬ (2 < 2) ]
@@ -133,11 +151,24 @@ test₂ = {!9: [ ¬ (2 < 2) ]!}
  
 test₃ : [ ¬ (3 < 3) ]
 test₃ = {!10: [ ¬ (3 < 3) ]!}
+=======
+test₁ = {!9: [ ¬ (1 < 1) ]!}
+ 
+test₂ : [ ¬ (2 < 2) ]
+test₂ = {!10: [ ¬ (2 < 2) ]!}
+
+test₃ : [ ¬ (3 < 3) ]
+test₃ = {!11: [ ¬ (3 < 3) ]!}
+>>>>>>> origin/master
  
 -- Example exhaustive test
  
 <asym : ∀ x → [ ¬ (x < x) ]
+<<<<<<< HEAD
 <asym x = {!11: [ ¬ (x < x) ]!}
+=======
+<asym x = {!12: [ ¬ (x < x) ]!}
+>>>>>>> origin/master
  
 -- Example of the use of custom static analysis
 -- Indexing of lists (requires a Maybe type)
@@ -145,7 +176,7 @@ test₃ = {!10: [ ¬ (3 < 3) ]!}
 data Maybe (A : Set) : Set where
   just : A → Maybe A
   nothing : Maybe A
-   
+
  
 _==?_ : Maybe ℕ → Maybe ℕ → Bool
 nothing ==? nothing = true
@@ -154,25 +185,44 @@ just x  ==? just y  = x == y
 just x  ==? nothing = false
  
 index? : ∀ {A} → List A → ℕ → Maybe A
+<<<<<<< HEAD
 index? xs n = {!12: Maybe .A!}
+=======
+index? xs n = {!13: Maybe .A!}
+>>>>>>> origin/master
  
 -- Unit tests
  
 test₄ : [ index? (3 :: 5 :: 7 :: 9 :: []) 2 ==? just 7 ]
+<<<<<<< HEAD
 test₄ = {!13: [ index? (3 :: 5 :: 7 :: 9 :: []) 2 ==? just 7 ]!}
  
 test₅ : [ index? (3 :: 5 :: 7 :: 9 :: []) 5 ==? nothing ]
 test₅ = {!14: [ index? (3 :: 5 :: 7 :: 9 :: []) 5 ==? nothing ]!}
+=======
+test₄ = {!14: [ index? (3 :: 5 :: 7 :: 9 :: []) 2 ==? just 7 ]!}
+ 
+test₅ : [ index? (3 :: 5 :: 7 :: 9 :: []) 5 ==? nothing ]
+test₅ = {!15: [ index? (3 :: 5 :: 7 :: 9 :: []) 5 ==? nothing ]!}
+>>>>>>> origin/master
  
 -- Indexing of sized lists (no Maybe type!)
  
 index : ∀ {A m} → List# A m → ∀ n → [ n < m ] → A
+<<<<<<< HEAD
 index xs n n<m = {!15: .A!}
+=======
+index xs n n<m = {!16: .A!}
+>>>>>>> origin/master
  
 -- Unit tests
  
 test₆ : [ index (3 ::: 5 ::: 7 ::: 9 ::: []) 2 ok == 7 ]
+<<<<<<< HEAD
 test₆ = {!16: [ index (3 ::: _106) 2 _108 == 7 ]!}
+=======
+test₆ = {!17: [ index (3 ::: _107) 2 _109 == 7 ]!}
+>>>>>>> origin/master
  
 -- doesn't-typecheck : [ index (3 ::: 5 ::: 7 ::: 9 ::: []) 5 ok == 13 ]
 -- doesn't-typecheck = ok

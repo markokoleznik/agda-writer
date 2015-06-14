@@ -15,7 +15,6 @@
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaBufferDataAvaliable:) name:AWAgdaBufferDataAvaliable object:nil];
     
-    
     [self.textStorage setFont:[NSFont systemFontOfSize:16.0]];
     
 }
