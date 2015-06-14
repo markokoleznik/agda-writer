@@ -27,6 +27,8 @@
 @property NSInteger endCharIndex;
 @property NSInteger endRow;
 @property NSInteger endColumn;
+@property NSInteger numberOfEmptySpaces;
+@property NSRange rangeOfCurrentLine;
 @property NSString * content;
 
 @end

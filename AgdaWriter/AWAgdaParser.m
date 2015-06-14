@@ -271,6 +271,8 @@
                 parsedAction = [parsedAction substringToIndex:parsedAction.length - 1];
             }
             
+//            parsedAction = [parsedAction stringByAppendingString:@"\n"];
+            
             [actions addObject:parsedAction];
         }
         

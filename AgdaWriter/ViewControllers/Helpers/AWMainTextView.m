@@ -10,6 +10,7 @@
 #import "AWNotifications.h"
 #import "CustomTokenCell.h"
 #import "AWAgdaParser.h"
+#import "AWHelper.h"
 
 @implementation AgdaGoal
 
@@ -97,8 +98,22 @@
                 _selectedGoal.startColumn = foundRange.location - numberOfChars;
                 _selectedGoal.endColumn = foundRange.location + foundRange.length - numberOfChars;
                 _selectedGoal.content = [string substringWithRange:NSMakeRange(foundRange.location + 2, foundRange.length - 4)];
+                
+                // Compute number of empty spaces in this line
+                // i.e. where code begins, indentation if you prefer :)
+                NSInteger numberOfWhiteSpaces = 0;
+                for (NSInteger j = 0; j < line.length; j++) {
+                    if ([line characterAtIndex:j] != ' ') {
+                        numberOfWhiteSpaces = j;
+                        _selectedGoal.numberOfEmptySpaces = j;
+                        _selectedGoal.rangeOfCurrentLine = NSMakeRange(numberOfChars - 1, line.length + 1);
+                        break;
+                    }
+                }
+                
                 return _selectedGoal;
             }
+            
             numberOfChars += line.length + 1;
         }
     }
@@ -381,6 +396,14 @@
     }
 }
 
+-(NSString *) whitespaces:(NSInteger) n {
+    NSMutableString * whiteSpaces = [NSMutableString new];
+    for (NSInteger i = 0; i < n; i++) {
+        [whiteSpaces appendString:@" "];
+    }
+    return whiteSpaces;
+}
+
 -(void)makeCaseAction:(NSNotification *) notification
 {
     if ([notification.object isKindOfClass:[NSString class]]) {
@@ -389,19 +412,18 @@
         if (actions.count > 0) {
             AgdaGoal * currentGoal = self.lastSelectedGoal;
             if (currentGoal) {
-                NSInteger numberOfSpaces = 0;
-                NSArray * lines = [self.textStorage.string componentsSeparatedByString:@"\n"];
-                if (lines.count > currentGoal.startRow) {
-                    NSString * line = lines[currentGoal.startRow - 1];
-                    for (int i = 0; i < line.length; i++) {
-                        if ([line characterAtIndex:i] != ' ') {
-                            numberOfSpaces = i;
-                            break;
-                        }
-                    }
+                // Replace old line with new one
+                [self.textStorage replaceCharactersInRange:currentGoal.rangeOfCurrentLine withString:@""];
+                
+                NSMutableString * caseActionString = [NSMutableString new];
+                [caseActionString appendString:@"\n"];
+                for (NSInteger i = 0; i < actions.count; i++) {
+                    [caseActionString appendString:[self whitespaces:currentGoal.numberOfEmptySpaces]];
+                    [caseActionString appendString:actions[i]];
+                    [caseActionString appendString:@"\n"];
                 }
-                NSRange rangeOfGoal = [AWAgdaParser goalAtIndex:currentGoal.goalIndex textStorage:self.textStorage];
-                [self.textStorage replaceCharactersInRange:rangeOfGoal withString:actions[0]];
+                [self.textStorage insertAttributedString:[[NSAttributedString alloc] initWithString:caseActionString attributes:@{NSFontAttributeName: [AWHelper defaultFontInAgda]}] atIndex:currentGoal.rangeOfCurrentLine.location - 2  + currentGoal.numberOfEmptySpaces];
+               
             }
             
             
