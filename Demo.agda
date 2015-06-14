@@ -61,10 +61,10 @@ data Bool : Set where
 -- Negation and conjunction of booleans?
  
 ¬ : Bool → Bool
-¬ x = ?
+¬ x = {!0: Bool!}
  
 _∧_ : Bool → Bool → Bool
-x ∧ y = ?
+x ∧ y = {!1: Bool!}
  
 -- A type for natural numbers
  
@@ -83,7 +83,7 @@ data ℕ : Set where
 _+_ : ℕ → ℕ → ℕ
 x + y = ?
 _==_ : ℕ → ℕ → Bool
-x == y = ?
+x == y = {!2: Bool!}
  
 _<_ : ℕ → ℕ → Bool
 x < zero = false
@@ -101,13 +101,13 @@ infixr 5 _::_
 -- Concatenation of lists
  
 _++_ : ∀ {A} → List A → List A → List A
-xs ++ ys = ?
+xs ++ ys = {!3: List .A!}
  
 -- Custom static analysis: lists of a given length
  
 data List# (A : Set) : ℕ → Set where
-  [] : List# A ?
-  _:::_ : ∀ {n} → A → List# A ? → List# A ?
+  [] : List# A {!4: ℕ!}
+  _:::_ : ∀ {n} → A → List# A {!5: ℕ!} → List# A {!6: ℕ!}
  
 infixr 5 _:::_
  
@@ -115,7 +115,7 @@ infixr 5 _:::_
 -- (Note, we can cut-and-paste the code!)
  
 _+++_ : ∀ {A m n} → List# A m → List# A n → List# A (m + n)
-xs +++ ys = ?
+xs +++ ys = {!7: List# .A (.m + .n)!}
  
 -- Type for unit tests
 -- ok has type [ b ] whenever b evaluates to true
@@ -126,18 +126,18 @@ data [_] : Bool → Set where
 -- Example unit tests
  
 test₁ : [ ¬ (1 < 1) ]
-test₁ = ?
+test₁ = {!8: [ ¬ (1 < 1) ]!}
  
 test₂ : [ ¬ (2 < 2) ]
-test₂ = ?
+test₂ = {!9: [ ¬ (2 < 2) ]!}
  
 test₃ : [ ¬ (3 < 3) ]
-test₃ = ?
+test₃ = {!10: [ ¬ (3 < 3) ]!}
  
 -- Example exhaustive test
  
 <asym : ∀ x → [ ¬ (x < x) ]
-<asym x = ?
+<asym x = {!11: [ ¬ (x < x) ]!}
  
 -- Example of the use of custom static analysis
 -- Indexing of lists (requires a Maybe type)
@@ -154,25 +154,25 @@ just x  ==? just y  = x == y
 just x  ==? nothing = false
  
 index? : ∀ {A} → List A → ℕ → Maybe A
-index? xs n = ?
+index? xs n = {!12: Maybe .A!}
  
 -- Unit tests
  
 test₄ : [ index? (3 :: 5 :: 7 :: 9 :: []) 2 ==? just 7 ]
-test₄ = ?
+test₄ = {!13: [ index? (3 :: 5 :: 7 :: 9 :: []) 2 ==? just 7 ]!}
  
 test₅ : [ index? (3 :: 5 :: 7 :: 9 :: []) 5 ==? nothing ]
-test₅ = ?
+test₅ = {!14: [ index? (3 :: 5 :: 7 :: 9 :: []) 5 ==? nothing ]!}
  
 -- Indexing of sized lists (no Maybe type!)
  
 index : ∀ {A m} → List# A m → ∀ n → [ n < m ] → A
-index xs n n<m = ?
+index xs n n<m = {!15: .A!}
  
 -- Unit tests
  
 test₆ : [ index (3 ::: 5 ::: 7 ::: 9 ::: []) 2 ok == 7 ]
-test₆ = ?
+test₆ = {!16: [ index (3 ::: _106) 2 _108 == 7 ]!}
  
 -- doesn't-typecheck : [ index (3 ::: 5 ::: 7 ::: 9 ::: []) 5 ok == 13 ]
 -- doesn't-typecheck = ok

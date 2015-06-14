@@ -1,3 +1,5 @@
+
+
 module Foo where
   data bool : Set where
     false : bool
@@ -9,5 +11,7 @@ module Foo where
   g x = x
 
   id : bool → bool
-  id false = ?
-  id true = ?
+  id x = {!x!}
+
+-- fsjidogofd
+-- fsdgds
