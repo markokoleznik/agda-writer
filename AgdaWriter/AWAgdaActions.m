@@ -8,6 +8,8 @@
 
 #import "AWAgdaActions.h"
 #import "AWNotifications.h"
+#import "AWToastWindow.h"
+#import "AWAgdaParser.h"
 
 
 @implementation AWAgdaActions
@@ -38,15 +40,15 @@
 }
 +(NSString *)actionGoalTypeWithFilePath:(NSString *)filePath goalIndex:(NSInteger)goalIndex
 {
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_goal_type Simplified %li noRange "" )", filePath, goalIndex];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_goal_type Simplified %li noRange \"\" )", filePath, goalIndex];
 }
 +(NSString *)actionContextWithFilePath:(NSString *)filePath goalIndex:(NSInteger)goalIndex
 {
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_context Simplified %li noRange "" )", filePath, goalIndex];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_context Simplified %li noRange \"\" )", filePath, goalIndex];
 }
 +(NSString *)actionGoalTypeAndContextWithFilePath:(NSString *)filePath goalIndex:(NSInteger)goalIndex
 {
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_goal_type_context Simplified %li noRange "" )", filePath, goalIndex];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_goal_type_context Simplified %li noRange \"\" )", filePath, goalIndex];
 }
 +(NSString *)actionGoalTypeAndInferredTypeWithFilePath:(NSString *)filePath goalIndex:(NSInteger)goalIndex content:(NSString *)content
 {
@@ -93,6 +95,10 @@
         {
             [self executeGiveAction:actions];
         }
+        else if ([key isEqualToString:@"agda2-make-case-action"])
+        {
+            [self executeMakeCaseAction:actions];
+        }
 
 
     }
@@ -125,14 +131,42 @@
         else if ([actions[0] isEqualToString:@"\"*All Goals*\""]) {
             [AWNotifications notifyAllGoals:actions[1]];
         }
+        else if ([actions[0] isEqualToString:@"\"*Type-checking*\""]) {
+            if ([actions[1] hasPrefix:@"\"Finished"]) {
+                // Checking succesfull
+                AWToastWindow * toastWindow = [[AWToastWindow alloc] initWithToastType:ToastTypeLoadSuccessful];
+                [toastWindow show];
+            }
+            
+            [AWNotifications notifyAgdaBufferDataAvaliable:actions[1]];
+        }
+        else if ([actions[0] isEqualToString:@"\"*Error*\""])
+        {
+            // In case of an error, show load failed.
+            AWToastWindow * toastWindow = [[AWToastWindow alloc] initWithToastType:ToastTypeLoadFailed];
+            [toastWindow show];
+        }
+        else if ([actions[0] isEqualToString:@"\"*Current Goal*\""])
+        {
+            // Current goal
+        }
         else
         {
-            NSString * bufferDescription = actions[1];
-            [AWNotifications notifyAgdaBufferDataAvaliable:bufferDescription];
+            
         }
-        
+        NSString * bufferDescription = actions[1];
+        [AWNotifications notifyAgdaBufferDataAvaliable:bufferDescription];
     }
 }
+
++(void)executeMakeCaseAction:(NSArray *)actions
+{
+    if (actions.count > 0) {
+        [AWNotifications notifyMakeCaseAction:actions[0]];
+    }
+    
+}
+
 +(void)executeHighlightClearAction:(NSArray *)actions
 {
     

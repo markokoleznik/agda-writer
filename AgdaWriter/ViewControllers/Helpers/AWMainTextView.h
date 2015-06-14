@@ -39,9 +39,11 @@
     NSDictionary * goalsAttributes;
     NSMutableAttributedString * mutableAttributedString;
     NSMutableArray * goalsArray;
+    
 }
 
 @property (nonatomic) AgdaGoal * selectedGoal;
+@property (nonatomic) AgdaGoal * lastSelectedGoal;
 
 - (IBAction)save:(id)sender;
 

@@ -8,10 +8,14 @@
 
 #import "AWToastWindow.h"
 
+#define VISIBLE_TIME 0.8 // in seconds
+#define FADING_TIME 0.4  //  -- || --
+#define WINDOW_SIZE 150
+
 @implementation AWToastWindow
 - (id) initWithToastType:(ToastType)toastType
 {
-    NSRect frame = NSMakeRect(0, 0, 200, 200);
+    NSRect frame = NSMakeRect(0, 0, WINDOW_SIZE, WINDOW_SIZE);
     // Prepare borderless window
     self = [super initWithContentRect:frame styleMask:NSBorderlessWindowMask backing:NSBackingStoreRetained defer:NO];
     if (self) {
@@ -62,20 +66,19 @@
 
 - (void)show
 {
-    
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
         [self makeKeyAndOrderFront:NSApp];
         [context setDuration:0.1];
         [self.animator setAlphaValue:1.0];
     } completionHandler:^{
-        [self performSelector:@selector(closeToast) withObject:nil afterDelay:1.5];
+        [self performSelector:@selector(closeToast) withObject:nil afterDelay:VISIBLE_TIME];
     }];
 }
 
 - (void) closeToast
 {
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-        [context setDuration:0.5];
+        [context setDuration:FADING_TIME];
         [self.animator setAlphaValue:0.0];
     } completionHandler:^{
         

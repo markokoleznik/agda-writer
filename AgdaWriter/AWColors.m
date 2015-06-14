@@ -14,7 +14,6 @@
 
 + (CGColorRef) defaultBackgroundColor
 {
-
     return CGColorCreateGenericRGB(239.0/255.0, 239.0/255.0, 239.0/255.0, 1);
 }
 

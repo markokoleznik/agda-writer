@@ -19,4 +19,5 @@
 +(NSDictionary *)goalIndexAndRange:(NSRange)currentSelection textStorage:(NSTextStorage *)textStorage;
 +(NSRange) goalAtIndex: (NSInteger) index textStorage:(NSTextStorage *)textStorage;
 +(NSArray *) allGoalsWithRanges:(NSTextStorage *) textStorage;
++(NSArray *) caseSplitActions:(NSString *)reply;
 @end

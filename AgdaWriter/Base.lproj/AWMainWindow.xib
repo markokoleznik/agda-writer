@@ -411,13 +411,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="370" height="237"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
-                                            <scrollView autohidesScrollers="YES" horizontalLineScroll="27" horizontalPageScroll="10" verticalLineScroll="27" verticalPageScroll="10" translatesAutoresizingMaskIntoConstraints="NO" id="IdA-Ow-DKJ">
+                                            <scrollView autohidesScrollers="YES" horizontalLineScroll="44" horizontalPageScroll="10" verticalLineScroll="44" verticalPageScroll="10" translatesAutoresizingMaskIntoConstraints="NO" id="IdA-Ow-DKJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="370" height="237"/>
                                                 <clipView key="contentView" drawsBackground="NO" id="KW6-1m-u32">
                                                     <rect key="frame" x="1" y="17" width="238" height="117"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <tableView canDrawConcurrently="YES" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="23" headerView="spW-gP-BTi" viewBased="YES" id="Ve8-Xf-VdH">
+                                                        <tableView canDrawConcurrently="YES" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="40" headerView="spW-gP-BTi" viewBased="YES" id="Ve8-Xf-VdH">
                                                             <rect key="frame" x="0.0" y="0.0" width="1070" height="0.0"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <size key="intercellSpacing" width="20" height="4"/>

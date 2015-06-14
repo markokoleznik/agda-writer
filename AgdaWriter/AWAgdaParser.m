@@ -84,7 +84,6 @@
         }
         else
         {
-//            j++;
             while (j < action.length) {
                 if ([action characterAtIndex:j] == ' ' || j + 1 == action.length) {
                     
@@ -254,7 +253,29 @@
     }
     
     return foundRange;
-    
+}
+
++(NSArray *) caseSplitActions:(NSString *)reply
+{
+    NSMutableArray * actions = [[NSMutableArray alloc] init];
+    if ([reply hasPrefix:@"'("] && [reply hasSuffix:@")"]) {
+        reply = [reply substringWithRange:NSMakeRange(2, reply.length - 3)];
+        NSLog(@"substring: %@", reply);
+        NSArray * actionsWithQuotes = [reply componentsSeparatedByString:@"\" \""];
+        for (NSString * action in actionsWithQuotes) {
+            NSString * parsedAction = action;
+            if ([action hasPrefix:@"\""]) {
+                parsedAction = [parsedAction substringFromIndex:1];
+            }
+            if ([action hasSuffix:@"\""]) {
+                parsedAction = [parsedAction substringToIndex:parsedAction.length - 1];
+            }
+            
+            [actions addObject:parsedAction];
+        }
+        
+    }
+    return actions;
 }
 
 @end

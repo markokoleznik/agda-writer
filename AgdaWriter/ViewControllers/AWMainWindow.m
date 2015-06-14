@@ -42,6 +42,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaVersionAvaliable:) name:AWAgdaVersionAvaliable object:nil];
     
     
+    
     if (!self.communicator) {
         self.communicator = [[AWCommunitacion alloc] initForCommunicatingWithAgda];
         [self.communicator openConnectionToAgda];
@@ -195,7 +196,12 @@
 #pragma mark -
 
 - (IBAction)actionGive:(NSMenuItem *)sender {
-    [self showNotImplementedAlert];
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    [self saveCurrentWork];
+    AgdaGoal * goal = self.mainTextView.selectedGoal;
+    NSString * message = [AWAgdaActions actionGiveWithFilePath:fullPath goalIndex:goal.goalIndex startCharIndex:goal.startCharIndex startRow:goal.startRow startColumn:goal.startRow endCharIndex:goal.endCharIndex endRow:goal.endRow endColumn:goal.endColumn content:goal.content];
+    [self.communicator writeDataToAgda:message];
 }
 
 - (IBAction)actionRefine:(NSMenuItem *)sender {
@@ -209,27 +215,62 @@
 }
 
 - (IBAction)actionAuto:(NSMenuItem *)sender {
-    [self showNotImplementedAlert];
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    [self saveCurrentWork];
+    AgdaGoal * goal = self.mainTextView.selectedGoal;
+    NSString * message = [AWAgdaActions actionAutoWithFilePath:fullPath goalIndex:goal.goalIndex startCharIndex:goal.startCharIndex startRow:goal.startRow startColumn:goal.startColumn endCharIndex:goal.endCharIndex endRow:goal.endRow endColumn:goal.endColumn content:goal.content];
+    [self.communicator writeDataToAgda:message];
 }
 
 - (IBAction)actionCase:(NSMenuItem *)sender {
-    [self showNotImplementedAlert];
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    [self saveCurrentWork];
+    AgdaGoal * goal = self.mainTextView.selectedGoal;
+    NSString * message = [AWAgdaActions actionCaseWithFilePath:fullPath goalIndex:goal.goalIndex startCharIndex:goal.startCharIndex startRow:goal.startRow startColumn:goal.startColumn endCharIndex:goal.endCharIndex endRow:goal.endRow endColumn:goal.endColumn content:goal.content];
+    self.mainTextView.lastSelectedGoal = goal;
+    [self.communicator writeDataToAgda:message];
 }
 
 - (IBAction)actionGoalType:(NSMenuItem *)sender {
-    [self showNotImplementedAlert];
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    [self saveCurrentWork];
+    AgdaGoal * goal = self.mainTextView.selectedGoal;
+    NSString * message = [AWAgdaActions actionGoalTypeWithFilePath:fullPath goalIndex:goal.goalIndex];
+    self.mainTextView.lastSelectedGoal = goal;
+    [self.communicator writeDataToAgda:message];
 }
 
 - (IBAction)actionContextEnvironment:(NSMenuItem *)sender {
-    [self showNotImplementedAlert];
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    [self saveCurrentWork];
+    AgdaGoal * goal = self.mainTextView.selectedGoal;
+    NSString * message = [AWAgdaActions actionContextWithFilePath:fullPath goalIndex:goal.goalIndex];
+    self.mainTextView.lastSelectedGoal = goal;
+    [self.communicator writeDataToAgda:message];
 }
 
 - (IBAction)actionGoalTypeAndContext:(NSMenuItem *)sender {
-    [self showNotImplementedAlert];
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    [self saveCurrentWork];
+    AgdaGoal * goal = self.mainTextView.selectedGoal;
+    NSString * message = [AWAgdaActions actionGoalTypeAndContextWithFilePath:fullPath goalIndex:goal.goalIndex];
+    self.mainTextView.lastSelectedGoal = goal;
+    [self.communicator writeDataToAgda:message];
 }
 
 - (IBAction)actionGoalTypeAndInferredType:(NSMenuItem *)sender {
-    [self showNotImplementedAlert];
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * fullPath = [ud objectForKey:@"currentFile"];
+    [self saveCurrentWork];
+    AgdaGoal * goal = self.mainTextView.selectedGoal;
+    NSString * message = [AWAgdaActions actionGoalTypeAndInferredTypeWithFilePath:fullPath goalIndex:goal.goalIndex content:goal.content];
+    self.mainTextView.lastSelectedGoal = goal;
+    [self.communicator writeDataToAgda:message];
 }
 
 - (IBAction)actionComputeNormalForm:(NSMenuItem *)sender {
@@ -510,17 +551,19 @@
     NSLog(@"Running time: %f", [date2 timeIntervalSinceDate:date1]);
 }
 
+#pragma mark - Table of goals
 
 - (NSView *)tableView:(NSTableView *)tableView
    viewForTableColumn:(NSTableColumn *)tableColumn
                   row:(NSInteger)row {
     
-    // Retrieve to get the @"MyView" from the pool or,
-    // if no version is available in the pool, load the Interface Builder version
     NSTableCellView *result = [tableView makeViewWithIdentifier:@"GoalType" owner:self];
     
-    // Set the stringValue of the cell's text field to the nameArray value at row
-    result.textField.stringValue = [NSString stringWithFormat:@"value %li",row];
+    if (result) {
+        // Set the stringValue of the cell's text field to the nameArray value at row
+        result.textField.stringValue = [NSString stringWithFormat:@"value %li",row];
+    }
+    
     
     // Return the result
     return result;
@@ -530,6 +573,8 @@
 {
     return 2;
 }
+
+#pragma mark - Dealloc
 
 
 -(void) dealloc

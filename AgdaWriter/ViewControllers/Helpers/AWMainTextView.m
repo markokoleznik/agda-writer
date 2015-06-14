@@ -33,6 +33,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allGoalsAction:) name:AWAllGoals object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(placeInsertionPointAtCharIndex:) name:AWPlaceInsertionPointAtCharIndex object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaGaveAction:) name:AWAgdaGaveAction object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeCaseAction:) name:AWAgdaMakeCaseAction object:nil];
         
         
         initialize = YES;
@@ -375,6 +376,37 @@
             [self.textStorage replaceCharactersInRange:rangeOfGoal withString:[NSString stringWithFormat:@"{!%li: %@!}", [goal[@"goalIndex"] integerValue], goal[@"goalType"]]];
         }
         [self.textStorage endEditing];
+        
+        
+    }
+}
+
+-(void)makeCaseAction:(NSNotification *) notification
+{
+    if ([notification.object isKindOfClass:[NSString class]]) {
+        NSArray * actions = [AWAgdaParser caseSplitActions:notification.object];
+        
+        if (actions.count > 0) {
+            AgdaGoal * currentGoal = self.lastSelectedGoal;
+            if (currentGoal) {
+                NSInteger numberOfSpaces = 0;
+                NSArray * lines = [self.textStorage.string componentsSeparatedByString:@"\n"];
+                if (lines.count > currentGoal.startRow) {
+                    NSString * line = lines[currentGoal.startRow - 1];
+                    for (int i = 0; i < line.length; i++) {
+                        if ([line characterAtIndex:i] != ' ') {
+                            numberOfSpaces = i;
+                            break;
+                        }
+                    }
+                }
+                NSRange rangeOfGoal = [AWAgdaParser goalAtIndex:currentGoal.goalIndex textStorage:self.textStorage];
+                [self.textStorage replaceCharactersInRange:rangeOfGoal withString:actions[0]];
+            }
+            
+            
+
+        }
         
         
     }

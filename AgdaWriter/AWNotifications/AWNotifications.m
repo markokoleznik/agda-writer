@@ -23,6 +23,7 @@ NSString * const AWAllGoals = @"net.koleznik.allGoals";
 NSString * const AWPossibleAgdaPathFound = @"net.koleznik.possibleAgdaPathFound";
 NSString * const AWPlaceInsertionPointAtCharIndex = @"net.koleznik.placeInsertionPointAtCharIndex";
 NSString * const AWAgdaGaveAction = @"net.koleznik.AgdaGaveAction";
+NSString * const AWAgdaMakeCaseAction = @"net.koleznik.AgdaMakeCaseAction";
 
 
 
@@ -122,6 +123,11 @@ NSString * const AWAgdaGaveAction = @"net.koleznik.AgdaGaveAction";
 + (void) notifyPlaceInsertionPointAtCharIndex:(NSUInteger) charIndex
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:AWPlaceInsertionPointAtCharIndex object:[NSNumber numberWithUnsignedInteger:charIndex]];
+}
+
++(void) notifyMakeCaseAction:(NSString *)makeCaseActions
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:AWAgdaMakeCaseAction object:makeCaseActions];
 }
 
 
