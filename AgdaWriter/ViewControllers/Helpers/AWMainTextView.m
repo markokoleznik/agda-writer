@@ -75,11 +75,8 @@
     NSInteger numberOfChars = 0;
     NSString * string = self.textStorage.string;
     
-    
-    
     // Get all ranges of goals and look if our current selection is in one of them.
     // From that, we will get goal index
-    
     
     NSDictionary * dict = [AWAgdaParser goalIndexAndRange:self.selectedRange textStorage:self.textStorage];
     if (dict) {
@@ -104,9 +101,9 @@
                 NSInteger numberOfWhiteSpaces = 0;
                 for (NSInteger j = 0; j < line.length; j++) {
                     if ([line characterAtIndex:j] != ' ') {
-                        numberOfWhiteSpaces = j;
+                        numberOfWhiteSpaces = j + 1;
                         _selectedGoal.numberOfEmptySpaces = j;
-                        _selectedGoal.rangeOfCurrentLine = NSMakeRange(numberOfChars - 1, line.length + 1);
+                        _selectedGoal.rangeOfCurrentLine = NSMakeRange(numberOfChars, line.length);
                         break;
                     }
                 }
@@ -306,9 +303,9 @@
     
     
     NSString * welcomeString = @"";
-    welcomeString = [welcomeString stringByAppendingString:@"//  \n"];
-    welcomeString = [welcomeString stringByAppendingFormat:@"//  Created by %@ on %@ \n", NSFullUserName(), dateString];
-    welcomeString = [welcomeString stringByAppendingString:@"//  \n"];
+    welcomeString = [welcomeString stringByAppendingString:@"--  \n"];
+    welcomeString = [welcomeString stringByAppendingFormat:@"--  Created by %@ on %@ \n", NSFullUserName(), dateString];
+    welcomeString = [welcomeString stringByAppendingString:@"--  \n"];
     [self setString: welcomeString];
     
     
@@ -367,6 +364,7 @@
                 
                 NSDictionary * goal = [AWAgdaParser goalIndexAndRange:NSMakeRange(foundRange.location + 2, 0) textStorage:self.textStorage];
                 NSInteger index = [goal[@"goalIndex"] integerValue];
+                
                 NSDictionary * goal2 = goals[index];
                 NSInteger goalIndex = [goal2[@"goalIndex"] integerValue];
                 NSString * goalType = goal2[@"goalType"];
@@ -386,9 +384,11 @@
         [self.textStorage beginEditing];
         for (NSInteger j = allRangesOfGoals.count - 1; j > 0; j--) {
             NSRange rangeOfGoal = NSRangeFromString(allRangesOfGoals[j]);
-            NSDictionary * goal = goals[j];
+            if (goals.count > j) {
+                NSDictionary * goal = goals[j];
+                [self.textStorage replaceCharactersInRange:rangeOfGoal withString:[NSString stringWithFormat:@"{!%li: %@!}", [goal[@"goalIndex"] integerValue], goal[@"goalType"]]];
+            }
             
-            [self.textStorage replaceCharactersInRange:rangeOfGoal withString:[NSString stringWithFormat:@"{!%li: %@!}", [goal[@"goalIndex"] integerValue], goal[@"goalType"]]];
         }
         [self.textStorage endEditing];
         
@@ -416,13 +416,14 @@
                 [self.textStorage replaceCharactersInRange:currentGoal.rangeOfCurrentLine withString:@""];
                 
                 NSMutableString * caseActionString = [NSMutableString new];
-                [caseActionString appendString:@"\n"];
                 for (NSInteger i = 0; i < actions.count; i++) {
                     [caseActionString appendString:[self whitespaces:currentGoal.numberOfEmptySpaces]];
                     [caseActionString appendString:actions[i]];
                     [caseActionString appendString:@"\n"];
                 }
-                [self.textStorage insertAttributedString:[[NSAttributedString alloc] initWithString:caseActionString attributes:@{NSFontAttributeName: [AWHelper defaultFontInAgda]}] atIndex:currentGoal.rangeOfCurrentLine.location - 2  + currentGoal.numberOfEmptySpaces];
+                // Delete last "newline"
+                [caseActionString deleteCharactersInRange:NSMakeRange(caseActionString.length - 1, 1)];
+                [self.textStorage insertAttributedString:[[NSAttributedString alloc] initWithString:caseActionString attributes:@{NSFontAttributeName: [AWHelper defaultFontInAgda]}] atIndex:currentGoal.rangeOfCurrentLine.location];
                
             }
             

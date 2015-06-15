@@ -24,6 +24,8 @@
 
 +(NSDictionary *)parseAction:(NSString *) action
 {
+    // ((last . 2) . (agda2-make-case-action '("twice Z = ?" "twice (S x) = ?")))
+    
     // delete prefixes on weird responses, so for example
     // ((last . 1) . (agda2-goals-action '(0 1)))
     // should go to
@@ -73,10 +75,18 @@
         }
         else if (i < action.length - 2 && [[action substringWithRange:NSMakeRange(i, 2)] isEqualToString:@"'("])
         {
+            NSInteger numberOfLeftParenthesis = 0;
             while (j < action.length) {
                 if ([action characterAtIndex:j] == ')') {
-                    // add lisp comments to "actions"
-                    [actions addObject:[action substringWithRange:NSMakeRange(i, j - i + 1)]];
+                    numberOfLeftParenthesis--;
+                    if (numberOfLeftParenthesis == 0) {
+                        // add lisp comments to "actions"
+                        [actions addObject:[action substringWithRange:NSMakeRange(i, j - i + 1)]];
+                    }
+                    
+                }
+                else if ([action characterAtIndex:j] == '(') {
+                    numberOfLeftParenthesis++;
                 }
                 j++;
             }
