@@ -187,12 +187,24 @@
     
     // NOTE: no highlighting yet, just delete the file
     
-    NSError * error;
+    NSError * errorDeleting;
+    NSError * errorReading;
+    
     NSString * filePath = [actions objectAtIndex:0];
     filePath = [filePath substringWithRange:NSMakeRange(1, filePath.length - 2)];
-    [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
-    if (error) {
-        NSLog(@"Error deleting file at %@ \nReason: %@", filePath, error.description);
+    NSString * fileContents = [NSString stringWithContentsOfFile:filePath
+                              encoding:NSUTF8StringEncoding error:&errorReading];
+    if (errorReading) {
+        NSLog(@"Error reading file");
+    }
+    else
+    {
+        NSArray * actions = [AWAgdaParser parseHighlighting:fileContents];
+        [AWNotifications notifyHighlightCode:actions];
+    }
+    [[NSFileManager defaultManager] removeItemAtPath:filePath error:&errorDeleting];
+    if (errorDeleting) {
+        NSLog(@"Error deleting file at %@ \nReason: %@", filePath, errorDeleting.description);
     }
 }
 

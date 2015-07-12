@@ -20,4 +20,5 @@
 +(NSRange) goalAtIndex: (NSInteger) index textStorage:(NSTextStorage *)textStorage;
 +(NSArray *) allGoalsWithRanges:(NSTextStorage *) textStorage;
 +(NSArray *) caseSplitActions:(NSString *)reply;
++(NSArray *) parseHighlighting:(NSString *)highlighting;
 @end

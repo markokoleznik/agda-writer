@@ -38,6 +38,7 @@
 		D5A9E2971B10AA35006F7DE2 /* failed_default.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A9E2931B10AA35006F7DE2 /* failed_default.png */; };
 		D5A9E2981B10AA35006F7DE2 /* load_failed.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A9E2941B10AA35006F7DE2 /* load_failed.png */; };
 		D5A9E29A1B10AA35006F7DE2 /* successful_default.png in Resources */ = {isa = PBXBuildFile; fileRef = D5A9E2961B10AA35006F7DE2 /* successful_default.png */; };
+		D5B1B7661B51F83F00A276D0 /* AWHighlighting.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B1B7651B51F83F00A276D0 /* AWHighlighting.m */; };
 		D5C56BA41A811AE100422B5E /* AWCommunitacion.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C56BA31A811AE100422B5E /* AWCommunitacion.m */; };
 		D5C56BA91A815F7D00422B5E /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5C56BA81A815F7D00422B5E /* defaults.plist */; };
 		D5C56BAC1A816FF300422B5E /* AWStatusTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C56BAB1A816FF300422B5E /* AWStatusTextView.m */; };
@@ -113,6 +114,8 @@
 		D5A9E2931B10AA35006F7DE2 /* failed_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = failed_default.png; path = AgdaWriter/Images/Alerts/failed_default.png; sourceTree = "<group>"; };
 		D5A9E2941B10AA35006F7DE2 /* load_failed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = load_failed.png; path = AgdaWriter/Images/Alerts/load_failed.png; sourceTree = "<group>"; };
 		D5A9E2961B10AA35006F7DE2 /* successful_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = successful_default.png; path = AgdaWriter/Images/Alerts/successful_default.png; sourceTree = "<group>"; };
+		D5B1B7641B51F83F00A276D0 /* AWHighlighting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWHighlighting.h; path = AgdaWriter/AWHighlighting.h; sourceTree = "<group>"; };
+		D5B1B7651B51F83F00A276D0 /* AWHighlighting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWHighlighting.m; path = AgdaWriter/AWHighlighting.m; sourceTree = "<group>"; };
 		D5C56BA21A811AE100422B5E /* AWCommunitacion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWCommunitacion.h; path = AgdaWriter/AWCommunitacion.h; sourceTree = "<group>"; };
 		D5C56BA31A811AE100422B5E /* AWCommunitacion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWCommunitacion.m; path = AgdaWriter/AWCommunitacion.m; sourceTree = "<group>"; };
 		D5C56BA81A815F7D00422B5E /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaults.plist; path = AgdaWriter/defaults.plist; sourceTree = "<group>"; };
@@ -384,6 +387,8 @@
 				D55792F31A82D6C500DB83BD /* AWAgdaParser.m */,
 				D59A76FB1AE5ADD200E6099E /* AWAgdaActions.h */,
 				D59A76FC1AE5ADD200E6099E /* AWAgdaActions.m */,
+				D5B1B7641B51F83F00A276D0 /* AWHighlighting.h */,
+				D5B1B7651B51F83F00A276D0 /* AWHighlighting.m */,
 			);
 			name = AWCommunications;
 			path = ..;
@@ -524,6 +529,7 @@
 				D56A16FA1A84E06B00AC82DB /* AWColors.m in Sources */,
 				D56A0E401A7A27CF006493D3 /* AWLineNumbersTextView.m in Sources */,
 				D56A0E431A7A3468006493D3 /* AWMainTextView.m in Sources */,
+				D5B1B7661B51F83F00A276D0 /* AWHighlighting.m in Sources */,
 				D59349D21B108B07002CD06F /* AWToastWindow.m in Sources */,
 				D583562819EEEEC4009534C1 /* main.m in Sources */,
 				D55792F41A82D6C500DB83BD /* AWAgdaParser.m in Sources */,

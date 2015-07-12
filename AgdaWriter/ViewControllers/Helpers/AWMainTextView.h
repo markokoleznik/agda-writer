@@ -42,7 +42,10 @@
     NSMutableAttributedString * mutableAttributedString;
     NSMutableArray * goalsArray;
     
+    NSMutableSet * mutableSetOfActionNames;
+    
 }
+
 
 @property (nonatomic) AgdaGoal * selectedGoal;
 @property (nonatomic) AgdaGoal * lastSelectedGoal;

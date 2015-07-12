@@ -216,42 +216,6 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Spelling and Grammar" id="Mav-vF-Xyk">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Spelling" id="LWZ-bW-NLm">
-                                    <items>
-                                        <menuItem title="Show Spelling and Grammar" keyEquivalent=":" id="UIR-gC-q2O">
-                                            <connections>
-                                                <action selector="showGuessPanel:" target="-1" id="SSX-vl-f8B"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Check Document Now" keyEquivalent=";" id="eSh-V4-fUb">
-                                            <connections>
-                                                <action selector="checkSpelling:" target="-1" id="PHx-Hq-39K"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="OdM-29-zJE"/>
-                                        <menuItem title="Check Spelling While Typing" id="6pg-1f-4zM">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="toggleContinuousSpellChecking:" target="-1" id="hja-HJ-pn1"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Check Grammar With Spelling" id="DPO-Kz-sZ2">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="toggleGrammarChecking:" target="-1" id="LMe-vG-VW2"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Correct Spelling Automatically" id="yPA-QC-KTn">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="toggleAutomaticSpellingCorrection:" target="-1" id="S7n-Li-HFh"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
                             <menuItem title="Substitutions" id="SDc-53-05p">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Substitutions" id="1lC-Wg-T03">
@@ -297,31 +261,6 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleAutomaticTextReplacement:" target="-1" id="7pP-ys-YQ6"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem title="Transformations" id="cVz-nz-MiF">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Transformations" id="ZOz-ox-qpv">
-                                    <items>
-                                        <menuItem title="Make Upper Case" id="Htz-XQ-TwB">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="uppercaseWord:" target="-1" id="LTy-cD-tnC"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Make Lower Case" id="LrG-dW-c7k">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="lowercaseWord:" target="-1" id="ewY-CC-rK7"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Capitalize" id="yGq-8z-ZHF">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="capitalizeWord:" target="-1" id="Ihe-oz-Jwg"/>
                                             </connections>
                                         </menuItem>
                                     </items>

@@ -49,6 +49,8 @@
     }
     
     
+    
+    
 }
 
 
@@ -299,14 +301,7 @@
 }
 
 - (IBAction)autoAction:(NSButton *)sender {
-    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-    NSString * fullPath = [ud objectForKey:@"currentFile"];
-    [self saveCurrentWork];
-    NSString * load = [AWAgdaActions actionLoadWithFilePath:fullPath andIncludeDir:@""];
-    
-    NSString * message = [AWAgdaActions actionAutoWithFilePath:fullPath goalIndex:0 startCharIndex:0 startRow:0 startColumn:0 endCharIndex:0 endRow:0 endColumn:0 content:@""];
-    
-    [self.communicator writeData:[NSString stringWithFormat:@"%@\n%@", load, message]];
+
 }
 
 - (IBAction)loadAction:(NSButton *)sender {
@@ -320,23 +315,11 @@
 
 
 - (IBAction)giveAction:(NSButton *)sender {
-    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-    NSString * fullPath = [ud objectForKey:@"currentFile"];
-    [self saveCurrentWork];
-    NSString * load = [AWAgdaActions actionLoadWithFilePath:fullPath andIncludeDir:@""];
-    
-    NSString * message = [AWAgdaActions actionGiveWithFilePath:fullPath goalIndex:0 startCharIndex:0 startRow:0 startColumn:0 endCharIndex:0 endRow:0 endColumn:0 content:@""];
-    
-    [self.communicator writeData:[NSString stringWithFormat:@"%@\n%@", load, message]];
+
 }
 
 - (IBAction)refineAction:(NSButton *)sender {
-    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-    NSString * fullPath = [ud objectForKey:@"currentFile"];
-    [self saveCurrentWork];
-    NSString * message = [AWAgdaActions actionRefineWithFilePath:fullPath goalIndex:0 startCharIndex:0 startRow:0 startColumn:0 endCharIndex:0 endRow:0 endColumn:0 content:@""];
     
-    [self.communicator writeData:message];
 }
 
 

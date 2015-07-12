@@ -25,6 +25,7 @@ extern NSString * const AWPossibleAgdaPathFound;
 extern NSString * const AWPlaceInsertionPointAtCharIndex;
 extern NSString * const AWAgdaGaveAction;
 extern NSString * const AWAgdaMakeCaseAction;
+extern NSString * const AWAgdaHighlightCode;
 
 typedef NS_ENUM(NSInteger, KeyPressed) {
     AWEnterPressed,
@@ -46,6 +47,7 @@ typedef NS_ENUM(NSInteger, KeyPressed) {
 + (void) notifyPossibleAgdaPathFound: (NSString *)agdaPaths;
 + (void) notifyAgdaGaveAction:(NSInteger)goalIndex content:(NSString *)content;
 + (void) notifyMakeCaseAction:(NSString *)makeCaseActions;
++ (void) notifyHighlightCode:(NSArray *)array;
 
 + (void) notifyPlaceInsertionPointAtCharIndex:(NSUInteger) charIndex;
 

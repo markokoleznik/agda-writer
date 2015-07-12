@@ -55,6 +55,16 @@
     // We have agda action.
     action = [action substringWithRange:NSMakeRange(1, action.length - 2)];
     
+    NSArray * actions = [[NSArray alloc] init];
+    actions = [self executeParser:action];
+    if (actions.count > 0) {
+        dict = @{actions[0]: [actions subarrayWithRange:NSMakeRange(1, actions.count - 1)]};
+    }
+    return dict;
+}
+
++(NSArray *) executeParser:(NSString *) action
+{
     NSMutableArray * actions = [[NSMutableArray alloc] init];
     int i = 0;
     int j = 0;
@@ -111,10 +121,7 @@
             i = j + 1;
         }
     }
-    if (actions.count > 0) {
-        dict = @{actions[0]: [actions subarrayWithRange:NSMakeRange(1, actions.count - 1)]};
-    }
-    return dict;
+    return actions;
 }
 
 +(NSArray *)makeArrayOfActions:(NSString *)reply
@@ -288,6 +295,39 @@
         
     }
     return actions;
+}
+
++(NSArray *) parseHighlighting:(NSString *)highlighting
+{
+    if ([highlighting hasPrefix:@"(("] && [highlighting hasSuffix:@"))"]) {
+        highlighting = [highlighting substringWithRange:NSMakeRange(2, highlighting.length - 4)];
+    }
+    NSMutableArray * result = [[NSMutableArray alloc] init];
+    NSArray * matches = [highlighting componentsSeparatedByString:@") ("];
+    
+    
+    for (NSString * line in matches) {
+        NSArray * components = [line componentsSeparatedByString:@" "];
+        if (components.count > 3) {
+            NSString * typeName = components[2];
+            if (![typeName hasSuffix:@")"]) {
+                typeName = [NSString stringWithFormat:@"%@ %@", typeName, (NSString *)components[3]];
+            }
+            if ([typeName hasPrefix:@"("] && [typeName hasSuffix:@")"]) {
+                typeName = [typeName substringWithRange:NSMakeRange(1, typeName.length - 2)];
+            }
+            NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+            f.numberStyle = NSNumberFormatterDecimalStyle;
+            NSNumber *startNumber = [f numberFromString:components[0]];
+            NSNumber *endNumber = [f numberFromString:components[1]];
+            NSRange range = NSMakeRange([startNumber integerValue], [endNumber integerValue] - [startNumber integerValue]);
+            
+            NSDictionary * dict = @{typeName : @[NSStringFromRange(range)]};
+            [result addObject:dict];
+        }
+    }
+
+    return result;
 }
 
 @end

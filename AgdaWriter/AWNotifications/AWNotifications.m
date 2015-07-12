@@ -24,11 +24,16 @@ NSString * const AWPossibleAgdaPathFound = @"net.koleznik.possibleAgdaPathFound"
 NSString * const AWPlaceInsertionPointAtCharIndex = @"net.koleznik.placeInsertionPointAtCharIndex";
 NSString * const AWAgdaGaveAction = @"net.koleznik.AgdaGaveAction";
 NSString * const AWAgdaMakeCaseAction = @"net.koleznik.AgdaMakeCaseAction";
+NSString * const AWAgdaHighlightCode = @"net.koleznik.AgdaHighlightCode";
 
 
 
 @implementation AWNotifications
 
++ (void) notifyHighlightCode:(NSArray *)array
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:AWAgdaHighlightCode object:array];
+}
 
 + (void) notifyFontSizeChanged: (NSNumber *) fontSize
 {

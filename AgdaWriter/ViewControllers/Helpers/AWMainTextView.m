@@ -11,6 +11,7 @@
 #import "CustomTokenCell.h"
 #import "AWAgdaParser.h"
 #import "AWHelper.h"
+#import "AWHighlighting.h"
 
 @implementation AgdaGoal
 
@@ -35,6 +36,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(placeInsertionPointAtCharIndex:) name:AWPlaceInsertionPointAtCharIndex object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaGaveAction:) name:AWAgdaGaveAction object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeCaseAction:) name:AWAgdaMakeCaseAction object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(highlightCode:) name:AWAgdaHighlightCode object:nil];
         
         
         initialize = YES;
@@ -59,7 +61,8 @@
         [self openLastDocument];
         
         
-
+        mutableSetOfActionNames = [[NSMutableSet alloc] init];
+        
 
     }
     
@@ -190,6 +193,8 @@
     
 
 }
+
+
 
 - (IBAction)save:(id)sender
 {
@@ -462,6 +467,26 @@
 {
     [self setSelectedRange:NSMakeRange([notification.object integerValue] + 1, 0)];
 }
+
+- (void) highlightCode:(NSNotification *) notification
+{
+    if ([notification.object isKindOfClass:[NSArray class]]) {
+        NSArray * array = notification.object;
+        for (NSDictionary * dict in array) {
+            NSString * actionName = dict.allKeys[0];
+            NSLog(@"action name: %@", actionName);
+//            [mutableSetOfActionNames addObject:actionName];
+            NSArray * args = dict[actionName];
+            if (args.count > 0) {
+                NSRange range = NSRangeFromString(args[0]);
+                [AWHighlighting highlightCodeAtRange:range actionName:actionName textView:self];
+            }
+        }
+//        NSLog(@"%@", mutableSetOfActionNames);
+    }
+}
+
+
 
 
 -(void)dealloc
