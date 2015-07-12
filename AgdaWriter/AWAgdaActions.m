@@ -169,7 +169,7 @@
 
 +(void)executeHighlightClearAction:(NSArray *)actions
 {
-    
+    [AWNotifications notifyClearHighlighting];
 }
 +(void)executeHighlightLoadAndDeleteAction:(NSArray *)actions
 {

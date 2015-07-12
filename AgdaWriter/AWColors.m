@@ -104,7 +104,10 @@ NSString * const AWinductiveconstructorOperator = @"inductiveconstructor operato
     NSColor * darkGreyColor = [NSColor colorWithRed:49.0/COLOR_MAX_VALUE green:49.0/COLOR_MAX_VALUE blue:49.0/COLOR_MAX_VALUE alpha:1.0];
     NSColor * greenColor = [NSColor colorWithRed:20.0/COLOR_MAX_VALUE green:124.0/COLOR_MAX_VALUE blue:0.0/COLOR_MAX_VALUE alpha:1.0];
     NSColor * errorColor = [NSColor redColor];
-    NSColor * defaultColor = [NSColor cyanColor];
+//    NSColor * defaultColor = [NSColor cyanColor];
+     NSColor * defaultColor = [NSColor darkGrayColor];
+    NSColor * pinkColor = [NSColor colorWithRed:231.0/COLOR_MAX_VALUE green:0.0/COLOR_MAX_VALUE blue:118.0/COLOR_MAX_VALUE alpha:1.0];
+//    NSColor * yellowColor = [NSColor yellowColor];
     
     
     NSColor * color;
@@ -131,7 +134,7 @@ NSString * const AWinductiveconstructorOperator = @"inductiveconstructor operato
         color = errorColor;
     }
     else if ([type isEqualToString:AWfield]) {
-        color = defaultColor;
+        color = pinkColor;
     }
     else if ([type isEqualToString:AWfunction]) {
         color = blueColor;
@@ -161,7 +164,7 @@ NSString * const AWinductiveconstructorOperator = @"inductiveconstructor operato
         color = purpleColor;
     }
     else if ([type isEqualToString:AWpostulate]) {
-        color = defaultColor;
+        color = blueColor;
     }
     else if ([type isEqualToString:AWprimitive]) {
         color = defaultColor;
@@ -170,10 +173,10 @@ NSString * const AWinductiveconstructorOperator = @"inductiveconstructor operato
         color = blueColor;
     }
     else if ([type isEqualToString:AWrecord]) {
-        color = defaultColor;
+        color = blueColor;
     }
     else if ([type isEqualToString:AWstring]) {
-        color = defaultColor;
+        color = darkRedColor;
     }
     else if ([type isEqualToString:AWsymbol]) {
         color = [NSColor darkGrayColor];
@@ -188,7 +191,7 @@ NSString * const AWinductiveconstructorOperator = @"inductiveconstructor operato
         color = defaultColor;
     }
     else if ([type isEqualToString:AWunsolvedmeta]) {
-        color = defaultColor;
+        color = darkGreyColor;
     }
     else {
         color = defaultColor;

@@ -25,11 +25,15 @@ NSString * const AWPlaceInsertionPointAtCharIndex = @"net.koleznik.placeInsertio
 NSString * const AWAgdaGaveAction = @"net.koleznik.AgdaGaveAction";
 NSString * const AWAgdaMakeCaseAction = @"net.koleznik.AgdaMakeCaseAction";
 NSString * const AWAgdaHighlightCode = @"net.koleznik.AgdaHighlightCode";
+NSString * const AWAgdaClearHighlighting = @"net.koleznik.AgdaClearHighlighting";
 
 
 
 @implementation AWNotifications
 
++ (void) notifyClearHighlighting {
+    [[NSNotificationCenter defaultCenter] postNotificationName:AWAgdaClearHighlighting object:nil];
+}
 + (void) notifyHighlightCode:(NSArray *)array
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:AWAgdaHighlightCode object:array];

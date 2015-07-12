@@ -37,6 +37,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaGaveAction:) name:AWAgdaGaveAction object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeCaseAction:) name:AWAgdaMakeCaseAction object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(highlightCode:) name:AWAgdaHighlightCode object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearHighlighting:) name:AWAgdaClearHighlighting object:nil];
         
         
         initialize = YES;
@@ -515,6 +516,11 @@
         }
 //        NSLog(@"%@", mutableSetOfActionNames);
     }
+}
+
+- (void)clearHighlighting:(NSNotification *) notification
+{
+    [self.layoutManager addTemporaryAttributes:[NSDictionary dictionaryWithObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName] forCharacterRange:NSMakeRange(0, self.string.length)];
 }
 
 
