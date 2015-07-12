@@ -13,14 +13,14 @@
 
 -(void)awakeFromNib
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaBufferDataAvaliable:) name:AWAgdaBufferDataAvaliable object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaBuffer:) name:AWAgdaBufferDataAvaliable object:nil];
     
     
     [self.textStorage setFont:[NSFont systemFontOfSize:16.0]];
     
 }
 
--(void)agdaBufferDataAvaliable:(NSNotification *)notification
+-(void)agdaBuffer:(NSNotification *)notification
 {
     if ([notification.object isKindOfClass:[NSString class]]) {
         NSString *reply = notification.object;

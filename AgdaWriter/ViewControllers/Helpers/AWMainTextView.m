@@ -474,7 +474,7 @@
         NSArray * array = notification.object;
         for (NSDictionary * dict in array) {
             NSString * actionName = dict.allKeys[0];
-            NSLog(@"action name: %@", actionName);
+//            NSLog(@"action name: %@", actionName);
 //            [mutableSetOfActionNames addObject:actionName];
             NSArray * args = dict[actionName];
             if (args.count > 0) {

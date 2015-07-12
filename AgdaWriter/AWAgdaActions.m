@@ -155,7 +155,7 @@
             
         }
         NSString * bufferDescription = actions[1];
-        [AWNotifications notifyAgdaBufferDataAvaliable:bufferDescription];
+//        [AWNotifications notifyAgdaBufferDataAvaliable:bufferDescription];
     }
 }
 

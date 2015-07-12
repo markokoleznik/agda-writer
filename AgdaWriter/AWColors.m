@@ -176,7 +176,7 @@ NSString * const AWinductiveconstructorOperator = @"inductiveconstructor operato
         color = defaultColor;
     }
     else if ([type isEqualToString:AWsymbol]) {
-        color = darkGreyColor;
+        color = [NSColor darkGrayColor];
     }
     else if ([type isEqualToString:AWterminationproblem]) {
         color = defaultColor;
