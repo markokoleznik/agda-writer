@@ -138,6 +138,36 @@
     
 }
 
+- (BOOL)textView:(NSTextView *)textView shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(NSString *)replacementString
+{
+
+    // Find how many spaces are in previous line.
+    if ([replacementString isEqualToString:@"\n"]) {
+        BOOL shouldBreak = NO;
+        NSInteger numberOfSpaces = 0;
+        for (NSInteger i = affectedCharRange.location - 1; i > 0; i--) {
+            if ([self.string characterAtIndex:i] == '\n') {
+                // we found previous line!
+                for (NSInteger j = i + 1; j < self.string.length; j++) {
+                    if ([self.string characterAtIndex:j] != ' ') {
+                        numberOfSpaces = j - i - 1;
+//                        NSLog(@"Number of spaces: %li", numberOfSpaces);
+                        shouldBreak = YES;
+                        break;
+                    }
+                }
+            }
+            if (shouldBreak) {
+                break;
+            }
+        }
+        [self replaceCharactersInRange:affectedCharRange withString:[self whitespaces:numberOfSpaces]];
+        
+        
+    }
+    
+    return YES;
+}
 
 -(void)setString:(NSString *)string
 {
@@ -190,8 +220,6 @@
             NSLog(@"Error saving file. Reason: %@", error.description);
         }
     }
-    
-
 }
 
 
