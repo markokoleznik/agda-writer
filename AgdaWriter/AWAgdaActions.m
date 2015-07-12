@@ -138,7 +138,7 @@
                 [toastWindow show];
             }
             
-            [AWNotifications notifyAgdaBufferDataAvaliable:actions[1]];
+//            [AWNotifications notifyAgdaBufferDataAvaliable:actions[1]];
         }
         else if ([actions[0] isEqualToString:@"\"*Error*\""])
         {
@@ -155,7 +155,7 @@
             
         }
         NSString * bufferDescription = actions[1];
-//        [AWNotifications notifyAgdaBufferDataAvaliable:bufferDescription];
+        [AWNotifications notifyAgdaBufferDataAvaliable:bufferDescription];
     }
 }
 

@@ -378,6 +378,9 @@
     if ([notification.object isKindOfClass:[NSString class]]) {
         // Parse goals
         NSArray * goals = [AWAgdaParser makeArrayOfGoalsWithSuggestions:notification.object];
+        if (goals.count == 0) {
+            return;
+        }
         
         // Add tokens on goals
         int i = 0;
