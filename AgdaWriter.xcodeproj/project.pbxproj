@@ -26,6 +26,7 @@
 		D56A16FA1A84E06B00AC82DB /* AWColors.m in Sources */ = {isa = PBXBuildFile; fileRef = D56A16F91A84E06B00AC82DB /* AWColors.m */; };
 		D56A16FD1A84E4E700AC82DB /* AWMainSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D56A16FC1A84E4E700AC82DB /* AWMainSplitView.m */; };
 		D56A17001A84FB9800AC82DB /* NSSplitView+DMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D56A16FF1A84FB9800AC82DB /* NSSplitView+DMAdditions.m */; };
+		D577F8DD1B52B5D900DF22ED /* DefaultColorHighlighting.plist in Resources */ = {isa = PBXBuildFile; fileRef = D577F8DC1B52B5D900DF22ED /* DefaultColorHighlighting.plist */; };
 		D583562819EEEEC4009534C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D583562719EEEEC4009534C1 /* main.m */; };
 		D583562B19EEEEC4009534C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D583562A19EEEEC4009534C1 /* AppDelegate.m */; };
 		D583562D19EEEEC4009534C1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D583562C19EEEEC4009534C1 /* Images.xcassets */; };
@@ -92,6 +93,7 @@
 		D56A16FC1A84E4E700AC82DB /* AWMainSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWMainSplitView.m; sourceTree = "<group>"; };
 		D56A16FE1A84FB9800AC82DB /* NSSplitView+DMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSSplitView+DMAdditions.h"; path = "AgdaWriter/NSSplitView+DMAdditions.h"; sourceTree = "<group>"; };
 		D56A16FF1A84FB9800AC82DB /* NSSplitView+DMAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSSplitView+DMAdditions.m"; path = "AgdaWriter/NSSplitView+DMAdditions.m"; sourceTree = "<group>"; };
+		D577F8DC1B52B5D900DF22ED /* DefaultColorHighlighting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultColorHighlighting.plist; path = AgdaWriter/DefaultColorHighlighting.plist; sourceTree = "<group>"; };
 		D583562219EEEEC4009534C1 /* Agda Writer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agda Writer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D583562619EEEEC4009534C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D583562719EEEEC4009534C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				D56A16FE1A84FB9800AC82DB /* NSSplitView+DMAdditions.h */,
 				D56A16FF1A84FB9800AC82DB /* NSSplitView+DMAdditions.m */,
 				D5C56BA81A815F7D00422B5E /* defaults.plist */,
+				D577F8DC1B52B5D900DF22ED /* DefaultColorHighlighting.plist */,
 				D583562419EEEEC4009534C1 /* AgdaWriter */,
 				D583563819EEEEC4009534C1 /* AgdaWriterTests */,
 				D52D6D041B09F778006554E0 /* Agda Writer Parser Tests */,
@@ -481,6 +484,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D577F8DD1B52B5D900DF22ED /* DefaultColorHighlighting.plist in Resources */,
 				D583562D19EEEEC4009534C1 /* Images.xcassets in Resources */,
 				D5A9E29A1B10AA35006F7DE2 /* successful_default.png in Resources */,
 				D59349CF1B108441002CD06F /* load_successful.png in Resources */,

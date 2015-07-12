@@ -7,6 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
+
 
 
 @interface AWColors : NSObject
@@ -15,4 +17,5 @@
 + (CGColorRef) defaultSeparatorColor;
 + (NSColor *) unselectedTokenColor;
 + (NSColor *) borderTokenColor;
++ (NSColor *) highlightColorForType:(NSString *)type;
 @end

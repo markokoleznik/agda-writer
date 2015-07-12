@@ -29,6 +29,7 @@
         if (![reply hasSuffix:@"\n"]) {
             reply = [reply stringByAppendingString:@"\n"];
         }
+        NSLog(@"REPLY: %@", reply);
         [self.textStorage beginEditing];
         [[self.textStorage mutableString] appendString:reply];
         [self.textStorage endEditing];

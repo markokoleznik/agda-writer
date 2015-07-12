@@ -23,6 +23,7 @@
     [self fillFontFamilies];
     [self.searchForAgdaIndicator setHidden:YES];
     [[self.searchForAgdaIndicator animator] startAnimation:nil];
+    [self prepareData];
 }
 
 - (void) fillFontSizes
@@ -243,6 +244,79 @@
     [self makeKeyAndOrderFront:nil];
     [self.preferencesTabView selectTabViewItemAtIndex:TabViewPaths];
 }
+
+-(void)prepareData
+{
+    themes = @[@{@"name" : @"Default"},
+               @{@"name" : @"Dracula"}];
+    
+    samples = @[
+                @{@"name" : @"Comment", @"color" : [NSColor redColor], @"identifier" : @"comment"},
+                @{@"name" : @"Custom types", @"color" : [NSColor greenColor]}
+                ];
+}
+
+-(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+{
+    if ([tableView.identifier isEqualToString:@"Samples"]) {
+        return samples.count;
+    }
+    else if ([tableView.identifier isEqualToString:@"Themes"]) {
+        return themes.count;
+    }
+    return 0;
+}
+
+- (NSView *)tableView:(NSTableView *)tableView
+   viewForTableColumn:(NSTableColumn *)tableColumn
+                  row:(NSInteger)row {
+    
+    if ([tableView.identifier isEqualToString:@"Samples"]) {
+        NSTableCellView * result = [tableView makeViewWithIdentifier:@"SampleCell" owner:self];
+        NSDictionary * dict = (NSDictionary *)samples[row];
+        NSAttributedString * attrValue = [[NSAttributedString alloc] initWithString:dict[@"name"] attributes:@{NSForegroundColorAttributeName: dict[@"color"]}];
+        [result.textField setAttributedStringValue:attrValue];
+        return result;
+    }
+    else if ([tableView.identifier isEqualToString:@"Themes"]) {
+        NSTableCellView * result = [tableView makeViewWithIdentifier:@"ThemeCell" owner:self];
+        NSDictionary * dict = (NSDictionary *)themes[row];
+        result.textField.stringValue = dict[@"name"];
+        return result;
+    }
+    return nil;
+}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+    NSTableView * tableView = notification.object;
+    NSInteger selectedRow = tableView.selectedRow;
+    if ([tableView.identifier isEqualToString:@"Samples"]) {
+        NSLog(@"User pressed samples");
+    }
+    else if ([tableView.identifier isEqualToString:@"Themes"]) {
+        NSLog(@"User pressed Themes");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

@@ -14,9 +14,11 @@ typedef enum : NSUInteger {
     TabViewPaths = 1
 } TabViews;
 
-@interface PrefrencesController : NSWindow <NSTabViewDelegate, NSTextDelegate>
+@interface PrefrencesController : NSWindow <NSTabViewDelegate, NSTextDelegate, NSTableViewDataSource, NSTableViewDelegate>
 {
     AWCommunitacion * agdaCommunication;
+    NSArray * themes;
+    NSArray * samples;
 }
 @property (weak) IBOutlet NSTabView *preferencesTabView;
 
@@ -39,6 +41,16 @@ typedef enum : NSUInteger {
 - (IBAction)browsePathAction:(NSButton *)sender;
 @property (weak) IBOutlet NSProgressIndicator *searchForAgdaIndicator;
 @property (weak) IBOutlet NSImageView *okSign;
+
+
+#pragma mark -
+#pragma mark Highlighting
+
+@property (weak) IBOutlet NSTableView *samplesTableView;
+@property (weak) IBOutlet NSTableView *themesTableView;
+
+
+
 
 
 
