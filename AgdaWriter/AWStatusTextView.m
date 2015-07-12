@@ -15,9 +15,7 @@
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaBuffer:) name:AWAgdaBufferDataAvaliable object:nil];
     
-    
-    [self.textStorage setFont:[NSFont systemFontOfSize:16.0]];
-    
+    [self.textStorage setAttributes:@{NSFontAttributeName : [NSFont systemFontOfSize:20]} range:NSMakeRange(0, self.string.length)];
 }
 
 -(void)agdaBuffer:(NSNotification *)notification
@@ -32,6 +30,7 @@
         NSLog(@"REPLY: %@", reply);
         [self.textStorage beginEditing];
         [[self.textStorage mutableString] appendString:reply];
+        [self.textStorage setAttributes:@{NSFontAttributeName : [NSFont systemFontOfSize:14]} range:NSMakeRange(0, self.string.length)];
         [self.textStorage endEditing];
         [self scrollToEndOfDocument:nil];
     }
