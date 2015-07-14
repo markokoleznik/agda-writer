@@ -370,9 +370,14 @@
         // Replace given goal with content that Agda gave.
         NSLog(@"Agda gave action: goal index: %li, content: %@", goalIndex, content);
         NSRange rangeOfGoal = [AWAgdaParser goalAtIndex:goalIndex textStorage:self.textStorage];
-        [self.textStorage replaceCharactersInRange:rangeOfGoal withString:content];
+        if (rangeOfGoal.location + rangeOfGoal.length <= self.string.length) {
+            [self.textStorage replaceCharactersInRange:rangeOfGoal withString:content];
+        }
+        
     }
 }
+
+
 
 -(void) allGoalsAction:(NSNotification *)notification
 {
@@ -405,7 +410,8 @@
                 NSDictionary * goal2 = goals[index];
                 NSInteger goalIndex = [goal2[@"goalIndex"] integerValue];
                 NSString * goalType = goal2[@"goalType"];
-                [self.textStorage replaceCharactersInRange:NSRangeFromString(goal[@"foundRange"]) withString:[NSString stringWithFormat:@"{!%li: %@!}", goalIndex, goalType]];
+//                [self.textStorage replaceCharactersInRange:NSRangeFromString(goal[@"foundRange"]) withString:[NSString stringWithFormat:@"{!%li: %@!}", goalIndex, goalType]];
+                [self.textStorage replaceCharactersInRange:NSRangeFromString(goal[@"foundRange"]) withString:@"{!!}"];
                 
                 i++;
 
@@ -423,7 +429,8 @@
             NSRange rangeOfGoal = NSRangeFromString(allRangesOfGoals[j]);
             if (goals.count > j) {
                 NSDictionary * goal = goals[j];
-                [self.textStorage replaceCharactersInRange:rangeOfGoal withString:[NSString stringWithFormat:@"{!%li: %@!}", [goal[@"goalIndex"] integerValue], goal[@"goalType"]]];
+//                [self.textStorage replaceCharactersInRange:rangeOfGoal withString:[NSString stringWithFormat:@"{!%li: %@!}", [goal[@"goalIndex"] integerValue], goal[@"goalType"]]];
+                [self.textStorage replaceCharactersInRange:rangeOfGoal withString:@"{!!}"];
             }
             
         }
@@ -461,6 +468,8 @@
                 // Delete last "newline"
                 [caseActionString deleteCharactersInRange:NSMakeRange(caseActionString.length - 1, 1)];
                 [self.textStorage insertAttributedString:[[NSAttributedString alloc] initWithString:caseActionString attributes:@{NSFontAttributeName: [AWHelper defaultFontInAgda]}] atIndex:currentGoal.rangeOfCurrentLine.location];
+                
+                [self replaceQuestionMarksWithGoals];
                
             }
             
@@ -470,6 +479,16 @@
         
         
     }
+}
+
+- (void)replaceQuestionMarksWithGoals
+{
+    [self asynchronouslyFindRangesOfQuestionMarksWithCompletion:^(NSArray * matches) {
+        for (NSInteger i = 0; i < matches.count; i++) {
+            NSRange foundRange = NSRangeFromString(matches[i]);
+            [self.textStorage replaceCharactersInRange:foundRange withString:@"{!!}"];
+        }
+    }];
 }
 
 -(void) addTokenAtRange:(NSRange)range withGoalName:(NSString *)goalName

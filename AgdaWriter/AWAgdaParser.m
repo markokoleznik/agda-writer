@@ -325,7 +325,7 @@
     for (NSString * line in matches) {
         
         // first find a type
-        NSRange rangeOfType;
+        NSRange rangeOfType = NSMakeRange(NSNotFound, 0);
         for (NSInteger i = 1; i < line.length; i++) {
             if ([line characterAtIndex:i] == '(') {
                 rangeOfType.location = i + 1;
@@ -336,7 +336,7 @@
             }
         }
         NSString * typeName;
-        if (rangeOfType.length == 0) {
+        if (rangeOfType.location == NSNotFound) {
             // fall back if range isn't found... Just in case! :)
             break;
         }

@@ -289,7 +289,7 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
     NSTableView * tableView = notification.object;
-    NSInteger selectedRow = tableView.selectedRow;
+//    NSInteger selectedRow = tableView.selectedRow;
     if ([tableView.identifier isEqualToString:@"Samples"]) {
         NSLog(@"User pressed samples");
     }

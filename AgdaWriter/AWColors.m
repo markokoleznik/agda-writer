@@ -191,6 +191,7 @@ NSString * const AWinductiveconstructorOperator = @"inductiveconstructor operato
         color = darkGreyColor;
     }
     else {
+        NSLog(@"TYPE NOT FOUND!\n%@", type);
         color = defaultColor;
     }
     
