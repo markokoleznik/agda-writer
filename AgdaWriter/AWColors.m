@@ -42,6 +42,16 @@
 //`comment'                Comments.")
 
 
+#define darkRedColor [NSColor colorWithRed:160.0/COLOR_MAX_VALUE green:16.0/COLOR_MAX_VALUE blue:26.0/COLOR_MAX_VALUE alpha:1.0]
+#define orangeColor [NSColor colorWithRed:192.0/COLOR_MAX_VALUE green:81.0/COLOR_MAX_VALUE blue:6.0/COLOR_MAX_VALUE alpha:1.0]
+#define purpleColor [NSColor colorWithRed:172.0/COLOR_MAX_VALUE green:2.0/COLOR_MAX_VALUE blue:128.0/COLOR_MAX_VALUE alpha:1.0]
+#define blueColor [NSColor colorWithRed:0.0/COLOR_MAX_VALUE green:1.0/COLOR_MAX_VALUE blue:193.0/COLOR_MAX_VALUE alpha:1.0]
+#define darkGreyColor [NSColor colorWithRed:49.0/COLOR_MAX_VALUE green:49.0/COLOR_MAX_VALUE blue:49.0/COLOR_MAX_VALUE alpha:1.0]
+#define greenColor [NSColor colorWithRed:20.0/COLOR_MAX_VALUE green:124.0/COLOR_MAX_VALUE blue:0.0/COLOR_MAX_VALUE alpha:1.0]
+#define errorColor [NSColor redColor]
+#define defaultColor [NSColor darkGrayColor]
+#define pinkColor [NSColor colorWithRed:231.0/COLOR_MAX_VALUE green:0.0/COLOR_MAX_VALUE blue:118.0/COLOR_MAX_VALUE alpha:1.0]
+#define yellowColor [NSColor yellowColor]
 
 NSString * const AWbound = @"bound";
 NSString * const AWcoinductiveconstructor = @"coinductiveconstructor";
@@ -96,19 +106,6 @@ NSString * const AWinductiveconstructorOperator = @"inductiveconstructor operato
 
 + (NSColor *) highlightColorForType:(NSString *)type
 {
-    
-    NSColor * darkRedColor = [NSColor colorWithRed:160.0/COLOR_MAX_VALUE green:16.0/COLOR_MAX_VALUE blue:26.0/COLOR_MAX_VALUE alpha:1.0];
-    NSColor * orangeColor = [NSColor colorWithRed:192.0/COLOR_MAX_VALUE green:81.0/COLOR_MAX_VALUE blue:6.0/COLOR_MAX_VALUE alpha:1.0];
-    NSColor * purpleColor = [NSColor colorWithRed:172.0/COLOR_MAX_VALUE green:2.0/COLOR_MAX_VALUE blue:128.0/COLOR_MAX_VALUE alpha:1.0];
-    NSColor * blueColor = [NSColor colorWithRed:0.0/COLOR_MAX_VALUE green:1.0/COLOR_MAX_VALUE blue:193.0/COLOR_MAX_VALUE alpha:1.0];
-    NSColor * darkGreyColor = [NSColor colorWithRed:49.0/COLOR_MAX_VALUE green:49.0/COLOR_MAX_VALUE blue:49.0/COLOR_MAX_VALUE alpha:1.0];
-    NSColor * greenColor = [NSColor colorWithRed:20.0/COLOR_MAX_VALUE green:124.0/COLOR_MAX_VALUE blue:0.0/COLOR_MAX_VALUE alpha:1.0];
-    NSColor * errorColor = [NSColor redColor];
-//    NSColor * defaultColor = [NSColor cyanColor];
-     NSColor * defaultColor = [NSColor darkGrayColor];
-    NSColor * pinkColor = [NSColor colorWithRed:231.0/COLOR_MAX_VALUE green:0.0/COLOR_MAX_VALUE blue:118.0/COLOR_MAX_VALUE alpha:1.0];
-//    NSColor * yellowColor = [NSColor yellowColor];
-    
     
     NSColor * color;
     

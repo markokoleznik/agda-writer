@@ -334,16 +334,18 @@
                 rangeOfType.length = i - rangeOfType.location;
                 break;
             }
-            
         }
         NSString * typeName;
-        if (rangeOfType.length != 0) {
-            typeName = [line substringWithRange:rangeOfType];
+        if (rangeOfType.length == 0) {
+            // fall back if range isn't found... Just in case! :)
+            break;
         }
+        typeName = [line substringWithRange:rangeOfType];
+        // delete that type from string
         NSString const * lineCopy = [NSString stringWithFormat:@"%@%@", [line substringToIndex:rangeOfType.location - 2], [line substringFromIndex:rangeOfType.location + rangeOfType.length + 1]];
 
         // get those components:
-        // @[siK, eik, (type), path]
+        // @[siK, eik, path]
         NSArray * components = [lineCopy componentsSeparatedByString:@" "];
         if (components.count > 2) {
             NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
