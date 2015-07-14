@@ -297,25 +297,55 @@
     return actions;
 }
 
+
+
 +(NSArray *) parseHighlighting:(NSString *)highlighting
 {
+    /*
+        We receive "highlighting" in this form:
+        ((si1 ei1 (type1) nil path) (si2 ei2 (type2) path) ...)
+        where:
+        siN     start of range N
+        eiN     end of range N
+        typeN   type, for exaple "word", "symbol", "operator" ...
+        path    is the path of a file
+    */
+    
+    // ditch first two and the last two parenthesis
     if ([highlighting hasPrefix:@"(("] && [highlighting hasSuffix:@"))"]) {
         highlighting = [highlighting substringWithRange:NSMakeRange(2, highlighting.length - 4)];
     }
     NSMutableArray * result = [[NSMutableArray alloc] init];
+    // create array of
+    // siK eiK (typeK) path
+    // note: those are now without parenthesis
     NSArray * matches = [highlighting componentsSeparatedByString:@") ("];
     
     
     for (NSString * line in matches) {
-        NSArray * components = [line componentsSeparatedByString:@" "];
-        if (components.count > 3) {
-            NSString * typeName = components[2];
-            if (![typeName hasSuffix:@")"]) {
-                typeName = [NSString stringWithFormat:@"%@ %@", typeName, (NSString *)components[3]];
+        
+        // first find a type
+        NSRange rangeOfType;
+        for (NSInteger i = 1; i < line.length; i++) {
+            if ([line characterAtIndex:i] == '(') {
+                rangeOfType.location = i + 1;
             }
-            if ([typeName hasPrefix:@"("] && [typeName hasSuffix:@")"]) {
-                typeName = [typeName substringWithRange:NSMakeRange(1, typeName.length - 2)];
+            else if ([line characterAtIndex:i] == ')') {
+                rangeOfType.length = i - rangeOfType.location;
+                break;
             }
+            
+        }
+        NSString * typeName;
+        if (rangeOfType.length != 0) {
+            typeName = [line substringWithRange:rangeOfType];
+        }
+        NSString const * lineCopy = [NSString stringWithFormat:@"%@%@", [line substringToIndex:rangeOfType.location - 2], [line substringFromIndex:rangeOfType.location + rangeOfType.length + 1]];
+
+        // get those components:
+        // @[siK, eik, (type), path]
+        NSArray * components = [lineCopy componentsSeparatedByString:@" "];
+        if (components.count > 2) {
             NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
             f.numberStyle = NSNumberFormatterDecimalStyle;
             NSNumber *startNumber = [f numberFromString:components[0]];
@@ -323,6 +353,7 @@
             NSRange range = NSMakeRange([startNumber integerValue], [endNumber integerValue] - [startNumber integerValue]);
             
             NSDictionary * dict = @{typeName : @[NSStringFromRange(range)]};
+//            NSLog(@"%@", dict);
             [result addObject:dict];
         }
     }

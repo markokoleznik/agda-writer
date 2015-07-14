@@ -20,5 +20,9 @@
 +(NSRange) goalAtIndex: (NSInteger) index textStorage:(NSTextStorage *)textStorage;
 +(NSArray *) allGoalsWithRanges:(NSTextStorage *) textStorage;
 +(NSArray *) caseSplitActions:(NSString *)reply;
+/** Parses highlighting.
+ @param  NSString               Response from Agda (read from disk)
+ @return NSArray                Array contains objects of type NSDictionary. Form: @{type : @[range]}
+ */
 +(NSArray *) parseHighlighting:(NSString *)highlighting;
 @end
