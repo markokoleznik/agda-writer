@@ -60,7 +60,7 @@
 - (IBAction)actionGoalTypeAndInferredType:(NSMenuItem *)sender;
 - (IBAction)actionComputeNormalForm:(NSMenuItem *)sender;
 #pragma mark -
-- (IBAction)loadAction:(NSButton *)sender;
+
 
 
 

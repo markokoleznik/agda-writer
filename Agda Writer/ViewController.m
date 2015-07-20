@@ -105,21 +105,6 @@
     return YES;
 }
 
-- (void)saveCurrentWork
-{
-    // TODO: error handling
-//    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-//    NSString * fullPath = [ud objectForKey:@"currentFile"];
-//    NSError * error;
-//    [self replaceTokensWithQuestionMarks];
-//    NSString *content = [[self.mainTextView textStorage] string];
-//    [content writeToFile:fullPath
-//              atomically:YES
-//                encoding:NSUTF8StringEncoding
-//                   error:&error];
-    
-    
-}
 
 
 - (IBAction)hideOutputs:(id)sender {
@@ -267,26 +252,6 @@
     }
 }
 
-
-
-- (IBAction)loadAction:(NSButton *)sender {
-//    [self saveCurrentWork];
-    [self.loadingIndicator startAnimation:self];
-    NSString * fullPath = [document filePath].path;
-    
-    // save
-    [document saveDocument:self];
-    
-    if (fullPath) {
-        NSString * message = [AWAgdaActions actionLoadWithFilePath:fullPath andIncludeDir:@""];
-        AppDelegate * appDelegate = (AppDelegate *)[NSApp delegate];
-        [appDelegate.communicator writeDataToAgda:message sender:self];
-    }
-    
-    
-    
-    
-}
 
 
 

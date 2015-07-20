@@ -826,19 +826,6 @@
                                     <real value="250"/>
                                 </holdingPriorities>
                             </splitView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TlE-WN-6wl">
-                                <rect key="frame" x="199" y="390" width="71" height="32"/>
-                                <buttonCell key="cell" type="push" title="Load" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="I2z-GU-9gC">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="loadAction:" target="5gI-5U-AMq" id="HxL-0m-fLx"/>
-                                </connections>
-                            </button>
-                            <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="qdI-pJ-mGD">
-                                <rect key="frame" x="296" y="399" width="16" height="16"/>
-                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstItem="AkM-hh-meC" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" constant="20" symbolic="YES" id="IOi-iS-Anf"/>
@@ -849,7 +836,6 @@
                     </view>
                     <connections>
                         <outlet property="goalsTableController" destination="dWY-q4-L80" id="Bfd-lx-kfN"/>
-                        <outlet property="loadingIndicator" destination="qdI-pJ-mGD" id="aL8-yV-iY7"/>
                         <outlet property="mainTextView" destination="BWS-Sd-SvV" id="Dc1-xj-Hhj"/>
                         <outlet property="statusTextView" destination="4Ci-ex-d4W" id="TSf-1L-9c5"/>
                     </connections>
