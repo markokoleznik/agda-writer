@@ -42,7 +42,6 @@
 
 #pragma mark -
 #pragma mark Global actions
-@property (weak) IBOutlet NSProgressIndicator *loadingIndicator;
 
 // Global actions
 - (IBAction)actionLoad:(id)sender;

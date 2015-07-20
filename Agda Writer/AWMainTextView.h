@@ -20,6 +20,7 @@
 
 @interface AgdaGoal : NSObject
 
+@property NSInteger agdaGoalIndex;
 @property NSInteger goalIndex;
 @property NSInteger startCharIndex;
 @property NSInteger startRow;
@@ -40,7 +41,7 @@
     NSDictionary * defaultAttributes;
     NSDictionary * goalsAttributes;
     NSMutableAttributedString * mutableAttributedString;
-    NSMutableArray * goalsArray;
+    NSArray * goalsIndexesArray;
     
     NSMutableSet * mutableSetOfActionNames;
     

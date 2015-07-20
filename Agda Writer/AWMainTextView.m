@@ -58,7 +58,7 @@
                             };
         
         [mutableAttributedString addAttributes:defaultAttributes range:NSMakeRange(0, mutableAttributedString.length)];
-        goalsArray = [NSMutableArray new];
+
         
 //        [self openLastDocument];
         
@@ -71,6 +71,7 @@
     
     
 }
+
 
 - (AgdaGoal *)selectedGoal
 {
@@ -88,6 +89,7 @@
         _selectedGoal = [[AgdaGoal alloc] init];
         NSRange foundRange = NSRangeFromString(dict[@"foundRange"]);
         _selectedGoal.goalIndex = [dict[@"goalIndex"] integerValue];
+        _selectedGoal.agdaGoalIndex = [goalsIndexesArray[_selectedGoal.goalIndex][@"goalIndex"] integerValue];
         _selectedGoal.startCharIndex = foundRange.location;
         _selectedGoal.endCharIndex = foundRange.location + foundRange.length;
         
@@ -332,6 +334,13 @@
         
         // Replace given goal with content that Agda gave.
         NSLog(@"Agda gave action: goal index: %li, content: %@", goalIndex, content);
+        NSInteger i = 0;
+        for (NSDictionary * dict in goalsIndexesArray) {
+            if ([dict[@"goalIndex"] integerValue] == goalIndex) {
+                goalIndex = i;
+            }
+            i++;
+        }
         NSRange rangeOfGoal = [AWAgdaParser goalAtIndex:goalIndex textStorage:self.textStorage];
         if (rangeOfGoal.location + rangeOfGoal.length <= self.string.length) {
             [self.textStorage replaceCharactersInRange:rangeOfGoal withString:content];
@@ -360,6 +369,8 @@
         if (goals.count == 0) {
             return;
         }
+        
+        goalsIndexesArray = [goals copy];
         
         // Add tokens on goals
         int i = 0;
