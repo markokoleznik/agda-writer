@@ -81,6 +81,8 @@
     NSInteger numberOfChars = 0;
     NSString * string = self.textStorage.string;
     
+    _selectedGoal = nil;
+    
     // Get all ranges of goals and look if our current selection is in one of them.
     // From that, we will get goal index
     
@@ -501,6 +503,8 @@
 {
     [self setSelectedRange:NSMakeRange([notification.object integerValue] + 1, 0)];
 }
+
+
 
 - (void) highlightCode:(NSNotification *) notification
 {

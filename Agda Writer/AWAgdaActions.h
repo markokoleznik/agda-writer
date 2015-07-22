@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "AWMainTextView.h"
 @interface AWAgdaActions : NSObject
 
 
@@ -73,6 +73,10 @@
                                              goalIndex:(NSInteger)goalIndex
                                                content:(NSString *)content;
 +(NSString *)actionShowVersionOfAgdaWithFilePath:(NSString *)filePath;
+
++(NSString *)actionNormalizeWithGoal:(AgdaGoal *)goal
+                            filePath:(NSString *)filePath
+                             content:(NSString *)content;
 
 
 #pragma mark -

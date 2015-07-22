@@ -58,6 +58,18 @@
 {
     return [NSString stringWithFormat:@"IOTCM \"%@\" None Indirect ( Cmd_show_version )", filePath];
 }
++(NSString *)actionNormalizeWithGoal:(AgdaGoal *)goal
+                            filePath:(NSString *)filePath
+                            content:(NSString *)content
+{
+    if (goal) {
+        return [NSString stringWithFormat:@"IOTCM \"@\" NonInteractive Indirect ( Cmd_compute False %li noRange \"%@\" )", goal.agdaGoalIndex, content];
+    }
+    else {
+        return [NSString stringWithFormat:@"IOTCM \"%@\" None Direct ( Cmd_compute_toplevel False \"%@\" )", filePath, content];
+    }
+    
+}
 
 
 #pragma mark -

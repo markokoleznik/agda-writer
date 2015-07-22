@@ -27,4 +27,9 @@
     }
 }
 
+-(void)viewDidDisappear
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 @end

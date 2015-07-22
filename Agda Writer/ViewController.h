@@ -15,11 +15,14 @@
 #import "Document.h"
 #import "AWGoalsTableController.h"
 #import "AWStatusTextView.h"
+#import "AWInputWindow.h"
+#import "MAAttachedWindow.h"
+#import "AWInputViewController.h"
 
 
 @class AgdaGoal;
 
-@interface ViewController : NSViewController <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate, NSTableViewDataSource, NSTableViewDelegate>
+@interface ViewController : NSViewController <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate, NSTableViewDataSource, NSTableViewDelegate, AWInputDelegate>
 {
     Document * document;
 }
@@ -34,6 +37,8 @@
 
 @property IBOutlet NSTextView *lineNumbersView;
 @property AWToastWindow * toastView;
+@property MAAttachedWindow * inputWindow;
+@property AWInputViewController * inputViewController;
 @property (weak) IBOutlet NSTextField *lastStatusTextField;
 
 - (IBAction)hideOutputs:(id)sender;
@@ -58,6 +63,8 @@
 - (IBAction)actionGoalTypeAndContext:(NSMenuItem *)sender;
 - (IBAction)actionGoalTypeAndInferredType:(NSMenuItem *)sender;
 - (IBAction)actionComputeNormalForm:(NSMenuItem *)sender;
+- (IBAction)actionNormalize:(id)sender;
+
 #pragma mark -
 
 

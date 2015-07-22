@@ -16,11 +16,15 @@
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaBuffer:) name:AWAgdaBufferDataAvaliable object:nil];
     
+    [self setFont:[NSFont systemFontOfSize:25.0]];
+    
 }
+
 
 -(void)agdaBuffer:(NSNotification *)notification
 {
 //    [[self textStorage] setFont:[NSFont userFixedPitchFontOfSize:12]];
+    [self setFont:[NSFont systemFontOfSize:13]];
     if (notification.object == self.parentViewController) {
         NSString *reply = notification.userInfo[@"buffer"];
         reply = [reply substringWithRange:NSMakeRange(1, reply.length - 2)];

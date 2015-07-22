@@ -22,21 +22,21 @@
             </objects>
             <point key="canvasLocation" x="82" y="-688"/>
         </scene>
-        <!--View Controller-->
+        <!--Agda Buffer Window-->
         <scene sceneID="Q5w-z5-xpf">
             <objects>
-                <viewController id="cra-KO-y3u" sceneMemberID="viewController">
+                <viewController id="cra-KO-y3u" customClass="AWAgdaBufferWindow" sceneMemberID="viewController">
                     <view key="view" id="RDf-Sf-2ZJ">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIl-OO-Gir">
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIl-OO-Gir">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                                <clipView key="contentView" misplaced="YES" id="f8l-xV-7bn">
+                                <clipView key="contentView" id="f8l-xV-7bn">
                                     <rect key="frame" x="1" y="1" width="238" height="133"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="qPc-2t-64X">
+                                        <textView editable="NO" importsGraphics="NO" findStyle="panel" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="qPc-2t-64X">
                                             <rect key="frame" x="0.0" y="0.0" width="238" height="268"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -59,7 +59,16 @@
                                 </scroller>
                             </scrollView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="aIl-OO-Gir" firstAttribute="leading" secondItem="RDf-Sf-2ZJ" secondAttribute="leading" id="4Im-be-K24"/>
+                            <constraint firstAttribute="bottom" secondItem="aIl-OO-Gir" secondAttribute="bottom" id="PEC-EV-Hrx"/>
+                            <constraint firstAttribute="trailing" secondItem="aIl-OO-Gir" secondAttribute="trailing" id="SeT-3Y-IAd"/>
+                            <constraint firstItem="aIl-OO-Gir" firstAttribute="top" secondItem="RDf-Sf-2ZJ" secondAttribute="top" id="lQd-He-EBK"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="agdaTextView" destination="qPc-2t-64X" id="Zhm-85-bb5"/>
+                    </connections>
                 </viewController>
                 <customObject id="vww-Nk-r2q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -90,6 +99,15 @@
                     <view key="view" id="2gj-Xq-8Kg">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xoq-Do-Bgb">
+                                <rect key="frame" x="199" y="118" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ELx-pN-N67">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
                     </view>
                 </viewController>
                 <customObject id="TEC-ho-msq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -113,7 +131,11 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                            <connections>
+                                                <segue destination="pBj-YQ-UiU" kind="show" id="b5y-19-bX2"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -500,10 +522,16 @@
                                                 <action selector="actionGoalTypeAndInferredType:" target="Ady-hI-5gd" id="RDV-wR-wZN"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Compute normal form" id="SdA-6n-WQN">
+                                        <menuItem title="Compute normal form" id="9ac-1Z-CrV">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="actionComputeNormalForm:" target="Ady-hI-5gd" id="cuR-yy-KpM"/>
+                                                <action selector="actionComputeNormalForm:" target="Ady-hI-5gd" id="BMn-oj-L91"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Normalize" keyEquivalent="n" id="SdA-6n-WQN">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="actionNormalize:" target="Ady-hI-5gd" id="gEd-UN-Rbw"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -513,16 +541,11 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="HyV-fh-RgO">
                                     <items>
-                                        <menuItem title="Show Toolbar" keyEquivalent="t" id="snW-S8-Cw5">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                        <menuItem title="Show Buffer" keyEquivalent="B" id="snW-S8-Cw5">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                             <connections>
                                                 <action selector="toggleToolbarShown:" target="Ady-hI-5gd" id="BXY-wc-z0C"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Customize Toolbar…" id="1UK-8n-QPP">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="runToolbarCustomizationPalette:" target="Ady-hI-5gd" id="pQI-g3-MTW"/>
+                                                <segue destination="Uur-53-DrY" kind="show" id="shy-Gw-Zu1"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -776,7 +799,7 @@
                                                                     <rect key="frame" x="1" y="1" width="238" height="133"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <textView editable="NO" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="4Ci-ex-d4W" customClass="AWStatusTextView">
+                                                                        <textView editable="NO" findStyle="panel" incrementalSearchingEnabled="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="4Ci-ex-d4W" customClass="AWStatusTextView">
                                                                             <rect key="frame" x="0.0" y="0.0" width="238" height="190"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

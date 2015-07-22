@@ -41,6 +41,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(executeActions:) name:AWExecuteActions object:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaVersionAvaliable:) name:AWAgdaVersionAvaliable object:nil];
     
+    
+    
+    
+    
 }
 
 
@@ -91,6 +95,11 @@
     
     NSString *fontFamily = (NSString *)[ud stringForKey:FONT_FAMILY_KEY];
     NSNotification * notif2 = [[NSNotification alloc] initWithName:fontFamilyChanged object:fontFamily userInfo:nil];
+    
+    NSFont * defaultFont = [NSFont fontWithName:@"Menlo" size:14];
+    [self.mainTextView setFont:defaultFont];
+    [self.statusTextView setFont:defaultFont];
+    [self.goalsTableController.goalsTable setFont:defaultFont];
     
     [self changeFontSizeFromNotification:notif1];
     [self changeFontFamilyFromNotification:notif2];
@@ -239,6 +248,38 @@
 
 - (IBAction)actionComputeNormalForm:(NSMenuItem *)sender {
     [self showNotImplementedAlert];
+}
+
+- (IBAction)actionNormalize:(id)sender {
+    
+    self.inputViewController = [[AWInputViewController alloc] initWithNibName:@"AWInputViewController" bundle:nil];
+    self.inputWindow = [[MAAttachedWindow alloc] initWithView:self.inputViewController.view attachedToPoint:NSMakePoint(0, 0)];
+    [self.inputWindow setHasArrow:0];
+    [self.inputWindow center];
+    
+    self.inputViewController.delegate = self;
+    
+    
+    [self.inputWindow makeKeyWindow];
+    
+    [self.inputWindow makeKeyAndOrderFront:self];
+    [NSApp activateIgnoringOtherApps:YES];
+    
+}
+
+-(void)normalizeInputDidEndEditing:(NSString *)content
+{
+//    [document saveDocument:self];
+    NSString * fullPath = [document filePath].path;
+    AgdaGoal * goal = self.mainTextView.selectedGoal;
+    NSString * message = [AWAgdaActions actionNormalizeWithGoal:goal filePath:fullPath content:content];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator writeDataToAgda:message sender:self];
+    
+//    [self.inputWindow orderOut:self];
+    [self.inputWindow close];
+    
+    self.inputWindow = nil;
 }
 #pragma mark -
 -(void)showNotImplementedAlert

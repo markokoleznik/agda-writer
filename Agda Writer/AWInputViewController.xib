@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AWInputViewController">
+            <connections>
+                <outlet property="inputTextField" destination="ODC-6n-7ya" id="CYu-vo-jgt"/>
+                <outlet property="inputTitle" destination="IT0-cg-XYW" id="Ne7-ae-Zj0"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="VsL-7M-Bf0"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="1" width="480" height="113"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField verticalHuggingPriority="750" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ODC-6n-7ya">
+                    <rect key="frame" x="20" y="20" width="440" height="48"/>
+                    <textFieldCell key="cell" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Type Expression here..." drawsBackground="YES" id="0xr-un-bK3">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IT0-cg-XYW">
+                    <rect key="frame" x="20" y="76" width="166" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Normalize expression:" id="OX8-iH-kFK">
+                        <font key="font" metaFont="systemBold" size="14"/>
+                        <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <point key="canvasLocation" x="300" y="289.5"/>
+        </customView>
+        <button verticalHuggingPriority="750" id="BIa-nM-8z0">
+            <rect key="frame" x="0.0" y="0.0" width="82" height="32"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sip-d2-fGP">
+                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                <font key="font" metaFont="system"/>
+            </buttonCell>
+            <point key="canvasLocation" x="479" y="364.5"/>
+        </button>
+    </objects>
+</document>

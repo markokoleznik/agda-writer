@@ -40,6 +40,10 @@
 		D531F1751B57E60B002E7E0F /* load_successful.png in Resources */ = {isa = PBXBuildFile; fileRef = D531F1701B57E60B002E7E0F /* load_successful.png */; };
 		D531F1761B57E60B002E7E0F /* ok_sign.png in Resources */ = {isa = PBXBuildFile; fileRef = D531F1711B57E60B002E7E0F /* ok_sign.png */; };
 		D531F1781B5852EE002E7E0F /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = D531F1771B5852EE002E7E0F /* defaults.plist */; };
+		D538E5CA1B5EE57300B5455A /* AWInputWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D538E5C91B5EE57300B5455A /* AWInputWindow.m */; };
+		D538E5CD1B5EECA900B5455A /* MAAttachedWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D538E5CC1B5EECA900B5455A /* MAAttachedWindow.m */; };
+		D538E5D11B5EF13300B5455A /* AWInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D538E5CF1B5EF13300B5455A /* AWInputViewController.m */; };
+		D538E5D21B5EF13300B5455A /* AWInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D538E5D01B5EF13300B5455A /* AWInputViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +115,13 @@
 		D531F1701B57E60B002E7E0F /* load_successful.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_successful.png; sourceTree = "<group>"; };
 		D531F1711B57E60B002E7E0F /* ok_sign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok_sign.png; sourceTree = "<group>"; };
 		D531F1771B5852EE002E7E0F /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaults.plist; sourceTree = "<group>"; };
+		D538E5C81B5EE57300B5455A /* AWInputWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWInputWindow.h; sourceTree = "<group>"; };
+		D538E5C91B5EE57300B5455A /* AWInputWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWInputWindow.m; sourceTree = "<group>"; };
+		D538E5CB1B5EECA900B5455A /* MAAttachedWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAAttachedWindow.h; sourceTree = "<group>"; };
+		D538E5CC1B5EECA900B5455A /* MAAttachedWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAAttachedWindow.m; sourceTree = "<group>"; };
+		D538E5CE1B5EF13300B5455A /* AWInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWInputViewController.h; sourceTree = "<group>"; };
+		D538E5CF1B5EF13300B5455A /* AWInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWInputViewController.m; sourceTree = "<group>"; };
+		D538E5D01B5EF13300B5455A /* AWInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AWInputViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,10 +234,17 @@
 		D531F13F1B57DFAC002E7E0F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D538E5CB1B5EECA900B5455A /* MAAttachedWindow.h */,
+				D538E5CC1B5EECA900B5455A /* MAAttachedWindow.m */,
 				D531F1391B57DFA5002E7E0F /* AWColors.h */,
 				D531F13A1B57DFA5002E7E0F /* AWColors.m */,
 				D531F13B1B57DFA5002E7E0F /* AWHelper.h */,
 				D531F13C1B57DFA5002E7E0F /* AWHelper.m */,
+				D538E5C81B5EE57300B5455A /* AWInputWindow.h */,
+				D538E5C91B5EE57300B5455A /* AWInputWindow.m */,
+				D538E5CE1B5EF13300B5455A /* AWInputViewController.h */,
+				D538E5CF1B5EF13300B5455A /* AWInputViewController.m */,
+				D538E5D01B5EF13300B5455A /* AWInputViewController.xib */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -428,6 +446,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D538E5D21B5EF13300B5455A /* AWInputViewController.xib in Resources */,
 				D531F1781B5852EE002E7E0F /* defaults.plist in Resources */,
 				D531F10D1B55E580002E7E0F /* Images.xcassets in Resources */,
 				D531F1721B57E60B002E7E0F /* failed_default.png in Resources */,
@@ -462,6 +481,8 @@
 				D531F15A1B57E555002E7E0F /* CustomTokenCell.m in Sources */,
 				D531F12E1B57DB19002E7E0F /* AWAgdaActions.m in Sources */,
 				D531F1591B57E555002E7E0F /* AWMainTextView.m in Sources */,
+				D538E5D11B5EF13300B5455A /* AWInputViewController.m in Sources */,
+				D538E5CD1B5EECA900B5455A /* MAAttachedWindow.m in Sources */,
 				D531F1651B57E571002E7E0F /* AWStatusTextView.m in Sources */,
 				D531F13E1B57DFA5002E7E0F /* AWHelper.m in Sources */,
 				D531F1081B55E580002E7E0F /* ViewController.m in Sources */,
@@ -472,6 +493,7 @@
 				D531F1051B55E580002E7E0F /* main.m in Sources */,
 				D531F15F1B57E564002E7E0F /* AWContainerOutputTextView.m in Sources */,
 				D531F1031B55E580002E7E0F /* AppDelegate.m in Sources */,
+				D538E5CA1B5EE57300B5455A /* AWInputWindow.m in Sources */,
 				D531F1601B57E564002E7E0F /* AWGoalsTableController.m in Sources */,
 				D531F1581B57E555002E7E0F /* AWLineNumbersTextView.m in Sources */,
 				D531F1371B57DF6F002E7E0F /* AWToastWindow.m in Sources */,
