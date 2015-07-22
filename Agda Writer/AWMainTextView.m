@@ -129,6 +129,12 @@
     return _selectedGoal;
 }
 
+-(void)paste:(id)sender
+{
+    [super pasteAsPlainText:sender];
+    NSLog(@"Pasting");
+}
+
 - (void)insertAttachmentCell:(NSTextAttachmentCell *)cell toTextView:(NSTextView *)textView
 {
     NSTextAttachment *attachment = [NSTextAttachment new];
