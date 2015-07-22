@@ -179,7 +179,6 @@
 }
 
 
-
 - (IBAction)actionRefine:(NSMenuItem *)sender {
     NSString * fullPath = [document filePath].path;
     [document saveDocument:self];

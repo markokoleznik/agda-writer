@@ -190,7 +190,10 @@
 -(NSArray *)textView:(NSTextView *)textView completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
 {
     NSString * partialWord = [self.string substringWithRange:charRange];
-    if ([self.string characterAtIndex:charRange.location - 1] == '\\') {
+    if (charRange.location == 0) {
+        return @[];
+    }
+    if (charRange.location - 1 > 0 && [self.string characterAtIndex:charRange.location - 1] == '\\') {
         partialWord = [self.string substringWithRange:NSMakeRange(charRange.location - 1, charRange.length + 1)];
     }
     NSDate * startDate = [NSDate date];
