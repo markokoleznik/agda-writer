@@ -244,5 +244,41 @@
 	<string>ᵦ</string>
 	<key>_\gamma</key>
 	<string>ᵧ</string>
+	<key>\rightarrow</key>
+	<string>→</string>
+	<key>\leftarrow</key>
+	<string>←</string>
+	<key>\uparrow</key>
+	<string>↑</string>
+	<key>\downarrow</key>
+	<string>↓</string>
+	<key>\nwarrow</key>
+	<string>↖</string>
+	<key>\searrow</key>
+	<string>↘</string>
+	<key>\mapsto</key>
+	<string>↦</string>
+	<key>\leftrightarrow</key>
+	<string>↔</string>
+	<key>\rightarrowtail</key>
+	<string>↣</string>
+	<key>\twoheadrightarrow</key>
+	<string>↠</string>
+	<key>\hookrightarrow</key>
+	<string>↪</string>
+	<key>\Rightarrow</key>
+	<string>⇒</string>
+	<key>\Leftarrow</key>
+	<string>⇐</string>
+	<key>\Uparrow</key>
+	<string>⇑</string>
+	<key>\Downarrow</key>
+	<string>⇓</string>
+	<key>\nearrow</key>
+	<string>↗</string>
+	<key>\swarrow</key>
+	<string>↙</string>
+	<key>\Leftrightarror</key>
+	<string>⇔</string>
 </dict>
 </plist>
