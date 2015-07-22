@@ -76,6 +76,8 @@
         // Show pressed goal
         [self.mainTextView scrollRangeToVisible:selectedGoal];
         [self.mainTextView showFindIndicatorForRange:selectedGoal];
+        [self.mainTextView setSelectedRange:NSMakeRange(selectedGoal.location + 2, selectedGoal.length - 4)];
+        [self.mainTextView.window makeFirstResponder:self.mainTextView];
     }
     else
     {
