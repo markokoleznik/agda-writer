@@ -448,6 +448,13 @@
                                                 </items>
                                             </menu>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="wdi-TW-B4u"/>
+                                        <menuItem title="Apply Unicode Tranformation" id="Bu4-sh-rLO">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="applyUnicodeTransformation:" target="Ady-hI-5gd" id="ApA-rp-kkP"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>

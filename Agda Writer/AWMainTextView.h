@@ -53,6 +53,8 @@
 
 @property (nonatomic) id parentViewController;
 
+-(void) applyUnicodeTransformation;
+
 
 
 

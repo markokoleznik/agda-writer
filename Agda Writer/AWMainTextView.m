@@ -181,6 +181,24 @@
     
 }
 
+-(void)applyUnicodeTransformation
+{
+
+    NSMutableArray * words = [[NSMutableArray alloc] init];
+    
+    NSArray * lines = [self.string componentsSeparatedByString:@"\n"];
+    for (NSString * line in lines) {
+        [words addObjectsFromArray:[line componentsSeparatedByString:@" "]];
+    }
+    NSDictionary * keyBindings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Key Bindings" withExtension:@"plist"]];
+    for (NSString * word in words) {
+        NSString * replacementString = [keyBindings objectForKey:word];
+        if (replacementString) {
+            self.string = [self.string stringByReplacingOccurrencesOfString:word withString:replacementString];
+        }
+    }
+}
+
 -(void)complete:(id)sender
 {
     [super complete:sender];

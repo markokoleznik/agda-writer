@@ -66,6 +66,7 @@
 - (IBAction)actionNormalize:(id)sender;
 
 #pragma mark -
+- (IBAction)applyUnicodeTransformation:(id)sender;
 
 
 

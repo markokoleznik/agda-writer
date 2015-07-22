@@ -459,6 +459,7 @@
 
 }
 
+
 -(void) dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -480,4 +481,7 @@
     // Update the view, if already loaded.
 }
 
+- (IBAction)applyUnicodeTransformation:(id)sender {
+    [self.mainTextView applyUnicodeTransformation];
+}
 @end
