@@ -157,7 +157,7 @@
 -(void)keyUp:(NSEvent *)theEvent
 {
 //    NSLog(@"Key pressed: %@", theEvent);
-    if (([theEvent.characters isEqualToString:@" "] || theEvent.keyCode == 36)) {
+    if (([theEvent.characters isEqualToString:@" "])) {
         NSRange rangeOfCurrentWord = [self rangeOfCurrentWord];
         if (rangeOfCurrentWord.location != NSNotFound) {
             NSString * currentWord = [self.string substringWithRange:rangeOfCurrentWord];
