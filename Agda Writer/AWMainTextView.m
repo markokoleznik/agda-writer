@@ -198,7 +198,7 @@
     }
     NSDate * startDate = [NSDate date];
     NSDictionary * keyBindings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Key Bindings" withExtension:@"plist"]];
-    NSLog(@"elapsed time: %f seconds", [[NSDate date] timeIntervalSinceDate:startDate]);
+    
     
     NSMutableArray * mutableArray = [[NSMutableArray alloc] init];
     NSArray * filteredArray = [keyBindings.allKeys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
@@ -215,9 +215,23 @@
         }
     }
     
+    [mutableArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString * name1 = (NSString *)obj1;
+        NSString * name2 = (NSString *)obj2;
+        if ([name1 hasPrefix:@"\\"]) {
+            name1 = [name1 substringFromIndex:1];
+        }
+        if ([name2 hasPrefix:@"\\"]) {
+            name2 = [name2 substringFromIndex:1];
+        }
+        return [name1 compare:name2];
+    }];
+    
     if (filteredArray.count == 1 && [filteredArray[0] isEqualToString:partialWord]) {
         return @[];
     }
+    
+    NSLog(@"elapsed time: %f seconds", [[NSDate date] timeIntervalSinceDate:startDate]);
     
     return mutableArray;
 }
