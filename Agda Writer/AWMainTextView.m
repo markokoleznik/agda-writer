@@ -18,7 +18,9 @@
 
 @end
 
-@implementation AWMainTextView
+@implementation AWMainTextView {
+    BOOL autocompleteTriggered;
+}
 
 
 -(void)awakeFromNib
@@ -155,7 +157,7 @@
 -(void)keyUp:(NSEvent *)theEvent
 {
 //    NSLog(@"Key pressed: %@", theEvent);
-    if ([theEvent.characters isEqualToString:@" "] || theEvent.keyCode == 36) {
+    if (([theEvent.characters isEqualToString:@" "] || theEvent.keyCode == 36)) {
         NSRange rangeOfCurrentWord = [self rangeOfCurrentWord];
         if (rangeOfCurrentWord.location != NSNotFound) {
             NSString * currentWord = [self.string substringWithRange:rangeOfCurrentWord];
@@ -166,9 +168,41 @@
             }
         }
         
-        
-        
     }
+    else if (theEvent.keyCode == 51) { // delete
+        return;
+    }
+    
+    if (!autocompleteTriggered) {
+        [self performSelector:@selector(complete:) withObject:nil afterDelay:0.5];
+        autocompleteTriggered = YES;
+    }
+    
+}
+
+-(void)complete:(id)sender
+{
+    [super complete:sender];
+    autocompleteTriggered = NO;
+}
+
+-(NSArray *)textView:(NSTextView *)textView completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
+{
+    NSString * partialWord = [self.string substringWithRange:charRange];
+    NSDate * startDate = [NSDate date];
+    NSDictionary * keyBindings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Key Bindings" withExtension:@"plist"]];
+    NSLog(@"elapsed time: %f seconds", [[NSDate date] timeIntervalSinceDate:startDate]);
+    
+    NSArray * filteredArray = [keyBindings.allKeys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        NSString * name = (NSString *)evaluatedObject;
+        return [name hasPrefix:partialWord];
+    }]];
+    
+    if (filteredArray.count == 1 && [filteredArray[0] isEqualToString:partialWord]) {
+        return @[];
+    }
+    
+    return filteredArray;
 }
 
 -(NSRange) rangeOfCurrentWord

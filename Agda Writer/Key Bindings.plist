@@ -8,5 +8,19 @@
 	<string>α</string>
 	<key>omega</key>
 	<string>ω</string>
+	<key>-&gt;</key>
+	<string>→</string>
+	<key>&lt;=&gt;</key>
+	<string>⟺</string>
+	<key>=&gt;</key>
+	<string>⟹</string>
+	<key>&lt;=</key>
+	<string>⟸</string>
+	<key>&lt;-&gt;</key>
+	<string>⟷</string>
+	<key>&lt;-</key>
+	<string>←</string>
+	<key>N</key>
+	<string>ℕ</string>
 </dict>
 </plist>
