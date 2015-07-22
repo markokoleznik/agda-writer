@@ -709,11 +709,11 @@
                                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                                     <prototypeCellViews>
                                                                                         <tableCellView id="NI7-6A-qX1">
-                                                                                            <rect key="frame" x="1" y="1" width="102" height="17"/>
+                                                                                            <rect key="frame" x="5" y="1" width="102" height="20"/>
                                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                             <subviews>
                                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OgD-QD-xLE">
-                                                                                                    <rect key="frame" x="0.0" y="0.0" width="101" height="17"/>
+                                                                                                    <rect key="frame" x="0.0" y="3" width="101" height="17"/>
                                                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Table View Cell" id="7em-wp-EbU">
                                                                                                         <font key="font" metaFont="system"/>
                                                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

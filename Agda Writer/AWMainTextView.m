@@ -154,6 +154,13 @@
         for (NSInteger i = affectedCharRange.location - 1; i > 0; i--) {
             if ([self.string characterAtIndex:i] == '\n') {
                 // we found previous line!
+                if ([[self.string substringWithRange:NSMakeRange(i + 1, 2)] isEqualToString:@"{-"]) {
+                    // begin multiline comment
+                    [self.textStorage.mutableString insertString:@"   \n-}" atIndex:i + 3];
+                    [self setSelectedRange:NSMakeRange(i + 6, 0)];
+                    shouldBreak = YES;
+                    break;
+                }
                 for (NSInteger j = i + 1; j < self.string.length; j++) {
                     if ([self.string characterAtIndex:j] != ' ') {
                         numberOfSpaces = j - i - 1;
