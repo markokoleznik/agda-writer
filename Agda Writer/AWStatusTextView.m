@@ -30,7 +30,7 @@
         reply = [reply substringWithRange:NSMakeRange(1, reply.length - 2)];
         reply = [reply stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
         if (![reply hasSuffix:@"\n"]) {
-//            reply = [reply stringByAppendingString:@"\n"];
+            reply = [reply stringByAppendingString:@"\n"];
         }
         NSLog(@"REPLY: %@", reply);
         [self.textStorage beginEditing];
