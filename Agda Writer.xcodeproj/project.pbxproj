@@ -44,6 +44,7 @@
 		D538E5CD1B5EECA900B5455A /* MAAttachedWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D538E5CC1B5EECA900B5455A /* MAAttachedWindow.m */; };
 		D538E5D11B5EF13300B5455A /* AWInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D538E5CF1B5EF13300B5455A /* AWInputViewController.m */; };
 		D538E5D21B5EF13300B5455A /* AWInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D538E5D01B5EF13300B5455A /* AWInputViewController.xib */; };
+		D538E5D41B5FD0F300B5455A /* Key Bindings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D538E5D31B5FD0F300B5455A /* Key Bindings.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		D538E5CE1B5EF13300B5455A /* AWInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWInputViewController.h; sourceTree = "<group>"; };
 		D538E5CF1B5EF13300B5455A /* AWInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWInputViewController.m; sourceTree = "<group>"; };
 		D538E5D01B5EF13300B5455A /* AWInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AWInputViewController.xib; sourceTree = "<group>"; };
+		D538E5D31B5FD0F300B5455A /* Key Bindings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Key Bindings.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 				D531F1771B5852EE002E7E0F /* defaults.plist */,
 				D531F1001B55E580002E7E0F /* Info.plist */,
 				D531F1041B55E580002E7E0F /* main.m */,
+				D538E5D31B5FD0F300B5455A /* Key Bindings.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D538E5D21B5EF13300B5455A /* AWInputViewController.xib in Resources */,
+				D538E5D41B5FD0F300B5455A /* Key Bindings.plist in Resources */,
 				D531F1781B5852EE002E7E0F /* defaults.plist in Resources */,
 				D531F10D1B55E580002E7E0F /* Images.xcassets in Resources */,
 				D531F1721B57E60B002E7E0F /* failed_default.png in Resources */,

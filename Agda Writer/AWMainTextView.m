@@ -152,6 +152,51 @@
     
 }
 
+-(void)keyUp:(NSEvent *)theEvent
+{
+//    NSLog(@"Key pressed: %@", theEvent);
+    if ([theEvent.characters isEqualToString:@" "] || theEvent.keyCode == 36) {
+        NSRange rangeOfCurrentWord = [self rangeOfCurrentWord];
+        if (rangeOfCurrentWord.location != NSNotFound) {
+            NSString * currentWord = [self.string substringWithRange:rangeOfCurrentWord];
+            NSDictionary * keyBindings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Key Bindings" withExtension:@"plist"]];
+            NSString * replacementString = [keyBindings objectForKey:currentWord];
+            if (replacementString) {
+                [self.textStorage replaceCharactersInRange:rangeOfCurrentWord withString:replacementString];
+            }
+        }
+        
+        
+        
+    }
+}
+
+-(NSRange) rangeOfCurrentWord
+{
+    NSRange word = NSMakeRange(NSNotFound, 0);
+    
+    NSInteger i = self.selectedRange.location - 2;
+    NSInteger j = self.selectedRange.location - 2;
+    while (i > 0) {
+        if ([self.string characterAtIndex:i] == ' ' || [self.string characterAtIndex:i] == '\n') {
+            word = NSMakeRange(i + 1, j - i);
+            
+            break;
+            
+        }
+        else if (i == 1) {
+            word = NSMakeRange(0, j + 1);
+        }
+
+        i--;
+    }
+    if (word.location != NSNotFound) {
+        NSLog(@"%@", [self.string substringWithRange:word]);
+    }
+    
+    return word;
+}
+
 - (BOOL)textView:(NSTextView *)textView shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(NSString *)replacementString
 {
 
