@@ -366,6 +366,11 @@
         return;
     }
     if ([notification.userInfo[@"goals"] isKindOfClass:[NSString class]]) {
+        
+        // save current view
+
+        NSRange selectedRange = [self selectedRange];
+        
         // Parse goals
         NSArray * goals = [AWAgdaParser makeArrayOfGoalsWithSuggestions:notification.userInfo[@"goals"]];
         if (goals.count == 0) {
@@ -383,21 +388,18 @@
             foundRange = [self.textStorage.string rangeOfString:@" ?" options:NSCaseInsensitiveSearch range:searchRange];
             if (foundRange.location != NSNotFound) {
                 // found an occurrence of the substring!
-
-//                [self addTokenAtRange:foundRange withGoalName:[goals objectAtIndex:i]];
-//                NSDictionary * attributes = @{NSBackgroundColorAttributeName : [NSColor lightGrayColor]};
     
                 NSAttributedString * attrString = [[NSAttributedString alloc] initWithString:@"{!!}" attributes:nil];
                 [self insertText:attrString replacementRange:NSMakeRange(foundRange.location + 1, foundRange.length - 1)];
                 
                 NSDictionary * goal = [AWAgdaParser goalIndexAndRange:NSMakeRange(foundRange.location + 2, 0) textStorage:self.textStorage];
-//                NSInteger index = [goal[@"goalIndex"] integerValue];
-                
-//                NSDictionary * goal2 = goals[index];
-//                NSInteger goalIndex = [goal2[@"goalIndex"] integerValue];
-//                NSString * goalType = goal2[@"goalType"];
-//                [self.textStorage replaceCharactersInRange:NSRangeFromString(goal[@"foundRange"]) withString:[NSString stringWithFormat:@"{!%li: %@!}", goalIndex, goalType]];
                 [self.textStorage replaceCharactersInRange:NSRangeFromString(goal[@"foundRange"]) withString:@"{!!}"];
+                
+                if (i == 0) {
+                    selectedRange = NSRangeFromString(goal[@"foundRange"]);
+                    selectedRange = NSMakeRange(selectedRange.location + 2, 0);
+                }
+                
                 
                 i++;
 
@@ -414,13 +416,13 @@
         for (NSInteger j = allRangesOfGoals.count - 1; j > 0; j--) {
             NSRange rangeOfGoal = NSRangeFromString(allRangesOfGoals[j]);
             if (goals.count > j) {
-//                NSDictionary * goal = goals[j];
-//                [self.textStorage replaceCharactersInRange:rangeOfGoal withString:[NSString stringWithFormat:@"{!%li: %@!}", [goal[@"goalIndex"] integerValue], goal[@"goalType"]]];
                 [self.textStorage replaceCharactersInRange:rangeOfGoal withString:@"{!!}"];
             }
             
         }
         [self.textStorage endEditing];
+        
+        [self setSelectedRange:selectedRange];
         
         
     }
