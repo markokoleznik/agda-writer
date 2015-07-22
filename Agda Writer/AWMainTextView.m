@@ -167,6 +167,7 @@
                 [self.textStorage replaceCharactersInRange:rangeOfCurrentWord withString:replacementString];
             }
         }
+        return;
         
     }
     else if (theEvent.keyCode == 51) { // delete
@@ -189,20 +190,33 @@
 -(NSArray *)textView:(NSTextView *)textView completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
 {
     NSString * partialWord = [self.string substringWithRange:charRange];
+    if ([self.string characterAtIndex:charRange.location - 1] == '\\') {
+        partialWord = [self.string substringWithRange:NSMakeRange(charRange.location - 1, charRange.length + 1)];
+    }
     NSDate * startDate = [NSDate date];
     NSDictionary * keyBindings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Key Bindings" withExtension:@"plist"]];
     NSLog(@"elapsed time: %f seconds", [[NSDate date] timeIntervalSinceDate:startDate]);
     
+    NSMutableArray * mutableArray = [[NSMutableArray alloc] init];
     NSArray * filteredArray = [keyBindings.allKeys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         NSString * name = (NSString *)evaluatedObject;
         return [name hasPrefix:partialWord];
     }]];
     
+    for (NSString * name in filteredArray) {
+        if ([name hasPrefix:@"\\"]) {
+            [mutableArray addObject:[name substringFromIndex:1]];
+        }
+        else {
+            [mutableArray addObject:name];
+        }
+    }
+    
     if (filteredArray.count == 1 && [filteredArray[0] isEqualToString:partialWord]) {
         return @[];
     }
     
-    return filteredArray;
+    return mutableArray;
 }
 
 -(NSRange) rangeOfCurrentWord
