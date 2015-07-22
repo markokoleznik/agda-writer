@@ -257,7 +257,7 @@
 
 +(NSRange) goalAtIndex: (NSInteger) index textStorage:(NSTextStorage *)textStorage
 {
-    NSRange foundRange;
+    NSRange foundRange = NSMakeRange(NSNotFound, 0);
     // We'll use Regular Expressions to find goals range.
     NSString * regexPattern = @"(?=(\\{!(?:[^!]|\\{![^!]*!\\})*!\\}))";
     NSError * error;

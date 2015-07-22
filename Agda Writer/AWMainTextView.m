@@ -400,7 +400,6 @@
                 [self insertText:attrString replacementRange:NSMakeRange(foundRange.location + 1, foundRange.length - 1)];
                 
                 NSDictionary * goal = [AWAgdaParser goalIndexAndRange:NSMakeRange(foundRange.location + 2, 0) textStorage:self.textStorage];
-                [self.textStorage replaceCharactersInRange:NSRangeFromString(goal[@"foundRange"]) withString:@"{!!}"];
                 
                 if (i == 0) {
                     selectedRange = NSRangeFromString(goal[@"foundRange"]);
@@ -416,20 +415,12 @@
                 break;
             }
         }
-        
-        // reorder goals
-        NSArray * allRangesOfGoals = [AWAgdaParser allGoalsWithRanges:self.textStorage];
-        [self.textStorage beginEditing];
-        for (NSInteger j = allRangesOfGoals.count - 1; j > 0; j--) {
-            NSRange rangeOfGoal = NSRangeFromString(allRangesOfGoals[j]);
-            if (goals.count > j) {
-                [self.textStorage replaceCharactersInRange:rangeOfGoal withString:@"{!!}"];
-            }
-            
-        }
+
         [self.textStorage endEditing];
+        if (selectedRange.location + selectedRange.length < self.string.length) {
+            [self setSelectedRange:selectedRange];
+        }
         
-        [self setSelectedRange:selectedRange];
         
         
     }

@@ -74,9 +74,12 @@
         // Find all goals (ranges of goals) and show pressed goal.
         NSRange selectedGoal = [AWAgdaParser goalAtIndex:tableView.selectedRow textStorage:self.mainTextView.textStorage];
         // Show pressed goal
-        [self.mainTextView scrollRangeToVisible:selectedGoal];
-        [self.mainTextView showFindIndicatorForRange:selectedGoal];
-        [self.mainTextView setSelectedRange:NSMakeRange(selectedGoal.location + 2, selectedGoal.length - 4)];
+        if (selectedGoal.location != NSNotFound) {
+            [self.mainTextView scrollRangeToVisible:selectedGoal];
+            [self.mainTextView showFindIndicatorForRange:selectedGoal];
+            [self.mainTextView setSelectedRange:NSMakeRange(selectedGoal.location + 2, selectedGoal.length - 4)];
+        }
+        
         [self.mainTextView.window makeFirstResponder:self.mainTextView];
     }
     else
