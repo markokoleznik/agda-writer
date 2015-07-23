@@ -134,8 +134,10 @@
 -(void)paste:(id)sender
 {
     [super pasteAsPlainText:sender];
+    
     NSLog(@"Pasting");
 }
+
 
 - (void)insertAttachmentCell:(NSTextAttachmentCell *)cell toTextView:(NSTextView *)textView
 {
@@ -154,24 +156,48 @@
     
 }
 
+- (void) transformLastWordToUnicode
+{
+    NSRange rangeOfCurrentWord = [self rangeOfCurrentWord];
+    
+    
+    
+    if (rangeOfCurrentWord.location != NSNotFound) {
+        NSString * currentWord = [self.string substringWithRange:rangeOfCurrentWord];
+        NSLog(@"Current word: %@", currentWord);
+        NSDictionary * keyBindings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Key Bindings" withExtension:@"plist"]];
+        NSString * replacementString = [keyBindings objectForKey:currentWord];
+        if (replacementString) {
+            // TODO: think harder how this works :)
+            [self.textStorage replaceCharactersInRange:rangeOfCurrentWord withString:replacementString];
+            NSDictionary * undoDictionary = @{@"range" : NSStringFromRange(NSMakeRange(rangeOfCurrentWord.location, replacementString.length)),
+                                              @"string" : currentWord};
+            NSLog(@"%@, replacement string: %@, length: %li", undoDictionary, currentWord, currentWord.length);
+            [self.undoManager registerUndoWithTarget:self selector:@selector(replaceStringAtRange:) object:undoDictionary];
+            [self.undoManager setActionName:@"Apply Unicode Transformation"];
+        }
+    }
+    
+}
+
+
 -(void)keyUp:(NSEvent *)theEvent
 {
-//    NSLog(@"Key pressed: %@", theEvent);
+    NSLog(@"Key pressed: %@", theEvent);
+    [super keyUp:theEvent];
     if (([theEvent.characters isEqualToString:@" "])) {
-        NSRange rangeOfCurrentWord = [self rangeOfCurrentWord];
-        if (rangeOfCurrentWord.location != NSNotFound) {
-            NSString * currentWord = [self.string substringWithRange:rangeOfCurrentWord];
-            NSDictionary * keyBindings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Key Bindings" withExtension:@"plist"]];
-            NSString * replacementString = [keyBindings objectForKey:currentWord];
-            if (replacementString) {
-                [self.textStorage replaceCharactersInRange:rangeOfCurrentWord withString:replacementString];
-            }
-        }
+        [self transformLastWordToUnicode];
         return;
         
     }
-    else if (theEvent.keyCode == 51) { // delete
+    else if (theEvent.keyCode == 51 || [@[@123, @124, @125, @126, @53] containsObject:[NSNumber numberWithInteger:theEvent.keyCode]]) {
+        // delete, up, down, left, right
         return;
+    }
+    else if (theEvent.keyCode == 36 || theEvent.keyCode == 48) {
+        // enter or tab is pressed
+        [self transformLastWordToUnicode];
+        
     }
     
     if (!autocompleteTriggered) {
@@ -179,6 +205,15 @@
         autocompleteTriggered = YES;
     }
     
+}
+-(void)replaceStringAtRange:(NSDictionary *)dict
+{
+    NSRange range = NSRangeFromString((NSString *)dict[@"range"]);
+    NSString * string = (NSString *)dict[@"string"];
+    
+    [self.textStorage replaceCharactersInRange:range withString:string];
+    [[self.undoManager prepareWithInvocationTarget:(self)] replaceStringAtRange:dict];
+    [self.undoManager setActionName:@"Unicode Transformation"];
 }
 
 -(void)applyUnicodeTransformation
@@ -205,10 +240,15 @@
     autocompleteTriggered = NO;
 }
 
+
+
 -(NSArray *)textView:(NSTextView *)textView completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
 {
     NSString * partialWord = [self.string substringWithRange:charRange];
     if (charRange.location == 0) {
+        return @[];
+    }
+    if ([partialWord isEqualToString:@"="]) {
         return @[];
     }
     if (charRange.location - 1 > 0 && [self.string characterAtIndex:charRange.location - 1] == '\\') {
@@ -258,9 +298,14 @@
 {
     NSRange word = NSMakeRange(NSNotFound, 0);
     
-    NSInteger i = self.selectedRange.location - 2;
-    NSInteger j = self.selectedRange.location - 2;
+    NSInteger i = self.selectedRange.location - 1;
+    NSInteger j = self.selectedRange.location - 1;
     while (i > 0) {
+        if (i == j && [self.string characterAtIndex:i] == ' ') {
+            i--;
+            j--;
+            continue;
+        }
         if ([self.string characterAtIndex:i] == ' ' || [self.string characterAtIndex:i] == '\n') {
             word = NSMakeRange(i + 1, j - i);
             
