@@ -67,6 +67,8 @@
         
         mutableSetOfActionNames = [[NSMutableSet alloc] init];
         
+        [self setAutomaticDashSubstitutionEnabled:NO];
+        
 
     }
     
