@@ -1,3 +1,1 @@
 language: objective-c
-xcode_project: Agda Writer.xcodeproj
-xcode_scheme: Agda Writer
