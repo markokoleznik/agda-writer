@@ -253,13 +253,19 @@
 
 - (IBAction)actionNormalize:(id)sender {
     
+    if (self.inputWindow) {
+        return;
+    }
+    
     self.inputViewController = [[AWInputViewController alloc] initWithNibName:@"AWInputViewController" bundle:nil];
     
     // Check if normalization is goal specific
     AgdaGoal * goal = self.mainTextView.selectedGoal;
     if (goal && goal.rangeOfContent.location != NSNotFound) {
         // We have goal
+        [self.mainTextView scrollRangeToVisible:goal.rangeOfContent];
         NSRect rect = [self.mainTextView firstRectForCharacterRange:goal.rangeOfContent actualRange:nil];
+        
         
         NSPoint point = NSMakePoint(rect.origin.x + rect.size.width/2, rect.origin.y + rect.size.height/2);
         NSRect frame = self.inputViewController.view.frame;
@@ -279,7 +285,7 @@
     [self.inputWindow makeKeyWindow];
     
     [self.inputWindow makeKeyAndOrderFront:self];
-//    [NSApp activateIgnoringOtherApps:YES];
+    [NSApp activateIgnoringOtherApps:YES];
     
 }
 

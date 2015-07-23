@@ -653,7 +653,6 @@
                     
                     [self replaceQuestionMarksWithGoals];
                     
-                    // TODO: reorder goals
                     
                 }
             }

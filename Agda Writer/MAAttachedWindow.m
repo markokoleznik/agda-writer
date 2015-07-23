@@ -338,10 +338,10 @@
                     side = MAPositionTop;
                 }
             } else {
-//                side = MAPositionLeft;
+                side = MAPositionLeft;
             }
         } else {
-//            side = MAPositionRight;
+            side = MAPositionRight;
         }
     }
     
