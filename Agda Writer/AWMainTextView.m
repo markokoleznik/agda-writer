@@ -301,12 +301,15 @@
     NSInteger i = self.selectedRange.location - 1;
     NSInteger j = self.selectedRange.location - 1;
     while (i > 0) {
-        if (i == j && [self.string characterAtIndex:i] == ' ') {
+        
+        
+        
+        if (i == j && ([self.string characterAtIndex:i] == ' ' || [self.string characterAtIndex:i] == '\n' || [[self.string substringWithRange:NSMakeRange(i, 1)] isEqualToString:@"\t"])) {
             i--;
             j--;
             continue;
         }
-        if ([self.string characterAtIndex:i] == ' ' || [self.string characterAtIndex:i] == '\n') {
+        if ([self.string characterAtIndex:i] == ' ' || [self.string characterAtIndex:i] == '\n' || [[self.string substringWithRange:NSMakeRange(i, 1)] isEqualToString:@"\t"]) {
             word = NSMakeRange(i + 1, j - i);
             
             break;
@@ -319,6 +322,12 @@
         i--;
     }
     if (word.location != NSNotFound) {
+        if (word.length > 1 && [self.string characterAtIndex:word.location] == '(') {
+            word = NSMakeRange(word.location + 1, word.length - 1);
+        }
+        if (word.length > 1 && [self.string characterAtIndex:word.location + word.length - 1] == ')') {
+            word = NSMakeRange(word.location, word.length - 1);
+        }
         NSLog(@"%@", [self.string substringWithRange:word]);
     }
     

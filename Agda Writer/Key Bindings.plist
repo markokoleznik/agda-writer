@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>lambda</key>
-	<string>λ</string>
-	<key>alpha</key>
-	<string>α</string>
-	<key>omega</key>
-	<string>ω</string>
 	<key>-&gt;</key>
 	<string>→</string>
 	<key>\to</key>
@@ -22,8 +16,6 @@
 	<string>⟷</string>
 	<key>&lt;-</key>
 	<string>←</string>
-	<key>N</key>
-	<string>ℕ</string>
 	<key>\le</key>
 	<string>≤</string>
 	<key>\ge</key>
