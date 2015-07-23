@@ -12,14 +12,15 @@
 
 @end
 
-
+@class MAAttachedWindow;
 
 @implementation AWInputViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResignKey:) name:
+     @"NSWindowDidResignKeyNotification" object:nil];
     
     self.inputTextField.delegate = self;
     // Do view setup here.
@@ -35,10 +36,20 @@
 //    NSLog(@"%@",theEvent);
 }
 
+
 -(NSArray *)control:(NSControl *)control textView:(NSTextView *)textView completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
 {
     return nil;
 }
+-(void)windowDidResignKey:(NSNotification *)notification
+{
+    
+    if ([notification.object isKindOfClass:[MAAttachedWindow class]]) {
+        [self.delegate closeWindow];
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+    }
+}
+
 
 -(void)controlTextDidEndEditing:(NSNotification *)obj
 {

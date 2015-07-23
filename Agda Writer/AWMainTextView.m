@@ -93,6 +93,7 @@
     NSDictionary * dict = [AWAgdaParser goalIndexAndRange:self.selectedRange textStorage:self.textStorage];
     if (dict) {
         _selectedGoal = [[AgdaGoal alloc] init];
+        _selectedGoal.rangeOfContent = NSMakeRange(NSNotFound, 0);
         NSRange foundRange = NSRangeFromString(dict[@"foundRange"]);
         _selectedGoal.goalIndex = [dict[@"goalIndex"] integerValue];
         _selectedGoal.agdaGoalIndex = [goalsIndexesArray[_selectedGoal.goalIndex][@"goalIndex"] integerValue];
@@ -107,7 +108,8 @@
                 _selectedGoal.endRow = i + 1;
                 _selectedGoal.startColumn = foundRange.location - numberOfChars;
                 _selectedGoal.endColumn = foundRange.location + foundRange.length - numberOfChars;
-                _selectedGoal.content = [string substringWithRange:NSMakeRange(foundRange.location + 2, foundRange.length - 4)];
+                _selectedGoal.rangeOfContent = NSMakeRange(foundRange.location + 2, foundRange.length - 4);
+                _selectedGoal.content = [string substringWithRange:_selectedGoal.rangeOfContent];
                 _selectedGoal.content = [_selectedGoal.content stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
 //                _selectedGoal.content = [_selectedGoal.content stringByReplacingOccurrencesOfString:@"\\" withString:@"'\\"];
                 

@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MAAttachedWindow.h"
 
 @protocol AWInputDelegate <NSObject>
 @required
@@ -17,7 +18,7 @@
 
 @end
 
-@interface AWInputViewController : NSViewController <NSTextFieldDelegate>
+@interface AWInputViewController : NSViewController <NSTextFieldDelegate, NSWindowDelegate>
 
 @property (weak) IBOutlet NSTextField *inputTitle;
 @property (weak) IBOutlet NSTextField *inputTextField;

@@ -30,6 +30,7 @@
 @property NSInteger endColumn;
 @property NSInteger numberOfEmptySpaces;
 @property NSRange rangeOfCurrentLine;
+@property NSRange rangeOfContent;
 @property NSString * content;
 
 @end

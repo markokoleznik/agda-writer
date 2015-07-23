@@ -63,10 +63,10 @@
                             content:(NSString *)content
 {
     if (goal) {
-        return [NSString stringWithFormat:@"IOTCM \"@\" NonInteractive Indirect ( Cmd_compute False %li noRange \"%@\" )", goal.agdaGoalIndex, content];
+        return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_compute False %li noRange \"%@\" )", filePath, goal.agdaGoalIndex, content];
     }
     else {
-        return [NSString stringWithFormat:@"IOTCM \"%@\" None Direct ( Cmd_compute_toplevel False \"%@\" )", filePath, content];
+        return [NSString stringWithFormat:@"IOTCM \"%@\" None Indirect ( Cmd_compute_toplevel False \"%@\" )", filePath, content];
     }
     
 }
@@ -85,31 +85,45 @@
         
         if ([key isEqualToString:@"agda2-info-action"])
         {
+            NSDate * date1 = [NSDate date];
             [self executeInfoAction:actions sender:sender];
+            NSLog(@"info action: %f", [[NSDate date] timeIntervalSinceDate:date1]);
         }
         else if ([key isEqualToString:@"agda2-highlight-clear"])
         {
+            NSDate * date1 = [NSDate date];
             [self executeHighlightClearAction:actions sender:sender];
+            NSLog(@"clear highlighting: %f", [[NSDate date] timeIntervalSinceDate:date1]);
         }
         else if ([key isEqualToString:@"agda2-highlight-load-and-delete-action"])
         {
+            NSDate * date1 = [NSDate date];
             [self executeHighlightLoadAndDeleteAction:actions sender:sender];
+            NSLog(@"highlighting: %f", [[NSDate date] timeIntervalSinceDate:date1]);
         }
         else if ([key isEqualToString:@"agda2-status-action"])
         {
+            NSDate * date1 = [NSDate date];
             [self executeStatusAction:actions];
+            NSLog(@"status: %f", [[NSDate date] timeIntervalSinceDate:date1]);
         }
         else if ([key isEqualToString:@"agda2-goals-action"])
         {
+            NSDate * date1 = [NSDate date];
             [self executeGoalsAction:actions];
+            NSLog(@"goals action: %f", [[NSDate date] timeIntervalSinceDate:date1]);
         }
         else if ([key isEqualToString:@"agda2-give-action"])
         {
+            NSDate * date1 = [NSDate date];
             [self executeGiveAction:actions sender:sender];
+            NSLog(@"give action: %f", [[NSDate date] timeIntervalSinceDate:date1]);
         }
         else if ([key isEqualToString:@"agda2-make-case-action"])
         {
+            NSDate * date1 = [NSDate date];
             [self executeMakeCaseAction:actions sender:sender];
+            NSLog(@"make case: %f", [[NSDate date] timeIntervalSinceDate:date1]);
         }
 
 

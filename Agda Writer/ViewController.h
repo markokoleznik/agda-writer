@@ -64,6 +64,7 @@
 - (IBAction)actionGoalTypeAndInferredType:(NSMenuItem *)sender;
 - (IBAction)actionComputeNormalForm:(NSMenuItem *)sender;
 - (IBAction)actionNormalize:(id)sender;
+- (IBAction)actionNormalizeGoal:(id)sender;
 
 #pragma mark -
 - (IBAction)applyUnicodeTransformation:(id)sender;

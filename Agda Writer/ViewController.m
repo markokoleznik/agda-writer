@@ -254,9 +254,24 @@
 - (IBAction)actionNormalize:(id)sender {
     
     self.inputViewController = [[AWInputViewController alloc] initWithNibName:@"AWInputViewController" bundle:nil];
-    self.inputWindow = [[MAAttachedWindow alloc] initWithView:self.inputViewController.view attachedToPoint:NSMakePoint(0, 0)];
-    [self.inputWindow setHasArrow:0];
-    [self.inputWindow center];
+    
+    // Check if normalization is goal specific
+    AgdaGoal * goal = self.mainTextView.selectedGoal;
+    if (goal && goal.rangeOfContent.location != NSNotFound) {
+        // We have goal
+        NSRect rect = [self.mainTextView firstRectForCharacterRange:goal.rangeOfContent actualRange:nil];
+        
+        NSPoint point = NSMakePoint(rect.origin.x + rect.size.width/2, rect.origin.y + rect.size.height/2);
+        NSRect frame = self.inputViewController.view.frame;
+        [self.inputViewController.view setFrame:NSMakeRect(frame.origin.x, frame.origin.y, frame.size.width*2/3, frame.size.width*1/3)];
+        [self.inputViewController.inputTitle setStringValue:@"Normalize goal:"];
+        self.inputWindow = [[MAAttachedWindow alloc] initWithView:self.inputViewController.view attachedToPoint:point atDistance:10];
+    }
+    else {
+        self.inputWindow = [[MAAttachedWindow alloc] initWithView:self.inputViewController.view attachedToPoint:NSMakePoint(200, 220)];
+        [self.inputWindow setHasArrow:0];
+        [self.inputWindow center];
+    }
     
     self.inputViewController.delegate = self;
     
@@ -264,7 +279,11 @@
     [self.inputWindow makeKeyWindow];
     
     [self.inputWindow makeKeyAndOrderFront:self];
-    [NSApp activateIgnoringOtherApps:YES];
+//    [NSApp activateIgnoringOtherApps:YES];
+    
+}
+
+- (IBAction)actionNormalizeGoal:(id)sender {
     
 }
 

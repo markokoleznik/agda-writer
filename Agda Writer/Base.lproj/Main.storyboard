@@ -541,6 +541,12 @@
                                                 <action selector="actionNormalize:" target="Ady-hI-5gd" id="gEd-UN-Rbw"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Normalize goal" keyEquivalent="n" id="6Y2-7L-gw2">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="actionNormalizeGoal:" target="Ady-hI-5gd" id="fI5-F3-S1P"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
