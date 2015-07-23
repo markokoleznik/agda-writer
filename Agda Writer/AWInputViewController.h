@@ -12,6 +12,9 @@
 @required
 -(void)normalizeInputDidEndEditing:(NSString *)content;
 
+@optional
+-(void)closeWindow;
+
 @end
 
 @interface AWInputViewController : NSViewController <NSTextFieldDelegate>

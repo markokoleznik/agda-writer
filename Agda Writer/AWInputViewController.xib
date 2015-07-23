@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="1" width="480" height="113"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField verticalHuggingPriority="750" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ODC-6n-7ya">
+                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ODC-6n-7ya">
                     <rect key="frame" x="20" y="20" width="440" height="48"/>
                     <textFieldCell key="cell" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Type Expression here..." drawsBackground="YES" id="0xr-un-bK3">
                         <font key="font" metaFont="system"/>

@@ -250,6 +250,7 @@
     if (charRange.location == 0) {
         return @[];
     }
+    // Don't harass user if he writes '='
     if ([partialWord isEqualToString:@"="]) {
         return @[];
     }

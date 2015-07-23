@@ -278,8 +278,11 @@
     [appDelegate.communicator writeDataToAgda:message sender:self];
     
 //    [self.inputWindow orderOut:self];
+    [self closeWindow];
+}
+-(void)closeWindow
+{
     [self.inputWindow close];
-    
     self.inputWindow = nil;
 }
 #pragma mark -
