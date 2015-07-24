@@ -45,6 +45,7 @@
 		D538E5D11B5EF13300B5455A /* AWInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D538E5CF1B5EF13300B5455A /* AWInputViewController.m */; };
 		D538E5D21B5EF13300B5455A /* AWInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D538E5D01B5EF13300B5455A /* AWInputViewController.xib */; };
 		D538E5D41B5FD0F300B5455A /* Key Bindings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D538E5D31B5FD0F300B5455A /* Key Bindings.plist */; };
+		D5962D7F1B6230D500E9EA4A /* UnicodeTransformator.m in Sources */ = {isa = PBXBuildFile; fileRef = D5962D7E1B6230D500E9EA4A /* UnicodeTransformator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,8 @@
 		D538E5CF1B5EF13300B5455A /* AWInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWInputViewController.m; sourceTree = "<group>"; };
 		D538E5D01B5EF13300B5455A /* AWInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AWInputViewController.xib; sourceTree = "<group>"; };
 		D538E5D31B5FD0F300B5455A /* Key Bindings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Key Bindings.plist"; sourceTree = "<group>"; };
+		D5962D7D1B6230D500E9EA4A /* UnicodeTransformator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnicodeTransformator.h; sourceTree = "<group>"; };
+		D5962D7E1B6230D500E9EA4A /* UnicodeTransformator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnicodeTransformator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +251,8 @@
 				D538E5CE1B5EF13300B5455A /* AWInputViewController.h */,
 				D538E5CF1B5EF13300B5455A /* AWInputViewController.m */,
 				D538E5D01B5EF13300B5455A /* AWInputViewController.xib */,
+				D5962D7D1B6230D500E9EA4A /* UnicodeTransformator.h */,
+				D5962D7E1B6230D500E9EA4A /* UnicodeTransformator.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -486,6 +491,7 @@
 				D531F12E1B57DB19002E7E0F /* AWAgdaActions.m in Sources */,
 				D531F1591B57E555002E7E0F /* AWMainTextView.m in Sources */,
 				D538E5D11B5EF13300B5455A /* AWInputViewController.m in Sources */,
+				D5962D7F1B6230D500E9EA4A /* UnicodeTransformator.m in Sources */,
 				D538E5CD1B5EECA900B5455A /* MAAttachedWindow.m in Sources */,
 				D531F1651B57E571002E7E0F /* AWStatusTextView.m in Sources */,
 				D531F13E1B57DFA5002E7E0F /* AWHelper.m in Sources */,

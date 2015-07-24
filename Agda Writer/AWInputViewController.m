@@ -7,6 +7,7 @@
 //
 
 #import "AWInputViewController.h"
+#import "UnicodeTransformator.h"
 
 @interface AWInputViewController ()
 
@@ -33,17 +34,24 @@
         // escape pressed, close window
         [self.delegate closeWindow];
     }
-//    NSLog(@"%@",theEvent);
+    else if (theEvent.keyCode == 49) {
+        // space was pressed
+        NSString * unicodeText = [UnicodeTransformator transformToUnicode:self.inputTextField.stringValue];
+        if (![unicodeText isEqualToString:self.inputTextField.stringValue]) {
+            self.inputTextField.stringValue = unicodeText;
+        }
+    }
 }
 
 
 -(NSArray *)control:(NSControl *)control textView:(NSTextView *)textView completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
 {
-    return nil;
+    return @[];
 }
+
+
 -(void)windowDidResignKey:(NSNotification *)notification
 {
-    
     if ([notification.object isKindOfClass:[MAAttachedWindow class]]) {
         [self.delegate closeWindow];
         [[NSNotificationCenter defaultCenter] removeObserver:self];

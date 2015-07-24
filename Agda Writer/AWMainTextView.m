@@ -174,16 +174,43 @@
         if (replacementString) {
             // TODO: think harder how this works :)
             [self.textStorage replaceCharactersInRange:rangeOfCurrentWord withString:replacementString];
-            NSDictionary * undoDictionary = @{@"range" : NSStringFromRange(NSMakeRange(rangeOfCurrentWord.location, replacementString.length)),
-                                              @"string" : currentWord};
-            NSLog(@"%@, replacement string: %@, length: %li", undoDictionary, currentWord, currentWord.length);
-            [self.undoManager registerUndoWithTarget:self selector:@selector(replaceStringAtRange:) object:undoDictionary];
+            NSDictionary * undoDictionary = @{
+                                              @"undo" : @{
+                                                      @"range" : NSStringFromRange(NSMakeRange(rangeOfCurrentWord.location, replacementString.length)),
+                                                      @"string" : currentWord},
+                                              
+                                              @"redo" : @{
+                                                      @"range" : NSStringFromRange(rangeOfCurrentWord),
+                                                      @"string" : currentWord}
+                                              };
+//                @"undoRange" : NSStringFromRange(NSMakeRange(rangeOfCurrentWord.location, replacementString.length)),
+//                                              @"undoString" : currentWord};
+
+            [self.undoManager registerUndoWithTarget:self selector:@selector(undoTranformationToUnicode:) object:undoDictionary];
             [self.undoManager setActionName:@"Apply Unicode Transformation"];
         }
     }
     
 }
 
+-(void)undoTranformationToUnicode:(NSDictionary *)dict
+{
+    NSRange range = NSRangeFromString((NSString *)dict[@"undo"][@"range"]);
+    NSString * string = (NSString *)dict[@"undo"][@"string"];
+    
+    [self.textStorage replaceCharactersInRange:range withString:string];
+    [[self.undoManager prepareWithInvocationTarget:(self)] replaceCharactersInRangeAndWithString:dict];
+//    [self.undoManager setActionName:@"Unicode Transformation"];
+}
+
+
+-(void)replaceCharactersInRangeAndWithString:(NSDictionary *)dict
+{
+    NSRange range = NSRangeFromString((NSString *)dict[@"redo"][@"range"]);
+    NSString * string = (NSString *)dict[@"redo"][@"string"];
+    
+    [self.textStorage replaceCharactersInRange:range withString:string];
+}
 
 -(void)keyUp:(NSEvent *)theEvent
 {
@@ -210,15 +237,7 @@
     }
     
 }
--(void)replaceStringAtRange:(NSDictionary *)dict
-{
-    NSRange range = NSRangeFromString((NSString *)dict[@"range"]);
-    NSString * string = (NSString *)dict[@"string"];
-    
-    [self.textStorage replaceCharactersInRange:range withString:string];
-    [[self.undoManager prepareWithInvocationTarget:(self)] replaceStringAtRange:dict];
-    [self.undoManager setActionName:@"Unicode Transformation"];
-}
+
 
 -(void)applyUnicodeTransformation
 {
