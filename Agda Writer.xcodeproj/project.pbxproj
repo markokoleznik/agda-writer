@@ -23,7 +23,6 @@
 		D531F13D1B57DFA5002E7E0F /* AWColors.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F13A1B57DFA5002E7E0F /* AWColors.m */; };
 		D531F13E1B57DFA5002E7E0F /* AWHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F13C1B57DFA5002E7E0F /* AWHelper.m */; };
 		D531F1431B57E001002E7E0F /* AWAgdaBufferWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1421B57E001002E7E0F /* AWAgdaBufferWindow.m */; };
-		D531F1471B57E020002E7E0F /* PrefrencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1461B57E020002E7E0F /* PrefrencesController.m */; };
 		D531F1511B57E548002E7E0F /* AWMainSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1501B57E548002E7E0F /* AWMainSplitView.m */; };
 		D531F1581B57E555002E7E0F /* AWLineNumbersTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1531B57E555002E7E0F /* AWLineNumbersTextView.m */; };
 		D531F1591B57E555002E7E0F /* AWMainTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1551B57E555002E7E0F /* AWMainTextView.m */; };
@@ -97,8 +96,6 @@
 		D531F13C1B57DFA5002E7E0F /* AWHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWHelper.m; sourceTree = "<group>"; };
 		D531F1411B57E001002E7E0F /* AWAgdaBufferWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWAgdaBufferWindow.h; sourceTree = "<group>"; };
 		D531F1421B57E001002E7E0F /* AWAgdaBufferWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWAgdaBufferWindow.m; sourceTree = "<group>"; };
-		D531F1451B57E020002E7E0F /* PrefrencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefrencesController.h; sourceTree = "<group>"; };
-		D531F1461B57E020002E7E0F /* PrefrencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefrencesController.m; sourceTree = "<group>"; };
 		D531F14F1B57E548002E7E0F /* AWMainSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWMainSplitView.h; sourceTree = "<group>"; };
 		D531F1501B57E548002E7E0F /* AWMainSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWMainSplitView.m; sourceTree = "<group>"; };
 		D531F1521B57E555002E7E0F /* AWLineNumbersTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWLineNumbersTextView.h; sourceTree = "<group>"; };
@@ -298,8 +295,6 @@
 		D531F1481B57E024002E7E0F /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				D531F1451B57E020002E7E0F /* PrefrencesController.h */,
-				D531F1461B57E020002E7E0F /* PrefrencesController.m */,
 				D536EEB11B63C35F00A2CBB9 /* PreferencesGeneralController.h */,
 				D536EEB21B63C35F00A2CBB9 /* PreferencesGeneralController.m */,
 				D536EEB41B63C37700A2CBB9 /* PreferencesKeyBindingsController.h */,
@@ -514,7 +509,6 @@
 				D531F10B1B55E580002E7E0F /* Document.m in Sources */,
 				D536EEB31B63C35F00A2CBB9 /* PreferencesGeneralController.m in Sources */,
 				D531F13D1B57DFA5002E7E0F /* AWColors.m in Sources */,
-				D531F1471B57E020002E7E0F /* PrefrencesController.m in Sources */,
 				D531F15A1B57E555002E7E0F /* CustomTokenCell.m in Sources */,
 				D531F12E1B57DB19002E7E0F /* AWAgdaActions.m in Sources */,
 				D531F1591B57E555002E7E0F /* AWMainTextView.m in Sources */,
