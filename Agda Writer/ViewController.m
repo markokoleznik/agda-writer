@@ -449,14 +449,9 @@
 
 -(void)executeActions:(NSNotification *)actions
 {
-    NSDate * date1 = [NSDate date];
     if (actions.object == self) {
         [AWAgdaActions executeArrayOfActions:(NSArray *)actions.userInfo[@"actions"] sender:self];
     }
-    
-    
-    NSDate * date2 = [NSDate date];
-    NSLog(@"Running time: %f", [date2 timeIntervalSinceDate:date1]);
 }
 
 
@@ -516,5 +511,22 @@
 
 - (IBAction)applyUnicodeTransformation:(id)sender {
     [self.mainTextView applyUnicodeTransformation];
+}
+
+- (IBAction)biggerText:(id)sender {
+    NSFont *font = self.mainTextView.textStorage.font;
+    font = [[NSFontManager sharedFontManager] convertFont:font toSize:(font.pointSize + 1)];
+
+    [self.mainTextView.textStorage setFont:font];
+}
+
+- (IBAction)smallerText:(id)sender {
+    NSFont *font = self.mainTextView.textStorage.font;
+    CGFloat desiredSize = font.pointSize - 1;
+    if (desiredSize > 8) {
+        font = [[NSFontManager sharedFontManager] convertFont:font toSize:(font.pointSize - 1)];
+        [self.mainTextView.textStorage setFont:font];
+    }
+    
 }
 @end

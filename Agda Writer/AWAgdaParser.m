@@ -223,7 +223,7 @@
     NSArray * matches = [regex matchesInString:textStorage.string options:0 range:fullRange];
     NSInteger goalIndex = 0;
     for (NSTextCheckingResult * result in matches) {
-        NSLog(@"selection range: %@, result range: %@", NSStringFromRange(currentSelection),NSStringFromRange([result rangeAtIndex:1]));
+//        NSLog(@"selection range: %@, result range: %@", NSStringFromRange(currentSelection),NSStringFromRange([result rangeAtIndex:1]));
         if (currentSelection.location > [result rangeAtIndex:1].location && (currentSelection.location + currentSelection.length) < ([result rangeAtIndex:1].location + [result rangeAtIndex:1].length)) {
             // we found appropriate result
             // Convert NSRange to string
@@ -277,7 +277,7 @@
     NSMutableArray * actions = [[NSMutableArray alloc] init];
     if ([reply hasPrefix:@"'("] && [reply hasSuffix:@")"]) {
         reply = [reply substringWithRange:NSMakeRange(2, reply.length - 3)];
-        NSLog(@"substring: %@", reply);
+//        NSLog(@"substring: %@", reply);
         NSArray * actionsWithQuotes = [reply componentsSeparatedByString:@"\" \""];
         for (NSString * action in actionsWithQuotes) {
             NSString * parsedAction = action;

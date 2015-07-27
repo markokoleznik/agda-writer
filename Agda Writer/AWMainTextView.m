@@ -34,7 +34,7 @@
         self.delegate = self;
 //        [NSApplication sharedApplication].delegate = self;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addToken:) name:@"AW.addToken" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChangedInRangeWithReplacementString:) name:@"textChangedInRangeWithReplacementString" object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChangedInRangeWithReplacementString:) name:@"textChangedInRangeWithReplacementString" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allGoalsAction:) name:AWAllGoals object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(placeInsertionPointAtCharIndex:) name:AWPlaceInsertionPointAtCharIndex object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaGaveAction:) name:AWAgdaGaveAction object:nil];
@@ -139,7 +139,7 @@
 {
     [super pasteAsPlainText:sender];
     
-    NSLog(@"Pasting");
+//    NSLog(@"Pasting");
 }
 
 
@@ -168,7 +168,7 @@
     
     if (rangeOfCurrentWord.location != NSNotFound) {
         NSString * currentWord = [self.string substringWithRange:rangeOfCurrentWord];
-        NSLog(@"Current word: %@", currentWord);
+//        NSLog(@"Current word: %@", currentWord);
         NSDictionary * keyBindings = [AWHelper keyBindings];
         NSString * replacementString = [keyBindings objectForKey:currentWord];
         if (replacementString) {
@@ -214,7 +214,7 @@
 
 -(void)keyUp:(NSEvent *)theEvent
 {
-    NSLog(@"Key pressed: %@", theEvent);
+//    NSLog(@"Key pressed: %@", theEvent);
     [super keyUp:theEvent];
     if (([theEvent.characters isEqualToString:@" "])) {
         [self transformLastWordToUnicode];
@@ -281,7 +281,6 @@
     if (charRange.location - 1 > 0 && [self.string characterAtIndex:charRange.location - 1] == '\\') {
         partialWord = [self.string substringWithRange:NSMakeRange(charRange.location - 1, charRange.length + 1)];
     }
-    NSDate * startDate = [NSDate date];
     NSDictionary * keyBindings = [AWHelper keyBindings];
     
     
@@ -316,7 +315,7 @@
         return @[];
     }
     
-    NSLog(@"elapsed time: %f seconds", [[NSDate date] timeIntervalSinceDate:startDate]);
+//    NSLog(@"elapsed time: %f seconds", [[NSDate date] timeIntervalSinceDate:startDate]);
     
     return mutableArray;
 }
@@ -355,7 +354,7 @@
         if (word.length > 1 && [self.string characterAtIndex:word.location + word.length - 1] == ')') {
             word = NSMakeRange(word.location, word.length - 1);
         }
-        NSLog(@"%@", [self.string substringWithRange:word]);
+//        NSLog(@"%@", [self.string substringWithRange:word]);
     }
     
     return word;
@@ -430,37 +429,37 @@
 
 }
 
-- (void) textChangedInRangeWithReplacementString:(NSNotification *) notification
-{
-    NSDictionary * dictionary = notification.object;
-    NSRange range = [dictionary[@"range"] rangeValue];
-    NSString * replacementString = dictionary[@"replacementString"];
-    NSLog(@"range: (%li, %li), replacementString: %@", range.location, range.location + range.length, replacementString);
-    
-    if ([replacementString isEqualToString:@"/"]) {
-        NSDate * regexStart = [NSDate date];
-        [self asynchronouslyFindRangesOfCommentsWithCompletion:^(NSArray * matches) {
-            
-            NSDate *methodStart = [NSDate date];
-            
-            NSLog(@"number of matches %li", matches.count);
-            [self setTextColor:[NSColor blackColor]];
-            [self.textStorage beginEditing];
-            
-            for (NSTextCheckingResult * result in matches) {
-                [self setTextColor:[NSColor colorWithRed:94.0/255.0 green:126.0/255.0 blue:28.0/255.0 alpha:1.0] range:result.range];
-            }
-            
-            [self.textStorage endEditing];
-            NSDate *methodFinish = [NSDate date];
-            NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
-            NSLog(@"regex execution time: %f s, execution time for coloring: %f s", [methodStart timeIntervalSinceDate:regexStart], executionTime);
-        }];
-    }
-    
-    
-    
-}
+//- (void) textChangedInRangeWithReplacementString:(NSNotification *) notification
+//{
+//    NSDictionary * dictionary = notification.object;
+//    NSRange range = [dictionary[@"range"] rangeValue];
+//    NSString * replacementString = dictionary[@"replacementString"];
+////    NSLog(@"range: (%li, %li), replacementString: %@", range.location, range.location + range.length, replacementString);
+//    
+//    if ([replacementString isEqualToString:@"/"]) {
+//        NSDate * regexStart = [NSDate date];
+//        [self asynchronouslyFindRangesOfCommentsWithCompletion:^(NSArray * matches) {
+//            
+//            NSDate *methodStart = [NSDate date];
+//            
+////            NSLog(@"number of matches %li", matches.count);
+//            [self setTextColor:[NSColor blackColor]];
+//            [self.textStorage beginEditing];
+//            
+//            for (NSTextCheckingResult * result in matches) {
+//                [self setTextColor:[NSColor colorWithRed:94.0/255.0 green:126.0/255.0 blue:28.0/255.0 alpha:1.0] range:result.range];
+//            }
+//            
+//            [self.textStorage endEditing];
+//            NSDate *methodFinish = [NSDate date];
+//            NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
+//            NSLog(@"regex execution time: %f s, execution time for coloring: %f s", [methodStart timeIntervalSinceDate:regexStart], executionTime);
+//        }];
+//    }
+//    
+//    
+//    
+//}
 
 - (void)asynchronouslyFindRangesOfCommentsWithCompletion:(void (^)(NSArray *))matches;
 {
@@ -559,7 +558,7 @@
         }
         
         // Replace given goal with content that Agda gave.
-        NSLog(@"Agda gave action: goal index: %li, content: %@", goalIndex, content);
+//        NSLog(@"Agda gave action: goal index: %li, content: %@", goalIndex, content);
         NSInteger i = 0;
         for (NSDictionary * dict in goalsIndexesArray) {
             if ([dict[@"goalIndex"] integerValue] == goalIndex) {

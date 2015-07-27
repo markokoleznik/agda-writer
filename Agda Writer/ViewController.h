@@ -68,6 +68,9 @@
 
 #pragma mark -
 - (IBAction)applyUnicodeTransformation:(id)sender;
+- (IBAction)biggerText:(id)sender;
+- (IBAction)smallerText:(id)sender;
+
 
 
 

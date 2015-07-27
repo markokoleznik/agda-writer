@@ -152,7 +152,7 @@
         return;
     }
     NSURL * selectedFileURL = [[panel URLs] lastObject];
-    NSLog(@"Selected File Path: %@", [selectedFileURL path]);
+//    NSLog(@"Selected File Path: %@", [selectedFileURL path]);
     if ([self isAgdaAvaliableAtPath:[selectedFileURL path]]) {
         [self.agdaPathTextField setStringValue:[selectedFileURL path]];
         [AWNotifications setAgdaLaunchPath:[selectedFileURL path]];

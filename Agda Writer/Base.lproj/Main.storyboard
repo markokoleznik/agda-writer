@@ -263,6 +263,17 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="uyl-h8-XO2"/>
+                                        <menuItem title="Bigger Text" keyEquivalent="+" id="L6x-S5-eRQ">
+                                            <connections>
+                                                <action selector="biggerText:" target="Ady-hI-5gd" id="3UL-7k-2Mg"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Smaller Text" keyEquivalent="-" id="ANy-EZ-6FR">
+                                            <connections>
+                                                <action selector="smallerText:" target="Ady-hI-5gd" id="vmc-ni-8Rz"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="LAB-g9-FZW"/>
                                         <menuItem title="Find" id="4EN-yA-p0u">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Find" id="1b7-l0-nxx">

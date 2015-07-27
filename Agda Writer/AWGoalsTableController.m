@@ -69,7 +69,7 @@
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
     NSTableView * tableView = notification.object;
     if (items.count > tableView.selectedRow) {
-        NSLog(@"User pressed goal number: %li, name: %@", tableView.selectedRow, items[tableView.selectedRow]);
+//        NSLog(@"User pressed goal number: %li, name: %@", tableView.selectedRow, items[tableView.selectedRow]);
         
         // Find all goals (ranges of goals) and show pressed goal.
         NSRange selectedGoal = [AWAgdaParser goalAtIndex:tableView.selectedRow textStorage:self.mainTextView.textStorage];
@@ -84,7 +84,7 @@
     }
     else
     {
-        NSLog(@"Index %li out of bounds for array of length %li",tableView.selectedRow, items.count);
+//        NSLog(@"Index %li out of bounds for array of length %li",tableView.selectedRow, items.count);
     }
     
     
