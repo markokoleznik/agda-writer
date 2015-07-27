@@ -7,6 +7,7 @@
 //
 
 #import "UnicodeTransformator.h"
+#import "AWHelper.h"
 
 @implementation UnicodeTransformator
 
@@ -14,7 +15,7 @@
 {
     NSCharacterSet * characterSet = [NSCharacterSet characterSetWithCharactersInString:@"\n\t ()"];
     NSArray * components = [input componentsSeparatedByCharactersInSet:characterSet];
-    NSDictionary * keyBindings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Key Bindings" withExtension:@"plist"]];
+    NSDictionary * keyBindings = [AWHelper keyBindings];
     for (NSString * token in components) {
         NSString * replacementString = [keyBindings objectForKey:token];
         if (replacementString) {

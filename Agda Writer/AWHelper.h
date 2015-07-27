@@ -12,5 +12,11 @@
 @interface AWHelper : NSObject
 
 + (NSFont *)defaultFontInAgda;
++ (void) setUserDefaults;
++ (BOOL)isShowingNotifications;
++ (void)setShowingNotifications:(BOOL)isShowing;
++ (NSDictionary *)keyBindings;
++ (void)saveKeyBindings: (NSDictionary *)keyBindings;
+
 
 @end

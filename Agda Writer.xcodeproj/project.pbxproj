@@ -38,8 +38,14 @@
 		D531F1731B57E60B002E7E0F /* load_failed.png in Resources */ = {isa = PBXBuildFile; fileRef = D531F16E1B57E60B002E7E0F /* load_failed.png */; };
 		D531F1741B57E60B002E7E0F /* successful_default.png in Resources */ = {isa = PBXBuildFile; fileRef = D531F16F1B57E60B002E7E0F /* successful_default.png */; };
 		D531F1751B57E60B002E7E0F /* load_successful.png in Resources */ = {isa = PBXBuildFile; fileRef = D531F1701B57E60B002E7E0F /* load_successful.png */; };
-		D531F1761B57E60B002E7E0F /* ok_sign.png in Resources */ = {isa = PBXBuildFile; fileRef = D531F1711B57E60B002E7E0F /* ok_sign.png */; };
 		D531F1781B5852EE002E7E0F /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = D531F1771B5852EE002E7E0F /* defaults.plist */; };
+		D536EEB31B63C35F00A2CBB9 /* PreferencesGeneralController.m in Sources */ = {isa = PBXBuildFile; fileRef = D536EEB21B63C35F00A2CBB9 /* PreferencesGeneralController.m */; };
+		D536EEB61B63C37700A2CBB9 /* PreferencesKeyBindingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D536EEB51B63C37700A2CBB9 /* PreferencesKeyBindingsController.m */; };
+		D536EEBC1B66910F00A2CBB9 /* computer7.png in Resources */ = {isa = PBXBuildFile; fileRef = D536EEB91B66910F00A2CBB9 /* computer7.png */; };
+		D536EEBD1B66910F00A2CBB9 /* keys20.png in Resources */ = {isa = PBXBuildFile; fileRef = D536EEBA1B66910F00A2CBB9 /* keys20.png */; };
+		D536EEBE1B66910F00A2CBB9 /* settings48.png in Resources */ = {isa = PBXBuildFile; fileRef = D536EEBB1B66910F00A2CBB9 /* settings48.png */; };
+		D536EEC51B66AB8400A2CBB9 /* close12.png in Resources */ = {isa = PBXBuildFile; fileRef = D536EEC31B66AB8400A2CBB9 /* close12.png */; };
+		D536EEC61B66AB8400A2CBB9 /* ok2.png in Resources */ = {isa = PBXBuildFile; fileRef = D536EEC41B66AB8400A2CBB9 /* ok2.png */; };
 		D538E5CA1B5EE57300B5455A /* AWInputWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D538E5C91B5EE57300B5455A /* AWInputWindow.m */; };
 		D538E5CD1B5EECA900B5455A /* MAAttachedWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D538E5CC1B5EECA900B5455A /* MAAttachedWindow.m */; };
 		D538E5D11B5EF13300B5455A /* AWInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D538E5CF1B5EF13300B5455A /* AWInputViewController.m */; };
@@ -115,8 +121,16 @@
 		D531F16E1B57E60B002E7E0F /* load_failed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_failed.png; sourceTree = "<group>"; };
 		D531F16F1B57E60B002E7E0F /* successful_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = successful_default.png; sourceTree = "<group>"; };
 		D531F1701B57E60B002E7E0F /* load_successful.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_successful.png; sourceTree = "<group>"; };
-		D531F1711B57E60B002E7E0F /* ok_sign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok_sign.png; sourceTree = "<group>"; };
 		D531F1771B5852EE002E7E0F /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaults.plist; sourceTree = "<group>"; };
+		D536EEB11B63C35F00A2CBB9 /* PreferencesGeneralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesGeneralController.h; sourceTree = "<group>"; };
+		D536EEB21B63C35F00A2CBB9 /* PreferencesGeneralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesGeneralController.m; sourceTree = "<group>"; };
+		D536EEB41B63C37700A2CBB9 /* PreferencesKeyBindingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesKeyBindingsController.h; sourceTree = "<group>"; };
+		D536EEB51B63C37700A2CBB9 /* PreferencesKeyBindingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesKeyBindingsController.m; sourceTree = "<group>"; };
+		D536EEB91B66910F00A2CBB9 /* computer7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = computer7.png; sourceTree = "<group>"; };
+		D536EEBA1B66910F00A2CBB9 /* keys20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keys20.png; sourceTree = "<group>"; };
+		D536EEBB1B66910F00A2CBB9 /* settings48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings48.png; sourceTree = "<group>"; };
+		D536EEC31B66AB8400A2CBB9 /* close12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close12.png; sourceTree = "<group>"; };
+		D536EEC41B66AB8400A2CBB9 /* ok2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok2.png; sourceTree = "<group>"; };
 		D538E5C81B5EE57300B5455A /* AWInputWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWInputWindow.h; sourceTree = "<group>"; };
 		D538E5C91B5EE57300B5455A /* AWInputWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWInputWindow.m; sourceTree = "<group>"; };
 		D538E5CB1B5EECA900B5455A /* MAAttachedWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAAttachedWindow.h; sourceTree = "<group>"; };
@@ -286,6 +300,10 @@
 			children = (
 				D531F1451B57E020002E7E0F /* PrefrencesController.h */,
 				D531F1461B57E020002E7E0F /* PrefrencesController.m */,
+				D536EEB11B63C35F00A2CBB9 /* PreferencesGeneralController.h */,
+				D536EEB21B63C35F00A2CBB9 /* PreferencesGeneralController.m */,
+				D536EEB41B63C37700A2CBB9 /* PreferencesKeyBindingsController.h */,
+				D536EEB51B63C37700A2CBB9 /* PreferencesKeyBindingsController.m */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -365,11 +383,15 @@
 		D531F16C1B57E5F7002E7E0F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D536EEC31B66AB8400A2CBB9 /* close12.png */,
+				D536EEC41B66AB8400A2CBB9 /* ok2.png */,
+				D536EEB91B66910F00A2CBB9 /* computer7.png */,
+				D536EEBA1B66910F00A2CBB9 /* keys20.png */,
+				D536EEBB1B66910F00A2CBB9 /* settings48.png */,
 				D531F16D1B57E60B002E7E0F /* failed_default.png */,
 				D531F16E1B57E60B002E7E0F /* load_failed.png */,
 				D531F16F1B57E60B002E7E0F /* successful_default.png */,
 				D531F1701B57E60B002E7E0F /* load_successful.png */,
-				D531F1711B57E60B002E7E0F /* ok_sign.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -458,12 +480,16 @@
 				D538E5D41B5FD0F300B5455A /* Key Bindings.plist in Resources */,
 				D531F1781B5852EE002E7E0F /* defaults.plist in Resources */,
 				D531F10D1B55E580002E7E0F /* Images.xcassets in Resources */,
+				D536EEBD1B66910F00A2CBB9 /* keys20.png in Resources */,
 				D531F1721B57E60B002E7E0F /* failed_default.png in Resources */,
 				D531F1731B57E60B002E7E0F /* load_failed.png in Resources */,
+				D536EEBC1B66910F00A2CBB9 /* computer7.png in Resources */,
+				D536EEC61B66AB8400A2CBB9 /* ok2.png in Resources */,
 				D531F1751B57E60B002E7E0F /* load_successful.png in Resources */,
+				D536EEC51B66AB8400A2CBB9 /* close12.png in Resources */,
 				D531F1101B55E580002E7E0F /* Main.storyboard in Resources */,
-				D531F1761B57E60B002E7E0F /* ok_sign.png in Resources */,
 				D531F1741B57E60B002E7E0F /* successful_default.png in Resources */,
+				D536EEBE1B66910F00A2CBB9 /* settings48.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,8 +509,10 @@
 			files = (
 				D531F1271B57D7C9002E7E0F /* AWCommunitacion.m in Sources */,
 				D531F1511B57E548002E7E0F /* AWMainSplitView.m in Sources */,
+				D536EEB61B63C37700A2CBB9 /* PreferencesKeyBindingsController.m in Sources */,
 				D531F1311B57DB28002E7E0F /* AWHighlighting.m in Sources */,
 				D531F10B1B55E580002E7E0F /* Document.m in Sources */,
+				D536EEB31B63C35F00A2CBB9 /* PreferencesGeneralController.m in Sources */,
 				D531F13D1B57DFA5002E7E0F /* AWColors.m in Sources */,
 				D531F1471B57E020002E7E0F /* PrefrencesController.m in Sources */,
 				D531F15A1B57E555002E7E0F /* CustomTokenCell.m in Sources */,

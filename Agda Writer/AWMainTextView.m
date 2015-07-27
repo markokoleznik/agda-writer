@@ -169,7 +169,7 @@
     if (rangeOfCurrentWord.location != NSNotFound) {
         NSString * currentWord = [self.string substringWithRange:rangeOfCurrentWord];
         NSLog(@"Current word: %@", currentWord);
-        NSDictionary * keyBindings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Key Bindings" withExtension:@"plist"]];
+        NSDictionary * keyBindings = [AWHelper keyBindings];
         NSString * replacementString = [keyBindings objectForKey:currentWord];
         if (replacementString) {
             // TODO: think harder how this works :)
@@ -239,6 +239,7 @@
 }
 
 
+
 -(void)applyUnicodeTransformation
 {
 
@@ -248,7 +249,7 @@
     for (NSString * line in lines) {
         [words addObjectsFromArray:[line componentsSeparatedByString:@" "]];
     }
-    NSDictionary * keyBindings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Key Bindings" withExtension:@"plist"]];
+    NSDictionary * keyBindings = [AWHelper keyBindings];
     for (NSString * word in words) {
         NSString * replacementString = [keyBindings objectForKey:word];
         if (replacementString) {
@@ -256,6 +257,8 @@
         }
     }
 }
+
+
 
 -(void)complete:(id)sender
 {
@@ -279,7 +282,7 @@
         partialWord = [self.string substringWithRange:NSMakeRange(charRange.location - 1, charRange.length + 1)];
     }
     NSDate * startDate = [NSDate date];
-    NSDictionary * keyBindings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Key Bindings" withExtension:@"plist"]];
+    NSDictionary * keyBindings = [AWHelper keyBindings];
     
     
     NSMutableArray * mutableArray = [[NSMutableArray alloc] init];

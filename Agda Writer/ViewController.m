@@ -9,12 +9,13 @@
 #import "ViewController.h"
 #import "Document.h"
 
-
 #import "AWAgdaParser.h"
 #import "AWNotifications.h"
 #import "AppDelegate.h"
 
-@implementation ViewController
+@implementation ViewController {
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,6 +41,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontFamilyFromNotification:) name:fontFamilyChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(executeActions:) name:AWExecuteActions object:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaVersionAvaliable:) name:AWAgdaVersionAvaliable object:nil];
+    
+    
     
     
     
@@ -361,6 +364,7 @@
         
         NSString *fontFamily = (NSString *) notification.object;
         NSFont *font = self.mainTextView.textStorage.font;
+//        font = [[NSFontManager sharedFontManager] convertFont:font toNotHaveTrait:NSBoldFontMask];
         font = [[NSFontManager sharedFontManager] convertFont:font toFamily:fontFamily];
         if (!font) {
             NSNumber * fontSize = [ud objectForKey:FONT_SIZE_KEY];
@@ -454,6 +458,7 @@
     NSDate * date2 = [NSDate date];
     NSLog(@"Running time: %f", [date2 timeIntervalSinceDate:date1]);
 }
+
 
 #pragma mark - Table of goals
 

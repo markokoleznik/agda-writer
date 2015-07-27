@@ -7,6 +7,7 @@
 //
 
 #import "AWToastWindow.h"
+#import "AWHelper.h"
 
 #define VISIBLE_TIME 0.8 // in seconds
 #define FADING_TIME 0.4  //  -- || --
@@ -66,13 +67,16 @@
 
 - (void)show
 {
-    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-        [self makeKeyAndOrderFront:NSApp];
-        [context setDuration:0.1];
-        [self.animator setAlphaValue:1.0];
-    } completionHandler:^{
-        [self performSelector:@selector(closeToast) withObject:nil afterDelay:VISIBLE_TIME];
-    }];
+    if ([AWHelper isShowingNotifications]) {
+        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+            [self makeKeyAndOrderFront:NSApp];
+            [context setDuration:0.1];
+            [self.animator setAlphaValue:1.0];
+        } completionHandler:^{
+            [self performSelector:@selector(closeToast) withObject:nil afterDelay:VISIBLE_TIME];
+        }];
+    }
+    
 }
 
 - (void) closeToast

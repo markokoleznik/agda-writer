@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "AWHelper.h"
 
 
 @interface AppDelegate ()
@@ -20,6 +21,8 @@
     
     self.communicator = [[AWCommunitacion alloc] initForCommunicatingWithAgda];
     [self.communicator openConnectionToAgda];
+    
+    [AWHelper setUserDefaults];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

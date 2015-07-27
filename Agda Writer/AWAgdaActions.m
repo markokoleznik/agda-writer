@@ -56,7 +56,7 @@
 }
 +(NSString *)actionShowVersionOfAgdaWithFilePath:(NSString *)filePath
 {
-    return [NSString stringWithFormat:@"IOTCM \"%@\" None Indirect ( Cmd_show_version )", filePath];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" None Indirect ( Cmd_show_version )\n", filePath];
 }
 +(NSString *)actionNormalizeWithGoal:(AgdaGoal *)goal
                             filePath:(NSString *)filePath

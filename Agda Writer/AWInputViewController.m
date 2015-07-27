@@ -8,6 +8,7 @@
 
 #import "AWInputViewController.h"
 #import "UnicodeTransformator.h"
+#import "AWHelper.h"
 
 @interface AWInputViewController ()
 
@@ -24,6 +25,7 @@
      @"NSWindowDidResignKeyNotification" object:nil];
     
     self.inputTextField.delegate = self;
+    [self.inputTextField setFont:[AWHelper defaultFontInAgda]];
     // Do view setup here.
 }
 

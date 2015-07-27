@@ -9,6 +9,7 @@
 #import "AWCommunitacion.h"
 #import "AWNotifications.h"
 #import "AWAgdaParser.h"
+#import "AWAgdaActions.h"
 
 @implementation AWCommunitacion
 
@@ -79,21 +80,10 @@
     
     NSData *data = [[notification userInfo] objectForKey:NSFileHandleNotificationDataItem];
     NSString * reply = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-    if (self.searchingForAgda) {
-        self.numberOfNotificationHits += 1;
-    }
-    
-    if (self.searchingForAgda && self.numberOfNotificationHits >= 2) {
-        [AWNotifications notifyPossibleAgdaPathFound:reply];
-    }
-    else {
-        NSArray * actions = [AWAgdaParser makeArrayOfActions:reply];
-        [AWNotifications notifyExecuteActions:actions sender:self.activeViewController];
-        [AWNotifications notifyAgdaReplied:reply sender:self.activeViewController];
-    }
+    NSArray * actions = [AWAgdaParser makeArrayOfActionsAndDeleteActionFromString:[[NSMutableString alloc] initWithString:reply]];
+    [AWNotifications notifyExecuteActions:actions sender:self.activeViewController];
 }
-        
+
 
 - (void) stopTask
 {
@@ -121,7 +111,7 @@
         @catch (NSException *exception) {
             NSLog(@"Exception: %@", exception.reason);
             NSAlert * alert = [[NSAlert alloc] init];
-            [alert addButtonWithTitle:@"Open Prefreneces..."];
+            [alert addButtonWithTitle:@"OK"];
             [alert setMessageText:@"Task can't be launched!\nCheck your path in Settings."];
             [alert setAlertStyle:NSWarningAlertStyle];
             if ([alert runModal] == NSAlertFirstButtonReturn) {
@@ -139,7 +129,7 @@
         // File can't be lauched!
         NSLog(@"File can't be launched!\nLaunch path not accessible.");
         NSAlert * alert = [[NSAlert alloc] init];
-        [alert addButtonWithTitle:@"Open Prefreneces..."];
+        [alert addButtonWithTitle:@"OK"];
         [alert setMessageText:@"Task can't be launched!\nCheck your path in Settings."];
         [alert setAlertStyle:NSWarningAlertStyle];
         if ([alert runModal] == NSAlertFirstButtonReturn) {
@@ -225,10 +215,10 @@
         }
         @catch (NSException *exception) {
             NSLog(@"Exeption launching the task, reason: %@", exception.reason);
-            // Open prefrences
+            // Open preferences
             dispatch_sync(dispatch_get_main_queue(), ^{
                 NSAlert * alert = [[NSAlert alloc] init];
-                [alert addButtonWithTitle:@"Open Prefreneces..."];
+                [alert addButtonWithTitle:@"OK"];
                 [alert setMessageText:@"Task can't be launched!\nCheck your path in Settings."];
                 [alert setAlertStyle:NSWarningAlertStyle];
                 if ([alert runModal] == NSAlertFirstButtonReturn) {
