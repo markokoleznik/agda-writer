@@ -314,47 +314,7 @@
     }
 }
 
-- (void)textViewDidChangeSelection:(NSNotification *)notification
-{
-    // Called, when we select text
-    
-    //    return;
-    
-    // Check for selected range, and put rectangle around it.
-    NSRange selectedText = [self.mainTextView selectedRange];
-    NSRect rectangle = [self.mainTextView firstRectForCharacterRange:selectedText actualRange:nil];
-    
-    
-    //    int location = (int)selectedText.location;
-    int lenght = (int) selectedText.length;
-    if (lenght > 0) {
-        //        [self.numberLabel setStringValue:[NSString stringWithFormat:@"%i", lenght]];
-        
-        [self.mainTextView addToolTipRect:NSMakeRect(100, 100, 300, 300) owner:self userData:nil];
-        
-        // Open help window
-        [self showHelpWindowAtRect:rectangle];
-    }
-    else
-    {
-        // Remove window!
-        //        [self.numberLabel setStringValue:@""];
-//        for (NSWindow *window in self.childWindows) {
-//            if ([window.identifier isEqualToString:@"Helper"]) {
-//                [self removeChildWindow:window];
-//                self.isHelperWindowOpened = NO;
-//            }
-//        }
-    }
-}
 
-
-
--(void) showHelpWindowAtRect: (NSRect) rect
-{
-    
-    
-}
 -(void)agdaVersionAvaliable:(NSNotification *) notification
 {
     if ([notification.object isKindOfClass:[NSString class]]) {

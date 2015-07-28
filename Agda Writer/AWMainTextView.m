@@ -13,6 +13,8 @@
 #import "AWHelper.h"
 #import "AWHighlighting.h"
 
+
+
 @implementation AgdaGoal
 
 
@@ -25,16 +27,12 @@
 
 -(void)awakeFromNib
 {
-//    NSLog(@"%@", self.description);
     if (!initialize) {
         [self setAutomaticDashSubstitutionEnabled:NO];
         [self toggleAutomaticDashSubstitution:NO];
         [self toggleContinuousSpellChecking:NO];
         [self setContinuousSpellCheckingEnabled:NO];
         self.delegate = self;
-//        [NSApplication sharedApplication].delegate = self;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addToken:) name:@"AW.addToken" object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChangedInRangeWithReplacementString:) name:@"textChangedInRangeWithReplacementString" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allGoalsAction:) name:AWAllGoals object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(placeInsertionPointAtCharIndex:) name:AWPlaceInsertionPointAtCharIndex object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaGaveAction:) name:AWAgdaGaveAction object:nil];
@@ -119,84 +117,29 @@
 -(void)paste:(id)sender
 {
     [super pasteAsPlainText:sender];
-    
-//    NSLog(@"Pasting");
 }
 
-
-- (void)insertAttachmentCell:(NSTextAttachmentCell *)cell toTextView:(NSTextView *)textView
-{
-    NSTextAttachment *attachment = [NSTextAttachment new];
-    [attachment setAttachmentCell:cell];
-    [textView insertText:[NSAttributedString attributedStringWithAttachment:attachment]];
-}
-
--(void)textDidChange:(NSNotification *)notification
-{
-//    [self setTypingAttributes:defaultAttributes];
-}
-
--(void)textViewDidChangeSelection:(NSNotification *)notification
-{
-//    [self setTypingAttributes:defaultAttributes];
-//    NSLog(@"%@", notification.userInfo);
-    
-//    NSRange range = [notification.userInfo[@"NSOldSelectedCharacterRange"] rangeValue];
-//    NSLog(@"Selected range: (%li, %li)", range.location, range.length);
-    
-}
 
 - (void) transformLastWordToUnicode
 {
     NSRange rangeOfCurrentWord = [self rangeOfCurrentWord];
-    
-    
-    
+
     if (rangeOfCurrentWord.location != NSNotFound) {
         NSString * currentWord = [self.string substringWithRange:rangeOfCurrentWord];
 //        NSLog(@"Current word: %@", currentWord);
         NSDictionary * keyBindings = [AWHelper keyBindings];
         NSString * replacementString = [keyBindings objectForKey:currentWord];
         if (replacementString) {
-            // TODO: think harder how this works :)
-            [self.textStorage replaceCharactersInRange:rangeOfCurrentWord withString:replacementString];
-            NSDictionary * undoDictionary = @{
-                                              @"undo" : @{
-                                                      @"range" : NSStringFromRange(NSMakeRange(rangeOfCurrentWord.location, replacementString.length)),
-                                                      @"string" : currentWord},
-                                              
-                                              @"redo" : @{
-                                                      @"range" : NSStringFromRange(rangeOfCurrentWord),
-                                                      @"string" : currentWord}
-                                              };
-//                @"undoRange" : NSStringFromRange(NSMakeRange(rangeOfCurrentWord.location, replacementString.length)),
-//                                              @"undoString" : currentWord};
-
-            [self.undoManager registerUndoWithTarget:self selector:@selector(undoTranformationToUnicode:) object:undoDictionary];
-            [self.undoManager setActionName:@"Apply Unicode Transformation"];
+            BOOL shouldReplace = [self shouldChangeTextInRange:rangeOfCurrentWord replacementString:replacementString];
+            if (shouldReplace) {
+                [self replaceCharactersInRange:rangeOfCurrentWord withString:replacementString];
+            }
+            
         }
     }
     
 }
 
--(void)undoTranformationToUnicode:(NSDictionary *)dict
-{
-    NSRange range = NSRangeFromString((NSString *)dict[@"undo"][@"range"]);
-    NSString * string = (NSString *)dict[@"undo"][@"string"];
-    
-    [self.textStorage replaceCharactersInRange:range withString:string];
-    [[self.undoManager prepareWithInvocationTarget:(self)] replaceCharactersInRangeAndWithString:dict];
-//    [self.undoManager setActionName:@"Unicode Transformation"];
-}
-
-
--(void)replaceCharactersInRangeAndWithString:(NSDictionary *)dict
-{
-    NSRange range = NSRangeFromString((NSString *)dict[@"redo"][@"range"]);
-    NSString * string = (NSString *)dict[@"redo"][@"string"];
-    
-    [self.textStorage replaceCharactersInRange:range withString:string];
-}
 
 -(void)keyUp:(NSEvent *)theEvent
 {
@@ -354,15 +297,8 @@
         BOOL shouldBreak = NO;
         NSInteger numberOfSpaces = 0;
         for (NSInteger i = affectedCharRange.location - 1; i > 0; i--) {
-            if ([self.string characterAtIndex:i] == '\n') {
+            if ([self.string characterAtIndex:i] == '\n' || i == 0) {
                 // we found previous line!
-                if (i + 3 < self.textStorage.string.length && [[self.string substringWithRange:NSMakeRange(i + 1, 2)] isEqualToString:@"{-"]) {
-                    // begin multiline comment
-                    [self.textStorage.mutableString insertString:@"   \n-}" atIndex:i + 3];
-                    [self setSelectedRange:NSMakeRange(i + 6, 0)];
-                    shouldBreak = YES;
-                    break;
-                }
                 for (NSInteger j = i + 1; j < self.string.length; j++) {
                     if ([self.string characterAtIndex:j] != ' ') {
                         numberOfSpaces = j - i - 1;
@@ -376,22 +312,16 @@
                 break;
             }
         }
-        [self replaceCharactersInRange:affectedCharRange withString:[self whitespaces:numberOfSpaces]];
-        
+        if ([self shouldChangeTextInRange:affectedCharRange replacementString:[self whitespaces:numberOfSpaces]]) {
+            [self replaceCharactersInRange:affectedCharRange withString:[self whitespaces:numberOfSpaces]];
+        }
         
     }
     
     return YES;
 }
 
--(void)setString:(NSString *)string
-{
-    // Overrride this method to set Attributed string!
-    [super setString:string];
-    mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:self.textStorage.string];
-    [mutableAttributedString addAttributes:defaultAttributes range:NSMakeRange(0, mutableAttributedString.length)];
-    [[self textStorage] setAttributedString:mutableAttributedString];
-}
+
 
 
 
@@ -447,25 +377,25 @@
 //    
 //}
 
-- (void)asynchronouslyFindRangesOfCommentsWithCompletion:(void (^)(NSArray *))matches;
-{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        
-        // Asynchronously find all ranges with regex
-        // Regex pattern: //.*
-        // Finds all strings that begins with // and returns its range to the end of the line.
-        
-        NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:@"//.*" options:0 error:nil];
-        NSArray * results = [regex matchesInString:self.textStorage.string options:0 range:NSMakeRange(0, self.textStorage.length)];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (matches) {
-                
-                matches(results);
-            }
-        });
-    });
-}
+//- (void)asynchronouslyFindRangesOfCommentsWithCompletion:(void (^)(NSArray *))matches;
+//{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+//        
+//        // Asynchronously find all ranges with regex
+//        // Regex pattern: //.*
+//        // Finds all strings that begins with // and returns its range to the end of the line.
+//        
+//        NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:@"//.*" options:0 error:nil];
+//        NSArray * results = [regex matchesInString:self.textStorage.string options:0 range:NSMakeRange(0, self.textStorage.length)];
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            if (matches) {
+//                
+//                matches(results);
+//            }
+//        });
+//    });
+//}
 
 - (void)asynchronouslyFindRangesOfQuestionMarksWithCompletion:(void (^)(NSArray *))matches;
 {
@@ -501,32 +431,8 @@
     });
 }
 
-- (void) setDefaultText
-{
-    NSDate *currDate = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"dd. MM. YY."];
-    NSString *dateString = [dateFormatter stringFromDate:currDate];
-    
-    
-    NSString * welcomeString = @"";
-    welcomeString = [welcomeString stringByAppendingString:@"--  \n"];
-    welcomeString = [welcomeString stringByAppendingFormat:@"--  Created by %@ on %@ \n", NSFullUserName(), dateString];
-    welcomeString = [welcomeString stringByAppendingString:@"--  \n"];
-    [self setString: welcomeString];
-    
-    
 
-}
 
-- (NSRange) replaceQuestionMarkInRange:(NSRange)range WithType:(NSString *)type
-{
-    [self replaceCharactersInRange:range withString:type];
-    [mutableAttributedString replaceCharactersInRange:range withString:type];
-    
-    NSRange newRange = NSMakeRange(range.location, type.length);
-    return newRange;
-}
 
 
 
@@ -554,7 +460,11 @@
         }
         NSRange rangeOfGoal = [AWAgdaParser goalAtIndex:goalIndex textStorage:self.textStorage];
         if (rangeOfGoal.location + rangeOfGoal.length <= self.string.length) {
-            [self.textStorage replaceCharactersInRange:rangeOfGoal withString:content];
+            if ([self shouldChangeTextInRange:rangeOfGoal replacementString:content]) {
+
+                [self replaceCharactersInRange:rangeOfGoal withString:content];
+            }
+            
         }
         
         
@@ -598,8 +508,11 @@
             if (foundRange.location != NSNotFound) {
                 // found an occurrence of the substring!
     
-                NSAttributedString * attrString = [[NSAttributedString alloc] initWithString:@"{!!}" attributes:nil];
-                [self insertText:attrString replacementRange:NSMakeRange(foundRange.location + 1, foundRange.length - 1)];
+
+                if ([self shouldChangeTextInRange:NSMakeRange(foundRange.location + 1, foundRange.length - 1) replacementString:@"{!!}"]) {
+                    [self replaceCharactersInRange:NSMakeRange(foundRange.location + 1, foundRange.length - 1) withString:@"{!!}"];
+                }
+//                [self insertText:attrString replacementRange:NSMakeRange(foundRange.location + 1, foundRange.length - 1)];
                 
                 NSDictionary * goal = [AWAgdaParser goalIndexAndRange:NSMakeRange(foundRange.location + 2, 0) textStorage:self.textStorage];
                 
@@ -646,7 +559,11 @@
                 AgdaGoal * currentGoal = self.lastSelectedGoal;
                 if (currentGoal) {
                     // Replace old line with new one
-                    [self.textStorage replaceCharactersInRange:currentGoal.rangeOfCurrentLine withString:@""];
+                    if ([self shouldChangeTextInRange:currentGoal.rangeOfCurrentLine replacementString:@""]) {
+                        [self replaceCharactersInRange:currentGoal.rangeOfCurrentLine withString:@""];
+                    }
+                    
+                    
                     
                     NSMutableString * caseActionString = [NSMutableString new];
                     for (NSInteger i = 0; i < actions.count; i++) {
@@ -655,9 +572,14 @@
                         [caseActionString appendString:@"\n"];
                     }
                     // Delete last "newline"
-                    [caseActionString deleteCharactersInRange:NSMakeRange(caseActionString.length - 1, 1)];
-                    [self.textStorage insertAttributedString:[[NSAttributedString alloc] initWithString:caseActionString attributes:@{NSFontAttributeName: [AWHelper defaultFontInAgda]}] atIndex:currentGoal.rangeOfCurrentLine.location];
                     
+                    [caseActionString deleteCharactersInRange:NSMakeRange(caseActionString.length - 1, 1)];
+                    
+//                    [self.textStorage insertAttributedString:[[NSAttributedString alloc] initWithString:caseActionString attributes:@{NSFontAttributeName: [AWHelper defaultFontInAgda]}] atIndex:currentGoal.rangeOfCurrentLine.location];
+                    if ([self shouldChangeTextInRange:NSMakeRange(currentGoal.rangeOfCurrentLine.location, 0) replacementString:caseActionString]) {
+                        [self replaceCharactersInRange:NSMakeRange(currentGoal.rangeOfCurrentLine.location, 0) withString:caseActionString];
+                    }
+
                     [self replaceQuestionMarksWithGoals];
                     
                     
@@ -672,33 +594,14 @@
     [self asynchronouslyFindRangesOfQuestionMarksWithCompletion:^(NSArray * matches) {
         for (NSInteger i = 0; i < matches.count; i++) {
             NSRange foundRange = NSRangeFromString(matches[i]);
-            [self.textStorage replaceCharactersInRange:foundRange withString:@"{!!}"];
+            if ([self shouldChangeTextInRange:foundRange replacementString:@"{!!}"]) {
+                [self replaceCharactersInRange:foundRange withString:@"{!!}"];
+            }
+            
         }
     }];
 }
 
--(void) addTokenAtRange:(NSRange)range withGoalName:(NSString *)goalName
-{
-    NSTextAttachment * attachment = [[NSTextAttachment alloc] initWithFileWrapper:nil];
-    NSMutableAttributedString * text = [NSMutableAttributedString new];
-    CustomTokenCell * tokenCell = [[CustomTokenCell alloc] init];
-    [tokenCell setTitle:goalName];
-    
-    [attachment setAttachmentCell:tokenCell];
-    [text appendAttributedString:[NSAttributedString attributedStringWithAttachment:attachment]];
-    [self insertText:text replacementRange: NSMakeRange(range.location + 1, range.length - 1)];
-
-}
-
-- (void) addToken:(NSNotification *)notification
-{
-    // Test only!
-    NSTextAttachment * attachment = [[NSTextAttachment alloc] initWithFileWrapper:nil];
-    CustomTokenCell * tokenCell = [[CustomTokenCell alloc] init];
-    [tokenCell setTitle:@"Here is some token!"];
-    [attachment setAttachmentCell:tokenCell];
-    [self insertText:[NSAttributedString attributedStringWithAttachment:attachment]];
-}
 
 - (void) placeInsertionPointAtCharIndex:(NSNotification *) notification
 {
@@ -713,15 +616,12 @@
         NSArray * array = notification.userInfo[@"actions"];
         for (NSDictionary * dict in array) {
             NSString * actionName = dict.allKeys[0];
-            //            NSLog(@"action name: %@", actionName);
-            //            [mutableSetOfActionNames addObject:actionName];
             NSArray * args = dict[actionName];
             if (args.count > 0) {
                 NSRange range = NSRangeFromString(args[0]);
                 [AWHighlighting highlightCodeAtRange:range actionName:actionName textView:self];
             }
         }
-//        NSLog(@"%@", mutableSetOfActionNames);
     }
 
 }
