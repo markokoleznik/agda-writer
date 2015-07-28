@@ -14,6 +14,10 @@
 #import "AppDelegate.h"
 #import "AWHelper.h"
 
+#import "NoodleLineNumberView.h"
+#import "NoodleLineNumberMarker.h"
+#import "MarkerLineNumberView.h"
+
 @implementation ViewController {
     
 }
@@ -26,12 +30,13 @@
     self.mainTextView.parentViewController = self;
     self.goalsTableController.parentViewController = self;
     self.statusTextView.parentViewController = self;
+    
+    self.lineNumberView = [[MarkerLineNumberView alloc] initWithScrollView:self.mainScrollView];
+    [self.mainScrollView setVerticalRulerView:self.lineNumberView];
+    [self.mainScrollView setHasHorizontalRuler:NO];
+    [self.mainScrollView setHasVerticalRuler:YES];
+    [self.mainScrollView setRulersVisible:YES];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(synchronizedViewContentBoundsDidChange:)
-                                                 name:NSViewBoundsDidChangeNotification
-                                               object:[self.mainTextView.enclosingScrollView contentView]];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeController:) name:REMOVE_CONTROLLER object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaBufferDataAvaliable:) name:AWAgdaBufferDataAvaliable object:nil];
     
     // Add this class as observer, when font (in Prefrences) is changed. It might be reusable in other classes as well.
@@ -39,43 +44,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontSizeFromNotification:) name:fontSizeChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontFamilyFromNotification:) name:fontFamilyChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(executeActions:) name:AWExecuteActions object:self];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaVersionAvaliable:) name:AWAgdaVersionAvaliable object:nil];
-    
-    
-    
-    
-    
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaVersionAvaliable:) name:AWAgdaVersionAvaliable object:nil];  
     
 }
 
-
-- (void)synchronizedViewContentBoundsDidChange:(NSNotification *)notification
-{
-//    // get the changed content view from the notification
-//    NSClipView *changedContentView = [notification object];
-//    
-//    // get the origin of the NSClipView of the scroll view that
-//    // we're watching
-//    NSPoint changedBoundsOrigin = [changedContentView documentVisibleRect].origin;;
-//    
-//    // get our current origin
-//    NSPoint curOffset = [[self contentView] bounds].origin;
-//    NSPoint newOffset = curOffset;
-//    
-//    // scrolling is synchronized in the vertical plane
-//    // so only modify the y component of the offset
-//    newOffset.y = changedBoundsOrigin.y;
-//    
-//    // if our synced position is different from our current
-//    // position, reposition our content view
-//    if (!NSEqualPoints(curOffset, changedBoundsOrigin))
-//    {
-//        // note that a scroll view watching this one will
-//        // get notified here
-//        [[self.lineNumbersView.enclosingScrollView contentView] scrollToPoint:newOffset];
-//    }
-}
 
 
 
@@ -189,6 +161,11 @@
 
 - (IBAction)actionComputeNormalForm:(NSMenuItem *)sender {
     [self showNotImplementedAlert];
+}
+
+- (void)saveDocument:(id)sender
+{
+    [document saveDocument:self];
 }
 
 - (IBAction)actionNormalize:(id)sender {
@@ -334,31 +311,6 @@
         [AWAgdaActions executeArrayOfActions:(NSArray *)actions.userInfo[@"actions"] sender:self];
     }
 }
-
-
-#pragma mark - Table of goals
-
-- (NSView *)tableView:(NSTableView *)tableView
-   viewForTableColumn:(NSTableColumn *)tableColumn
-                  row:(NSInteger)row {
-    
-    NSTableCellView *result = [tableView makeViewWithIdentifier:@"GoalType" owner:self];
-    
-    if (result) {
-        // Set the stringValue of the cell's text field to the nameArray value at row
-        result.textField.stringValue = [NSString stringWithFormat:@"value %li",row];
-    }
-    
-    
-    // Return cell
-    return result;
-}
-
--(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
-{
-    return 2;
-}
-
 
 
 #pragma mark - Dealloc

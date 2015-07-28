@@ -45,6 +45,8 @@
         [self setTypingAttributes:@{NSFontAttributeName : [AWHelper defaultFontInAgda]}];
         mutableSetOfActionNames = [[NSMutableSet alloc] init];
         
+        [self setTextContainerInset:NSMakeSize( 0.0, 5.0 )];
+        
         
 
     }
@@ -587,6 +589,9 @@
             }
         }
     }
+//    if ([self.parentViewController respondsToSelector:@selector(saveDocument:)]) {
+//        [self.parentViewController performSelector:@selector(saveDocument:)];
+//    }
 }
 
 - (void)replaceQuestionMarksWithGoals

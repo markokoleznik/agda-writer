@@ -948,14 +948,14 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <splitView dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AkM-hh-meC">
-                                <rect key="frame" x="20" y="20" width="671" height="378"/>
+                                <rect key="frame" x="0.0" y="20" width="691" height="378"/>
                                 <subviews>
                                     <customView id="VJ0-Ar-rXx">
-                                        <rect key="frame" x="0.0" y="0.0" width="338" height="378"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="348" height="378"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZ1-xK-89o">
-                                                <rect key="frame" x="0.0" y="3" width="338" height="375"/>
+                                                <rect key="frame" x="0.0" y="2" width="348" height="375"/>
                                                 <clipView key="contentView" id="uXK-2u-Yqj">
                                                     <rect key="frame" x="1" y="1" width="223" height="133"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -964,10 +964,10 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="223" height="373"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <size key="minSize" width="336" height="373"/>
+                                                            <size key="minSize" width="346" height="373"/>
                                                             <size key="maxSize" width="463" height="10000000"/>
                                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <size key="minSize" width="336" height="373"/>
+                                                            <size key="minSize" width="346" height="373"/>
                                                             <size key="maxSize" width="463" height="10000000"/>
                                                         </textView>
                                                     </subviews>
@@ -984,14 +984,14 @@
                                             </scrollView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="HZ1-xK-89o" firstAttribute="top" secondItem="VJ0-Ar-rXx" secondAttribute="top" id="GyI-Ir-Sbj"/>
-                                            <constraint firstAttribute="bottom" secondItem="HZ1-xK-89o" secondAttribute="bottom" constant="3" id="JZj-K5-LcU"/>
+                                            <constraint firstItem="HZ1-xK-89o" firstAttribute="top" secondItem="VJ0-Ar-rXx" secondAttribute="top" constant="1" id="GyI-Ir-Sbj"/>
+                                            <constraint firstAttribute="bottom" secondItem="HZ1-xK-89o" secondAttribute="bottom" constant="2" id="JZj-K5-LcU"/>
                                             <constraint firstItem="HZ1-xK-89o" firstAttribute="leading" secondItem="VJ0-Ar-rXx" secondAttribute="leading" id="tmE-ee-04x"/>
                                             <constraint firstAttribute="trailing" secondItem="HZ1-xK-89o" secondAttribute="trailing" id="zBr-rw-F2B"/>
                                         </constraints>
                                     </customView>
                                     <customView id="2gi-Ua-tqT">
-                                        <rect key="frame" x="339" y="0.0" width="332" height="378"/>
+                                        <rect key="frame" x="349" y="0.0" width="342" height="378"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <splitView dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="2yX-xy-UYC">
@@ -1159,7 +1159,7 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="2yX-xy-UYC" secondAttribute="bottom" constant="3" id="IlN-Bj-HY3"/>
-                                            <constraint firstAttribute="trailing" secondItem="2yX-xy-UYC" secondAttribute="trailing" constant="3" id="Rgu-ye-qdg"/>
+                                            <constraint firstAttribute="trailing" secondItem="2yX-xy-UYC" secondAttribute="trailing" constant="13" id="Rgu-ye-qdg"/>
                                             <constraint firstItem="2yX-xy-UYC" firstAttribute="leading" secondItem="2gi-Ua-tqT" secondAttribute="leading" id="cO1-Hl-vAl"/>
                                             <constraint firstItem="2yX-xy-UYC" firstAttribute="top" secondItem="2gi-Ua-tqT" secondAttribute="top" id="tXZ-Vc-OQS"/>
                                         </constraints>
@@ -1175,11 +1175,12 @@
                             <constraint firstItem="AkM-hh-meC" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" constant="20" symbolic="YES" id="IOi-iS-Anf"/>
                             <constraint firstAttribute="bottom" secondItem="AkM-hh-meC" secondAttribute="bottom" constant="20" symbolic="YES" id="REF-Uk-DfO"/>
                             <constraint firstAttribute="trailing" secondItem="AkM-hh-meC" secondAttribute="trailing" constant="20" symbolic="YES" id="VXJ-hl-ABV"/>
-                            <constraint firstItem="AkM-hh-meC" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" constant="20" symbolic="YES" id="duz-55-St6"/>
+                            <constraint firstItem="AkM-hh-meC" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" id="duz-55-St6"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="goalsTableController" destination="dWY-q4-L80" id="Bfd-lx-kfN"/>
+                        <outlet property="mainScrollView" destination="HZ1-xK-89o" id="vRO-VJ-Hns"/>
                         <outlet property="mainTextView" destination="BWS-Sd-SvV" id="Dc1-xj-Hhj"/>
                         <outlet property="statusTextView" destination="4Ci-ex-d4W" id="TSf-1L-9c5"/>
                     </connections>

@@ -20,9 +20,9 @@
 #import "AWInputViewController.h"
 
 
-@class AgdaGoal;
+@class AgdaGoal, NoodleLineNumberView;
 
-@interface ViewController : NSViewController <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate, NSTableViewDataSource, NSTableViewDelegate, AWInputDelegate>
+@interface ViewController : NSViewController <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate, AWInputDelegate>
 {
     Document * document;
 }
@@ -67,9 +67,13 @@
 - (IBAction)biggerText:(id)sender;
 - (IBAction)smallerText:(id)sender;
 
+- (void)saveDocument:(id)sender;
 
+@property (weak) IBOutlet NSTableView *lineNumberTableView;
 
+@property NoodleLineNumberView * lineNumberView;
 
+@property (weak) IBOutlet NSScrollView *mainScrollView;
 
 @end
 
