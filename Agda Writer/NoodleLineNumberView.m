@@ -69,7 +69,13 @@
     
 }
 
-
+- (void)setFont:(NSFont *)aFont
+{
+    if (font != aFont)
+    {
+        font = aFont;
+    }
+}
 
 - (NSFont *)font
 {
@@ -90,6 +96,13 @@
 	return textColor;
 }
 
+- (void)setTextColor:(NSColor *)color
+{
+    if (textColor != color)
+    {
+        textColor = color;
+    }
+}
 
 
 - (NSColor *)alternateTextColor
@@ -101,11 +114,25 @@
 	return alternateTextColor;
 }
 
-
+- (void)setAlternateTextColor:(NSColor *)color
+{
+    if (alternateTextColor != color)
+    {
+        alternateTextColor = color;
+    }
+}
 
 - (NSColor *)backgroundColor
 {
 	return backgroundColor;
+}
+
+- (void)setBackgroundColor:(NSColor *)color
+{
+    if (backgroundColor != color)
+    {
+        backgroundColor = color;
+    }
 }
 
 - (void)setClientView:(NSView *)aView

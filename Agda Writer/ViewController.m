@@ -36,6 +36,8 @@
     [self.mainScrollView setHasHorizontalRuler:NO];
     [self.mainScrollView setHasVerticalRuler:YES];
     [self.mainScrollView setRulersVisible:YES];
+    [self.lineNumberView setBackgroundColor:[NSColor whiteColor]];
+    [self.lineNumberView setFont:[NSFont systemFontOfSize:[NSFont smallSystemFontSize]]];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaBufferDataAvaliable:) name:AWAgdaBufferDataAvaliable object:nil];
     

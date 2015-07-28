@@ -45,16 +45,16 @@
 
 - (id)initWithScrollView:(NSScrollView *)aScrollView;
 
-//- (void)setFont:(NSFont *)aFont;
+- (void)setFont:(NSFont *)aFont;
 - (NSFont *)font;
 
-//- (void)setTextColor:(NSColor *)color;
+- (void)setTextColor:(NSColor *)color;
 - (NSColor *)textColor;
 
-//- (void)setAlternateTextColor:(NSColor *)color;
+- (void)setAlternateTextColor:(NSColor *)color;
 - (NSColor *)alternateTextColor;
 
-//- (void)setBackgroundColor:(NSColor *)color;
+- (void)setBackgroundColor:(NSColor *)color;
 - (NSColor *)backgroundColor;
 
 - (NSUInteger)lineNumberForLocation:(CGFloat)location;
