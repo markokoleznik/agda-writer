@@ -463,16 +463,17 @@
         if (rangeOfGoal.location + rangeOfGoal.length <= self.string.length) {
             if ([self shouldChangeTextInRange:rangeOfGoal replacementString:content]) {
 
-                [self replaceCharactersInRange:rangeOfGoal withString:content];
+                [self.textStorage replaceCharactersInRange:rangeOfGoal withString:content];
             }
             
         }
         
         
-        // Save document!
-        if ([self.parentViewController respondsToSelector:@selector(saveDocument:)]) {
-            [self.parentViewController saveDocument:self];
-        }
+        // Save document! // SLOW METHOD!
+        [self.parentViewController performSelector:@selector(saveDocument:) withObject:nil afterDelay:1.0];
+//        if ([self.parentViewController respondsToSelector:@selector(saveDocument:)]) {
+//            [self.parentViewController saveDocument:self];
+//        }
         
         
     }

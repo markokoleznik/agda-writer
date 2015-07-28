@@ -64,7 +64,7 @@
     [document saveDocument:self];
     
     if (fullPath) {
-        NSString * message = [AWAgdaActions actionLoadWithFilePath:fullPath andIncludeDir:@""];
+        NSString * message = [AWAgdaActions actionLoadWithFilePath:fullPath];
         AppDelegate * appDelegate = (AppDelegate *)[NSApp delegate];
         [appDelegate.communicator writeDataToAgda:message sender:self];
     }
@@ -87,7 +87,7 @@
     NSString * fullPath = [document filePath].path;
     [document saveDocument:self];
     AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionGiveWithFilePath:fullPath goalIndex:goal.agdaGoalIndex startCharIndex:goal.startCharIndex startRow:goal.startRow startColumn:goal.startRow endCharIndex:goal.endCharIndex endRow:goal.endRow endColumn:goal.endColumn content:goal.content];
+    NSString * message = [AWAgdaActions actionGiveWithFilePath:fullPath goal:goal];
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
 }
@@ -97,7 +97,7 @@
     NSString * fullPath = [document filePath].path;
     [document saveDocument:self];
     AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionRefineWithFilePath:fullPath goalIndex:goal.agdaGoalIndex startCharIndex:goal.startCharIndex startRow:goal.startRow startColumn:goal.startRow endCharIndex:goal.endCharIndex endRow:goal.endRow endColumn:goal.endColumn content:goal.content];
+    NSString * message = [AWAgdaActions actionRefineWithFilePath:fullPath goal:goal];
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
 }
@@ -106,7 +106,7 @@
     NSString * fullPath = [document filePath].path;
     [document saveDocument:self];
     AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionAutoWithFilePath:fullPath goalIndex:goal.agdaGoalIndex startCharIndex:goal.startCharIndex startRow:goal.startRow startColumn:goal.startColumn endCharIndex:goal.endCharIndex endRow:goal.endRow endColumn:goal.endColumn content:goal.content];
+    NSString * message = [AWAgdaActions actionAutoWithFilePath:fullPath goal:goal];
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
 }
@@ -115,7 +115,7 @@
     NSString * fullPath = [document filePath].path;
     [document saveDocument:self];
     AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionCaseWithFilePath:fullPath goalIndex:goal.agdaGoalIndex startCharIndex:goal.startCharIndex startRow:goal.startRow startColumn:goal.startColumn endCharIndex:goal.endCharIndex endRow:goal.endRow endColumn:goal.endColumn content:goal.content];
+    NSString * message = [AWAgdaActions actionCaseWithFilePath:fullPath goal:goal];
     self.mainTextView.lastSelectedGoal = goal;
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];

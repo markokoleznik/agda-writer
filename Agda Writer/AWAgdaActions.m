@@ -10,6 +10,7 @@
 #import "AWNotifications.h"
 #import "AWToastWindow.h"
 #import "AWAgdaParser.h"
+#import "AWHelper.h"
 
 
 @implementation AWAgdaActions
@@ -18,25 +19,25 @@
 #pragma mark Agda requests
 #pragma mark -
 
-+(NSString *)actionLoadWithFilePath:(NSString *)filePath andIncludeDir:(NSString *)includeDir
++(NSString *)actionLoadWithFilePath:(NSString *)filePath
 {
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_load \"%@\" [\".\", \"%@\"])",filePath, filePath, includeDir];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_load \"%@\" [\".\", \"%@\"])",filePath, filePath, [AWHelper pathToLibraries]];
 }
-+(NSString *)actionGiveWithFilePath:(NSString *)filePath goalIndex:(NSInteger)goalIndex startCharIndex:(NSInteger)startCharIndex startRow:(NSInteger)startRow startColumn:(NSInteger)startColumn endCharIndex:(NSInteger)endCharIndex endRow:(NSInteger)endRow endColumn:(NSInteger)endColumn content:(NSString *)content
++(NSString *)actionGiveWithFilePath:(NSString *)filePath goal:(AgdaGoal *)goal
 {
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_give %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goalIndex, filePath, startCharIndex, startRow, startColumn, filePath, endCharIndex, endRow, endColumn, content];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_give %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goal.agdaGoalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, goal.content];
 }
-+(NSString *)actionRefineWithFilePath:(NSString *)filePath goalIndex:(NSInteger)goalIndex startCharIndex:(NSInteger)startCharIndex startRow:(NSInteger)startRow startColumn:(NSInteger)startColumn endCharIndex:(NSInteger)endCharIndex endRow:(NSInteger)endRow endColumn:(NSInteger)endColumn content:(NSString *)content
++(NSString *)actionRefineWithFilePath:(NSString *)filePath goal:(AgdaGoal *)goal
 {
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_refine_or_intro False %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goalIndex, filePath, startCharIndex, startRow, startColumn, filePath, endCharIndex, endRow, endColumn, content];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_refine_or_intro False %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goal.goalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, goal.content];
 }
-+(NSString *)actionAutoWithFilePath:(NSString *)filePath goalIndex:(NSInteger)goalIndex startCharIndex:(NSInteger)startCharIndex startRow:(NSInteger)startRow startColumn:(NSInteger)startColumn endCharIndex:(NSInteger)endCharIndex endRow:(NSInteger)endRow endColumn:(NSInteger)endColumn content:(NSString *)content
++(NSString *)actionAutoWithFilePath:(NSString *)filePath goal:(AgdaGoal *)goal
 {
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_auto %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goalIndex, filePath, startCharIndex, startRow, startColumn, filePath, endCharIndex, endRow, endColumn, content];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_auto %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goal.goalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, goal.content];
 }
-+(NSString *)actionCaseWithFilePath:(NSString *)filePath goalIndex:(NSInteger)goalIndex startCharIndex:(NSInteger)startCharIndex startRow:(NSInteger)startRow startColumn:(NSInteger)startColumn endCharIndex:(NSInteger)endCharIndex endRow:(NSInteger)endRow endColumn:(NSInteger)endColumn content:(NSString *)content
++(NSString *)actionCaseWithFilePath:(NSString *)filePath goal:(AgdaGoal *)goal
 {
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_make_case %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goalIndex, filePath, startCharIndex, startRow, startColumn, filePath, endCharIndex, endRow, endColumn, content];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_make_case %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goal.goalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, goal.content];
 }
 +(NSString *)actionGoalTypeWithFilePath:(NSString *)filePath goalIndex:(NSInteger)goalIndex
 {
