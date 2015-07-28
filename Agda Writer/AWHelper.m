@@ -34,6 +34,14 @@
     return nil;
 }
 
++ (void) saveDefaultFont:(NSFont *)font
+{
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:font.fontName forKey:FONT_FAMILY_KEY];
+    [ud setObject:[NSNumber numberWithFloat:font.pointSize] forKey:FONT_SIZE_KEY];
+    [ud synchronize];
+}
+
 + (void) setUserDefaults {
     NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
     NSDictionary * keyBindings = [ud objectForKey:@"KeyBindings"];

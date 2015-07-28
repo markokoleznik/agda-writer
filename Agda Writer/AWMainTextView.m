@@ -27,9 +27,9 @@
 {
 //    NSLog(@"%@", self.description);
     if (!initialize) {
+        [self setAutomaticDashSubstitutionEnabled:NO];
         [self toggleAutomaticDashSubstitution:NO];
         [self toggleContinuousSpellChecking:NO];
-        
         [self setContinuousSpellCheckingEnabled:NO];
         self.delegate = self;
 //        [NSApplication sharedApplication].delegate = self;
@@ -44,30 +44,9 @@
         
         
         initialize = YES;
-        
-        mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:self.textStorage.string];
-        // Set Attributes for attributed string
-        NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-        defaultAttributes = @{
-                              NSForegroundColorAttributeName : [NSColor blackColor],
-                              NSFontAttributeName : [NSFont fontWithName:[ud objectForKey:FONT_FAMILY_KEY] size:[[ud objectForKey:FONT_SIZE_KEY] doubleValue]],
-                              NSBackgroundColorAttributeName : [NSColor whiteColor]
-                              };
-        
-        goalsAttributes = @{
-                            NSForegroundColorAttributeName : [NSColor blueColor],
-                            NSBackgroundColorAttributeName : [NSColor colorWithRed:1.0 green:1.0 blue:0.0 alpha:0.5],
-                            };
-        
-        [mutableAttributedString addAttributes:defaultAttributes range:NSMakeRange(0, mutableAttributedString.length)];
-
-        
-//        [self openLastDocument];
-        
-        
+        [self setTypingAttributes:@{NSFontAttributeName : [AWHelper defaultFontInAgda]}];
         mutableSetOfActionNames = [[NSMutableSet alloc] init];
         
-        [self setAutomaticDashSubstitutionEnabled:NO];
         
 
     }
@@ -75,6 +54,8 @@
     
     
 }
+
+
 
 
 - (AgdaGoal *)selectedGoal
@@ -150,9 +131,14 @@
     [textView insertText:[NSAttributedString attributedStringWithAttachment:attachment]];
 }
 
+-(void)textDidChange:(NSNotification *)notification
+{
+//    [self setTypingAttributes:defaultAttributes];
+}
 
 -(void)textViewDidChangeSelection:(NSNotification *)notification
 {
+//    [self setTypingAttributes:defaultAttributes];
 //    NSLog(@"%@", notification.userInfo);
     
 //    NSRange range = [notification.userInfo[@"NSOldSelectedCharacterRange"] rangeValue];

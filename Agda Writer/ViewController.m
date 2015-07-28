@@ -12,6 +12,7 @@
 #import "AWAgdaParser.h"
 #import "AWNotifications.h"
 #import "AppDelegate.h"
+#import "AWHelper.h"
 
 @implementation ViewController {
     
@@ -25,9 +26,7 @@
     self.mainTextView.parentViewController = self;
     self.goalsTableController.parentViewController = self;
     self.statusTextView.parentViewController = self;
-    
-    
-    [self setUserDefaults];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(synchronizedViewContentBoundsDidChange:)
                                                  name:NSViewBoundsDidChangeNotification
@@ -78,69 +77,7 @@
 //    }
 }
 
-- (void) setUserDefaults
-{
-    
-    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-    // Default font will be Helvetica, 12pt.
-    if (![ud objectForKey:FONT_SIZE_KEY]) {
-        [ud setObject:[NSNumber numberWithInt:12] forKey:FONT_SIZE_KEY]; // Default value
-    }
-    if (![ud stringForKey:FONT_FAMILY_KEY]) {
-        [ud setObject:@"Menlo" forKey:FONT_FAMILY_KEY]; // Default value
-    }
-    // Write changes to disk.
-    [ud synchronize];
-    
-    // Both keys/values are in NSUserDefaults
-    NSNumber * fontSize = (NSNumber *)[ud objectForKey:FONT_SIZE_KEY];
-    NSNotification * notif1 = [[NSNotification alloc] initWithName:fontSizeChanged object:fontSize userInfo:nil];
-    
-    NSString *fontFamily = (NSString *)[ud stringForKey:FONT_FAMILY_KEY];
-    NSNotification * notif2 = [[NSNotification alloc] initWithName:fontFamilyChanged object:fontFamily userInfo:nil];
-    
-    NSFont * defaultFont = [NSFont fontWithName:@"Menlo" size:14];
-    [self.mainTextView setFont:defaultFont];
-    [self.statusTextView setFont:defaultFont];
-    [self.goalsTableController.goalsTable setFont:defaultFont];
-    
-    [self changeFontSizeFromNotification:notif1];
-    [self changeFontFamilyFromNotification:notif2];
-    
-}
 
-
--(BOOL)textView:(NSTextView *)textView shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(NSString *)replacementString
-{
-    [AWNotifications notifyTextChangedInRange:affectedCharRange replacementString:replacementString];
-    
-    return YES;
-}
-
-
-
-- (IBAction)hideOutputs:(id)sender {
-    
-    self.toastView = [[AWToastWindow alloc] initWithToastType:ToastTypeLoadSuccessful];
-    [self.toastView show];
-    
-    
-}
-
-- (void)closeToast
-{
-    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-        [context setDuration:0.5];
-        [self.toastView.animator setAlphaValue:0.0];
-    } completionHandler:^{
-        //        [self.toastView ];
-    }];
-    
-}
-
-- (IBAction)AddToken:(NSButton *)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"AW.addToken" object:nil];
-}
 
 #pragma mark -
 #pragma mark Agda Actions
@@ -336,23 +273,15 @@
     // When "fontSizeChanged" notification is recieved, change font to our editor
     if ([notification.object isKindOfClass:[NSNumber class]]) {
         
-        
-        NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-        
         NSNumber *fontSize = (NSNumber *) notification.object;
-        NSFont *font = self.mainTextView.textStorage.font;
-        if (!font) {
-            NSString * fontFamily = [ud stringForKey:FONT_FAMILY_KEY];
-            font = [NSFont fontWithName:fontFamily size:[fontSize floatValue]];
-        }
+        NSFont *font = [AWHelper defaultFontInAgda];
         font = [[NSFontManager sharedFontManager] convertFont:font toSize:[fontSize floatValue]];
-        //        [self.mainTextView.textStorage addAttribute:@"NSFontAttributeName" value:font range:NSMakeRange(0, self.mainTextView.textStorage.string.length)];
+        [self.mainTextView.textStorage addAttribute:@"NSFontAttributeName" value:font range:NSMakeRange(0, self.mainTextView.textStorage.string.length)];
         [self.mainTextView.textStorage setFont:font];
         [self.lineNumbersView setFont:font];
         
-        // Save changes to NSUserDefaults!
-        [ud setObject:fontSize forKey:FONT_SIZE_KEY];
-        [ud synchronize];
+//         Save changes to NSUserDefaults!
+        [AWHelper saveDefaultFont:font];
         
     }
 }
@@ -360,23 +289,15 @@
 {
     if ([notification.object isKindOfClass:[NSString class]]) {
         
-        NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-        
         NSString *fontFamily = (NSString *) notification.object;
-        NSFont *font = self.mainTextView.textStorage.font;
-//        font = [[NSFontManager sharedFontManager] convertFont:font toNotHaveTrait:NSBoldFontMask];
+        NSFont *font = [AWHelper defaultFontInAgda];
         font = [[NSFontManager sharedFontManager] convertFont:font toFamily:fontFamily];
-        if (!font) {
-            NSNumber * fontSize = [ud objectForKey:FONT_SIZE_KEY];
-            font = [NSFont fontWithName:fontFamily size:[fontSize floatValue]];
-        }
-        //        [self.mainTextView.textStorage addAttribute:@"NSFontAttributeName" value:font range:NSMakeRange(0, self.mainTextView.textStorage.string.length)];
+        [self.mainTextView.textStorage addAttribute:@"NSFontAttributeName" value:font range:NSMakeRange(0, self.mainTextView.textStorage.string.length)];
         [self.mainTextView.textStorage setFont:font];
         [self.lineNumbersView setFont:font];
         
         // Save changes to NSUserDefaults!
-        [ud setObject:fontFamily forKey:FONT_FAMILY_KEY];
-        [ud synchronize];
+        [AWHelper saveDefaultFont:font];
     }
 }
 
@@ -503,7 +424,9 @@
     document.mainTextView = self.mainTextView;
     
     if (document.contentString) {
-        [self.mainTextView setString:document.contentString];
+//        NSLog(@"%@", document.contentString);
+        
+        [self.mainTextView.textStorage setAttributedString:[[NSAttributedString alloc] initWithString:document.contentString attributes:@{NSFontAttributeName : [AWHelper defaultFontInAgda]}]];
     }
     
     // Update the view, if already loaded.

@@ -41,10 +41,6 @@
 @property AWInputViewController * inputViewController;
 @property (weak) IBOutlet NSTextField *lastStatusTextField;
 
-- (IBAction)hideOutputs:(id)sender;
-
-- (IBAction)AddToken:(NSButton *)sender;
-
 #pragma mark -
 #pragma mark Global actions
 

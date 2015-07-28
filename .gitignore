@@ -12,3 +12,5 @@ AgdaWriter.xcodeproj/project.xcworkspace/xcuserdata/markokoleznik.xcuserdatad/xc
 *.agda
 
 *.xcbkptlist
+
+*.xcbkptlist

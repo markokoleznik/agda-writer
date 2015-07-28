@@ -58,11 +58,7 @@
     for (NSString * fontFamily in fontFamilies) {
         [self.fontFamilyPopupButton addItemWithTitle:fontFamily];
     }
-    
-    [self.fontFamilyPopupButton selectItemWithTitle:[selectedFont fontName]];
-    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    NSString *fontFamily = (NSString *)[ud stringForKey:FONT_FAMILY_KEY];
-    [self.fontFamilyPopupButton selectItemWithTitle:fontFamily];
+    [self.fontFamilyPopupButton selectItemWithTitle:selectedFont.familyName];
 }
 
 - (void) setImagesFoundPath:(BOOL)found
