@@ -78,6 +78,25 @@
 + (void)setShowingNotifications:(BOOL)isShowing {
     NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
     [ud setObject:[NSNumber numberWithBool:isShowing] forKey:@"showNotifications"];
+    [ud synchronize];
+}
+
++ (void) savePathToLibraries: (NSString *)path
+{
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:path forKey:@"pathToLibraries"];
+    [ud synchronize];
+}
++ (NSString *)pathToLibraries
+{
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    NSString * pathToLibraries = [ud objectForKey:@"pathToLibraries"];
+    if (pathToLibraries) {
+        return pathToLibraries;
+    }
+    else {
+        return @"";
+    }
 }
 
 @end

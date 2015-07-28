@@ -36,6 +36,7 @@
     else {
         [self.showsNotifications setState:NSOffState];
     }
+    [self.pathToLibraries setStringValue:[AWHelper pathToLibraries]];
     selectedFont = [AWHelper defaultFontInAgda];
     [self fillFontFamilies];
     [self fillFontSizes];
@@ -130,6 +131,10 @@
 - (IBAction)fontSizeChanged:(NSPopUpButton *)sender {
     NSNumber * newFontSize = [[NSNumberFormatter new] numberFromString:sender.titleOfSelectedItem];
     [AWNotifications notifyFontSizeChanged:newFontSize];
+}
+
+- (IBAction)pathToLibrariesAction:(NSTextField *)sender {
+    [AWHelper savePathToLibraries:sender.stringValue];
 }
 
 - (IBAction)browseAction:(NSButton *)sender {

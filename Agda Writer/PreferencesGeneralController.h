@@ -21,6 +21,8 @@
 - (IBAction)fontFamilyChanged:(NSPopUpButton *)sender;
 
 - (IBAction)fontSizeChanged:(NSPopUpButton *)sender;
+@property (weak) IBOutlet NSTextField *pathToLibraries;
+- (IBAction)pathToLibrariesAction:(NSTextField *)sender;
 
 - (IBAction)browseAction:(NSButton *)sender;
 @end

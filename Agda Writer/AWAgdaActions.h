@@ -15,6 +15,9 @@
 #pragma mark -
 #pragma mark Agda requests
 
+// List of Interaction, thanks to banacorn!
+// https://github.com/banacorn/agda-mode/wiki/Conversations-between-Agda-&-agda-mode
+
 
 // Load
 +(NSString *)actionLoadWithFilePath:(NSString *)filePath
@@ -72,8 +75,10 @@
 +(NSString *)actionGoalTypeAndInferredTypeWithFilePath:(NSString *)filePath
                                              goalIndex:(NSInteger)goalIndex
                                                content:(NSString *)content;
+// Version of Agda
 +(NSString *)actionShowVersionOfAgdaWithFilePath:(NSString *)filePath;
 
+// Normalize with goal
 +(NSString *)actionNormalizeWithGoal:(AgdaGoal *)goal
                             filePath:(NSString *)filePath
                              content:(NSString *)content;

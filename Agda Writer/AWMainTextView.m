@@ -92,7 +92,6 @@
                 _selectedGoal.rangeOfContent = NSMakeRange(foundRange.location + 2, foundRange.length - 4);
                 _selectedGoal.content = [string substringWithRange:_selectedGoal.rangeOfContent];
                 _selectedGoal.content = [_selectedGoal.content stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
-//                _selectedGoal.content = [_selectedGoal.content stringByReplacingOccurrencesOfString:@"\\" withString:@"'\\"];
                 
                 // Compute number of empty spaces in this line
                 // i.e. where code begins, indentation if you prefer :)
