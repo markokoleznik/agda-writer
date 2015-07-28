@@ -27,14 +27,8 @@
     
     // Do view setup here.
     
-    if (![AWNotifications agdaLaunchPath]) {
-    }
-    else
-    {
-        [self.agdaPathTextField setStringValue:[AWNotifications agdaLaunchPath]];
-        [self setImagesFoundPath:[self isAgdaAvaliableAtPath:[AWNotifications agdaLaunchPath]]];
-        
-    }
+    [self.agdaPathTextField setStringValue:[AWNotifications agdaLaunchPath]];
+    [self setImagesFoundPath:[self isAgdaAvaliableAtPath:[AWNotifications agdaLaunchPath]]];
     
     if ([AWHelper isShowingNotifications]) {
         [self.showsNotifications setState:NSOnState];

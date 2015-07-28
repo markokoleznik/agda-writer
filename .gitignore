@@ -10,3 +10,5 @@ AgdaWriter.xcodeproj/xcuserdata/markokoleznik.xcuserdatad/xcdebugger/Breakpoints
 AgdaWriter.xcodeproj/project.xcworkspace/xcuserdata/markokoleznik.xcuserdatad/xcdebugger/Expressions.xcexplist
 
 *.agda
+
+*.xcbkptlist
