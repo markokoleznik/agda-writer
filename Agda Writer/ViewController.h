@@ -47,6 +47,7 @@
 // Global actions
 - (IBAction)actionLoad:(id)sender;
 - (IBAction)actionQuitAndRestartAgda:(NSMenuItem *)sender;
+- (IBAction)actionCompile:(id)sender;
 - (IBAction)actionQuit:(NSMenuItem *)sender;
 // Goal specific actions
 #pragma mark Goal specific actions
@@ -54,6 +55,59 @@
 - (IBAction)actionRefine:(id)sender;
 - (IBAction)actionAuto:(NSMenuItem *)sender;
 - (IBAction)actionCase:(NSMenuItem *)sender;
+
+// Goal
+    // Type
+    - (IBAction)actionGoalTypeSimplified:(id)sender;
+    - (IBAction)actionGoalTypeNormalised:(id)sender;
+    - (IBAction)actionGoalTypeInstantiated:(id)sender;
+    // Type and Context
+    - (IBAction)actionGoalTypeAndContextSimplified:(id)sender;
+    - (IBAction)actionGoalTypeAndContextNormalised:(id)sender;
+    - (IBAction)actionGoalTypeAndContextInstantiated:(id)sender;
+    // Type and Inffered Context
+    - (IBAction)actionGoalTypeAndInfferedContextSimplified:(id)sender;
+    - (IBAction)actionGoalTypeAndInfferedContextNormalised:(id)sender;
+    - (IBAction)actionGoalTypeAndInfferedContextInstantiated:(id)sender;
+
+// Show
+    // Constraints
+- (IBAction)actionShowConstraints:(id)sender;
+- (IBAction)actionShowMetas:(id)sender;
+    // Module Contents
+    - (IBAction)actionShowModuleContentsSimplified:(id)sender;
+    - (IBAction)actionShowModuleContentsNormalised:(id)sender;
+    - (IBAction)actionShowModuleContentsInstantiated:(id)sender;
+    // Implicit Arguments
+- (IBAction)actionImplicitArguments:(id)sender;
+
+// Infer
+- (IBAction)actionInferSimplified:(id)sender;
+- (IBAction)actionInferNormalised:(id)sender;
+- (IBAction)actionInferInstantiated:(id)sender;
+
+// Compute Normal Form
+- (IBAction)actionComputeNormalFormSimplified:(id)sender;
+- (IBAction)actionComputeNormalFormNormalised:(id)sender;
+- (IBAction)actionComputeNormalFormInstantiated:(id)sender;
+
+// Togle Implicit Arguments
+- (IBAction)actionToggleImplicitArguments:(id)sender;
+
+// Solve All Constraints
+- (IBAction)actionSolveAllConstraints:(id)sender;
+
+// Why in Scope?
+- (IBAction)actionWhyInScope:(id)sender;
+
+// Context
+- (IBAction)actionContextSimplified:(id)sender;
+- (IBAction)actionContextNormalised:(id)sender;
+- (IBAction)actionContextInstantiated:(id)sender;
+
+// Show Version
+- (IBAction)actionShowVersion:(id)sender;
+
 - (IBAction)actionGoalType:(NSMenuItem *)sender;
 - (IBAction)actionContextEnvironment:(NSMenuItem *)sender;
 - (IBAction)actionGoalTypeAndContext:(NSMenuItem *)sender;

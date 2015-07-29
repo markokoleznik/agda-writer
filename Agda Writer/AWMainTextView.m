@@ -469,13 +469,12 @@
         }
         
         
-        // Save document! // SLOW METHOD!
-        [self.parentViewController performSelector:@selector(saveDocument:) withObject:nil afterDelay:1.0];
-//        if ([self.parentViewController respondsToSelector:@selector(saveDocument:)]) {
-//            [self.parentViewController saveDocument:self];
-//        }
-        
-        
+        // Save document!
+        // HACK: Force save document after 1 second.
+        // This prevents UI to "freeze" when saving.
+        if ([self.parentViewController respondsToSelector:@selector(saveDocument:)]) {
+            [self.parentViewController performSelector:@selector(saveDocument:) withObject:nil afterDelay:1.0];
+        }
     }
 }
 

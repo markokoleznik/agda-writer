@@ -75,6 +75,9 @@
     [self showNotImplementedAlert];
 }
 
+- (IBAction)actionCompile:(id)sender {
+}
+
 - (IBAction)actionQuit:(NSMenuItem *)sender {
     [self showNotImplementedAlert];
 }
@@ -120,6 +123,116 @@
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
 }
+
+- (IBAction)actionGoalTypeSimplified:(id)sender {
+    [self showNotImplementedAlert];
+}
+- (IBAction)actionGoalTypeNormalised:(id)sender {
+    [self showNotImplementedAlert];
+}
+- (IBAction)actionGoalTypeInstantiated:(id)sender {
+    [self showNotImplementedAlert];
+}
+// Type and Context
+- (IBAction)actionGoalTypeAndContextSimplified:(id)sender {
+    [self showNotImplementedAlert];
+}
+- (IBAction)actionGoalTypeAndContextNormalised:(id)sender {
+    [self showNotImplementedAlert];
+}
+- (IBAction)actionGoalTypeAndContextInstantiated:(id)sender {
+    [self showNotImplementedAlert];
+}
+// Type and Inffered Context
+- (IBAction)actionGoalTypeAndInfferedContextSimplified:(id)sender {
+    [self showNotImplementedAlert];
+}
+- (IBAction)actionGoalTypeAndInfferedContextNormalised:(id)sender {
+    [self showNotImplementedAlert];
+}
+- (IBAction)actionGoalTypeAndInfferedContextInstantiated:(id)sender {
+    [self showNotImplementedAlert];
+}
+- (IBAction)actionShowConstraints:(id)sender {
+    [self showNotImplementedAlert];
+}
+- (IBAction)actionShowMetas:(id)sender {
+    [self showNotImplementedAlert];
+}
+// Module Contents
+- (IBAction)actionShowModuleContentsSimplified:(id)sender {
+    [self showNotImplementedAlert];
+}
+- (IBAction)actionShowModuleContentsNormalised:(id)sender {
+    [self showNotImplementedAlert];
+}
+- (IBAction)actionShowModuleContentsInstantiated:(id)sender {
+    [self showNotImplementedAlert];
+}
+// Implicit Arguments
+- (IBAction)actionImplicitArguments:(id)sender {
+    [self showNotImplementedAlert];
+}
+
+// Infer
+- (IBAction)actionInferSimplified:(id)sender {
+    [self showNotImplementedAlert];
+}
+- (IBAction)actionInferNormalised:(id)sender {
+    [self showNotImplementedAlert];
+}
+- (IBAction)actionInferInstantiated:(id)sender {
+    [self showNotImplementedAlert];
+}
+
+// Compute Normal Form
+- (IBAction)actionComputeNormalFormSimplified:(id)sender {
+    [self showNotImplementedAlert];
+}
+- (IBAction)actionComputeNormalFormNormalised:(id)sender {
+    [self showNotImplementedAlert];
+}
+- (IBAction)actionComputeNormalFormInstantiated:(id)sender {
+    [self showNotImplementedAlert];
+}
+
+// Togle Implicit Arguments
+- (IBAction)actionToggleImplicitArguments:(id)sender {
+    [self showNotImplementedAlert];
+}
+
+// Solve All Constraints
+- (IBAction)actionSolveAllConstraints:(id)sender {
+    [self showNotImplementedAlert];
+}
+
+// Why in Scope?
+- (IBAction)actionWhyInScope:(id)sender {
+    [self showNotImplementedAlert];
+}
+
+// Context
+- (IBAction)actionContextSimplified:(id)sender {
+    [self showNotImplementedAlert];
+}
+- (IBAction)actionContextNormalised:(id)sender {
+    [self showNotImplementedAlert];
+}
+- (IBAction)actionContextInstantiated:(id)sender {
+    [self showNotImplementedAlert];
+}
+
+// Show Version
+- (IBAction)actionShowVersion:(id)sender {
+    [self showNotImplementedAlert];
+}
+
+
+
+
+
+
+
 
 - (IBAction)actionGoalType:(NSMenuItem *)sender {
     NSString * fullPath = [document filePath].path;

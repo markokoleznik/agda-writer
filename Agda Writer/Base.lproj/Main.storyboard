@@ -462,16 +462,16 @@
                                                 <action selector="actionLoad:" target="Ady-hI-5gd" id="7TX-6x-7sG"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Compile" id="S3Z-t5-JhZ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="actionCompile:" target="Ady-hI-5gd" id="7Aw-ro-Car"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Quit and restart Agda" keyEquivalent="q" id="omN-JX-YLJ">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
                                                 <action selector="actionQuitAndRestartAgda:" target="Ady-hI-5gd" id="3cf-dv-4nx"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Quit Agda" id="lfa-IO-r1y">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="actionQuit:" target="Ady-hI-5gd" id="Wuh-mK-1Cq"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="JTK-vK-cua"/>
@@ -499,40 +499,237 @@
                                                 <action selector="actionCase:" target="Ady-hI-5gd" id="ptk-cq-EgF"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Goal Type" keyEquivalent="t" id="zRD-DM-Gn0">
-                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="actionGoalType:" target="Ady-hI-5gd" id="0uW-4g-DQY"/>
-                                            </connections>
+                                        <menuItem isSeparatorItem="YES" id="0rs-GP-qfv"/>
+                                        <menuItem title="Goal" id="fAI-zb-vhL">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Goal" id="r48-xq-7hn">
+                                                <items>
+                                                    <menuItem title="Type" id="4GX-Pb-YPE">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <menu key="submenu" title="Type" id="4gn-fM-D4D">
+                                                            <items>
+                                                                <menuItem title="Simplified" id="SUW-Ix-wxF">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="actionGoalTypeSimplified:" target="Ady-hI-5gd" id="jMu-yC-b8H"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                                <menuItem title="Normalised" id="O4d-0k-XHN">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="actionGoalTypeNormalised:" target="Ady-hI-5gd" id="1GN-8L-28T"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                                <menuItem title="Instantiated" id="hVJ-nM-UNX">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="actionGoalTypeInstantiated:" target="Ady-hI-5gd" id="G5I-Tf-gvt"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                            </items>
+                                                        </menu>
+                                                    </menuItem>
+                                                    <menuItem title="Type and Context" id="UeJ-HB-RXC">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <menu key="submenu" title="Type and Context" id="4w5-PM-MMd">
+                                                            <items>
+                                                                <menuItem title="Simplified" id="KKY-ej-mUM">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="actionGoalTypeAndContextSimplified:" target="Ady-hI-5gd" id="x9p-Q5-Cwl"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                                <menuItem title="Normalised" id="oeY-Qr-g2C">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="actionGoalTypeAndContextNormalised:" target="Ady-hI-5gd" id="KVp-Cp-5Vh"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                                <menuItem title="Instantiated" id="MEk-1F-Ozo">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="actionGoalTypeAndContextInstantiated:" target="Ady-hI-5gd" id="YC2-Bc-n97"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                            </items>
+                                                        </menu>
+                                                    </menuItem>
+                                                    <menuItem title="Type and Inffered Context" id="txz-db-N0u">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <menu key="submenu" title="Type and Inffered Context" id="lyZ-gP-xFI">
+                                                            <items>
+                                                                <menuItem title="Simplified" id="KpR-ct-ZuR">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="actionGoalTypeAndInfferedContextSimplified:" target="Ady-hI-5gd" id="jH9-mv-M7f"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                                <menuItem title="Normalised" id="Zmz-ok-j5n">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="actionGoalTypeAndInfferedContextNormalised:" target="Ady-hI-5gd" id="LoC-hy-C39"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                                <menuItem title="Instantiated" id="ob2-UG-HfB">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="actionGoalTypeAndInfferedContextInstantiated:" target="Ady-hI-5gd" id="Wi2-c3-aKB"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                            </items>
+                                                        </menu>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
                                         </menuItem>
-                                        <menuItem title="Context (environment)" id="3FK-4d-2ch">
+                                        <menuItem title="Show" id="2nT-lN-0G2">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Show" id="tgT-8r-l1a">
+                                                <items>
+                                                    <menuItem title="Constraints" id="N3l-BV-C75">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="actionShowConstraints:" target="Ady-hI-5gd" id="TIj-4v-DfP"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Metas" id="7Hy-oM-Ehd">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="actionShowMetas:" target="Ady-hI-5gd" id="qXp-Gm-tww"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Module Contents" id="OOS-mp-4rR">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <menu key="submenu" title="Module Contents" id="dZw-QF-GJz">
+                                                            <items>
+                                                                <menuItem title="Simplified" id="xXY-Gy-vcS">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="actionShowModuleContentsSimplified:" target="Ady-hI-5gd" id="mDb-Vf-M7h"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                                <menuItem title="Normalised" id="AEh-e7-5ta">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="actionShowModuleContentsNormalised:" target="Ady-hI-5gd" id="1Sr-dx-G8w"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                                <menuItem title="Instantiated" id="rF8-A3-KSF">
+                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="actionShowModuleContentsInstantiated:" target="Ady-hI-5gd" id="FHd-dB-0df"/>
+                                                                    </connections>
+                                                                </menuItem>
+                                                            </items>
+                                                        </menu>
+                                                    </menuItem>
+                                                    <menuItem title="Implicit Arguments" id="SXB-pY-Ln2">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="actionImplicitArguments:" target="Ady-hI-5gd" id="Fwa-UH-Rtb"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                        <menuItem title="Infer" id="meH-45-X3K">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Infer" id="sVD-8h-9Nb">
+                                                <items>
+                                                    <menuItem title="Simplified" id="7zM-kB-y8N">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="actionInferSimplified:" target="Ady-hI-5gd" id="Deo-c7-0ig"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Normalised" id="qyI-I5-cKh">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="actionInferNormalised:" target="Ady-hI-5gd" id="eKs-pe-Wd3"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Instantiated" id="Adn-Li-i1I">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="actionInferInstantiated:" target="Ady-hI-5gd" id="MbZ-V2-tMj"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                        <menuItem title="Compute Normal Form" id="4wS-jj-SkY">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Compute Normal Form" id="yzJ-tl-lOI">
+                                                <items>
+                                                    <menuItem title="Simplified" keyEquivalent="n" id="SdA-6n-WQN">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="actionComputeNormalFormSimplified:" target="Ady-hI-5gd" id="gQj-hW-LR7"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Normalised" keyEquivalent="n" id="lfc-NT-ZmF">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="actionComputeNormalFormNormalised:" target="Ady-hI-5gd" id="aH3-Ma-UdW"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Instantiated" id="X0a-xo-jDz">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="actionComputeNormalFormInstantiated:" target="Ady-hI-5gd" id="pfh-Tg-eKl"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                        <menuItem title="Toggle Implicit Arguments" id="6nq-Nb-xbw">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="actionContextEnvironment:" target="Ady-hI-5gd" id="hDd-0z-SHg"/>
+                                                <action selector="actionToggleImplicitArguments:" target="Ady-hI-5gd" id="cgt-DP-rCs"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Goal type and context" id="FOi-pj-tAi">
+                                        <menuItem title="Solve all Contstraints" id="mKf-f5-QcJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="actionGoalTypeAndContext:" target="Ady-hI-5gd" id="myH-c4-oxL"/>
+                                                <action selector="actionSolveAllConstraints:" target="Ady-hI-5gd" id="uOV-dK-aHe"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Goal type and inferred type" id="1Qa-FN-Itr">
+                                        <menuItem title="Why in Scope?" id="HzM-na-NHA">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="actionGoalTypeAndInferredType:" target="Ady-hI-5gd" id="RDV-wR-wZN"/>
+                                                <action selector="actionWhyInScope:" target="Ady-hI-5gd" id="Jfk-T5-Qai"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Compute normal form" id="9ac-1Z-CrV">
+                                        <menuItem title="Context" id="B2v-Ln-UGd">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Context" id="37T-eL-9Tw">
+                                                <items>
+                                                    <menuItem title="Simplified" id="nLQ-y9-fsn">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="actionContextSimplified:" target="Ady-hI-5gd" id="NB0-Jx-waf"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Normalised" id="XkF-EE-FaO">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="actionContextNormalised:" target="Ady-hI-5gd" id="Y12-pQ-3wp"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Instantiated" id="3UY-Mo-9iy">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="actionContextInstantiated:" target="Ady-hI-5gd" id="bVY-K5-D6e"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="QPQ-L4-xYi"/>
+                                        <menuItem title="Show Version" id="2EF-1J-x6D">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="actionComputeNormalForm:" target="Ady-hI-5gd" id="BMn-oj-L91"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Normalize" keyEquivalent="n" id="SdA-6n-WQN">
-                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="actionNormalize:" target="Ady-hI-5gd" id="gEd-UN-Rbw"/>
+                                                <action selector="actionShowVersion:" target="Ady-hI-5gd" id="SfX-gy-9T2"/>
                                             </connections>
                                         </menuItem>
                                     </items>
