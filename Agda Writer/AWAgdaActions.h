@@ -64,17 +64,18 @@ typedef enum : NSUInteger {
 
 +(NSString *)actionShowModuleContentsFilePath:(NSString *)filePath
                                          goal:(AgdaGoal *)goal
-                           normalisationLevel:(AWNormalisationLevel)level;
+                           normalisationLevel:(AWNormalisationLevel)level
+                                      content:(NSString *)content;
 
 +(NSString *)actionImplicitArgumentsWithFilePath:(NSString *)filePath;
 
 +(NSString *)actionInferWithFilePath:(NSString *)filePath
                                 goal:(AgdaGoal *)goal
-                  normalisationLevel:(AWNormalisationLevel)level;
+                  normalisationLevel:(AWNormalisationLevel)level
+                             content:(NSString *)content;
 
 +(NSString *)actionComputeNormalFormWithFilePath:(NSString *)filePath
                                 goal:(AgdaGoal *)goal
-                  normalisationLevel:(AWNormalisationLevel)level
                              content:(NSString *)content;
 
 +(NSString *)actionToggleImplicitArgumentsWithFilePath:(NSString *)filePath;
@@ -82,42 +83,14 @@ typedef enum : NSUInteger {
 +(NSString *)actionSolveAllConstraints:(NSString *)filePath;
 
 +(NSString *)actionWhyInScopeWithFilePath:(NSString *)filePath
-                                     goal:(AgdaGoal *)goal;
+                                     goal:(AgdaGoal *)goal
+                                  content:(NSString *)content;
 
 +(NSString *)actionContextWithFilePath:(NSString *)filePath
-                                  goal:(AgdaGoal *)goal;
+                                  goal:(AgdaGoal *)goal
+                    normalisationLevel:(AWNormalisationLevel)level;
 
 +(NSString *)actionShowVersionWithFilePath:(NSString *)filepath;
-
-
-
-
-
-
-
-
-
-
-// Goal type
-+(NSString *)actionGoalTypeWithFilePath:(NSString *)filePath
-                              goalIndex:(NSInteger)goalIndex;
-// Context
-+(NSString *)actionContextWithFilePath:(NSString *)filePath
-                             goalIndex:(NSInteger)goalIndex;
-// Goal type and context
-+(NSString *)actionGoalTypeAndContextWithFilePath:(NSString *)filePath
-                                        goalIndex:(NSInteger)goalIndex;
-// Goal type and inferred type
-+(NSString *)actionGoalTypeAndInferredTypeWithFilePath:(NSString *)filePath
-                                             goalIndex:(NSInteger)goalIndex
-                                               content:(NSString *)content;
-// Version of Agda
-+(NSString *)actionShowVersionOfAgdaWithFilePath:(NSString *)filePath;
-
-// Normalize with goal
-+(NSString *)actionNormalizeWithGoal:(AgdaGoal *)goal
-                            filePath:(NSString *)filePath
-                             content:(NSString *)content;
 
 
 #pragma mark -

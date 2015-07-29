@@ -86,11 +86,6 @@
 - (IBAction)actionInferNormalised:(id)sender;
 - (IBAction)actionInferInstantiated:(id)sender;
 
-// Compute Normal Form
-- (IBAction)actionComputeNormalFormSimplified:(id)sender;
-- (IBAction)actionComputeNormalFormNormalised:(id)sender;
-- (IBAction)actionComputeNormalFormInstantiated:(id)sender;
-
 // Togle Implicit Arguments
 - (IBAction)actionToggleImplicitArguments:(id)sender;
 
@@ -108,13 +103,13 @@
 // Show Version
 - (IBAction)actionShowVersion:(id)sender;
 
-- (IBAction)actionGoalType:(NSMenuItem *)sender;
-- (IBAction)actionContextEnvironment:(NSMenuItem *)sender;
-- (IBAction)actionGoalTypeAndContext:(NSMenuItem *)sender;
-- (IBAction)actionGoalTypeAndInferredType:(NSMenuItem *)sender;
-- (IBAction)actionComputeNormalForm:(NSMenuItem *)sender;
-- (IBAction)actionNormalize:(id)sender;
-- (IBAction)actionNormalizeGoal:(id)sender;
+//- (IBAction)actionGoalType:(NSMenuItem *)sender;
+//- (IBAction)actionContextEnvironment:(NSMenuItem *)sender;
+//- (IBAction)actionGoalTypeAndContext:(NSMenuItem *)sender;
+//- (IBAction)actionGoalTypeAndInferredType:(NSMenuItem *)sender;
+//- (IBAction)actionComputeNormalForm:(NSMenuItem *)sender;
+//- (IBAction)actionNormalize:(id)sender;
+//- (IBAction)actionNormalizeGoal:(id)sender;
 
 #pragma mark -
 - (IBAction)applyUnicodeTransformation:(id)sender;

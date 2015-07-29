@@ -500,6 +500,12 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="0rs-GP-qfv"/>
+                                        <menuItem title="Compute Normal Form" keyEquivalent="n" id="E1x-06-Dfi">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="actionComputeNormalForm:" target="Ady-hI-5gd" id="5FV-5L-7sa"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Goal" id="fAI-zb-vhL">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Goal" id="r48-xq-7hn">
@@ -652,31 +658,6 @@
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="actionInferInstantiated:" target="Ady-hI-5gd" id="MbZ-V2-tMj"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                </items>
-                                            </menu>
-                                        </menuItem>
-                                        <menuItem title="Compute Normal Form" id="4wS-jj-SkY">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Compute Normal Form" id="yzJ-tl-lOI">
-                                                <items>
-                                                    <menuItem title="Simplified" keyEquivalent="n" id="SdA-6n-WQN">
-                                                        <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                                                        <connections>
-                                                            <action selector="actionComputeNormalFormSimplified:" target="Ady-hI-5gd" id="gQj-hW-LR7"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Normalised" keyEquivalent="n" id="lfc-NT-ZmF">
-                                                        <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
-                                                        <connections>
-                                                            <action selector="actionComputeNormalFormNormalised:" target="Ady-hI-5gd" id="aH3-Ma-UdW"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Instantiated" id="X0a-xo-jDz">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="actionComputeNormalFormInstantiated:" target="Ady-hI-5gd" id="pfh-Tg-eKl"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>

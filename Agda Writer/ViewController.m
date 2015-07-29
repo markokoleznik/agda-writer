@@ -76,6 +76,12 @@
 }
 
 - (IBAction)actionCompile:(id)sender {
+    NSString * fullPath = [document filePath].path;
+    [document saveDocument:self];
+    NSString * message = [AWAgdaActions actionCompileWithFilePath:fullPath];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator writeDataToAgda:message sender:self];
+    
 }
 
 - (IBAction)actionQuit:(NSMenuItem *)sender {
@@ -125,39 +131,78 @@
 }
 
 - (IBAction)actionGoalTypeSimplified:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionGoalType:AWNormalisationLevelSimplified];
 }
 - (IBAction)actionGoalTypeNormalised:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionGoalType:AWNormalisationLevelNormalised];
 }
 - (IBAction)actionGoalTypeInstantiated:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionGoalType:AWNormalisationLevelInstantiated];
 }
+- (void)actionGoalType:(AWNormalisationLevel) normalisationLevel {
+    NSString * fullPath = [document filePath].path;
+    [document saveDocument:self];
+    AgdaGoal * goal = self.mainTextView.selectedGoal;
+    NSString * message = [AWAgdaActions actionGoalTypeWithFilePath:fullPath goal:goal normalisationLevel:normalisationLevel];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator writeDataToAgda:message sender:self];
+}
+
 // Type and Context
 - (IBAction)actionGoalTypeAndContextSimplified:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionGoalTypeAndContext:AWNormalisationLevelSimplified];
 }
 - (IBAction)actionGoalTypeAndContextNormalised:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionGoalTypeAndContext:AWNormalisationLevelNormalised];
 }
 - (IBAction)actionGoalTypeAndContextInstantiated:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionGoalTypeAndContext:AWNormalisationLevelInstantiated];
 }
+- (void)actionGoalTypeAndContext: (AWNormalisationLevel) normalisationLevel {
+    NSString * fullPath = [document filePath].path;
+    [document saveDocument:self];
+    AgdaGoal * goal = self.mainTextView.selectedGoal;
+    NSString * message = [AWAgdaActions actionGoalTypeAndContextWithFilePath:fullPath goal:goal normalisationLevel:normalisationLevel];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator writeDataToAgda:message sender:self];
+}
+
+
 // Type and Inffered Context
 - (IBAction)actionGoalTypeAndInfferedContextSimplified:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionGoalTypeAndInfferedContext:AWNormalisationLevelSimplified];
 }
 - (IBAction)actionGoalTypeAndInfferedContextNormalised:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionGoalTypeAndInfferedContext:AWNormalisationLevelNormalised];
 }
 - (IBAction)actionGoalTypeAndInfferedContextInstantiated:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionGoalTypeAndInfferedContext:AWNormalisationLevelInstantiated];
 }
+-(void) actionGoalTypeAndInfferedContext:(AWNormalisationLevel) normalisationLevel {
+    NSString * fullPath = [document filePath].path;
+    [document saveDocument:self];
+    AgdaGoal * goal = self.mainTextView.selectedGoal;
+    if (goal) {
+        NSString * message = [AWAgdaActions actionGoalTypeAndInfferedContextWithFilePath:fullPath goal:goal normalisationLevel:normalisationLevel];
+        AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+        [appDelegate.communicator writeDataToAgda:message sender:self];
+    }
+    
+}
+
 - (IBAction)actionShowConstraints:(id)sender {
-    [self showNotImplementedAlert];
+    NSString * fullPath = [document filePath].path;
+    [document saveDocument:self];
+    NSString * message = [AWAgdaActions actionShowConstraintsWithFilePath:fullPath];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator writeDataToAgda:message sender:self];
 }
 - (IBAction)actionShowMetas:(id)sender {
-    [self showNotImplementedAlert];
+    NSString * fullPath = [document filePath].path;
+    [document saveDocument:self];
+    NSString * message = [AWAgdaActions actionShowMetasWithFilePath:fullPath];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator writeDataToAgda:message sender:self];
 }
 // Module Contents
 - (IBAction)actionShowModuleContentsSimplified:(id)sender {
@@ -169,9 +214,16 @@
 - (IBAction)actionShowModuleContentsInstantiated:(id)sender {
     [self showNotImplementedAlert];
 }
+- (void)actionShowModuleContents:(AWNormalisationLevel) normalisationLevel {
+    
+}
 // Implicit Arguments
 - (IBAction)actionImplicitArguments:(id)sender {
-    [self showNotImplementedAlert];
+    NSString * fullPath = [document filePath].path;
+    [document saveDocument:self];
+    NSString * message = [AWAgdaActions actionImplicitArgumentsWithFilePath:fullPath];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator writeDataToAgda:message sender:self];
 }
 
 // Infer
@@ -184,26 +236,26 @@
 - (IBAction)actionInferInstantiated:(id)sender {
     [self showNotImplementedAlert];
 }
+-(void)actionInfer:(AWNormalisationLevel)normalisationLevel {
 
-// Compute Normal Form
-- (IBAction)actionComputeNormalFormSimplified:(id)sender {
-    [self showNotImplementedAlert];
-}
-- (IBAction)actionComputeNormalFormNormalised:(id)sender {
-    [self showNotImplementedAlert];
-}
-- (IBAction)actionComputeNormalFormInstantiated:(id)sender {
-    [self showNotImplementedAlert];
 }
 
 // Togle Implicit Arguments
 - (IBAction)actionToggleImplicitArguments:(id)sender {
-    [self showNotImplementedAlert];
+    NSString * fullPath = [document filePath].path;
+    [document saveDocument:self];
+    NSString * message = [AWAgdaActions actionToggleImplicitArgumentsWithFilePath:fullPath];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator writeDataToAgda:message sender:self];
 }
 
 // Solve All Constraints
 - (IBAction)actionSolveAllConstraints:(id)sender {
-    [self showNotImplementedAlert];
+    NSString * fullPath = [document filePath].path;
+    [document saveDocument:self];
+    NSString * message = [AWAgdaActions actionSolveAllConstraints:fullPath];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator writeDataToAgda:message sender:self];
 }
 
 // Why in Scope?
@@ -213,66 +265,79 @@
 
 // Context
 - (IBAction)actionContextSimplified:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionContext:AWNormalisationLevelSimplified];
 }
 - (IBAction)actionContextNormalised:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionContext:AWNormalisationLevelNormalised];
 }
 - (IBAction)actionContextInstantiated:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionContext:AWNormalisationLevelInstantiated];
+}
+-(void)actionContext:(AWNormalisationLevel)normalisationLevel {
+    NSString * fullPath = [document filePath].path;
+    [document saveDocument:self];
+    AgdaGoal * goal = self.mainTextView.selectedGoal;
+    NSString * message = [AWAgdaActions actionContextWithFilePath:fullPath goal:goal normalisationLevel:normalisationLevel];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator writeDataToAgda:message sender:self];
+    
 }
 
 // Show Version
 - (IBAction)actionShowVersion:(id)sender {
-    [self showNotImplementedAlert];
-}
-
-
-
-
-
-
-
-
-- (IBAction)actionGoalType:(NSMenuItem *)sender {
     NSString * fullPath = [document filePath].path;
-    [document saveDocument:self];
-    AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionGoalTypeWithFilePath:fullPath goalIndex:goal.agdaGoalIndex];
-    self.mainTextView.lastSelectedGoal = goal;
+    NSString * message = [AWAgdaActions actionShowVersionWithFilePath:fullPath];
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
+
 }
 
-- (IBAction)actionContextEnvironment:(NSMenuItem *)sender {
-    NSString * fullPath = [document filePath].path;
-    [document saveDocument:self];
-    AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionContextWithFilePath:fullPath goalIndex:goal.agdaGoalIndex];
-    self.mainTextView.lastSelectedGoal = goal;
-    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
-    [appDelegate.communicator writeDataToAgda:message sender:self];
-}
 
-- (IBAction)actionGoalTypeAndContext:(NSMenuItem *)sender {
-    NSString * fullPath = [document filePath].path;
-    [document saveDocument:self];
-    AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionGoalTypeAndContextWithFilePath:fullPath goalIndex:goal.agdaGoalIndex];
-    self.mainTextView.lastSelectedGoal = goal;
-    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
-    [appDelegate.communicator writeDataToAgda:message sender:self];
-}
 
-- (IBAction)actionGoalTypeAndInferredType:(NSMenuItem *)sender {
-    [document saveDocument:self];
-    NSString * fullPath = [document filePath].path;
-    AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionGoalTypeAndInferredTypeWithFilePath:fullPath goalIndex:goal.agdaGoalIndex content:goal.content];
-    self.mainTextView.lastSelectedGoal = goal;
-    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
-    [appDelegate.communicator writeDataToAgda:message sender:self];
-}
+
+
+
+
+
+//- (IBAction)actionGoalType:(NSMenuItem *)sender {
+//    NSString * fullPath = [document filePath].path;
+//    [document saveDocument:self];
+//    AgdaGoal * goal = self.mainTextView.selectedGoal;
+//    NSString * message = [AWAgdaActions actionGoalTypeWithFilePath:fullPath goalIndex:goal.agdaGoalIndex];
+//    self.mainTextView.lastSelectedGoal = goal;
+//    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+//    [appDelegate.communicator writeDataToAgda:message sender:self];
+//}
+//
+//- (IBAction)actionContextEnvironment:(NSMenuItem *)sender {
+//    NSString * fullPath = [document filePath].path;
+//    [document saveDocument:self];
+//    AgdaGoal * goal = self.mainTextView.selectedGoal;
+//    NSString * message = [AWAgdaActions actionContextWithFilePath:fullPath goalIndex:goal.agdaGoalIndex];
+//    self.mainTextView.lastSelectedGoal = goal;
+//    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+//    [appDelegate.communicator writeDataToAgda:message sender:self];
+//}
+//
+//- (IBAction)actionGoalTypeAndContext:(NSMenuItem *)sender {
+//    NSString * fullPath = [document filePath].path;
+//    [document saveDocument:self];
+//    AgdaGoal * goal = self.mainTextView.selectedGoal;
+//    NSString * message = [AWAgdaActions actionGoalTypeAndContextWithFilePath:fullPath goalIndex:goal.agdaGoalIndex];
+//    self.mainTextView.lastSelectedGoal = goal;
+//    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+//    [appDelegate.communicator writeDataToAgda:message sender:self];
+//}
+//
+//- (IBAction)actionGoalTypeAndInferredType:(NSMenuItem *)sender {
+//    [document saveDocument:self];
+//    NSString * fullPath = [document filePath].path;
+//    AgdaGoal * goal = self.mainTextView.selectedGoal;
+//    NSString * message = [AWAgdaActions actionGoalTypeAndInferredTypeWithFilePath:fullPath goalIndex:goal.agdaGoalIndex content:goal.content];
+//    self.mainTextView.lastSelectedGoal = goal;
+//    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+//    [appDelegate.communicator writeDataToAgda:message sender:self];
+//}
 
 - (IBAction)actionComputeNormalForm:(NSMenuItem *)sender {
     [self showNotImplementedAlert];
@@ -330,7 +395,7 @@
 //    [document saveDocument:self];
     NSString * fullPath = [document filePath].path;
     AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionNormalizeWithGoal:goal filePath:fullPath content:content];
+    NSString * message = [AWAgdaActions actionComputeNormalFormWithFilePath:fullPath goal:goal content:content];
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
     

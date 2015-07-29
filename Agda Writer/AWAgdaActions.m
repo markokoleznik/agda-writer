@@ -24,7 +24,7 @@
     return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_load \"%@\" [\".\", \"%@\"])",filePath, filePath, [AWHelper pathToLibraries]];
 }
 +(NSString *)actionCompileWithFilePath:(NSString *)filePath {
-    return nil;
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_compile MAlonzo \"%@\" [\".\", \"%@\"])",filePath, filePath, [AWHelper pathToLibraries]];
 }
 +(NSString *)actionGiveWithFilePath:(NSString *)filePath goal:(AgdaGoal *)goal
 {
@@ -32,115 +32,118 @@
 }
 +(NSString *)actionRefineWithFilePath:(NSString *)filePath goal:(AgdaGoal *)goal
 {
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_refine_or_intro False %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goal.goalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, goal.content];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_refine_or_intro False %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goal.agdaGoalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, goal.content];
 }
 +(NSString *)actionAutoWithFilePath:(NSString *)filePath goal:(AgdaGoal *)goal
 {
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_auto %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goal.goalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, goal.content];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_auto %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goal.agdaGoalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, goal.content];
 }
 +(NSString *)actionCaseWithFilePath:(NSString *)filePath goal:(AgdaGoal *)goal
 {
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_make_case %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goal.goalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, goal.content];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_make_case %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goal.agdaGoalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, goal.content];
 }
 
 
 +(NSString *)actionGoalTypeWithFilePath:(NSString *)filePath
                                    goal:(AgdaGoal *)goal
                      normalisationLevel:(AWNormalisationLevel)level {
-    return nil;
+    // Goal specific
+    NSString * normalisation = [self normalisationLevel:level];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_goal_type %@ %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, normalisation, goal.agdaGoalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, goal.content];
+    
 }
 
 +(NSString *)actionGoalTypeAndContextWithFilePath:(NSString *)filePath
                                              goal:(AgdaGoal *)goal
                                normalisationLevel:(AWNormalisationLevel)level {
-    return nil;
+    // Goal specific
+    NSString * normalisation = [self normalisationLevel:level];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_goal_type_context %@ %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, normalisation, goal.agdaGoalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, goal.content];
 }
 +(NSString *)actionGoalTypeAndInfferedContextWithFilePath:(NSString *)filePath
                                                      goal:(AgdaGoal *)goal
                                        normalisationLevel:(AWNormalisationLevel)level {
-    return nil;
+    NSString * normalisation = [self normalisationLevel:level];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_goal_type_context_infer %@ %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, normalisation, goal.agdaGoalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, goal.content];
 }
 
 +(NSString *)actionShowConstraintsWithFilePath:(NSString *)filePath {
-    return nil;
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect Cmd_constraints", filePath];
 }
 
 +(NSString *)actionShowMetasWithFilePath:(NSString *)filePath {
-    return nil;
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect Cmd_metas", filePath];
 }
 
 +(NSString *)actionShowModuleContentsFilePath:(NSString *)filePath
                                          goal:(AgdaGoal *)goal
-                           normalisationLevel:(AWNormalisationLevel)level {
-    return nil;
+                           normalisationLevel:(AWNormalisationLevel)level
+                                      content:(NSString *)content {
+    NSString * normalisation = [self normalisationLevel:level];
+    if (goal) {
+        
+        return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_show_module_contents %@ %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, normalisation, goal.agdaGoalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, content];
+    }
+    else {
+        return [NSString stringWithFormat:@"IOTCM \"%@\" None Indirect ( Cmd_show_module_contents_toplevel %@ \"%@\" )", filePath, normalisation, content];
+    }
+    
+    
 }
 +(NSString *)actionImplicitArgumentsWithFilePath:(NSString *)filePath {
-    return nil;
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (ShowImplicitArgs True)", filePath];
 }
 
 +(NSString *)actionInferWithFilePath:(NSString *)filePath
                                 goal:(AgdaGoal *)goal
-                  normalisationLevel:(AWNormalisationLevel)level {
-    return nil;
+                  normalisationLevel:(AWNormalisationLevel)level
+                             content:(NSString *)content {
+    NSString * normalisation = [self normalisationLevel:level];
+    if (goal) {
+        return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_infer %@ %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, normalisation, goal.agdaGoalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, content];
+    }
+    else {
+        return [NSString stringWithFormat:@"IOTCM \"%@\" None Indirect (Cmd_infer_toplevel %@ \"%@\")", filePath, normalisation, content];
+    }
 }
 +(NSString *)actionComputeNormalFormWithFilePath:(NSString *)filePath
                                             goal:(AgdaGoal *)goal
-                              normalisationLevel:(AWNormalisationLevel)level
                                          content:(NSString *)content {
-    return nil;
-}
-+(NSString *)actionToggleImplicitArgumentsWithFilePath:(NSString *)filePath {
-    return nil;
-}
-+(NSString *)actionSolveAllConstraints:(NSString *)filePath {
-    return nil;
-}
-+(NSString *)actionWhyInScopeWithFilePath:(NSString *)filePath
-                                     goal:(AgdaGoal *)goal {
-    return nil;
-}
-+(NSString *)actionContextWithFilePath:(NSString *)filePath
-                                  goal:(AgdaGoal *)goal {
-    return nil;
-}
-+(NSString *)actionShowVersionWithFilePath:(NSString *)filepath {
-    return nil;
-}
-
-
-
-+(NSString *)actionGoalTypeWithFilePath:(NSString *)filePath goalIndex:(NSInteger)goalIndex
-{
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_goal_type Simplified %li noRange \"\" )", filePath, goalIndex];
-}
-+(NSString *)actionContextWithFilePath:(NSString *)filePath goalIndex:(NSInteger)goalIndex
-{
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_context Simplified %li noRange \"\" )", filePath, goalIndex];
-}
-+(NSString *)actionGoalTypeAndContextWithFilePath:(NSString *)filePath goalIndex:(NSInteger)goalIndex
-{
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_goal_type_context Simplified %li noRange \"\" )", filePath, goalIndex];
-}
-+(NSString *)actionGoalTypeAndInferredTypeWithFilePath:(NSString *)filePath goalIndex:(NSInteger)goalIndex content:(NSString *)content
-{
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_goal_type_context_infer Simplified %li noRange \"%@\" )", filePath, goalIndex, content];
-}
-+(NSString *)actionShowVersionOfAgdaWithFilePath:(NSString *)filePath
-{
-    return [NSString stringWithFormat:@"IOTCM \"%@\" None Indirect ( Cmd_show_version )\n", filePath];
-}
-+(NSString *)actionNormalizeWithGoal:(AgdaGoal *)goal
-                            filePath:(NSString *)filePath
-                            content:(NSString *)content
-{
+    
     if (goal) {
-        return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_compute False %li noRange \"%@\" )", filePath, goal.agdaGoalIndex, content];
+        return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_compute False %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goal.agdaGoalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, content];
     }
     else {
-        return [NSString stringWithFormat:@"IOTCM \"%@\" None Indirect ( Cmd_compute_toplevel False \"%@\" )", filePath, content];
+        return [NSString stringWithFormat:@"IOTCM \"%@\" None Indirect (Cmd_compute_toplevel False \"%@\")", filePath, content];
     }
-    
+
 }
++(NSString *)actionToggleImplicitArgumentsWithFilePath:(NSString *)filePath {
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ToggleImplicitArgs", filePath];
+}
++(NSString *)actionSolveAllConstraints:(NSString *)filePath {
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_solveAll)", filePath];
+}
++(NSString *)actionWhyInScopeWithFilePath:(NSString *)filePath
+                                     goal:(AgdaGoal *)goal
+                                  content:(NSString *)content {
+    if (goal) {
+        return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_why_in_scope %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goal.agdaGoalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, content];
+    }
+    else {
+        return [NSString stringWithFormat:@"IOTCM \"%@\" None Indirect (Cmd_why_in_scope_toplevel \"%@\")", filePath, content];
+    }
+}
++(NSString *)actionContextWithFilePath:(NSString *)filePath
+                                  goal:(AgdaGoal *)goal
+                    normalisationLevel:(AWNormalisationLevel)level {
+    NSString * normalisationLevel = [self normalisationLevel:level];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_context %@ %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, normalisationLevel, goal.agdaGoalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, goal.content];
+}
++(NSString *)actionShowVersionWithFilePath:(NSString *)filepath {
+    return [NSString stringWithFormat:@"IOTCM \"%@\" None Indirect ( Cmd_show_version )", filepath];
+}
+
 
 
 #pragma mark -
@@ -200,6 +203,10 @@
         {
             
         }
+        else if ([key isEqualToString:@"agda2-solveAll-action"])
+        {
+            
+        }
         else {
             // TODO: Delete before releasing
             NSLog(@"KEY NOT FOUND: %@", key);
@@ -209,6 +216,21 @@
 
     }
 }
+
++(NSString *)normalisationLevel:(AWNormalisationLevel)level {
+    switch (level) {
+        case AWNormalisationLevelInstantiated:
+            return @"Instantiated";
+        case AWNormalisationLevelNormalised:
+            return @"Normalised";
+        case AWNormalisationLevelSimplified:
+            return @"Simplified";
+        default:
+            break;
+    }
+    return nil;
+}
+
 +(void)executeArrayOfActions:(NSArray *)actions sender:(id)sender
 {
     for (NSDictionary * action in actions) {
@@ -256,9 +278,22 @@
         {
             // Current goal
         }
+        else if ([actions[0] isEqualToString:@"\"*Constraints*\""])
+        {
+            //TODO: implement
+        }
+        else if ([actions[0] isEqualToString:@"\"*Goal type etc.*\""])
+        {
+            //TODO: implement*Context*
+        }
+        else if ([actions[0] isEqualToString:@"\"*Context*\""])
+        {
+            //TODO: implement
+        }
         else
         {
-            
+            NSLog(@"INFO ACTION NOT FOUND! : %@", actions[0]);
+//            [NSException raise:@"Info action not found!" format:@"Not found: %@", actions[0]];
         }
         NSString * bufferDescription = actions[1];
         [AWNotifications notifyAgdaBufferDataAvaliable:bufferDescription sender:sender];
