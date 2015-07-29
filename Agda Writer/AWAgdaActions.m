@@ -23,6 +23,9 @@
 {
     return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_load \"%@\" [\".\", \"%@\"])",filePath, filePath, [AWHelper pathToLibraries]];
 }
++(NSString *)actionCompileWithFilePath:(NSString *)filePath {
+    return nil;
+}
 +(NSString *)actionGiveWithFilePath:(NSString *)filePath goal:(AgdaGoal *)goal
 {
     return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_give %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goal.agdaGoalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, goal.content];
@@ -39,6 +42,73 @@
 {
     return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_make_case %li (Range [Interval (Pn (Just (mkAbsolute  \"%@\")) %li %li %li)(Pn (Just (mkAbsolute \"%@\")) %li %li %li)]) \"%@\" )", filePath, goal.goalIndex, filePath, goal.startCharIndex, goal.startRow, goal.startColumn, filePath, goal.endCharIndex, goal.endRow, goal.endColumn, goal.content];
 }
+
+
++(NSString *)actionGoalTypeWithFilePath:(NSString *)filePath
+                                   goal:(AgdaGoal *)goal
+                     normalisationLevel:(AWNormalisationLevel)level {
+    return nil;
+}
+
++(NSString *)actionGoalTypeAndContextWithFilePath:(NSString *)filePath
+                                             goal:(AgdaGoal *)goal
+                               normalisationLevel:(AWNormalisationLevel)level {
+    return nil;
+}
++(NSString *)actionGoalTypeAndInfferedContextWithFilePath:(NSString *)filePath
+                                                     goal:(AgdaGoal *)goal
+                                       normalisationLevel:(AWNormalisationLevel)level {
+    return nil;
+}
+
++(NSString *)actionShowConstraintsWithFilePath:(NSString *)filePath {
+    return nil;
+}
+
++(NSString *)actionShowMetasWithFilePath:(NSString *)filePath {
+    return nil;
+}
+
++(NSString *)actionShowModuleContentsFilePath:(NSString *)filePath
+                                         goal:(AgdaGoal *)goal
+                           normalisationLevel:(AWNormalisationLevel)level {
+    return nil;
+}
++(NSString *)actionImplicitArgumentsWithFilePath:(NSString *)filePath {
+    return nil;
+}
+
++(NSString *)actionInferWithFilePath:(NSString *)filePath
+                                goal:(AgdaGoal *)goal
+                  normalisationLevel:(AWNormalisationLevel)level {
+    return nil;
+}
++(NSString *)actionComputeNormalFormWithFilePath:(NSString *)filePath
+                                            goal:(AgdaGoal *)goal
+                              normalisationLevel:(AWNormalisationLevel)level
+                                         content:(NSString *)content {
+    return nil;
+}
++(NSString *)actionToggleImplicitArgumentsWithFilePath:(NSString *)filePath {
+    return nil;
+}
++(NSString *)actionSolveAllConstraints:(NSString *)filePath {
+    return nil;
+}
++(NSString *)actionWhyInScopeWithFilePath:(NSString *)filePath
+                                     goal:(AgdaGoal *)goal {
+    return nil;
+}
++(NSString *)actionContextWithFilePath:(NSString *)filePath
+                                  goal:(AgdaGoal *)goal {
+    return nil;
+}
++(NSString *)actionShowVersionWithFilePath:(NSString *)filepath {
+    return nil;
+}
+
+
+
 +(NSString *)actionGoalTypeWithFilePath:(NSString *)filePath goalIndex:(NSInteger)goalIndex
 {
     return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect ( Cmd_goal_type Simplified %li noRange \"\" )", filePath, goalIndex];
@@ -125,6 +195,15 @@
             NSDate * date1 = [NSDate date];
             [self executeMakeCaseAction:actions sender:sender];
             NSLog(@"make case: %f", [[NSDate date] timeIntervalSinceDate:date1]);
+        }
+        else if ([key isEqualToString:@"agda2-goto"])
+        {
+            
+        }
+        else {
+            // TODO: Delete before releasing
+            NSLog(@"KEY NOT FOUND: %@", key);
+            [NSException raise:@"Key not found!" format:@"Implement key: %@", key];
         }
 
 
