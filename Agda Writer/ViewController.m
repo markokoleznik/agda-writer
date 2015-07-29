@@ -533,6 +533,7 @@
     font = [[NSFontManager sharedFontManager] convertFont:font toSize:(font.pointSize + 1)];
 
     [self.mainTextView.textStorage setFont:font];
+    [self.mainTextView setTypingAttributes:@{NSFontAttributeName : font}];
 }
 
 - (IBAction)smallerText:(id)sender {
@@ -541,6 +542,7 @@
     if (desiredSize > 8) {
         font = [[NSFontManager sharedFontManager] convertFont:font toSize:(font.pointSize - 1)];
         [self.mainTextView.textStorage setFont:font];
+        [self.mainTextView setTypingAttributes:@{NSFontAttributeName : font}];
     }
     
 }
