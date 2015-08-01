@@ -25,4 +25,7 @@
  @return NSArray                Array contains objects of type NSDictionary. Form: @{type : @[range]}
  */
 +(NSArray *) parseHighlighting:(NSString *)highlighting;
++ (NSRange) rangeFromLineNumber:(NSUInteger)lineNumber
+                   andLineRange:(NSRange) lineRange
+                         string:(NSString *)string;
 @end

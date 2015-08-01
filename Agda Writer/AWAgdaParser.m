@@ -370,6 +370,26 @@
     return result;
 }
 
++ (NSRange) rangeFromLineNumber:(NSUInteger)lineNumber
+                   andLineRange:(NSRange) lineRange
+                         string:(NSString *)string {
+    NSRange range = NSMakeRange(NSNotFound, 0);
+    
+    NSInteger numberOfChars = 0;
+    NSArray * lines = [string componentsSeparatedByString:@"\n"];
+    NSInteger i = 0;
+    for (NSString * line in lines) {
+        if (i + 1 == lineNumber) {
+            range = NSMakeRange(numberOfChars + lineRange.location - 1, lineRange.length);
+            return range;
+        }
+        numberOfChars += line.length + 1;
+        i++;
+    }
+    
+    return range;
+}
+
 @end
 
 

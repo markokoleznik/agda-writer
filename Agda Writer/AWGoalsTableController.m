@@ -79,6 +79,32 @@
             [self.mainTextView showFindIndicatorForRange:selectedGoal];
             [self.mainTextView setSelectedRange:NSMakeRange(selectedGoal.location + 2, selectedGoal.length - 4)];
         }
+        else {
+            NSString * content = items[tableView.selectedRow];
+            NSString * regexPattern = @"[0-9]*,[0-9]*-[0-9]*";
+            NSError * error;
+            NSRegularExpression * regex = [[NSRegularExpression alloc] initWithPattern:regexPattern options:NSRegularExpressionAnchorsMatchLines error:&error];
+            NSArray * matches = [regex matchesInString:content options:0 range:NSMakeRange(0, content.length)];
+            if (matches.count == 1) {
+                NSTextCheckingResult * result = matches[0];
+                
+                NSString * substring = [content substringWithRange:result.range];
+                NSArray * components = [substring componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@",-"]];
+                if (components.count == 3) {
+                    NSInteger lineNumber = [components[0] integerValue];
+                    NSInteger startRange = [components[1] integerValue];
+                    NSInteger endRange = [components[2] integerValue];
+
+                    NSRange lineRange = NSMakeRange(startRange, endRange - startRange);
+                    NSRange actualRange = [AWAgdaParser rangeFromLineNumber:lineNumber andLineRange:lineRange string:self.mainTextView.string];
+                    if (actualRange.location != NSNotFound) {
+                        [self.mainTextView scrollRangeToVisible:actualRange];
+                        [self.mainTextView showFindIndicatorForRange:actualRange];
+                        [self.mainTextView setSelectedRange:actualRange];
+                    }
+                }
+            }
+        }
         
         [self.mainTextView.window makeFirstResponder:self.mainTextView];
     }
