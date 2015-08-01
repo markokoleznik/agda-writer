@@ -60,6 +60,9 @@
 - (IBAction)actionLoad:(id)sender {
     NSString * fullPath = [document filePath].path;
     
+    // Clear status window
+    [self.statusTextView setString:@""];
+    
     // save
     [document saveDocument:self];
     

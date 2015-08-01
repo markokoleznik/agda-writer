@@ -328,5 +328,21 @@
 	<string>ς</string>
 	<key>\vartheta</key>
 	<string>ϑ</string>
+	<key>_0</key>
+	<string>₀</string>
+	<key>_1</key>
+	<string>₁</string>
+	<key>_2</key>
+	<string>₂</string>
+	<key>_3</key>
+	<string>₃</string>
+	<key>^0</key>
+	<string>⁰</string>
+	<key>^1</key>
+	<string>¹</string>
+	<key>^2</key>
+	<string>²</string>
+	<key>^3</key>
+	<string>³</string>
 </dict>
 </plist>

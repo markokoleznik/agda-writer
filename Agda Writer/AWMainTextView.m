@@ -160,7 +160,6 @@
         [self transformLastWordToUnicode];
         
     }
-    
     if (!autocompleteTriggered) {
         [self performSelector:@selector(complete:) withObject:nil afterDelay:[AWHelper delayForAutocomplete]];
         autocompleteTriggered = YES;
@@ -319,6 +318,10 @@
         
     }
     
+    if (affectedCharRange.location > 1) {
+        
+    }
+    
     return YES;
 }
 
@@ -346,57 +349,6 @@
 
 }
 
-//- (void) textChangedInRangeWithReplacementString:(NSNotification *) notification
-//{
-//    NSDictionary * dictionary = notification.object;
-//    NSRange range = [dictionary[@"range"] rangeValue];
-//    NSString * replacementString = dictionary[@"replacementString"];
-////    NSLog(@"range: (%li, %li), replacementString: %@", range.location, range.location + range.length, replacementString);
-//    
-//    if ([replacementString isEqualToString:@"/"]) {
-//        NSDate * regexStart = [NSDate date];
-//        [self asynchronouslyFindRangesOfCommentsWithCompletion:^(NSArray * matches) {
-//            
-//            NSDate *methodStart = [NSDate date];
-//            
-////            NSLog(@"number of matches %li", matches.count);
-//            [self setTextColor:[NSColor blackColor]];
-//            [self.textStorage beginEditing];
-//            
-//            for (NSTextCheckingResult * result in matches) {
-//                [self setTextColor:[NSColor colorWithRed:94.0/255.0 green:126.0/255.0 blue:28.0/255.0 alpha:1.0] range:result.range];
-//            }
-//            
-//            [self.textStorage endEditing];
-//            NSDate *methodFinish = [NSDate date];
-//            NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
-//            NSLog(@"regex execution time: %f s, execution time for coloring: %f s", [methodStart timeIntervalSinceDate:regexStart], executionTime);
-//        }];
-//    }
-//    
-//    
-//    
-//}
-
-//- (void)asynchronouslyFindRangesOfCommentsWithCompletion:(void (^)(NSArray *))matches;
-//{
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-//        
-//        // Asynchronously find all ranges with regex
-//        // Regex pattern: //.*
-//        // Finds all strings that begins with // and returns its range to the end of the line.
-//        
-//        NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:@"//.*" options:0 error:nil];
-//        NSArray * results = [regex matchesInString:self.textStorage.string options:0 range:NSMakeRange(0, self.textStorage.length)];
-//        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            if (matches) {
-//                
-//                matches(results);
-//            }
-//        });
-//    });
-//}
 
 - (void)asynchronouslyFindRangesOfQuestionMarksWithCompletion:(void (^)(NSArray *))matches;
 {
@@ -456,6 +408,7 @@
         for (NSDictionary * dict in goalsIndexesArray) {
             if ([dict[@"goalIndex"] integerValue] == goalIndex) {
                 goalIndex = i;
+                break;
             }
             i++;
         }
@@ -513,8 +466,6 @@
                 if ([self shouldChangeTextInRange:NSMakeRange(foundRange.location + 1, foundRange.length - 1) replacementString:@"{!!}"]) {
                     [self replaceCharactersInRange:NSMakeRange(foundRange.location + 1, foundRange.length - 1) withString:@"{!!}"];
                 }
-//                [self insertText:attrString replacementRange:NSMakeRange(foundRange.location + 1, foundRange.length - 1)];
-                
                 NSDictionary * goal = [AWAgdaParser goalIndexAndRange:NSMakeRange(foundRange.location + 2, 0) textStorage:self.textStorage];
                 
                 if (i == 0) {

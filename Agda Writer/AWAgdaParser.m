@@ -198,11 +198,18 @@
         NSArray * subGoalArray = [goal componentsSeparatedByString:@" : "];
         if (subGoalArray.count >= 2) {
             NSString * goalIndex = subGoalArray[0];
-            goalIndex = [goalIndex substringFromIndex:1];
-            NSDictionary * dict = @{@"goalIndex" : @([goalIndex integerValue]),
-                                    @"goalType" : subGoalArray[1]};
-//            [goalsMutable addObject:subGoalArray[1]];
-            [goalsMutable addObject:dict];
+            if ([goalIndex characterAtIndex:0] == '?') {
+                goalIndex = [goalIndex substringFromIndex:1];
+                NSDictionary * dict = @{@"goalIndex" : @([goalIndex integerValue]),
+                                        @"goalType" : goal};
+                [goalsMutable addObject:dict];
+            }
+            else {
+                NSDictionary * dict = @{@"goalIndex" : @"nil",
+                                        @"goalType" : goal};
+                [goalsMutable addObject:dict];
+            }
+            
         }
     }
     return goalsMutable;
