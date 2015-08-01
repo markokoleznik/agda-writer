@@ -162,7 +162,7 @@
     }
     
     if (!autocompleteTriggered) {
-        [self performSelector:@selector(complete:) withObject:nil afterDelay:0.5];
+        [self performSelector:@selector(complete:) withObject:nil afterDelay:[AWHelper delayForAutocomplete]];
         autocompleteTriggered = YES;
     }
     

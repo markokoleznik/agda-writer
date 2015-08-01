@@ -53,6 +53,10 @@
     if (!showNotifications) {
         [ud setObject:[NSNumber numberWithBool:YES] forKey:@"showNotifications"];
     }
+    NSNumber * delayForAutocomplete = [ud objectForKey:@"delayForAutocomplete"];
+    if (!delayForAutocomplete) {
+        [ud setObject:[NSNumber numberWithFloat:0.5f] forKey:@"delayForAutocomplete"];
+    }
     [ud synchronize];
     
 }
@@ -97,6 +101,11 @@
     else {
         return @"";
     }
+}
+
++(CGFloat)delayForAutocomplete {
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    return [[ud objectForKey:@"delayForAutocomplete"] floatValue];
 }
 
 @end

@@ -25,4 +25,9 @@
 - (IBAction)pathToLibrariesAction:(NSTextField *)sender;
 
 - (IBAction)browseAction:(NSButton *)sender;
+- (IBAction)delayForAutocompleteChanged:(NSTextField *)sender;
+
+
+@property (weak) IBOutlet NSTextField *delayForAutocompleteTextField;
+@property CGFloat delayForAutocomplete;
 @end

@@ -137,6 +137,7 @@
     [AWHelper savePathToLibraries:sender.stringValue];
 }
 
+
 - (IBAction)browseAction:(NSButton *)sender {
     
     NSOpenPanel * panel = [NSOpenPanel openPanel];
@@ -160,5 +161,20 @@
         [self setImagesFoundPath:NO];
     }
     
+}
+
+
+
+-(void)setNilValueForKey:(NSString *)key
+{
+    if ([key isEqualToString:@"delayForAutocomplete"]) {
+        self.delayForAutocomplete = 0;
+        [self.delayForAutocompleteTextField setStringValue:@"0"];
+    }
+}
+
+
+- (IBAction)delayForAutocompleteChanged:(NSTextField *)sender {
+    NSLog(@"input changed");
 }
 @end

@@ -20,6 +20,8 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     
+    [NSUserDefaults resetStandardUserDefaults];
+    [NSUserDefaults resetStandardUserDefaults];
     
     // check for agda!
     if ([[AWNotifications agdaLaunchPath] isEqualToString:@""]) {

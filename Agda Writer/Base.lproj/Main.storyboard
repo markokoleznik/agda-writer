@@ -975,6 +975,37 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J4H-oc-iLd">
+                                <rect key="frame" x="331" y="97" width="80" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" placeholderString="0.5" drawsBackground="YES" id="9Rb-rC-QVe">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Gse-s9-WKS">
+                                        <real key="minimum" value="0.0"/>
+                                        <real key="maximum" value="5"/>
+                                    </numberFormatter>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="delayForAutocompleteChanged:" target="izb-Gj-tQA" id="Sio-sb-4cm"/>
+                                    <binding destination="xp5-Sa-wkr" name="value" keyPath="values.delayForAutocomplete" id="bJ0-zF-Ky4"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LTb-Et-ahO">
+                                <rect key="frame" x="90" y="100" width="235" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Delay for Autocomplete (in seconds) :" id="hE2-2e-pCZ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pBw-8n-TVF">
+                                <rect key="frame" x="417" y="98" width="245" height="27"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="5" doubleValue="0.52631578947368418" tickMarkPosition="below" numberOfTickMarks="11" sliderType="linear" id="CuW-dY-kvd"/>
+                                <connections>
+                                    <binding destination="xp5-Sa-wkr" name="value" keyPath="values.delayForAutocomplete" id="ynE-gJ-ui3"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <constraints>
                             <constraint firstItem="uC9-3W-1j9" firstAttribute="leading" secondItem="nta-dI-OOZ" secondAttribute="leading" constant="137" id="01j-fH-38d"/>
@@ -1021,6 +1052,7 @@
                     <connections>
                         <outlet property="agdaPathTextField" destination="vNW-0C-AWR" id="BgZ-t5-Ymt"/>
                         <outlet property="closeImage" destination="oGV-nR-wD5" id="RgA-4z-kCT"/>
+                        <outlet property="delayForAutocompleteTextField" destination="J4H-oc-iLd" id="oCp-dW-EUm"/>
                         <outlet property="fontFamilyPopupButton" destination="Ieq-mv-J8i" id="S76-Zl-cGt"/>
                         <outlet property="fontSizePopupButton" destination="cA3-yM-NON" id="r99-TL-gnS"/>
                         <outlet property="okImage" destination="0zH-Wc-KBH" id="fy7-Xd-T20"/>
@@ -1029,6 +1061,7 @@
                     </connections>
                 </viewController>
                 <customObject id="eXy-pA-Dge" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="xp5-Sa-wkr"/>
             </objects>
             <point key="canvasLocation" x="1554.5" y="-552"/>
         </scene>

@@ -20,6 +20,7 @@
 + (void) saveKeyBindings: (NSDictionary *)keyBindings;
 + (void) savePathToLibraries: (NSString *)path;
 + (NSString *)pathToLibraries;
++ (CGFloat) delayForAutocomplete;
 
 
 @end
