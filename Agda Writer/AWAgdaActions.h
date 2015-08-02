@@ -12,7 +12,8 @@
 typedef enum : NSUInteger {
     AWNormalisationLevelInstantiated,
     AWNormalisationLevelSimplified,
-    AWNormalisationLevelNormalised
+    AWNormalisationLevelNormalised,
+    AWNormalisationLevelNone
 } AWNormalisationLevel;
 
 

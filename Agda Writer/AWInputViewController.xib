@@ -31,7 +31,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IT0-cg-XYW">
                     <rect key="frame" x="20" y="67" width="166" height="23"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="162" id="3IN-OZ-mXg"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="162" id="3IN-OZ-mXg"/>
                         <constraint firstAttribute="height" constant="23" id="e6b-77-XjS"/>
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Normalize expression:" id="OX8-iH-kFK">

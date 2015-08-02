@@ -209,15 +209,16 @@
 }
 // Module Contents
 - (IBAction)actionShowModuleContentsSimplified:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionShowModuleContents:AWNormalisationLevelSimplified];
 }
 - (IBAction)actionShowModuleContentsNormalised:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionShowModuleContents:AWNormalisationLevelNormalised];
 }
 - (IBAction)actionShowModuleContentsInstantiated:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionShowModuleContents:AWNormalisationLevelInstantiated];
 }
 - (void)actionShowModuleContents:(AWNormalisationLevel) normalisationLevel {
+    [self openInputViewWithType:AWInputViewTypeShowModuleContents normalisationLevel:normalisationLevel];
     
 }
 // Implicit Arguments
@@ -231,15 +232,16 @@
 
 // Infer
 - (IBAction)actionInferSimplified:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionInfer:AWNormalisationLevelSimplified];
 }
 - (IBAction)actionInferNormalised:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionInfer:AWNormalisationLevelNormalised];
 }
 - (IBAction)actionInferInstantiated:(id)sender {
-    [self showNotImplementedAlert];
+    [self actionInfer:AWNormalisationLevelInstantiated];
 }
 -(void)actionInfer:(AWNormalisationLevel)normalisationLevel {
+    [self openInputViewWithType:AWInputViewTypeInfer normalisationLevel:normalisationLevel];
 
 }
 
@@ -263,7 +265,7 @@
 
 // Why in Scope?
 - (IBAction)actionWhyInScope:(id)sender {
-    [self showNotImplementedAlert];
+    [self openInputViewWithType:AWInputViewTypeWhyInScope normalisationLevel:AWNormalisationLevelNone];
 }
 
 // Context
@@ -343,7 +345,7 @@
 //}
 
 - (IBAction)actionComputeNormalForm:(NSMenuItem *)sender {
-    [self openInputViewWithType:AWInputViewTypeComputeNormalForm];
+    [self openInputViewWithType:AWInputViewTypeComputeNormalForm normalisationLevel:AWNormalisationLevelNone];
 }
 
 - (void)saveDocument:(id)sender
@@ -352,7 +354,7 @@
 }
 
 
-- (void)openInputViewWithType:(AWInputViewType)inputType {
+- (void)openInputViewWithType:(AWInputViewType)inputType normalisationLevel:(AWNormalisationLevel)level {
     if (self.inputWindow) {
         return;
     }
@@ -363,6 +365,7 @@
         [self.mainTextView scrollRangeToVisible:goal.rangeOfContent];
         NSRect rect = [self.mainTextView firstRectForCharacterRange:goal.rangeOfContent actualRange:nil];
         self.inputViewController = [[AWInputViewController alloc] initWithInputType:inputType global:NO rect:rect];
+        
         self.inputWindow = [[MAAttachedWindow alloc] initWithView:self.inputViewController.view attachedToPoint:self.inputViewController.point atDistance:10];
     }
     else {
@@ -373,13 +376,14 @@
     }
     
     self.inputViewController.delegate = self;
+    self.inputViewController.normalisationLevel = level;
     [self.inputWindow makeKeyWindow];
     [self.inputWindow makeKeyAndOrderFront:self];
     [NSApp activateIgnoringOtherApps:YES];
 }
 
 
--(void)inputDidEndEditing:(NSString *)content withType:(AWInputViewType)type
+-(void)inputDidEndEditing:(NSString *)content withType:(AWInputViewType)type normalisationLevel:(AWNormalisationLevel)level
 {
     NSString * fullPath = [document filePath].path;
     AgdaGoal * goal = self.mainTextView.selectedGoal;
@@ -388,7 +392,13 @@
         case AWInputViewTypeComputeNormalForm:
             message = [AWAgdaActions actionComputeNormalFormWithFilePath:fullPath goal:goal content:content];
             break;
-            
+        case AWInputViewTypeInfer:
+            message = [AWAgdaActions actionInferWithFilePath:fullPath goal:goal normalisationLevel:level content:content];
+        case AWInputViewTypeShowModuleContents:
+            message = [AWAgdaActions actionShowModuleContentsFilePath:fullPath goal:goal normalisationLevel:level content:content];
+            break;
+        case AWInputViewTypeWhyInScope:
+            message = [AWAgdaActions actionWhyInScopeWithFilePath:fullPath goal:goal content:content];
         default:
             break;
     }
@@ -407,7 +417,7 @@
 -(void)showNotImplementedAlert
 {
     NSAlert * alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:@"I will patiently wait for a lazy developer to implement this..."];
+    [alert addButtonWithTitle:@"Well, OK"];
     [alert setMessageText:@"This method is not yet implemented!"];
     [alert setAlertStyle:NSWarningAlertStyle];
     if ([alert runModal] == NSAlertFirstButtonReturn) {

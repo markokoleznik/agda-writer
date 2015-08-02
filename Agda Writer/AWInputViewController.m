@@ -17,7 +17,10 @@
 @class MAAttachedWindow;
 
 @implementation AWInputViewController {
-    AWInputViewType type;
+    AWInputViewType _type;
+    BOOL _isGlobal;
+    NSRect _rect;
+    
 }
 
 - (void)viewDidLoad {
@@ -25,6 +28,56 @@
     
     self.inputTextField.delegate = self;
     [self.inputTextField setFont:[AWHelper defaultFontInAgda]];
+    
+    
+    if (_isGlobal) {
+        self.point = NSMakePoint(200, 220);
+        
+        switch (_type) {
+            case AWInputViewTypeComputeNormalForm:
+                [self.inputTitle setStringValue:@"Compute normal form (global):"];
+                break;
+            case AWInputViewTypeInfer:
+                [self.inputTitle setStringValue:@"Infer (global):"];
+                break;
+            case AWInputViewTypeShowModuleContents:
+                [self.inputTitle setStringValue:@"Show Module Contents (global):"];
+                break;
+            case AWInputViewTypeWhyInScope:
+                [self.inputTitle setStringValue:@"Why in scope? (global):"];
+                break;
+            default:
+                break;
+        }
+    }
+    else {
+        
+        
+        NSPoint point = NSMakePoint(_rect.origin.x + _rect.size.width/2, _rect.origin.y + _rect.size.height/2);
+        self.point = point;
+        NSRect frame = self.view.frame;
+        [self.view setFrame:NSMakeRect(frame.origin.x, frame.origin.y, frame.size.width*2/3, frame.size.width*1/3)];
+        switch (_type) {
+            case AWInputViewTypeComputeNormalForm:
+                [self.inputTitle setStringValue:@"Compute normal form (goal specific):"];
+                break;
+            case AWInputViewTypeInfer:
+                [self.inputTitle setStringValue:@"Infer (goal specific):"];
+                break;
+            case AWInputViewTypeShowModuleContents:
+                [self.inputTitle setStringValue:@"Show Module Contents (goal specific):"];
+                break;
+            case AWInputViewTypeWhyInScope:
+                [self.inputTitle setStringValue:@"Why in scope? (goal specific):"];
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    
+    
     // Do view setup here.
 }
 
@@ -37,32 +90,9 @@
         
         
         
-        type = inputType;
-        
-        if (isGlobal) {
-            self.point = NSMakePoint(200, 220);
-        }
-        else {
-            
-            
-            NSPoint point = NSMakePoint(rect.origin.x + rect.size.width/2, rect.origin.y + rect.size.height/2);
-            self.point = point;
-            NSRect frame = self.view.frame;
-            [self.view setFrame:NSMakeRect(frame.origin.x, frame.origin.y, frame.size.width*2/3, frame.size.width*1/3)];
-            switch (inputType) {
-                case AWInputViewTypeComputeNormalForm:
-                    [self.inputTitle setStringValue:@"Compute normal form (goal specific):"];
-                    break;
-                case AWInputViewTypeInfer:
-                    break;
-                case AWInputViewTypeShowModuleContents:
-                    break;
-                    
-                default:
-                    break;
-            }
-            [self.inputTitle setStringValue:@"Compute normal form (goal specific):"];
-        }
+        _type = inputType;
+        _isGlobal = isGlobal;
+        _rect = rect;
         
         
         
@@ -105,7 +135,7 @@
 
 -(void)controlTextDidEndEditing:(NSNotification *)obj
 {
-    [self.delegate inputDidEndEditing:self.inputTextField.stringValue withType:type];
+    [self.delegate inputDidEndEditing:self.inputTextField.stringValue withType:_type normalisationLevel:self.normalisationLevel];
     
 }
 
