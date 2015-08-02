@@ -39,6 +39,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeCaseAction:) name:AWAgdaMakeCaseAction object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(highlightCode:) name:AWAgdaHighlightCode object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearHighlighting:) name:AWAgdaClearHighlighting object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaGotoIndex:) name:AWAgdaGoto object:nil];
         
         
         initialize = YES;
@@ -469,6 +470,19 @@
     }
 }
 
+
+-(void)agdaGotoIndex:(NSNotification *)notification {
+    if (notification.object != self.parentViewController) {
+        return;
+    }
+    if ([notification.userInfo isKindOfClass:[NSDictionary class]]) {
+        NSDictionary * dict = notification.userInfo;
+        NSInteger index = [dict[@"index"] integerValue];
+        [self scrollRangeToVisible:NSMakeRange(index - 1, 0)];
+        [self setSelectedRange:NSMakeRange(index - 1, 0)];
+    }
+    
+}
 
 
 -(void) allGoalsAction:(NSNotification *)notification

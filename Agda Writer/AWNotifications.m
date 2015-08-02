@@ -26,6 +26,7 @@ NSString * const AWAgdaGaveAction = @"net.koleznik.AgdaGaveAction";
 NSString * const AWAgdaMakeCaseAction = @"net.koleznik.AgdaMakeCaseAction";
 NSString * const AWAgdaHighlightCode = @"net.koleznik.AgdaHighlightCode";
 NSString * const AWAgdaClearHighlighting = @"net.koleznik.AgdaClearHighlighting";
+NSString * const AWAgdaGoto = @"net.koleznik.AgdaGoto";
 
 
 
@@ -138,6 +139,9 @@ NSString * const AWAgdaClearHighlighting = @"net.koleznik.AgdaClearHighlighting"
 +(void) notifyMakeCaseAction:(NSString *)makeCaseActions sender:(id)sender;
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:AWAgdaMakeCaseAction object:sender userInfo:@{@"action" : makeCaseActions}];
+}
++(void)notifyAgdaGotoIndex:(NSInteger)index sender:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:AWAgdaGoto object:sender userInfo:@{@"index" : [NSNumber numberWithInteger:index]}];
 }
 
 

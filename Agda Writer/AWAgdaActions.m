@@ -201,7 +201,7 @@
         }
         else if ([key isEqualToString:@"agda2-goto"])
         {
-            
+            [self executeGotoAction:actions sender:sender];
         }
         else if ([key isEqualToString:@"agda2-solveAll-action"])
         {
@@ -354,6 +354,14 @@
 +(void)executeStatusAction:(NSArray *)actions
 {
     
+}
+
++(void)executeGotoAction:(NSArray *)actions sender:(id)sender {
+    if (actions.count == 1) {
+        NSInteger index = [AWAgdaParser parseGotoAction:actions[0]];
+        [AWNotifications notifyAgdaGotoIndex:index sender:sender];
+        
+    }
 }
 +(void)executeGoalsAction:(NSArray *)actions
 {

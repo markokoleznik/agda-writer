@@ -28,4 +28,5 @@
 + (NSRange) rangeFromLineNumber:(NSUInteger)lineNumber
                    andLineRange:(NSRange) lineRange
                          string:(NSString *)string;
++(NSInteger) parseGotoAction:(NSString *)reply;
 @end
