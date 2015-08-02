@@ -16,17 +16,59 @@
 
 @class MAAttachedWindow;
 
-@implementation AWInputViewController
+@implementation AWInputViewController {
+    AWInputViewType type;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResignKey:) name:
-     @"NSWindowDidResignKeyNotification" object:nil];
-    
     self.inputTextField.delegate = self;
     [self.inputTextField setFont:[AWHelper defaultFontInAgda]];
     // Do view setup here.
+}
+
+- (id)initWithInputType: (AWInputViewType)inputType global: (BOOL)isGlobal rect:(NSRect)rect;
+{
+    self = [self initWithNibName:@"AWInputViewController" bundle:nil];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResignKey:) name:
+         @"NSWindowDidResignKeyNotification" object:nil];
+        
+        
+        
+        type = inputType;
+        
+        if (isGlobal) {
+            self.point = NSMakePoint(200, 220);
+        }
+        else {
+            
+            
+            NSPoint point = NSMakePoint(rect.origin.x + rect.size.width/2, rect.origin.y + rect.size.height/2);
+            self.point = point;
+            NSRect frame = self.view.frame;
+            [self.view setFrame:NSMakeRect(frame.origin.x, frame.origin.y, frame.size.width*2/3, frame.size.width*1/3)];
+            switch (inputType) {
+                case AWInputViewTypeComputeNormalForm:
+                    [self.inputTitle setStringValue:@"Compute normal form (goal specific):"];
+                    break;
+                case AWInputViewTypeInfer:
+                    break;
+                case AWInputViewTypeShowModuleContents:
+                    break;
+                    
+                default:
+                    break;
+            }
+            [self.inputTitle setStringValue:@"Compute normal form (goal specific):"];
+        }
+        
+        
+        
+        
+    }
+    return self;
 }
 
 -(void)keyUp:(NSEvent *)theEvent
@@ -63,7 +105,7 @@
 
 -(void)controlTextDidEndEditing:(NSNotification *)obj
 {
-    [self.delegate normalizeInputDidEndEditing:self.inputTextField.stringValue];
+    [self.delegate inputDidEndEditing:self.inputTextField.stringValue withType:type];
     
 }
 

@@ -9,9 +9,15 @@
 #import <Cocoa/Cocoa.h>
 #import "MAAttachedWindow.h"
 
+typedef enum : NSUInteger {
+    AWInputViewTypeShowModuleContents,
+    AWInputViewTypeInfer,
+    AWInputViewTypeComputeNormalForm
+} AWInputViewType;
+
 @protocol AWInputDelegate <NSObject>
 @required
--(void)normalizeInputDidEndEditing:(NSString *)content;
+-(void)inputDidEndEditing:(NSString *)content withType:(AWInputViewType)type;
 
 @optional
 -(void)closeWindow;
@@ -20,8 +26,12 @@
 
 @interface AWInputViewController : NSViewController <NSTextFieldDelegate, NSWindowDelegate>
 
+- (id)initWithInputType: (AWInputViewType)inputType global: (BOOL)isGlobal rect:(NSRect)rect;
+
 @property (weak) IBOutlet NSTextField *inputTitle;
 @property (weak) IBOutlet NSTextField *inputTextField;
 @property (nonatomic) id <AWInputDelegate> delegate;
+
+@property NSPoint point;
 
 @end

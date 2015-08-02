@@ -38,7 +38,6 @@
 		D531F1741B57E60B002E7E0F /* successful_default.png in Resources */ = {isa = PBXBuildFile; fileRef = D531F16F1B57E60B002E7E0F /* successful_default.png */; };
 		D531F1751B57E60B002E7E0F /* load_successful.png in Resources */ = {isa = PBXBuildFile; fileRef = D531F1701B57E60B002E7E0F /* load_successful.png */; };
 		D531F1781B5852EE002E7E0F /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = D531F1771B5852EE002E7E0F /* defaults.plist */; };
-		D534F89C1B6D5FF50009D7B0 /* AWAgdaGoal.m in Sources */ = {isa = PBXBuildFile; fileRef = D534F89B1B6D5FF50009D7B0 /* AWAgdaGoal.m */; };
 		D536EEB31B63C35F00A2CBB9 /* PreferencesGeneralController.m in Sources */ = {isa = PBXBuildFile; fileRef = D536EEB21B63C35F00A2CBB9 /* PreferencesGeneralController.m */; };
 		D536EEB61B63C37700A2CBB9 /* PreferencesKeyBindingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D536EEB51B63C37700A2CBB9 /* PreferencesKeyBindingsController.m */; };
 		D536EEBC1B66910F00A2CBB9 /* computer7.png in Resources */ = {isa = PBXBuildFile; fileRef = D536EEB91B66910F00A2CBB9 /* computer7.png */; };
@@ -123,8 +122,6 @@
 		D531F16F1B57E60B002E7E0F /* successful_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = successful_default.png; sourceTree = "<group>"; };
 		D531F1701B57E60B002E7E0F /* load_successful.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_successful.png; sourceTree = "<group>"; };
 		D531F1771B5852EE002E7E0F /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaults.plist; sourceTree = "<group>"; };
-		D534F89A1B6D5FF50009D7B0 /* AWAgdaGoal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWAgdaGoal.h; sourceTree = "<group>"; };
-		D534F89B1B6D5FF50009D7B0 /* AWAgdaGoal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWAgdaGoal.m; sourceTree = "<group>"; };
 		D536EEB11B63C35F00A2CBB9 /* PreferencesGeneralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesGeneralController.h; sourceTree = "<group>"; };
 		D536EEB21B63C35F00A2CBB9 /* PreferencesGeneralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesGeneralController.m; sourceTree = "<group>"; };
 		D536EEB41B63C37700A2CBB9 /* PreferencesKeyBindingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesKeyBindingsController.h; sourceTree = "<group>"; };
@@ -272,13 +269,9 @@
 				D531F13C1B57DFA5002E7E0F /* AWHelper.m */,
 				D538E5C81B5EE57300B5455A /* AWInputWindow.h */,
 				D538E5C91B5EE57300B5455A /* AWInputWindow.m */,
-				D538E5CE1B5EF13300B5455A /* AWInputViewController.h */,
-				D538E5CF1B5EF13300B5455A /* AWInputViewController.m */,
-				D538E5D01B5EF13300B5455A /* AWInputViewController.xib */,
+				D534F89D1B6E1B1F0009D7B0 /* Input Window */,
 				D5962D7D1B6230D500E9EA4A /* UnicodeTransformator.h */,
 				D5962D7E1B6230D500E9EA4A /* UnicodeTransformator.m */,
-				D534F89A1B6D5FF50009D7B0 /* AWAgdaGoal.h */,
-				D534F89B1B6D5FF50009D7B0 /* AWAgdaGoal.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -404,6 +397,16 @@
 				D531F1701B57E60B002E7E0F /* load_successful.png */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		D534F89D1B6E1B1F0009D7B0 /* Input Window */ = {
+			isa = PBXGroup;
+			children = (
+				D538E5CE1B5EF13300B5455A /* AWInputViewController.h */,
+				D538E5CF1B5EF13300B5455A /* AWInputViewController.m */,
+				D538E5D01B5EF13300B5455A /* AWInputViewController.xib */,
+			);
+			name = "Input Window";
 			sourceTree = "<group>";
 		};
 		D5B47D3C1B67FE20006BA849 /* Noodle Line Numbers View */ = {
@@ -552,7 +555,6 @@
 				D531F12A1B57D7D8002E7E0F /* AWAgdaParser.m in Sources */,
 				D531F1431B57E001002E7E0F /* AWAgdaBufferWindow.m in Sources */,
 				D531F1361B57DF6F002E7E0F /* AWNotifications.m in Sources */,
-				D534F89C1B6D5FF50009D7B0 /* AWAgdaGoal.m in Sources */,
 				D531F1661B57E571002E7E0F /* AWContainerStatusTextView.m in Sources */,
 				D531F1051B55E580002E7E0F /* main.m in Sources */,
 				D531F15F1B57E564002E7E0F /* AWContainerOutputTextView.m in Sources */,

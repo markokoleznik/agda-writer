@@ -343,7 +343,7 @@
 //}
 
 - (IBAction)actionComputeNormalForm:(NSMenuItem *)sender {
-    [self showNotImplementedAlert];
+    [self openInputViewWithType:AWInputViewTypeComputeNormalForm];
 }
 
 - (void)saveDocument:(id)sender
@@ -351,54 +351,47 @@
     [document saveDocument:self];
 }
 
-- (IBAction)actionNormalize:(id)sender {
-    
+
+- (void)openInputViewWithType:(AWInputViewType)inputType {
     if (self.inputWindow) {
         return;
     }
-    
-    self.inputViewController = [[AWInputViewController alloc] initWithNibName:@"AWInputViewController" bundle:nil];
-    
     // Check if normalization is goal specific
     AgdaGoal * goal = self.mainTextView.selectedGoal;
     if (goal && goal.rangeOfContent.location != NSNotFound) {
         // We have goal
         [self.mainTextView scrollRangeToVisible:goal.rangeOfContent];
         NSRect rect = [self.mainTextView firstRectForCharacterRange:goal.rangeOfContent actualRange:nil];
-        
-        
-        NSPoint point = NSMakePoint(rect.origin.x + rect.size.width/2, rect.origin.y + rect.size.height/2);
-        NSRect frame = self.inputViewController.view.frame;
-        [self.inputViewController.view setFrame:NSMakeRect(frame.origin.x, frame.origin.y, frame.size.width*2/3, frame.size.width*1/3)];
-        [self.inputViewController.inputTitle setStringValue:@"Normalize goal:"];
-        self.inputWindow = [[MAAttachedWindow alloc] initWithView:self.inputViewController.view attachedToPoint:point atDistance:10];
+        self.inputViewController = [[AWInputViewController alloc] initWithInputType:inputType global:NO rect:rect];
+        self.inputWindow = [[MAAttachedWindow alloc] initWithView:self.inputViewController.view attachedToPoint:self.inputViewController.point atDistance:10];
     }
     else {
-        self.inputWindow = [[MAAttachedWindow alloc] initWithView:self.inputViewController.view attachedToPoint:NSMakePoint(200, 220)];
+        self.inputViewController = [[AWInputViewController alloc] initWithInputType:inputType global:YES rect:NSZeroRect];
+        self.inputWindow = [[MAAttachedWindow alloc] initWithView:self.inputViewController.view attachedToPoint:self.inputViewController.point];
         [self.inputWindow setHasArrow:0];
         [self.inputWindow center];
     }
     
     self.inputViewController.delegate = self;
-    
-    
     [self.inputWindow makeKeyWindow];
-    
     [self.inputWindow makeKeyAndOrderFront:self];
     [NSApp activateIgnoringOtherApps:YES];
-    
 }
 
-- (IBAction)actionNormalizeGoal:(id)sender {
-    
-}
 
--(void)normalizeInputDidEndEditing:(NSString *)content
+-(void)inputDidEndEditing:(NSString *)content withType:(AWInputViewType)type
 {
-//    [document saveDocument:self];
     NSString * fullPath = [document filePath].path;
     AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionComputeNormalFormWithFilePath:fullPath goal:goal content:content];
+    NSString * message;
+    switch (type) {
+        case AWInputViewTypeComputeNormalForm:
+            message = [AWAgdaActions actionComputeNormalFormWithFilePath:fullPath goal:goal content:content];
+            break;
+            
+        default:
+            break;
+    }
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
     
