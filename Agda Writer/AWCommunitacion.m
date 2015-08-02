@@ -281,6 +281,7 @@
         [self openConnectionToAgda];
     }
     // Add output to buffer!
+    NSLog(@"%@", message);
     [AWNotifications notifyAgdaReplied:message sender:sender];
     
     self.activeViewController = sender;

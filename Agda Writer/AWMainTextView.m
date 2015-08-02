@@ -78,8 +78,8 @@
         NSRange foundRange = NSRangeFromString(dict[@"foundRange"]);
         _selectedGoal.goalIndex = [dict[@"goalIndex"] integerValue];
         _selectedGoal.agdaGoalIndex = [goalsIndexesArray[_selectedGoal.goalIndex][@"goalIndex"] integerValue];
-        _selectedGoal.startCharIndex = foundRange.location;
-        _selectedGoal.endCharIndex = foundRange.location + foundRange.length;
+        _selectedGoal.startCharIndex = foundRange.location + 3;
+        _selectedGoal.endCharIndex = foundRange.location + foundRange.length - 1;
         
         NSArray * lines = [string componentsSeparatedByString:@"\n"];
         for (NSInteger i = 0; i < lines.count; i++) {
@@ -89,8 +89,8 @@
                 // Where is end row?
                 // sum all of the new lines.
                 _selectedGoal.endRow = i + 1;
-                _selectedGoal.startColumn = foundRange.location - numberOfChars;
-                _selectedGoal.endColumn = foundRange.location + foundRange.length - numberOfChars;
+                _selectedGoal.startColumn = foundRange.location - numberOfChars + 3;
+                _selectedGoal.endColumn = foundRange.location + foundRange.length - numberOfChars - 1;
                 _selectedGoal.rangeOfContent = NSMakeRange(foundRange.location + 2, foundRange.length - 4);
                 _selectedGoal.content = [string substringWithRange:_selectedGoal.rangeOfContent];
                 
@@ -150,6 +150,25 @@
         }
     }
     
+}
+
+-(NSMenu *)textView:(NSTextView *)view menu:(NSMenu *)menu forEvent:(NSEvent *)event atIndex:(NSUInteger)charIndex
+{
+    NSMutableArray * itemsToRemove = [[NSMutableArray alloc] init];
+    for (NSMenuItem * item in menu.itemArray) {
+        if ([item.title isEqualToString:@"Cut"] ||
+            [item.title isEqualToString:@"Copy"] ||
+            [item.title isEqualToString:@"Paste"] ||
+            [item.title isEqualToString:@"SearchWithGoogle"]) {
+        }
+        else {
+            [itemsToRemove addObject:item];
+        }
+    }
+    for (NSMenuItem * itemToRemove in itemsToRemove) {
+        [menu removeItem:itemToRemove];
+    }
+    return menu;
 }
 
 -(BOOL)shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(NSString *)replacementString
