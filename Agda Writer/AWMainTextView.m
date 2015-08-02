@@ -141,6 +141,14 @@
     
 }
 
+-(BOOL)shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(NSString *)replacementString
+{
+    if ([replacementString isEqualToString:@"—"]) {
+        [self setAutomaticDashSubstitutionEnabled:NO];
+        return NO;
+    }
+    return [super shouldChangeTextInRange:affectedCharRange replacementString:replacementString];
+}
 
 -(void)keyUp:(NSEvent *)theEvent
 {
