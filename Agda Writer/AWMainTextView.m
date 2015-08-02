@@ -84,14 +84,25 @@
         NSArray * lines = [string componentsSeparatedByString:@"\n"];
         for (NSInteger i = 0; i < lines.count; i++) {
             NSString * line = lines[i];
-            if (numberOfChars + line.length >= foundRange.location + foundRange.length) {
+            if (numberOfChars + line.length >= foundRange.location) {
                 _selectedGoal.startRow = i + 1;
+                // Where is end row?
+                // sum all of the new lines.
                 _selectedGoal.endRow = i + 1;
                 _selectedGoal.startColumn = foundRange.location - numberOfChars;
                 _selectedGoal.endColumn = foundRange.location + foundRange.length - numberOfChars;
                 _selectedGoal.rangeOfContent = NSMakeRange(foundRange.location + 2, foundRange.length - 4);
                 _selectedGoal.content = [string substringWithRange:_selectedGoal.rangeOfContent];
+                
+                NSArray * contentSeparatedWithNewLines = [_selectedGoal.content componentsSeparatedByString:@"\n"];
+                if (contentSeparatedWithNewLines.count > 1) {
+                    _selectedGoal.endRow = (i + 1) + (contentSeparatedWithNewLines.count - 1);
+                    NSString * lastComponent = contentSeparatedWithNewLines[contentSeparatedWithNewLines.count - 1];
+                    _selectedGoal.endColumn = lastComponent.length;
+                }
+                
                 _selectedGoal.content = [_selectedGoal.content stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+                _selectedGoal.content = [_selectedGoal.content stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
                 
                 // Compute number of empty spaces in this line
                 // i.e. where code begins, indentation if you prefer :)
