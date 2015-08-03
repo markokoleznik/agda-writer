@@ -478,8 +478,8 @@
     if ([notification.userInfo isKindOfClass:[NSDictionary class]]) {
         NSDictionary * dict = notification.userInfo;
         NSInteger index = [dict[@"index"] integerValue];
-        [self scrollRangeToVisible:NSMakeRange(index, 0)];
-        [self setSelectedRange:NSMakeRange(index, 0)];
+        [self scrollRangeToVisible:NSMakeRange(index - 1, 0)];
+        [self setSelectedRange:NSMakeRange(index - 1, 0)];
     }
     
 }
@@ -636,9 +636,14 @@
 - (void)clearHighlighting:(NSNotification *) notification
 {
     if (notification.object == self.parentViewController) {
-        [self.layoutManager addTemporaryAttributes:[NSDictionary dictionaryWithObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName] forCharacterRange:NSMakeRange(0, self.string.length)];
+        [self clearHighligting];
     }
     
+}
+
+- (void) clearHighligting
+{
+    [self.layoutManager addTemporaryAttributes:[NSDictionary dictionaryWithObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName] forCharacterRange:NSMakeRange(0, self.string.length)];
 }
 
 

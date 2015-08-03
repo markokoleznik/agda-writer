@@ -55,6 +55,7 @@
 @property (nonatomic) id parentViewController;
 
 -(void) applyUnicodeTransformation;
+- (void) clearHighligting;
 
 
 

@@ -241,7 +241,21 @@
 
 - (void) closeConnectionToAgda
 {
+    [self closePipes];
+    fileReading = nil;
+    fileWriting = nil;
+}
+
+-(void)quitAndRestartConnectionToAgda {
+    // Close stuff
+    [self closePipes];
+    fileReading = nil;
+    fileWriting = nil;
+    task = nil;
     
+    // Open new connection
+    [self openConnectionToAgda];
+
 }
 
 - (void) handleAgdaResponse:(NSNotification *) notification

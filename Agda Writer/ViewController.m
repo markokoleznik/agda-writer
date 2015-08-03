@@ -75,7 +75,9 @@
 }
 
 - (IBAction)actionQuitAndRestartAgda:(NSMenuItem *)sender {
-    [self showNotImplementedAlert];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator quitAndRestartConnectionToAgda];
+    [self.mainTextView clearHighligting];
 }
 
 - (IBAction)actionCompile:(id)sender {

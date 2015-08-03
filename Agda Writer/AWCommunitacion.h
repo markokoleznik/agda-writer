@@ -44,6 +44,7 @@
 - (BOOL) isAgdaAvaliableAtPath:(NSString *)path;
 - (void) openConnectionToAgda;
 - (void) closeConnectionToAgda;
+- (void) quitAndRestartConnectionToAgda;
 
 
 @end
