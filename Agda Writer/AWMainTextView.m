@@ -441,6 +441,7 @@
         if ([content hasPrefix:@"\""] && [content hasSuffix:@"\""]) {
             content = [content substringWithRange:NSMakeRange(1, content.length - 2)];
         }
+        content = [content stringByReplacingOccurrencesOfString:@"\\n" withString:@""];
         
         // Replace given goal with content that Agda gave.
 //        NSLog(@"Agda gave action: goal index: %li, content: %@", goalIndex, content);
