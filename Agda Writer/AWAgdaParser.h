@@ -32,5 +32,5 @@
                          string:(NSString *)string;
 +(NSInteger) parseGotoAction:(NSString *)reply;
 
-+ (NSAttributedString *) parseRangesAndAddAttachments:(NSString *)reply parentViewController:(id)parentViewController;
++ (NSMutableAttributedString *) parseRangesAndAddAttachments:(NSAttributedString *)reply parentViewController:(id)parentViewController;
 @end

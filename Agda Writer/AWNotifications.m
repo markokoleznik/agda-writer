@@ -109,7 +109,7 @@ NSString * const AWSelectAgdaRange = @"net.koleznik.SelectAgdaRange";
     [[NSNotificationCenter defaultCenter] postNotificationName:AWExecuteActions object:sender userInfo:@{@"actions" : actions}];
 }
 
-+ (void) notifyAgdaBufferDataAvaliable:(NSString *)buffer sender:(id)sender
++ (void) notifyAgdaBufferDataAvaliable:(NSAttributedString *)buffer sender:(id)sender
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:AWAgdaBufferDataAvaliable object:sender userInfo:@{@"buffer" : buffer}];
 }

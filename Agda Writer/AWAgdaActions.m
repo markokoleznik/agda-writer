@@ -251,6 +251,10 @@
      (agda2-info-action "*Type-checking*" "Finished Foo.\n" t)
      
     */
+    
+    BOOL shouldSendNotification = YES;
+    NSColor * actionNameColor = [NSColor blueColor];
+    
     if (actions.count > 2) {
         if ([actions[0] isEqualToString:@"\"*Agda Version*\""]) {
             [AWNotifications notifyAgdaVersion:actions[1]];
@@ -258,6 +262,7 @@
         }
         else if ([actions[0] isEqualToString:@"\"*All Goals*\""]) {
             [AWNotifications notifyAllGoals:actions[1] sender:sender];
+            shouldSendNotification = NO;
         }
         else if ([actions[0] isEqualToString:@"\"*Type-checking*\""]) {
             if ([actions[1] hasPrefix:@"\"Finished"]) {
@@ -265,14 +270,13 @@
                 AWToastWindow * toastWindow = [[AWToastWindow alloc] initWithToastType:ToastTypeLoadSuccessful];
                 [toastWindow show];
             }
-            
-//            [AWNotifications notifyAgdaBufferDataAvaliable:actions[1]];
         }
         else if ([actions[0] isEqualToString:@"\"*Error*\""])
         {
             // In case of an error, show load failed.
-            AWToastWindow * toastWindow = [[AWToastWindow alloc] initWithToastType:ToastTypeLoadFailed];
+            AWToastWindow * toastWindow = [[AWToastWindow alloc] initWithToastType:ToastTypeFailed];
             [toastWindow show];
+            actionNameColor = [NSColor redColor];
         }
         else if ([actions[0] isEqualToString:@"\"*Current Goal*\""])
         {
@@ -288,15 +292,24 @@
         }
         else if ([actions[0] isEqualToString:@"\"*Context*\""])
         {
-            //TODO: implement
+
         }
         else
         {
             NSLog(@"INFO ACTION NOT FOUND! : %@", actions[0]);
 //            [NSException raise:@"Info action not found!" format:@"Not found: %@", actions[0]];
         }
-        NSString * bufferDescription = actions[1];
-        [AWNotifications notifyAgdaBufferDataAvaliable:bufferDescription sender:sender];
+        
+        if (shouldSendNotification) {
+            NSMutableAttributedString * actionName = [[NSMutableAttributedString alloc] initWithString:actions[0] attributes:@{NSForegroundColorAttributeName : actionNameColor,
+                NSFontAttributeName : [AWHelper defaultFontInAgda]}];
+            NSString * string = [NSString stringWithFormat:@"\n%@", actions[1]];
+            [actionName appendAttributedString:[[NSAttributedString alloc] initWithString:string]];
+            [AWNotifications notifyAgdaBufferDataAvaliable:actionName sender:sender];
+        }
+        
+        
+        
     }
 }
 
