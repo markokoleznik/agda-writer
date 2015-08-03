@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
+#import "CustomTokenCell.h"
+
 @interface AWAgdaParser : NSObject
 
 -(void) parseResponse:(NSString *)response;
@@ -29,4 +31,6 @@
                    andLineRange:(NSRange) lineRange
                          string:(NSString *)string;
 +(NSInteger) parseGotoAction:(NSString *)reply;
+
++ (NSAttributedString *) parseRangesAndAddAttachments:(NSString *)reply parentViewController:(id)parentViewController;
 @end

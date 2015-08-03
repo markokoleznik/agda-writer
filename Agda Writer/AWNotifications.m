@@ -27,6 +27,7 @@ NSString * const AWAgdaMakeCaseAction = @"net.koleznik.AgdaMakeCaseAction";
 NSString * const AWAgdaHighlightCode = @"net.koleznik.AgdaHighlightCode";
 NSString * const AWAgdaClearHighlighting = @"net.koleznik.AgdaClearHighlighting";
 NSString * const AWAgdaGoto = @"net.koleznik.AgdaGoto";
+NSString * const AWSelectAgdaRange = @"net.koleznik.SelectAgdaRange";
 
 
 
@@ -142,6 +143,11 @@ NSString * const AWAgdaGoto = @"net.koleznik.AgdaGoto";
 }
 +(void)notifyAgdaGotoIndex:(NSInteger)index sender:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:AWAgdaGoto object:sender userInfo:@{@"index" : [NSNumber numberWithInteger:index]}];
+}
+
++ (void)notifySelectAgdaRange:(NSString *)agdaRange sender:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:AWSelectAgdaRange object:sender userInfo:@{@"agdaRange" : agdaRange}];
 }
 
 

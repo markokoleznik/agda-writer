@@ -8,6 +8,7 @@
 
 #import "AWStatusTextView.h"
 #import "AWNotifications.h"
+#import "AWAgdaParser.h"
 
 @implementation AWStatusTextView
 
@@ -34,8 +35,14 @@
         if (![reply hasSuffix:@"\n"]) {
             reply = [reply stringByAppendingString:@"\n"];
         }
+        
+        // parse ranges and return string with attachments
+        
+        NSAttributedString * attrReply = [AWAgdaParser parseRangesAndAddAttachments:reply parentViewController:self.parentViewController];
+        
+        
         [self.textStorage beginEditing];
-        [[self.textStorage mutableString] appendString:reply];
+        [self.textStorage appendAttributedString:attrReply];
         [self.textStorage endEditing];
         [self scrollToEndOfDocument:nil];
     }

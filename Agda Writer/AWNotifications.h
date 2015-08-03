@@ -28,6 +28,7 @@ extern NSString * const AWAgdaMakeCaseAction;
 extern NSString * const AWAgdaHighlightCode;
 extern NSString * const AWAgdaClearHighlighting;
 extern NSString * const AWAgdaGoto;
+extern NSString * const AWSelectAgdaRange;
 
 typedef NS_ENUM(NSInteger, KeyPressed) {
     AWEnterPressed,
@@ -56,6 +57,8 @@ typedef NS_ENUM(NSInteger, KeyPressed) {
 + (void) notifyPlaceInsertionPointAtCharIndex:(NSUInteger) charIndex;
 
 + (void) notifyOpenPreferences;
+
++ (void) notifySelectAgdaRange:(NSString *)agdaRange sender:(id)sender;
 
 + (NSDictionary *) dictionaryOfDefaults;
 + (NSString *) agdaLaunchPath;

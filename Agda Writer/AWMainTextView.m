@@ -40,6 +40,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(highlightCode:) name:AWAgdaHighlightCode object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearHighlighting:) name:AWAgdaClearHighlighting object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaGotoIndex:) name:AWAgdaGoto object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectAgdaRange:) name:AWSelectAgdaRange object:nil];
         
         
         initialize = YES;
@@ -467,6 +468,29 @@
         if ([self.parentViewController respondsToSelector:@selector(saveDocument:)]) {
             [self.parentViewController performSelector:@selector(saveDocument:) withObject:nil afterDelay:1.0];
         }
+    }
+}
+
+-(void)selectAgdaRange:(NSNotification *)notification {
+    if (notification.object != self.parentViewController) {
+        return;
+    }
+    NSDictionary * dict = notification.userInfo;
+    NSString * agdaRange = dict[@"agdaRange"];
+    NSArray * components = [agdaRange componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@",-"]];
+    if (components.count == 3) {
+        NSInteger lineNumber = [components[0] integerValue];
+        NSInteger startRange = [components[1] integerValue];
+        NSInteger endRange = [components[2] integerValue];
+        NSRange lineRange = NSMakeRange(startRange, endRange - startRange);
+    
+        NSRange actualRange = [AWAgdaParser rangeFromLineNumber:lineNumber andLineRange:lineRange   string:self.string];
+        
+        [self.window makeFirstResponder:self];
+        
+        [self scrollRangeToVisible:actualRange];
+        [self showFindIndicatorForRange:actualRange];
+        [self setSelectedRange:actualRange];
     }
 }
 

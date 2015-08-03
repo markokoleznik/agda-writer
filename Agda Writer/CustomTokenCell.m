@@ -30,6 +30,16 @@
     return self;
 }
 
+- (id) initWithParentViewController:(id)parentViewController
+{
+    self = [self init];
+    if (self) {
+        self.parentViewController = parentViewController;
+    }
+    
+    return self;
+}
+
 
 #pragma mark - NSTextAttachmentCell Overrides
 
@@ -108,12 +118,8 @@
 
 - (BOOL)trackMouse:(NSEvent *)theEvent inRect:(NSRect)cellFrame ofView:(NSView *)controlView atCharacterIndex:(NSUInteger)charIndex untilMouseUp:(BOOL)flag
 {
-    
-    NSLog(@"Event description: %@", theEvent.description);
     [self highlight:flag withFrame:cellFrame inView:controlView];
-    NSLog(@"Mouse Pressed on Text Attachment at Index: %li", charIndex);
-    // Put cursor in that place
-    [AWNotifications notifyPlaceInsertionPointAtCharIndex:charIndex];
+    [AWNotifications notifySelectAgdaRange:self.title sender:self.parentViewController];
     return YES;
 }
 

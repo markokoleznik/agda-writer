@@ -402,7 +402,37 @@
     return index;
 }
 
++ (NSAttributedString *)parseRangesAndAddAttachments:(NSString *)reply parentViewController:(id)parentViewController;
+{
+    NSMutableAttributedString * attrString = [[NSMutableAttributedString alloc] initWithString:reply];
+    
+    
+    NSString * regexPattern = @"[0-9]*,[0-9]*-[0-9]*";
+    NSError * error;
+    NSRegularExpression * regex = [[NSRegularExpression alloc] initWithPattern:regexPattern options:NSRegularExpressionAnchorsMatchLines error:&error];
+    NSArray * matches = [regex matchesInString:reply options:0 range:NSMakeRange(0, reply.length)];
+    
+    // replace all "ranges" with cell attachments.
+    
+    for (NSTextCheckingResult * result in [matches reverseObjectEnumerator]) {
+        
+        NSTextAttachment * attachment = [[NSTextAttachment alloc] initWithFileWrapper:nil];
+        NSMutableAttributedString * text = [NSMutableAttributedString new];
+        [text appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+        CustomTokenCell * tokenCell = [[CustomTokenCell alloc] init];
+        tokenCell.parentViewController = parentViewController;
+        NSString * substringOfRange = [reply substringWithRange:result.range];
+        [tokenCell setTitle:substringOfRange];
+        [attachment setAttachmentCell:tokenCell];
+        [text appendAttributedString:[NSAttributedString attributedStringWithAttachment:attachment]];
+        [text appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+        
+        [attrString replaceCharactersInRange:result.range withAttributedString:text];
+        
+    }
+    
+    
+    return attrString;
+}
 
 @end
-
-

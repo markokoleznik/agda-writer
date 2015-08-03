@@ -14,6 +14,9 @@
     NSFont * defaultFont;
 }
 -(id)init;
+-(id) initWithParentViewController: (id)parentViewController;
 -(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView;
+@property NSRange whereToGoRange;
+@property id parentViewController;
 
 @end
