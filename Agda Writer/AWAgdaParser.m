@@ -230,7 +230,6 @@
     NSArray * matches = [regex matchesInString:textStorage.string options:0 range:fullRange];
     NSInteger goalIndex = 0;
     for (NSTextCheckingResult * result in matches) {
-//        NSLog(@"selection range: %@, result range: %@", NSStringFromRange(currentSelection),NSStringFromRange([result rangeAtIndex:1]));
         if (currentSelection.location > [result rangeAtIndex:1].location && (currentSelection.location + currentSelection.length) < ([result rangeAtIndex:1].location + [result rangeAtIndex:1].length)) {
             // we found appropriate result
             // Convert NSRange to string
@@ -389,6 +388,20 @@
     
     return range;
 }
+
++(NSInteger) parseGotoAction:(NSString *)reply {
+    NSInteger index;
+    
+    if ([reply hasSuffix:@")"]) {
+        NSArray * components = [reply componentsSeparatedByString:@" . "];
+        NSString * lastComponent = components[components.count - 1];
+        lastComponent = [lastComponent substringToIndex:lastComponent.length - 1];
+        return [lastComponent integerValue];
+    }
+    
+    return index;
+}
+
 
 @end
 

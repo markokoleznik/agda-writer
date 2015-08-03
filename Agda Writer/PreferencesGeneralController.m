@@ -38,6 +38,8 @@
     }
     [self.pathToLibraries setStringValue:[AWHelper pathToLibraries]];
     selectedFont = [AWHelper defaultFontInAgda];
+    self.pathToLibraries.delegate = self;
+    self.delayForAutocompleteTextField.delegate = self;
     [self fillFontFamilies];
     [self fillFontSizes];
 
@@ -163,6 +165,10 @@
     
 }
 
+-(NSArray *)control:(NSControl *)control textView:(NSTextView *)textView completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
+{
+    return @[];
+}
 
 
 -(void)setNilValueForKey:(NSString *)key

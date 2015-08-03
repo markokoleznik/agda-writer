@@ -774,6 +774,7 @@
                                 </textFieldCell>
                                 <connections>
                                     <action selector="pathSelected:" target="izb-Gj-tQA" id="LgX-XA-ukR"/>
+                                    <outlet property="delegate" destination="izb-Gj-tQA" id="vTx-24-fBP"/>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="l5T-uS-fxQ">
@@ -869,6 +870,7 @@
                                 </textFieldCell>
                                 <connections>
                                     <action selector="pathToLibrariesAction:" target="izb-Gj-tQA" id="kQG-V4-CcL"/>
+                                    <outlet property="delegate" destination="izb-Gj-tQA" id="0fE-rD-U8c"/>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TNu-SL-ddx">
