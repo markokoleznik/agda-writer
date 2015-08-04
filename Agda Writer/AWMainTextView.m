@@ -489,9 +489,13 @@
         
         [self.window makeFirstResponder:self];
         
-        [self scrollRangeToVisible:actualRange];
-        [self showFindIndicatorForRange:actualRange];
-        [self setSelectedRange:actualRange];
+        if (self.string.length > actualRange.location + actualRange.length) {
+            [self scrollRangeToVisible:actualRange];
+            [self showFindIndicatorForRange:actualRange];
+            [self setSelectedRange:actualRange];
+        }
+        
+        
     }
 }
 
