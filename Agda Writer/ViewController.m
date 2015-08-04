@@ -97,7 +97,7 @@
 
 - (IBAction)actionGive:(NSMenuItem *)sender {
     
-    
+    [self.mainTextView clearHighligting];
     NSString * fullPath = [document filePath].path;
     [document saveDocument:self];
     AgdaGoal * goal = self.mainTextView.selectedGoal;

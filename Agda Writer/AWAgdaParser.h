@@ -31,6 +31,7 @@
                    andLineRange:(NSRange) lineRange
                          string:(NSString *)string;
 +(NSInteger) parseGotoAction:(NSString *)reply;
++ (NSDictionary *)parsedLineOfHighligting:(NSString *)line;
 
 + (NSMutableAttributedString *) parseRangesAndAddAttachments:(NSAttributedString *)reply parentViewController:(id)parentViewController;
 @end

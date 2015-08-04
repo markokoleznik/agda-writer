@@ -303,6 +303,10 @@
     return actions;
 }
 
++(NSArray *)parseDirectHighligting:(NSArray *)highlighting
+{
+    return @[];
+}
 
 
 +(NSArray *) parseHighlighting:(NSString *)highlighting
@@ -330,43 +334,54 @@
     
     for (NSString * line in matches) {
         
-        // first find a type
-        NSRange rangeOfType = NSMakeRange(NSNotFound, 0);
-        for (NSInteger i = 1; i < line.length; i++) {
-            if ([line characterAtIndex:i] == '(') {
-                rangeOfType.location = i + 1;
-            }
-            else if ([line characterAtIndex:i] == ')') {
-                rangeOfType.length = i - rangeOfType.location;
-                break;
-            }
-        }
-        NSString * typeName;
-        if (rangeOfType.location == NSNotFound) {
-            // fall back if range isn't found... Just in case! :)
-            break;
-        }
-        typeName = [line substringWithRange:rangeOfType];
-        // delete that type from string
-        NSString const * lineCopy = [NSString stringWithFormat:@"%@%@", [line substringToIndex:rangeOfType.location - 2], [line substringFromIndex:rangeOfType.location + rangeOfType.length + 1]];
-
-        // get those components:
-        // @[siK, eik, path]
-        NSArray * components = [lineCopy componentsSeparatedByString:@" "];
-        if (components.count > 2) {
-            NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-            f.numberStyle = NSNumberFormatterDecimalStyle;
-            NSNumber *startNumber = [f numberFromString:components[0]];
-            NSNumber *endNumber = [f numberFromString:components[1]];
-            NSRange range = NSMakeRange([startNumber integerValue], [endNumber integerValue] - [startNumber integerValue]);
-            
-            NSDictionary * dict = @{typeName : @[NSStringFromRange(range)]};
-//            NSLog(@"%@", dict);
+        NSDictionary * dict = [self parsedLineOfHighligting:line];
+        if (dict) {
             [result addObject:dict];
         }
     }
 
     return result;
+}
+
++ (NSDictionary *)parsedLineOfHighligting:(NSString *)line
+{
+    NSDictionary * dict;
+    
+    // first find a type
+    NSRange rangeOfType = NSMakeRange(NSNotFound, 0);
+    for (NSInteger i = 1; i < line.length; i++) {
+        if ([line characterAtIndex:i] == '(') {
+            rangeOfType.location = i + 1;
+        }
+        else if ([line characterAtIndex:i] == ')') {
+            rangeOfType.length = i - rangeOfType.location;
+            break;
+        }
+    }
+    NSString * typeName;
+    if (rangeOfType.location == NSNotFound) {
+        // fall back if range isn't found... Just in case! :)
+        return nil;
+    }
+    typeName = [line substringWithRange:rangeOfType];
+    // delete that type from string
+    NSString const * lineCopy = [NSString stringWithFormat:@"%@%@", [line substringToIndex:rangeOfType.location - 2], [line substringFromIndex:rangeOfType.location + rangeOfType.length + 1]];
+    
+    // get those components:
+    // @[siK, eik, path]
+    NSArray * components = [lineCopy componentsSeparatedByString:@" "];
+    if (components.count > 2) {
+        NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+        f.numberStyle = NSNumberFormatterDecimalStyle;
+        NSNumber *startNumber = [f numberFromString:components[0]];
+        NSNumber *endNumber = [f numberFromString:components[1]];
+        NSRange range = NSMakeRange([startNumber integerValue], [endNumber integerValue] - [startNumber integerValue]);
+        
+        dict = @{typeName : @[NSStringFromRange(range)]};
+        
+    }
+    
+    return dict;
 }
 
 + (NSRange) rangeFromLineNumber:(NSUInteger)lineNumber

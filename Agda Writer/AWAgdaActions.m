@@ -205,12 +205,25 @@
         }
         else if ([key isEqualToString:@"agda2-solveAll-action"])
         {
+            NSLog(@"SolveAll:\n%@",actions);
+            
+        }
+        else if ([key isEqualToString:@"agda2-highlight-add-annotations"])
+        {
+            // (agda2-highlight-add-annotations '(1971 1972 (inductiveconstructor operator) nil ("/Users/markokoleznik/Desktop/saving/primer-andrej.agda" . 1535)) '(1973 1974 (bound) nil ("/Users/markokoleznik/Desktop/saving/primer-andrej.agda" . 1961)) '(1975 1976 (bound) nil ("/Users/markokoleznik/Desktop/saving/primer-andrej.agda" . 1965)) '(1977 1978 (inductiveconstructor operator) nil ("/Users/markokoleznik/Desktop/saving/primer-andrej.agda" . 1535)) '(1979 1980 (bound) nil ("/Users/markokoleznik/Desktop/saving/primer-andrej.agda" . 1963)) '(1981 1982 (bound) nil ("/Users/markokoleznik/Desktop/saving/primer-andrej.agda" . 1965)) '(1983 1984 (inductiveconstructor operator) nil ("/Users/markokoleznik/Desktop/saving/primer-andrej.agda" . 1535)))
+            
+            // TODO: implement this kind of highlighting...
+            // Once you do this, test if direct highlighting is faster that indirect
+            // direct: from strandard output pipe
+            // indirect: read from disk and delete file afterwards.
+            NSLog(@"add annotations:\n%@", actions);
+            [self executeHighlightAddAnnotations:actions sender:sender];
             
         }
         else {
             // TODO: Delete before releasing
             NSLog(@"KEY NOT FOUND: %@", key);
-            [NSException raise:@"Key not found!" format:@"Implement key: %@", key];
+//            [NSException raise:@"Key not found!" format:@"Implement key: %@", key];
         }
 
 
@@ -319,6 +332,27 @@
         [AWNotifications notifyMakeCaseAction:actions[0] sender:sender];
     }
     
+}
+
++(void)executeHighlightAddAnnotations:(NSArray *)actions sender: (id)sender
+{
+//    for (NSString * action in actions) {
+//        NSArray * newArray = [action componentsSeparatedByString:@"'"];
+//        for (NSString * subAction in newArray) {
+//            NSCharacterSet * charSet = [NSCharacterSet characterSetWithCharactersInString:@"()"];
+//            NSArray * subArray = [subAction componentsSeparatedByCharactersInSet:charSet];
+//            if (subArray.count >= 4) {
+//                NSArray * range = [subArray[1] componentsSeparatedByString:@" "];
+//                NSString * parsedAction = [NSString stringWithFormat:@"%@ %@ (%@) %@", range[0], range[1], subArray[2], [subArray[3] substringWithRange:NSMakeRange(1, [subArray[3] length] - 2)]];
+//                NSDictionary * dict = [AWAgdaParser parsedLineOfHighligting:parsedAction];
+//                if (dict) {
+//                    [AWNotifications notifyHighlightCode:@[dict] sender:sender];
+//                }
+//                
+//            }
+//        }
+//        
+//    }
 }
 
 +(void)executeHighlightClearAction:(NSArray *)actions sender:(id)sender
