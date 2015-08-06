@@ -1,0 +1,6 @@
+- Change icon in preferences
+- Add question button with explanation to external libraries
+- Implement About
+    - Add attribution for MAAtachedWindow (with html link)
+    - Say thanks for NoodleLineNumberView
+- Remove Help

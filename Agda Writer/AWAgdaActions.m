@@ -206,6 +206,7 @@
         else if ([key isEqualToString:@"agda2-solveAll-action"])
         {
             NSLog(@"SolveAll:\n%@",actions);
+            // (agda2-solveAll-action '(1 "suc (suc zero)" 3 "zero")))
             
         }
         else if ([key isEqualToString:@"agda2-highlight-add-annotations"])
