@@ -109,4 +109,8 @@
     return [[ud objectForKey:@"delayForAutocomplete"] floatValue];
 }
 
++ (NSString *) helpForExternalLibraries {
+    return @"You should put full path, ~ stands for relative to current work path.";
+}
+
 @end

@@ -22,5 +22,7 @@
 + (NSString *)pathToLibraries;
 + (CGFloat) delayForAutocomplete;
 
++ (NSString *) helpForExternalLibraries;
+
 
 @end

@@ -51,6 +51,8 @@
 		D5B327F01B78B65E00EDFC26 /* x-mark.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B327EC1B78B65E00EDFC26 /* x-mark.png */; };
 		D5B327F11B78B65E00EDFC26 /* settings-keybindings.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B327ED1B78B65E00EDFC26 /* settings-keybindings.png */; };
 		D5B327F21B78B65E00EDFC26 /* settings-general.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B327EE1B78B65E00EDFC26 /* settings-general.png */; };
+		D5B327F61B78C63900EDFC26 /* AWPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B327F41B78C63900EDFC26 /* AWPopoverViewController.m */; };
+		D5B327F71B78C63900EDFC26 /* AWPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B327F51B78C63900EDFC26 /* AWPopoverViewController.xib */; };
 		D5B47D391B67FE19006BA849 /* MarkerLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B47D341B67FE19006BA849 /* MarkerLineNumberView.m */; };
 		D5B47D3A1B67FE19006BA849 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B47D361B67FE19006BA849 /* NoodleLineNumberMarker.m */; };
 		D5B47D3B1B67FE19006BA849 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B47D381B67FE19006BA849 /* NoodleLineNumberView.m */; };
@@ -141,6 +143,9 @@
 		D5B327EC1B78B65E00EDFC26 /* x-mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-mark.png"; sourceTree = "<group>"; };
 		D5B327ED1B78B65E00EDFC26 /* settings-keybindings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-keybindings.png"; sourceTree = "<group>"; };
 		D5B327EE1B78B65E00EDFC26 /* settings-general.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-general.png"; sourceTree = "<group>"; };
+		D5B327F31B78C63900EDFC26 /* AWPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWPopoverViewController.h; sourceTree = "<group>"; };
+		D5B327F41B78C63900EDFC26 /* AWPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWPopoverViewController.m; sourceTree = "<group>"; };
+		D5B327F51B78C63900EDFC26 /* AWPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AWPopoverViewController.xib; sourceTree = "<group>"; };
 		D5B47D331B67FE19006BA849 /* MarkerLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerLineNumberView.h; sourceTree = "<group>"; };
 		D5B47D341B67FE19006BA849 /* MarkerLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerLineNumberView.m; sourceTree = "<group>"; };
 		D5B47D351B67FE19006BA849 /* NoodleLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberMarker.h; sourceTree = "<group>"; };
@@ -304,10 +309,8 @@
 		D531F1481B57E024002E7E0F /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				D536EEB11B63C35F00A2CBB9 /* PreferencesGeneralController.h */,
-				D536EEB21B63C35F00A2CBB9 /* PreferencesGeneralController.m */,
-				D536EEB41B63C37700A2CBB9 /* PreferencesKeyBindingsController.h */,
-				D536EEB51B63C37700A2CBB9 /* PreferencesKeyBindingsController.m */,
+				D5B327F81B78C81E00EDFC26 /* General */,
+				D5B327F91B78C82700EDFC26 /* Key Bindings */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -407,6 +410,27 @@
 				D538E5D01B5EF13300B5455A /* AWInputViewController.xib */,
 			);
 			name = "Input Window";
+			sourceTree = "<group>";
+		};
+		D5B327F81B78C81E00EDFC26 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				D536EEB11B63C35F00A2CBB9 /* PreferencesGeneralController.h */,
+				D536EEB21B63C35F00A2CBB9 /* PreferencesGeneralController.m */,
+				D5B327F31B78C63900EDFC26 /* AWPopoverViewController.h */,
+				D5B327F41B78C63900EDFC26 /* AWPopoverViewController.m */,
+				D5B327F51B78C63900EDFC26 /* AWPopoverViewController.xib */,
+			);
+			name = General;
+			sourceTree = "<group>";
+		};
+		D5B327F91B78C82700EDFC26 /* Key Bindings */ = {
+			isa = PBXGroup;
+			children = (
+				D536EEB41B63C37700A2CBB9 /* PreferencesKeyBindingsController.h */,
+				D536EEB51B63C37700A2CBB9 /* PreferencesKeyBindingsController.m */,
+			);
+			name = "Key Bindings";
 			sourceTree = "<group>";
 		};
 		D5B47D3C1B67FE20006BA849 /* Noodle Line Numbers View */ = {
@@ -515,6 +539,7 @@
 				D5B327F11B78B65E00EDFC26 /* settings-keybindings.png in Resources */,
 				D534F8FA1B7383D80009D7B0 /* TODO List in Resources */,
 				D531F1101B55E580002E7E0F /* Main.storyboard in Resources */,
+				D5B327F71B78C63900EDFC26 /* AWPopoverViewController.xib in Resources */,
 				D531F1741B57E60B002E7E0F /* successful_default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -537,6 +562,7 @@
 				D531F1511B57E548002E7E0F /* AWMainSplitView.m in Sources */,
 				D536EEB61B63C37700A2CBB9 /* PreferencesKeyBindingsController.m in Sources */,
 				D531F1311B57DB28002E7E0F /* AWHighlighting.m in Sources */,
+				D5B327F61B78C63900EDFC26 /* AWPopoverViewController.m in Sources */,
 				D531F10B1B55E580002E7E0F /* Document.m in Sources */,
 				D5B47D3A1B67FE19006BA849 /* NoodleLineNumberMarker.m in Sources */,
 				D5B47D3B1B67FE19006BA849 /* NoodleLineNumberView.m in Sources */,

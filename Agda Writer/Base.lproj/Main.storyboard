@@ -916,6 +916,16 @@
                                     <binding destination="xp5-Sa-wkr" name="value" keyPath="values.delayForAutocomplete" id="ynE-gJ-ui3"/>
                                 </connections>
                             </slider>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ud8-Rl-pbx">
+                                <rect key="frame" x="666" y="171" width="25" height="25"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Dcm-w2-was">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="showHelpForExternalLibraries:" target="izb-Gj-tQA" id="hZ2-iF-MuZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="uC9-3W-1j9" firstAttribute="leading" secondItem="nta-dI-OOZ" secondAttribute="leading" constant="137" id="01j-fH-38d"/>
@@ -974,6 +984,19 @@
                 <userDefaultsController representsSharedInstance="YES" id="xp5-Sa-wkr"/>
             </objects>
             <point key="canvasLocation" x="1554.5" y="-552"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="dpB-bK-zdq">
+            <objects>
+                <viewController id="Sku-mE-x3B" sceneMemberID="viewController">
+                    <view key="view" id="PDs-k3-p04">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="gv0-C2-GIk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3174" y="-565"/>
         </scene>
         <!--Key Bindings-->
         <scene sceneID="W1n-EG-geX">
@@ -1320,8 +1343,8 @@
     </scenes>
     <resources>
         <image name="check-mark" width="24" height="24"/>
-        <image name="settings-general" width="256" height="256"/>
-        <image name="settings-keybindings" width="256" height="256"/>
+        <image name="settings-general" width="64" height="64"/>
+        <image name="settings-keybindings" width="64" height="64"/>
         <image name="x-mark" width="24" height="24"/>
     </resources>
 </document>

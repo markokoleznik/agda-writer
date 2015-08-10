@@ -10,6 +10,7 @@
 #import "AWCommunitacion.h"
 #import "AWNotifications.h"
 #import "AWHelper.h"
+#import "AWPopoverViewController.h"
 
 @interface PreferencesGeneralController ()
 
@@ -17,6 +18,7 @@
 
 @implementation PreferencesGeneralController {
     NSFont * selectedFont;
+    AWPopoverViewController * _popoverViewController;
     
 }
 
@@ -40,6 +42,14 @@
     selectedFont = [AWHelper defaultFontInAgda];
     self.pathToLibraries.delegate = self;
     self.delayForAutocompleteTextField.delegate = self;
+    
+    _popover = [[NSPopover alloc] init];
+    _popover.delegate = self;
+    _popoverViewController = [[AWPopoverViewController alloc] initWithNibName:@"AWPopoverViewController" bundle:nil];
+    [_popover setBehavior:NSPopoverBehaviorTransient];
+    [_popover setContentViewController:_popoverViewController];
+    [_popover setAnimates:YES];
+    
     [self fillFontFamilies];
     [self fillFontSizes];
 
@@ -183,4 +193,17 @@
 - (IBAction)delayForAutocompleteChanged:(NSTextField *)sender {
     NSLog(@"input changed");
 }
+
+- (IBAction)showHelpForExternalLibraries:(NSButton *)sender {
+    [_popover showRelativeToRect:sender.bounds ofView:sender preferredEdge:NSMaxXEdge];
+    // Text can be changed AFTER UI elements has been loaded!
+    [_popoverViewController.contentTextField setStringValue:[AWHelper helpForExternalLibraries]];
+}
+
+-(void)popoverDidShow:(NSNotification *)notification
+{
+    NSLog(@"Popover did show");
+}
+
+
 @end

@@ -8,7 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PreferencesGeneralController : NSViewController <NSTextFieldDelegate>
+@interface PreferencesGeneralController : NSViewController <NSTextFieldDelegate, NSPopoverDelegate> {
+    NSPopover * _popover;
+}
 @property (weak) IBOutlet NSTextField *agdaPathTextField;
 @property (weak) IBOutlet NSImageView *okImage;
 @property (weak) IBOutlet NSImageView *closeImage;
@@ -26,6 +28,7 @@
 
 - (IBAction)browseAction:(NSButton *)sender;
 - (IBAction)delayForAutocompleteChanged:(NSTextField *)sender;
+- (IBAction)showHelpForExternalLibraries:(NSButton *)sender;
 
 
 @property (weak) IBOutlet NSTextField *delayForAutocompleteTextField;
