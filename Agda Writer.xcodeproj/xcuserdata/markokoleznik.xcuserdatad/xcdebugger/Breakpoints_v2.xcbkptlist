@@ -30,11 +30,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWCommunitacion.m"
-            timestampString = "459711127.142107"
+            timestampString = "460302576.429975"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
             landmarkName = "-writeDataToAgda:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -46,11 +46,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWMainTextView.m"
-            timestampString = "459854819.06485"
+            timestampString = "460366161.818793"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "617"
-            endingLineNumber = "617"
+            startingLineNumber = "649"
+            endingLineNumber = "649"
             landmarkName = "-highlightCode:"
             landmarkType = "5">
          </BreakpointContent>
@@ -62,11 +62,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWNotifications.m"
-            timestampString = "458842687.701869"
+            timestampString = "460314137.196859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "+notifyTextChangedInRange:replacementString:"
             landmarkType = "5">
          </BreakpointContent>
@@ -78,11 +78,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWNotifications.m"
-            timestampString = "458842698.304464"
+            timestampString = "460314137.196859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "+notifyFontSizeChanged:"
             landmarkType = "5">
          </BreakpointContent>
@@ -94,11 +94,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWNotifications.m"
-            timestampString = "458842699.482064"
+            timestampString = "460314137.196859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "+notifyFontFamilyChanged:"
             landmarkType = "5">
          </BreakpointContent>
@@ -110,11 +110,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWNotifications.m"
-            timestampString = "458842702.576023"
+            timestampString = "460314137.196859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "+notifyKeyReturnPressed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -126,11 +126,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWNotifications.m"
-            timestampString = "458842705.831918"
+            timestampString = "460314137.196859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "+notifyRemoveViewController:"
             landmarkType = "5">
          </BreakpointContent>
@@ -174,12 +174,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/ViewController.m"
-            timestampString = "459875489.447609"
+            timestampString = "460411753.907504"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "-actionAuto:"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "-actionCase:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -190,11 +190,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWMainTextView.m"
-            timestampString = "459854819.06485"
+            timestampString = "460366161.818793"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "553"
-            endingLineNumber = "553"
+            startingLineNumber = "585"
+            endingLineNumber = "585"
             landmarkName = "-makeCaseAction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -206,12 +206,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/ViewController.m"
-            timestampString = "459875489.447609"
+            timestampString = "460411753.907504"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "-actionAuto:"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "-actionCase:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -222,11 +222,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWMainTextView.m"
-            timestampString = "459806807.937263"
+            timestampString = "460314137.196859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "445"
-            endingLineNumber = "445"
+            startingLineNumber = "437"
+            endingLineNumber = "437"
             landmarkName = "-agdaGaveAction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -270,11 +270,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWInputViewController.m"
-            timestampString = "459423170.873683"
+            timestampString = "460206598.588497"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -285,28 +285,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Agda Writer/ViewController.m"
-            timestampString = "459875489.447609"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "405"
-            endingLineNumber = "405"
-            landmarkName = "-closeWindow"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWMainTextView.m"
-            timestampString = "459806807.937263"
+            timestampString = "460314137.196859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
             landmarkName = "-textView:shouldChangeTextInRange:replacementString:"
             landmarkType = "5">
          </BreakpointContent>
@@ -318,11 +302,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWMainTextView.m"
-            timestampString = "459854819.06485"
+            timestampString = "460366161.818793"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "537"
-            endingLineNumber = "537"
+            startingLineNumber = "569"
+            endingLineNumber = "569"
             landmarkName = "-allGoalsAction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -334,11 +318,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWMainTextView.m"
-            timestampString = "459854819.06485"
+            timestampString = "460366161.818793"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "520"
-            endingLineNumber = "520"
+            startingLineNumber = "552"
+            endingLineNumber = "552"
             landmarkName = "-allGoalsAction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -350,11 +334,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWMainTextView.m"
-            timestampString = "459854819.06485"
+            timestampString = "460366161.818793"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "490"
-            endingLineNumber = "490"
+            startingLineNumber = "524"
+            endingLineNumber = "524"
             landmarkName = "-allGoalsAction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -366,11 +350,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWMainTextView.m"
-            timestampString = "459806807.937263"
+            timestampString = "460314137.196859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
             landmarkName = "-rangeOfCurrentWord"
             landmarkType = "5">
          </BreakpointContent>
@@ -382,11 +366,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWMainTextView.m"
-            timestampString = "459806807.937263"
+            timestampString = "460314137.196859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
             landmarkName = "-rangeOfCurrentWord"
             landmarkType = "5">
          </BreakpointContent>
@@ -398,11 +382,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWMainTextView.m"
-            timestampString = "459806807.937263"
+            timestampString = "460314137.196859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
+            startingLineNumber = "318"
+            endingLineNumber = "318"
             landmarkName = "-rangeOfCurrentWord"
             landmarkType = "5">
          </BreakpointContent>
@@ -414,28 +398,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWMainTextView.m"
-            timestampString = "459806807.937263"
+            timestampString = "460314137.196859"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
+            startingLineNumber = "321"
+            endingLineNumber = "321"
             landmarkName = "-rangeOfCurrentWord"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Agda Writer/ViewController.m"
-            timestampString = "459875489.447609"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
-            landmarkName = "-actionNormalize:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -446,28 +414,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/AWAgdaActions.m"
-            timestampString = "459873178.79615"
+            timestampString = "460896431.746207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "+executeAction:sender:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Agda Writer/ViewController.m"
-            timestampString = "459875489.447609"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "376"
-            endingLineNumber = "376"
-            landmarkName = "-actionNormalize:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -510,13 +462,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/ViewController.m"
-            timestampString = "459875489.447609"
+            timestampString = "460411753.907504"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "416"
-            endingLineNumber = "416"
-            landmarkName = "-showNotImplementedAlert"
-            landmarkType = "5">
+            startingLineNumber = "430"
+            endingLineNumber = "430"
+            landmarkName = "@implementation ViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -542,11 +494,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Agda Writer/PreferencesGeneralController.m"
-            timestampString = "459812771.53656"
+            timestampString = "460300187.201044"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "-fillFontSizes"
             landmarkType = "5">
          </BreakpointContent>
@@ -589,13 +541,317 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Agda Writer/ViewController.m"
-            timestampString = "459801522.497584"
+            filePath = "Agda Writer/AWAgdaParser.m"
+            timestampString = "460237250.263625"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
+            landmarkName = "+goalAtIndex:textStorage:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/AWAgdaParser.m"
+            timestampString = "460120142.972031"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "+makeArrayOfGoalsWithSuggestions:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/AWMainTextView.m"
+            timestampString = "460323900.767215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "448"
+            endingLineNumber = "448"
+            landmarkName = "-agdaGaveAction:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/AWMainTextView.m"
+            timestampString = "460366161.818793"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "529"
+            endingLineNumber = "529"
+            landmarkName = "-allGoalsAction:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/AWAgdaParser.m"
+            timestampString = "460155141.770374"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "+makeArrayOfGoalsWithSuggestions:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/AWGoalsTableController.m"
+            timestampString = "460158722.693004"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "-tableViewSelectionDidChange:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/AWInputViewController.m"
+            timestampString = "460206598.588497"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "-controlTextDidEndEditing:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/AWInputViewController.m"
+            timestampString = "460206598.588497"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "-initWithInputType:global:rect:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/AWMainTextView.m"
+            timestampString = "460314137.196859"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "-selectedGoal"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/PreferencesGeneralController.m"
+            timestampString = "460301405.895125"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/PreferencesGeneralController.m"
+            timestampString = "460301615.790628"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "-control:textView:completions:forPartialWordRange:indexOfSelectedItem:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/AWStatusTextView.m"
+            timestampString = "460322256.634298"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "-agdaBuffer:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/AWAgdaActions.m"
+            timestampString = "460896431.746207"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "+executeAction:sender:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/AWAgdaParser.m"
+            timestampString = "460384353.742072"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
+            landmarkName = "+parseHighlighting:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/AWAgdaParser.m"
+            timestampString = "460385312.303608"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
+            landmarkName = "+parseHighlighting:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/AWMainTextView.m"
+            timestampString = "460386054.511897"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "651"
+            endingLineNumber = "651"
+            landmarkName = "-highlightCode:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/AWMainTextView.m"
+            timestampString = "460386180.56864"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "658"
+            endingLineNumber = "658"
+            landmarkName = "-highlightCode:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/ViewController.m"
+            timestampString = "460411753.907504"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "-actionGive:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/AWHighlighting.m"
+            timestampString = "460386361.347054"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "+highlightCodeAtRange:actionName:textView:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Agda Writer/AWColors.m"
+            timestampString = "460386420.988087"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "+highlightColorForType:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

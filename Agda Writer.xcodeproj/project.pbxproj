@@ -41,17 +41,16 @@
 		D534F8FA1B7383D80009D7B0 /* TODO List in Resources */ = {isa = PBXBuildFile; fileRef = D534F8F91B7383D80009D7B0 /* TODO List */; };
 		D536EEB31B63C35F00A2CBB9 /* PreferencesGeneralController.m in Sources */ = {isa = PBXBuildFile; fileRef = D536EEB21B63C35F00A2CBB9 /* PreferencesGeneralController.m */; };
 		D536EEB61B63C37700A2CBB9 /* PreferencesKeyBindingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D536EEB51B63C37700A2CBB9 /* PreferencesKeyBindingsController.m */; };
-		D536EEBC1B66910F00A2CBB9 /* computer7.png in Resources */ = {isa = PBXBuildFile; fileRef = D536EEB91B66910F00A2CBB9 /* computer7.png */; };
-		D536EEBD1B66910F00A2CBB9 /* keys20.png in Resources */ = {isa = PBXBuildFile; fileRef = D536EEBA1B66910F00A2CBB9 /* keys20.png */; };
-		D536EEBE1B66910F00A2CBB9 /* settings48.png in Resources */ = {isa = PBXBuildFile; fileRef = D536EEBB1B66910F00A2CBB9 /* settings48.png */; };
-		D536EEC51B66AB8400A2CBB9 /* close12.png in Resources */ = {isa = PBXBuildFile; fileRef = D536EEC31B66AB8400A2CBB9 /* close12.png */; };
-		D536EEC61B66AB8400A2CBB9 /* ok2.png in Resources */ = {isa = PBXBuildFile; fileRef = D536EEC41B66AB8400A2CBB9 /* ok2.png */; };
 		D538E5CA1B5EE57300B5455A /* AWInputWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D538E5C91B5EE57300B5455A /* AWInputWindow.m */; };
 		D538E5CD1B5EECA900B5455A /* MAAttachedWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D538E5CC1B5EECA900B5455A /* MAAttachedWindow.m */; };
 		D538E5D11B5EF13300B5455A /* AWInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D538E5CF1B5EF13300B5455A /* AWInputViewController.m */; };
 		D538E5D21B5EF13300B5455A /* AWInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D538E5D01B5EF13300B5455A /* AWInputViewController.xib */; };
 		D538E5D41B5FD0F300B5455A /* Key Bindings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D538E5D31B5FD0F300B5455A /* Key Bindings.plist */; };
 		D5962D7F1B6230D500E9EA4A /* UnicodeTransformator.m in Sources */ = {isa = PBXBuildFile; fileRef = D5962D7E1B6230D500E9EA4A /* UnicodeTransformator.m */; };
+		D5B327EF1B78B65E00EDFC26 /* check-mark.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B327EB1B78B65E00EDFC26 /* check-mark.png */; };
+		D5B327F01B78B65E00EDFC26 /* x-mark.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B327EC1B78B65E00EDFC26 /* x-mark.png */; };
+		D5B327F11B78B65E00EDFC26 /* settings-keybindings.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B327ED1B78B65E00EDFC26 /* settings-keybindings.png */; };
+		D5B327F21B78B65E00EDFC26 /* settings-general.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B327EE1B78B65E00EDFC26 /* settings-general.png */; };
 		D5B47D391B67FE19006BA849 /* MarkerLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B47D341B67FE19006BA849 /* MarkerLineNumberView.m */; };
 		D5B47D3A1B67FE19006BA849 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B47D361B67FE19006BA849 /* NoodleLineNumberMarker.m */; };
 		D5B47D3B1B67FE19006BA849 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B47D381B67FE19006BA849 /* NoodleLineNumberView.m */; };
@@ -128,11 +127,6 @@
 		D536EEB21B63C35F00A2CBB9 /* PreferencesGeneralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesGeneralController.m; sourceTree = "<group>"; };
 		D536EEB41B63C37700A2CBB9 /* PreferencesKeyBindingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesKeyBindingsController.h; sourceTree = "<group>"; };
 		D536EEB51B63C37700A2CBB9 /* PreferencesKeyBindingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesKeyBindingsController.m; sourceTree = "<group>"; };
-		D536EEB91B66910F00A2CBB9 /* computer7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = computer7.png; sourceTree = "<group>"; };
-		D536EEBA1B66910F00A2CBB9 /* keys20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keys20.png; sourceTree = "<group>"; };
-		D536EEBB1B66910F00A2CBB9 /* settings48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings48.png; sourceTree = "<group>"; };
-		D536EEC31B66AB8400A2CBB9 /* close12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close12.png; sourceTree = "<group>"; };
-		D536EEC41B66AB8400A2CBB9 /* ok2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok2.png; sourceTree = "<group>"; };
 		D538E5C81B5EE57300B5455A /* AWInputWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWInputWindow.h; sourceTree = "<group>"; };
 		D538E5C91B5EE57300B5455A /* AWInputWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWInputWindow.m; sourceTree = "<group>"; };
 		D538E5CB1B5EECA900B5455A /* MAAttachedWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAAttachedWindow.h; sourceTree = "<group>"; };
@@ -143,6 +137,10 @@
 		D538E5D31B5FD0F300B5455A /* Key Bindings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Key Bindings.plist"; sourceTree = "<group>"; };
 		D5962D7D1B6230D500E9EA4A /* UnicodeTransformator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnicodeTransformator.h; sourceTree = "<group>"; };
 		D5962D7E1B6230D500E9EA4A /* UnicodeTransformator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnicodeTransformator.m; sourceTree = "<group>"; };
+		D5B327EB1B78B65E00EDFC26 /* check-mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check-mark.png"; sourceTree = "<group>"; };
+		D5B327EC1B78B65E00EDFC26 /* x-mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-mark.png"; sourceTree = "<group>"; };
+		D5B327ED1B78B65E00EDFC26 /* settings-keybindings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-keybindings.png"; sourceTree = "<group>"; };
+		D5B327EE1B78B65E00EDFC26 /* settings-general.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-general.png"; sourceTree = "<group>"; };
 		D5B47D331B67FE19006BA849 /* MarkerLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerLineNumberView.h; sourceTree = "<group>"; };
 		D5B47D341B67FE19006BA849 /* MarkerLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerLineNumberView.m; sourceTree = "<group>"; };
 		D5B47D351B67FE19006BA849 /* NoodleLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberMarker.h; sourceTree = "<group>"; };
@@ -389,11 +387,10 @@
 		D531F16C1B57E5F7002E7E0F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				D536EEC31B66AB8400A2CBB9 /* close12.png */,
-				D536EEC41B66AB8400A2CBB9 /* ok2.png */,
-				D536EEB91B66910F00A2CBB9 /* computer7.png */,
-				D536EEBA1B66910F00A2CBB9 /* keys20.png */,
-				D536EEBB1B66910F00A2CBB9 /* settings48.png */,
+				D5B327EB1B78B65E00EDFC26 /* check-mark.png */,
+				D5B327EC1B78B65E00EDFC26 /* x-mark.png */,
+				D5B327ED1B78B65E00EDFC26 /* settings-keybindings.png */,
+				D5B327EE1B78B65E00EDFC26 /* settings-general.png */,
 				D531F16D1B57E60B002E7E0F /* failed_default.png */,
 				D531F16E1B57E60B002E7E0F /* load_failed.png */,
 				D531F16F1B57E60B002E7E0F /* successful_default.png */,
@@ -507,19 +504,18 @@
 			files = (
 				D538E5D21B5EF13300B5455A /* AWInputViewController.xib in Resources */,
 				D538E5D41B5FD0F300B5455A /* Key Bindings.plist in Resources */,
+				D5B327EF1B78B65E00EDFC26 /* check-mark.png in Resources */,
+				D5B327F21B78B65E00EDFC26 /* settings-general.png in Resources */,
 				D531F1781B5852EE002E7E0F /* defaults.plist in Resources */,
 				D531F10D1B55E580002E7E0F /* Images.xcassets in Resources */,
-				D536EEBD1B66910F00A2CBB9 /* keys20.png in Resources */,
+				D5B327F01B78B65E00EDFC26 /* x-mark.png in Resources */,
 				D531F1721B57E60B002E7E0F /* failed_default.png in Resources */,
 				D531F1731B57E60B002E7E0F /* load_failed.png in Resources */,
-				D536EEBC1B66910F00A2CBB9 /* computer7.png in Resources */,
-				D536EEC61B66AB8400A2CBB9 /* ok2.png in Resources */,
 				D531F1751B57E60B002E7E0F /* load_successful.png in Resources */,
+				D5B327F11B78B65E00EDFC26 /* settings-keybindings.png in Resources */,
 				D534F8FA1B7383D80009D7B0 /* TODO List in Resources */,
-				D536EEC51B66AB8400A2CBB9 /* close12.png in Resources */,
 				D531F1101B55E580002E7E0F /* Main.storyboard in Resources */,
 				D531F1741B57E60B002E7E0F /* successful_default.png in Resources */,
-				D536EEBE1B66910F00A2CBB9 /* settings48.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

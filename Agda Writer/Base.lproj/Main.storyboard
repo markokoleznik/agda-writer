@@ -709,8 +709,8 @@
             <objects>
                 <tabViewController title="Preferences" selectedTabViewItemIndex="0" tabStyle="toolbar" canPropagateSelectedChildViewControllerTitle="NO" id="ReN-Yh-ccc" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem identifier="" image="settings48" id="7cB-XY-G36"/>
-                        <tabViewItem identifier="" image="keys20" id="14m-F7-FdD"/>
+                        <tabViewItem identifier="" image="settings-general" id="7cB-XY-G36"/>
+                        <tabViewItem identifier="" image="settings-keybindings" id="14m-F7-FdD"/>
                         <tabViewItem id="AQg-T4-MDC"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="oI2-5H-gov">
@@ -825,11 +825,11 @@
                             </button>
                             <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0zH-Wc-KBH">
                                 <rect key="frame" x="486" y="251" width="24" height="24"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="ok2" id="shD-rx-feY"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="check-mark" id="shD-rx-feY"/>
                             </imageView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oGV-nR-wD5">
                                 <rect key="frame" x="486" y="251" width="24" height="24"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="close12" id="EuX-z6-qzh"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="x-mark" id="EuX-z6-qzh"/>
                             </imageView>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ieq-mv-J8i">
                                 <rect key="frame" x="329" y="392" width="334" height="26"/>
@@ -1319,9 +1319,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="close12" width="24" height="24"/>
-        <image name="keys20" width="173.88679504394531" height="173.88679504394531"/>
-        <image name="ok2" width="24" height="24"/>
-        <image name="settings48" width="768" height="768"/>
+        <image name="check-mark" width="24" height="24"/>
+        <image name="settings-general" width="256" height="256"/>
+        <image name="settings-keybindings" width="256" height="256"/>
+        <image name="x-mark" width="24" height="24"/>
     </resources>
 </document>
