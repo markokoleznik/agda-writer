@@ -19,6 +19,7 @@
 @implementation PreferencesGeneralController {
     NSFont * selectedFont;
     AWPopoverViewController * _popoverViewController;
+    NSPopover * _popover;
     
 }
 
@@ -44,7 +45,6 @@
     self.delayForAutocompleteTextField.delegate = self;
     
     _popover = [[NSPopover alloc] init];
-    _popover.delegate = self;
     _popoverViewController = [[AWPopoverViewController alloc] initWithNibName:@"AWPopoverViewController" bundle:nil];
     [_popover setBehavior:NSPopoverBehaviorTransient];
     [_popover setContentViewController:_popoverViewController];
@@ -200,10 +200,6 @@
     [_popoverViewController.contentTextField setStringValue:[AWHelper helpForExternalLibraries]];
 }
 
--(void)popoverDidShow:(NSNotification *)notification
-{
-    NSLog(@"Popover did show");
-}
 
 
 @end

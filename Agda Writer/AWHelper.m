@@ -110,7 +110,7 @@
 }
 
 + (NSString *) helpForExternalLibraries {
-    return @"You should put full path, ~ stands for relative to current work path.";
+    return @"Explanation: Libraries, which you can import when loading a file, for example stdlib. If you want to use multiple libraries, separate them with comma (,)\n\nUsage: You should put full path, ~ stands for relative to current work path.\n\nExample: /Users/username/AgdaLibs";
 }
 
 @end

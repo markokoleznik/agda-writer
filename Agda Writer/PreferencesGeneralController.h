@@ -8,9 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PreferencesGeneralController : NSViewController <NSTextFieldDelegate, NSPopoverDelegate> {
-    NSPopover * _popover;
-}
+@interface PreferencesGeneralController : NSViewController <NSTextFieldDelegate>
 @property (weak) IBOutlet NSTextField *agdaPathTextField;
 @property (weak) IBOutlet NSImageView *okImage;
 @property (weak) IBOutlet NSImageView *closeImage;
