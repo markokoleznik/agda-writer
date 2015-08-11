@@ -271,7 +271,10 @@
             [partialAgdaResponse appendString:avaliableString];
             [AWNotifications notifyAgdaReplied:avaliableString sender:self.activeViewController];
             NSArray * actions = [AWAgdaParser makeArrayOfActionsAndDeleteActionFromString:partialAgdaResponse];
-            [AWNotifications notifyExecuteActions:actions sender:self.activeViewController];
+            if (actions.count > 0) {
+                [AWNotifications notifyExecuteActions:actions sender:self.activeViewController];
+            }
+            
         }
         
         

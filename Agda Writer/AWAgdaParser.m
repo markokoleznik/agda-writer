@@ -151,18 +151,26 @@
     NSMutableArray * actionsWithDictionaries = [[NSMutableArray alloc] init];
     NSMutableArray * actions = [[NSMutableArray alloc] init];
     [reply replaceOccurrencesOfString:@"Agda2> " withString:@"" options:NSLiteralSearch range:NSMakeRange(0, reply.length)];
-    
+    BOOL insideQuotes = NO;
     int numberOfLeftParenthesis = 0;
     int start = 0;
     int i = 0;
     while (i < reply.length) {
-        if ([reply characterAtIndex:i] == '(') {
+        if ([reply characterAtIndex:i] == '"') {
+            if (insideQuotes) {
+                insideQuotes = NO;
+            }
+            else {
+                insideQuotes = YES;
+            }
+        }
+        if ([reply characterAtIndex:i] == '(' && !insideQuotes) {
             if (numberOfLeftParenthesis == 0) {
                 start = i;
             }
             numberOfLeftParenthesis ++;
         }
-        else if ([reply characterAtIndex:i] == ')') {
+        else if ([reply characterAtIndex:i] == ')' && !insideQuotes) {
             numberOfLeftParenthesis --;
             if (numberOfLeftParenthesis == 0) {
                 // End parsing
