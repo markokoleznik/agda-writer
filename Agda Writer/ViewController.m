@@ -404,6 +404,10 @@
         default:
             break;
     }
+    
+    // append input to status window
+    [self.statusTextView.textStorage.mutableString appendFormat:@"Input:\n%@\n\n",content];
+    
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
     
