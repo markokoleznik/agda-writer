@@ -44,7 +44,6 @@
 
 + (void) setUserDefaults {
     NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-    [ud removeObjectForKey:@"KeyBindings"];
     NSDictionary * keyBindings = [ud objectForKey:@"KeyBindings"];
     if (!keyBindings) {
         NSURL * keyBindingsUrl = [[NSBundle mainBundle] URLForResource:@"Key Bindings" withExtension:@"plist"];

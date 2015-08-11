@@ -336,6 +336,18 @@
 	<string>₂</string>
 	<key>_3</key>
 	<string>₃</string>
+	<key>_4</key>
+	<string>₄</string>
+	<key>_5</key>
+	<string>₅</string>
+	<key>_6</key>
+	<string>₆</string>
+	<key>_7</key>
+	<string>₇</string>
+	<key>_8</key>
+	<string>₈</string>
+	<key>_9</key>
+	<string>₉</string>
 	<key>^0</key>
 	<string>⁰</string>
 	<key>^1</key>
@@ -344,5 +356,17 @@
 	<string>²</string>
 	<key>^3</key>
 	<string>³</string>
+	<key>^4</key>
+	<string>⁴</string>
+	<key>^5</key>
+	<string>⁵</string>
+	<key>^6</key>
+	<string>⁶</string>
+	<key>^7</key>
+	<string>⁷</string>
+	<key>^8</key>
+	<string>⁸</string>
+	<key>^9</key>
+	<string>⁹</string>
 </dict>
 </plist>

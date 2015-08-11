@@ -331,6 +331,21 @@
 
 - (BOOL)textView:(NSTextView *)textView shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(NSString *)replacementString
 {
+    if (affectedCharRange.location > 0) {
+        NSRange newRange = NSMakeRange(affectedCharRange.location - 1, 1);
+        NSString * substring = [self.string substringWithRange:newRange];
+        if ([substring isEqualToString:@"_"] || [substring isEqualToString:@"^"]) {
+            // underscore action
+            substring = [substring stringByAppendingString:replacementString];
+            if (substring.length == 2) {
+                BOOL foundAction = [self transformToSubscriptCharacter:substring atRange:newRange];
+                if (foundAction) {
+                    return NO;
+                }
+            }
+            
+        }
+    }
 
     // Find how many spaces are in previous line.
 //    if ([replacementString isEqualToString:@"\n"]) {
@@ -365,7 +380,20 @@
     return YES;
 }
 
-
+- (BOOL) transformToSubscriptCharacter:(NSString *)action atRange:(NSRange)range
+{
+    NSDictionary * keyBindings = [AWHelper keyBindings];
+    NSString * replacementString = [keyBindings objectForKey:action];
+    if (replacementString) {
+        BOOL shouldReplace = [self shouldChangeTextInRange:range replacementString:replacementString];
+        if (shouldReplace) {
+            [self replaceCharactersInRange:range withString:replacementString];
+            return YES;
+        }
+        
+    }
+    return NO;
+}
 
 
 
