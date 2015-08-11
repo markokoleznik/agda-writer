@@ -16,6 +16,8 @@
 	<string>⟷</string>
 	<key>&lt;-</key>
 	<string>←</string>
+	<key>\bn</key>
+	<string>ℕ</string>
 	<key>\le</key>
 	<string>≤</string>
 	<key>\ge</key>
