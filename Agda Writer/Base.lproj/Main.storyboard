@@ -383,25 +383,25 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="JTK-vK-cua"/>
-                                        <menuItem title="Give" keyEquivalent="g" id="lLW-gc-qjQ">
+                                        <menuItem title="Give" tag="1" keyEquivalent="g" id="lLW-gc-qjQ">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
                                                 <action selector="actionGive:" target="Ady-hI-5gd" id="2E6-F7-9l7"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Refine" keyEquivalent="r" id="q8X-PP-Ve2">
+                                        <menuItem title="Refine" tag="1" keyEquivalent="r" id="q8X-PP-Ve2">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
                                                 <action selector="actionRefine:" target="Ady-hI-5gd" id="nLC-VD-e44"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Auto" keyEquivalent="a" id="dYT-0i-Dg4">
+                                        <menuItem title="Auto" tag="1" keyEquivalent="a" id="dYT-0i-Dg4">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
                                                 <action selector="actionAuto:" target="Ady-hI-5gd" id="iO0-YE-Mn2"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Case" keyEquivalent="c" id="cfY-Q7-cGz">
+                                        <menuItem title="Case" tag="1" keyEquivalent="c" id="cfY-Q7-cGz">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
                                                 <action selector="actionCase:" target="Ady-hI-5gd" id="ptk-cq-EgF"/>
@@ -416,25 +416,25 @@
                                         </menuItem>
                                         <menuItem title="Goal" id="fAI-zb-vhL">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Goal" id="r48-xq-7hn">
+                                            <menu key="submenu" title="Goal" autoenablesItems="NO" id="r48-xq-7hn">
                                                 <items>
                                                     <menuItem title="Type" id="4GX-Pb-YPE">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <menu key="submenu" title="Type" id="4gn-fM-D4D">
                                                             <items>
-                                                                <menuItem title="Simplified" id="SUW-Ix-wxF">
+                                                                <menuItem title="Simplified" tag="1" id="SUW-Ix-wxF">
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="actionGoalTypeSimplified:" target="Ady-hI-5gd" id="jMu-yC-b8H"/>
                                                                     </connections>
                                                                 </menuItem>
-                                                                <menuItem title="Normalised" id="O4d-0k-XHN">
+                                                                <menuItem title="Normalised" tag="1" id="O4d-0k-XHN">
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="actionGoalTypeNormalised:" target="Ady-hI-5gd" id="1GN-8L-28T"/>
                                                                     </connections>
                                                                 </menuItem>
-                                                                <menuItem title="Instantiated" id="hVJ-nM-UNX">
+                                                                <menuItem title="Instantiated" tag="1" id="hVJ-nM-UNX">
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="actionGoalTypeInstantiated:" target="Ady-hI-5gd" id="G5I-Tf-gvt"/>
@@ -447,19 +447,19 @@
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <menu key="submenu" title="Type and Context" id="4w5-PM-MMd">
                                                             <items>
-                                                                <menuItem title="Simplified" id="KKY-ej-mUM">
+                                                                <menuItem title="Simplified" tag="1" id="KKY-ej-mUM">
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="actionGoalTypeAndContextSimplified:" target="Ady-hI-5gd" id="x9p-Q5-Cwl"/>
                                                                     </connections>
                                                                 </menuItem>
-                                                                <menuItem title="Normalised" id="oeY-Qr-g2C">
+                                                                <menuItem title="Normalised" tag="1" id="oeY-Qr-g2C">
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="actionGoalTypeAndContextNormalised:" target="Ady-hI-5gd" id="KVp-Cp-5Vh"/>
                                                                     </connections>
                                                                 </menuItem>
-                                                                <menuItem title="Instantiated" id="MEk-1F-Ozo">
+                                                                <menuItem title="Instantiated" tag="1" id="MEk-1F-Ozo">
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="actionGoalTypeAndContextInstantiated:" target="Ady-hI-5gd" id="YC2-Bc-n97"/>
@@ -472,19 +472,19 @@
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <menu key="submenu" title="Type and Inffered Context" id="lyZ-gP-xFI">
                                                             <items>
-                                                                <menuItem title="Simplified" id="KpR-ct-ZuR">
+                                                                <menuItem title="Simplified" tag="1" id="KpR-ct-ZuR">
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="actionGoalTypeAndInfferedContextSimplified:" target="Ady-hI-5gd" id="jH9-mv-M7f"/>
                                                                     </connections>
                                                                 </menuItem>
-                                                                <menuItem title="Normalised" id="Zmz-ok-j5n">
+                                                                <menuItem title="Normalised" tag="1" id="Zmz-ok-j5n">
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="actionGoalTypeAndInfferedContextNormalised:" target="Ady-hI-5gd" id="LoC-hy-C39"/>
                                                                     </connections>
                                                                 </menuItem>
-                                                                <menuItem title="Instantiated" id="ob2-UG-HfB">
+                                                                <menuItem title="Instantiated" tag="1" id="ob2-UG-HfB">
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="actionGoalTypeAndInfferedContextInstantiated:" target="Ady-hI-5gd" id="Wi2-c3-aKB"/>
@@ -550,19 +550,19 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Infer" id="sVD-8h-9Nb">
                                                 <items>
-                                                    <menuItem title="Simplified" id="7zM-kB-y8N">
+                                                    <menuItem title="Simplified" tag="1" id="7zM-kB-y8N">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="actionInferSimplified:" target="Ady-hI-5gd" id="Deo-c7-0ig"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Normalised" id="qyI-I5-cKh">
+                                                    <menuItem title="Normalised" tag="1" id="qyI-I5-cKh">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="actionInferNormalised:" target="Ady-hI-5gd" id="eKs-pe-Wd3"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Instantiated" id="Adn-Li-i1I">
+                                                    <menuItem title="Instantiated" tag="1" id="Adn-Li-i1I">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="actionInferInstantiated:" target="Ady-hI-5gd" id="MbZ-V2-tMj"/>
@@ -593,19 +593,19 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Context" id="37T-eL-9Tw">
                                                 <items>
-                                                    <menuItem title="Simplified" id="nLQ-y9-fsn">
+                                                    <menuItem title="Simplified" tag="1" id="nLQ-y9-fsn">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="actionContextSimplified:" target="Ady-hI-5gd" id="NB0-Jx-waf"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Normalised" id="XkF-EE-FaO">
+                                                    <menuItem title="Normalised" tag="1" id="XkF-EE-FaO">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="actionContextNormalised:" target="Ady-hI-5gd" id="Y12-pQ-3wp"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Instantiated" id="3UY-Mo-9iy">
+                                                    <menuItem title="Instantiated" tag="1" id="3UY-Mo-9iy">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="actionContextInstantiated:" target="Ady-hI-5gd" id="bVY-K5-D6e"/>

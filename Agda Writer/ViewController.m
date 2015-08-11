@@ -558,4 +558,11 @@
     }
     
 }
+
+-(BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+    if (menuItem.tag == 1 && !self.mainTextView.selectedGoal) {
+        return NO;
+    }
+    return YES;
+}
 @end
