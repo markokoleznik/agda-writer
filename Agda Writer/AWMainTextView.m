@@ -144,9 +144,12 @@
         NSDictionary * keyBindings = [AWHelper keyBindings];
         NSString * replacementString = [keyBindings objectForKey:currentWord];
         if (replacementString) {
+            
             BOOL shouldReplace = [self shouldChangeTextInRange:rangeOfCurrentWord replacementString:replacementString];
             if (shouldReplace) {
+                [self setTypingAttributes:@{NSFontAttributeName : [AWHelper defaultFontInAgda]}];
                 [self replaceCharactersInRange:rangeOfCurrentWord withString:replacementString];
+                
             }
             
         }
@@ -244,7 +247,8 @@
         return @[];
     }
     // Don't harass user if he writes '='
-    if ([partialWord isEqualToString:@"="]) {
+    if ([partialWord isEqualToString:@"="] ||
+        [partialWord isEqualToString:@"_"]) {
         return @[];
     }
     if (charRange.location - 1 > 0 && [self.string characterAtIndex:charRange.location - 1] == '\\') {
