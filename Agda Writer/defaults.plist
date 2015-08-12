@@ -10,6 +10,6 @@
 		<integer>14</integer>
 	</dict>
 	<key>agdaLaunchPath</key>
-	<string></string>
+	<string>~/.cabal/bin/agda</string>
 </dict>
 </plist>
