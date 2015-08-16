@@ -74,29 +74,6 @@
             </objects>
             <point key="canvasLocation" x="731" y="-673"/>
         </scene>
-        <!--Other-->
-        <scene sceneID="wed-pv-zhB">
-            <objects>
-                <viewController title="Other" id="Bje-fx-GFA" sceneMemberID="viewController">
-                    <view key="view" id="KIm-9j-1mt">
-                        <rect key="frame" x="0.0" y="0.0" width="827" height="436"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kcr-ci-9Lx">
-                                <rect key="frame" x="346" y="263" width="38" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="flG-BY-jnT">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                        </subviews>
-                    </view>
-                </viewController>
-                <customObject id="bMz-o9-qmS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1554.5" y="456"/>
-        </scene>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
             <objects>
@@ -711,7 +688,6 @@
                     <tabViewItems>
                         <tabViewItem identifier="" image="settings-general" id="7cB-XY-G36"/>
                         <tabViewItem identifier="" image="settings-keybindings" id="14m-F7-FdD"/>
-                        <tabViewItem id="AQg-T4-MDC"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="oI2-5H-gov">
                         <rect key="frame" x="0.0" y="-154" width="254" height="159"/>
@@ -722,7 +698,6 @@
                     <connections>
                         <segue destination="izb-Gj-tQA" kind="relationship" relationship="tabItems" id="ww2-OX-nsn"/>
                         <segue destination="aRD-IB-1Sm" kind="relationship" relationship="tabItems" id="oec-HH-s6P"/>
-                        <segue destination="Bje-fx-GFA" kind="relationship" relationship="tabItems" id="Awp-Cp-dHb"/>
                     </connections>
                 </tabViewController>
                 <customObject id="Vr2-fl-IKn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

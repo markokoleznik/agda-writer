@@ -76,6 +76,7 @@
 
 - (IBAction)actionQuitAndRestartAgda:(NSMenuItem *)sender {
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator clearPartialResponse];
     [appDelegate.communicator quitAndRestartConnectionToAgda];
     [self.mainTextView clearHighligting];
 }
@@ -300,52 +301,6 @@
 }
 
 
-
-
-
-
-
-
-//- (IBAction)actionGoalType:(NSMenuItem *)sender {
-//    NSString * fullPath = [document filePath].path;
-//    [document saveDocument:self];
-//    AgdaGoal * goal = self.mainTextView.selectedGoal;
-//    NSString * message = [AWAgdaActions actionGoalTypeWithFilePath:fullPath goalIndex:goal.agdaGoalIndex];
-//    self.mainTextView.lastSelectedGoal = goal;
-//    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
-//    [appDelegate.communicator writeDataToAgda:message sender:self];
-//}
-//
-//- (IBAction)actionContextEnvironment:(NSMenuItem *)sender {
-//    NSString * fullPath = [document filePath].path;
-//    [document saveDocument:self];
-//    AgdaGoal * goal = self.mainTextView.selectedGoal;
-//    NSString * message = [AWAgdaActions actionContextWithFilePath:fullPath goalIndex:goal.agdaGoalIndex];
-//    self.mainTextView.lastSelectedGoal = goal;
-//    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
-//    [appDelegate.communicator writeDataToAgda:message sender:self];
-//}
-//
-//- (IBAction)actionGoalTypeAndContext:(NSMenuItem *)sender {
-//    NSString * fullPath = [document filePath].path;
-//    [document saveDocument:self];
-//    AgdaGoal * goal = self.mainTextView.selectedGoal;
-//    NSString * message = [AWAgdaActions actionGoalTypeAndContextWithFilePath:fullPath goalIndex:goal.agdaGoalIndex];
-//    self.mainTextView.lastSelectedGoal = goal;
-//    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
-//    [appDelegate.communicator writeDataToAgda:message sender:self];
-//}
-//
-//- (IBAction)actionGoalTypeAndInferredType:(NSMenuItem *)sender {
-//    [document saveDocument:self];
-//    NSString * fullPath = [document filePath].path;
-//    AgdaGoal * goal = self.mainTextView.selectedGoal;
-//    NSString * message = [AWAgdaActions actionGoalTypeAndInferredTypeWithFilePath:fullPath goalIndex:goal.agdaGoalIndex content:goal.content];
-//    self.mainTextView.lastSelectedGoal = goal;
-//    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
-//    [appDelegate.communicator writeDataToAgda:message sender:self];
-//}
-
 - (IBAction)actionComputeNormalForm:(NSMenuItem *)sender {
     [self openInputViewWithType:AWInputViewTypeComputeNormalForm normalisationLevel:AWNormalisationLevelNone];
 }
@@ -405,8 +360,9 @@
             break;
     }
     
+    
     // append input to status window
-    [self.statusTextView.textStorage.mutableString appendFormat:@"Input:\n%@\n\n",content];
+    [self.statusTextView.textStorage.mutableString appendFormat:@"Input:\n%@\n",content];
     
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
