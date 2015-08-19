@@ -404,7 +404,21 @@
     }
     return NO;
 }
-
+-(NSRange)textView:(NSTextView *)textView willChangeSelectionFromCharacterRange:(NSRange)oldSelectedCharRange toCharacterRange:(NSRange)newSelectedCharRange {
+    
+    // Find if user is inside of a goal
+    AgdaGoal * goal = self.selectedGoal;
+    if (newSelectedCharRange.length == 0 && goal) {
+        NSLog(@"User is inside of a goal.");
+        [self.mainTextViewDelegate highlightSelectedGoalAtRow:goal.goalIndex];
+    }
+    if (!goal) {
+        [self.mainTextViewDelegate highlightSelectedGoalAtRow:-1];
+    }
+    
+    
+    return newSelectedCharRange;
+}
 
 
 -(BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
@@ -712,10 +726,6 @@
 {
     [self.layoutManager addTemporaryAttributes:[NSDictionary dictionaryWithObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName] forCharacterRange:NSMakeRange(0, self.string.length)];
 }
-
-
-
-
 
 
 -(void)dealloc

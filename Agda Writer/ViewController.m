@@ -30,6 +30,7 @@
     self.mainTextView.parentViewController = self;
     self.goalsTableController.parentViewController = self;
     self.statusTextView.parentViewController = self;
+    self.mainTextView.mainTextViewDelegate = self;
     
     self.lineNumberView = [[MarkerLineNumberView alloc] initWithScrollView:self.mainScrollView];
     [self.mainScrollView setVerticalRulerView:self.lineNumberView];
@@ -520,5 +521,14 @@
         return NO;
     }
     return YES;
+}
+
+-(void)highlightSelectedGoalAtRow:(NSInteger)row
+{
+    if (row == -1) {
+        [self.goalsTableController.goalsTable deselectAll:self];
+    }
+    NSIndexSet * indexSet = [NSIndexSet indexSetWithIndex:row];
+    [self.goalsTableController.goalsTable selectRowIndexes:indexSet byExtendingSelection:NO];
 }
 @end

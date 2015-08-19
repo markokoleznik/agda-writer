@@ -5,6 +5,88 @@
     </dependencies>
     <scenes>
         <!--Window Controller-->
+        <scene sceneID="833-7k-kaB">
+            <objects>
+                <windowController id="WYd-BO-iMx" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="RN3-pO-Be8">
+                        <windowStyleMask key="styleMask" titled="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="142"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                <color key="value" red="0.9960784912109375" green="0.9960784912109375" blue="0.99215692281723022" alpha="1" colorSpace="deviceRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </window>
+                    <connections>
+                        <segue destination="QZl-jG-1p1" kind="relationship" relationship="window.shadowedContentViewController" id="W2G-hb-bbP"/>
+                    </connections>
+                </windowController>
+                <customObject id="WQe-pr-0Zl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="73" y="-1254"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="OI6-Lp-Z83">
+            <objects>
+                <viewController title="About" id="QZl-jG-1p1" customClass="AWAboutViewController" sceneMemberID="viewController">
+                    <view key="view" id="3Ir-4V-PcP">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="176"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ixD-Gv-Vco">
+                                <rect key="frame" x="30" y="39" width="98" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="98" id="5G0-Qd-stp"/>
+                                    <constraint firstAttribute="height" constant="99" id="wMh-fc-n6N"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="icon_128x128" id="C4e-jd-Naw"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vam-Cp-GZd">
+                                <rect key="frame" x="161" y="112" width="178" height="44"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Agda Writer" id="xHT-bp-tsa">
+                                    <font key="font" size="36" name="HelveticaNeue-Thin"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sb0-yv-3lE">
+                                <rect key="frame" x="161" y="97" width="73" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Version 1.0" id="khh-gs-5UG">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w08-qu-c51">
+                                <rect key="frame" x="161" y="0.0" width="292" height="20"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Includes MAAtachedWindow code by Matt Gemmell." id="Kf5-A7-NnC">
+                                    <font key="font" metaFont="system" size="10"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="ixD-Gv-Vco" secondAttribute="centerY" constant="0.5" id="Fvn-P6-RwZ"/>
+                            <constraint firstItem="ixD-Gv-Vco" firstAttribute="leading" secondItem="3Ir-4V-PcP" secondAttribute="leading" constant="30" id="GkI-pI-sPk"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                <color key="value" red="0.99215692281723022" green="0.9960784912109375" blue="0.9960784912109375" alpha="1" colorSpace="deviceRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <connections>
+                        <outlet property="attributionForMattGemmell" destination="w08-qu-c51" id="wOn-Rb-JK5"/>
+                    </connections>
+                </viewController>
+                <customObject id="8md-h1-QuB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="781" y="-1262"/>
+        </scene>
+        <!--Window Controller-->
         <scene sceneID="q3W-2j-nct">
             <objects>
                 <windowController id="Uur-53-DrY" sceneMemberID="viewController">
@@ -88,6 +170,7 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
+                                                <segue destination="WYd-BO-iMx" kind="modal" id="un5-2P-Znz"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
@@ -1209,7 +1292,7 @@
                                                                     </subviews>
                                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                 </clipView>
-                                                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="anT-Q0-bnr">
+                                                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.0019218449711723255" horizontal="YES" id="anT-Q0-bnr">
                                                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
@@ -1318,6 +1401,7 @@
     </scenes>
     <resources>
         <image name="check-mark" width="24" height="24"/>
+        <image name="icon_128x128" width="128" height="128"/>
         <image name="settings-general" width="64" height="64"/>
         <image name="settings-keybindings" width="64" height="64"/>
         <image name="x-mark" width="24" height="24"/>

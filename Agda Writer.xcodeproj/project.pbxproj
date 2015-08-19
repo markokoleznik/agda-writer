@@ -24,7 +24,6 @@
 		D531F13E1B57DFA5002E7E0F /* AWHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F13C1B57DFA5002E7E0F /* AWHelper.m */; };
 		D531F1431B57E001002E7E0F /* AWAgdaBufferWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1421B57E001002E7E0F /* AWAgdaBufferWindow.m */; };
 		D531F1511B57E548002E7E0F /* AWMainSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1501B57E548002E7E0F /* AWMainSplitView.m */; };
-		D531F1581B57E555002E7E0F /* AWLineNumbersTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1531B57E555002E7E0F /* AWLineNumbersTextView.m */; };
 		D531F1591B57E555002E7E0F /* AWMainTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1551B57E555002E7E0F /* AWMainTextView.m */; };
 		D531F15A1B57E555002E7E0F /* CustomTokenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1571B57E555002E7E0F /* CustomTokenCell.m */; };
 		D531F15F1B57E564002E7E0F /* AWContainerOutputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F15C1B57E564002E7E0F /* AWContainerOutputTextView.m */; };
@@ -56,6 +55,8 @@
 		D5B47D391B67FE19006BA849 /* MarkerLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B47D341B67FE19006BA849 /* MarkerLineNumberView.m */; };
 		D5B47D3A1B67FE19006BA849 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B47D361B67FE19006BA849 /* NoodleLineNumberMarker.m */; };
 		D5B47D3B1B67FE19006BA849 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B47D381B67FE19006BA849 /* NoodleLineNumberView.m */; };
+		D5ECB1D21B84EC8D0099CE5C /* icon_128x128.png in Resources */ = {isa = PBXBuildFile; fileRef = D5ECB1D11B84EC8D0099CE5C /* icon_128x128.png */; };
+		D5ECB1D51B84ED240099CE5C /* AWAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5ECB1D41B84ED240099CE5C /* AWAboutViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,8 +104,6 @@
 		D531F1421B57E001002E7E0F /* AWAgdaBufferWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWAgdaBufferWindow.m; sourceTree = "<group>"; };
 		D531F14F1B57E548002E7E0F /* AWMainSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWMainSplitView.h; sourceTree = "<group>"; };
 		D531F1501B57E548002E7E0F /* AWMainSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWMainSplitView.m; sourceTree = "<group>"; };
-		D531F1521B57E555002E7E0F /* AWLineNumbersTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWLineNumbersTextView.h; sourceTree = "<group>"; };
-		D531F1531B57E555002E7E0F /* AWLineNumbersTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWLineNumbersTextView.m; sourceTree = "<group>"; };
 		D531F1541B57E555002E7E0F /* AWMainTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWMainTextView.h; sourceTree = "<group>"; };
 		D531F1551B57E555002E7E0F /* AWMainTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWMainTextView.m; sourceTree = "<group>"; };
 		D531F1561B57E555002E7E0F /* CustomTokenCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTokenCell.h; sourceTree = "<group>"; };
@@ -152,6 +151,9 @@
 		D5B47D361B67FE19006BA849 /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberMarker.m; sourceTree = "<group>"; };
 		D5B47D371B67FE19006BA849 /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberView.h; sourceTree = "<group>"; };
 		D5B47D381B67FE19006BA849 /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberView.m; sourceTree = "<group>"; };
+		D5ECB1D11B84EC8D0099CE5C /* icon_128x128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_128x128.png; sourceTree = "<group>"; };
+		D5ECB1D31B84ED240099CE5C /* AWAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWAboutViewController.h; sourceTree = "<group>"; };
+		D5ECB1D41B84ED240099CE5C /* AWAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWAboutViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +290,8 @@
 				D531F1491B57E063002E7E0F /* Main View Controller */,
 				D531F1481B57E024002E7E0F /* Preferences */,
 				D531F1441B57E007002E7E0F /* Agda Buffer */,
+				D5ECB1D31B84ED240099CE5C /* AWAboutViewController.h */,
+				D5ECB1D41B84ED240099CE5C /* AWAboutViewController.m */,
 				D531F1061B55E580002E7E0F /* ViewController.h */,
 				D531F1071B55E580002E7E0F /* ViewController.m */,
 				D531F10E1B55E580002E7E0F /* Main.storyboard */,
@@ -337,8 +341,6 @@
 		D531F14B1B57E080002E7E0F /* Horizontal - Left */ = {
 			isa = PBXGroup;
 			children = (
-				D531F1521B57E555002E7E0F /* AWLineNumbersTextView.h */,
-				D531F1531B57E555002E7E0F /* AWLineNumbersTextView.m */,
 				D531F1541B57E555002E7E0F /* AWMainTextView.h */,
 				D531F1551B57E555002E7E0F /* AWMainTextView.m */,
 				D531F1561B57E555002E7E0F /* CustomTokenCell.h */,
@@ -390,6 +392,7 @@
 		D531F16C1B57E5F7002E7E0F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D5ECB1D11B84EC8D0099CE5C /* icon_128x128.png */,
 				D5B327EB1B78B65E00EDFC26 /* check-mark.png */,
 				D5B327EC1B78B65E00EDFC26 /* x-mark.png */,
 				D5B327ED1B78B65E00EDFC26 /* settings-keybindings.png */,
@@ -535,6 +538,7 @@
 				D5B327F01B78B65E00EDFC26 /* x-mark.png in Resources */,
 				D531F1721B57E60B002E7E0F /* failed_default.png in Resources */,
 				D531F1731B57E60B002E7E0F /* load_failed.png in Resources */,
+				D5ECB1D21B84EC8D0099CE5C /* icon_128x128.png in Resources */,
 				D531F1751B57E60B002E7E0F /* load_successful.png in Resources */,
 				D5B327F11B78B65E00EDFC26 /* settings-keybindings.png in Resources */,
 				D534F8FA1B7383D80009D7B0 /* TODO List in Resources */,
@@ -559,6 +563,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D531F1271B57D7C9002E7E0F /* AWCommunitacion.m in Sources */,
+				D5ECB1D51B84ED240099CE5C /* AWAboutViewController.m in Sources */,
 				D531F1511B57E548002E7E0F /* AWMainSplitView.m in Sources */,
 				D536EEB61B63C37700A2CBB9 /* PreferencesKeyBindingsController.m in Sources */,
 				D531F1311B57DB28002E7E0F /* AWHighlighting.m in Sources */,
@@ -587,7 +592,6 @@
 				D531F1031B55E580002E7E0F /* AppDelegate.m in Sources */,
 				D538E5CA1B5EE57300B5455A /* AWInputWindow.m in Sources */,
 				D531F1601B57E564002E7E0F /* AWGoalsTableController.m in Sources */,
-				D531F1581B57E555002E7E0F /* AWLineNumbersTextView.m in Sources */,
 				D531F1371B57DF6F002E7E0F /* AWToastWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
