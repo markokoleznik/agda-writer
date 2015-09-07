@@ -445,12 +445,12 @@
 {
     if ([notification.object isKindOfClass:[NSString class]]) {
         // Show agda version
-        NSString * agdaVersion = notification.object;
-        if (agdaVersion) {
-            NSString * version = [agdaVersion componentsSeparatedByString:@" "][2];
-            version = [version substringToIndex:version.length - 1];
+//        NSString * agdaVersion = notification.object;
+//        if (agdaVersion) {
+//            NSString * version = [agdaVersion componentsSeparatedByString:@" "][2];
+//            version = [version substringToIndex:version.length - 1];
 //            [self.agdaVersion setStringValue:[NSString stringWithFormat:@"Agda is now running... Version: %@", version]];
-        }
+//        }
     }
 }
 
@@ -528,7 +528,9 @@
     if (row == -1) {
         [self.goalsTableController.goalsTable deselectAll:self];
     }
-    NSIndexSet * indexSet = [NSIndexSet indexSetWithIndex:row];
-    [self.goalsTableController.goalsTable selectRowIndexes:indexSet byExtendingSelection:NO];
+    else {
+        [self.goalsTableController selectRow:row highlightGoal:NO];
+    }
+    
 }
 @end

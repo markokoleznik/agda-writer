@@ -14,11 +14,14 @@
     NSMutableArray * items;
     NSMutableArray * goalIndexes;
     NSArray * goals;
+    
+    BOOL shouldHighlightText;
 }
 
 -(void)awakeFromNib
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allGoalsAction:) name:AWAllGoals object:nil];
+    shouldHighlightText = YES;
     
 }
 
@@ -65,6 +68,13 @@
 }
 
 
+-(void)selectRow:(NSInteger)row highlightGoal:(BOOL)highlight
+{
+    shouldHighlightText = highlight;
+    [self.goalsTable scrollRowToVisible:row];
+    [self.goalsTable selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+}
+
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
     NSTableView * tableView = notification.object;
@@ -75,9 +85,18 @@
         NSRange selectedGoal = [AWAgdaParser goalAtIndex:tableView.selectedRow textStorage:self.mainTextView.textStorage];
         // Show pressed goal
         if (selectedGoal.location != NSNotFound) {
-            [self.mainTextView scrollRangeToVisible:selectedGoal];
-            [self.mainTextView showFindIndicatorForRange:selectedGoal];
-            [self.mainTextView setSelectedRange:NSMakeRange(selectedGoal.location + 2, selectedGoal.length - 4)];
+            if (shouldHighlightText) {
+                [self.mainTextView scrollRangeToVisible:selectedGoal];
+                [self.mainTextView showFindIndicatorForRange:selectedGoal];
+                if (3 <= (selectedGoal.length - 3)) {
+                    [self.mainTextView setSelectedRange:NSMakeRange(selectedGoal.location + 3, selectedGoal.length - 6)];
+                }
+                else {
+                    [self.mainTextView setSelectedRange:NSMakeRange(selectedGoal.location + 2, selectedGoal.length - 4)];
+                }
+                
+                
+            }
         }
         else {
             NSString * content = items[tableView.selectedRow];
@@ -105,6 +124,7 @@
                 }
             }
         }
+        shouldHighlightText = YES;
         
         [self.mainTextView.window makeFirstResponder:self.mainTextView];
     }

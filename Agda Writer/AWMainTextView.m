@@ -404,22 +404,18 @@
     }
     return NO;
 }
--(NSRange)textView:(NSTextView *)textView willChangeSelectionFromCharacterRange:(NSRange)oldSelectedCharRange toCharacterRange:(NSRange)newSelectedCharRange {
-    
-    // Find if user is inside of a goal
+
+-(void)textViewDidChangeSelection:(NSNotification *)notification
+{
     AgdaGoal * goal = self.selectedGoal;
-    if (newSelectedCharRange.length == 0 && goal) {
+    if (goal) {
         NSLog(@"User is inside of a goal.");
         [self.mainTextViewDelegate highlightSelectedGoalAtRow:goal.goalIndex];
     }
     if (!goal) {
         [self.mainTextViewDelegate highlightSelectedGoalAtRow:-1];
     }
-    
-    
-    return newSelectedCharRange;
 }
-
 
 -(BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
 {
