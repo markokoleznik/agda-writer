@@ -1,0 +1,3 @@
+language: objective-c
+xcode_project: Agda Writer.xcodeproj # path to your xcodeproj folder
+xcode_scheme: Agda Writer

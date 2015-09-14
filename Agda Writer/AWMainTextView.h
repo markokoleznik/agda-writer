@@ -30,11 +30,17 @@
 @property NSInteger endColumn;
 @property NSInteger numberOfEmptySpaces;
 @property NSRange rangeOfCurrentLine;
+@property NSRange rangeOfContent;
 @property NSString * content;
 
 @end
 
+@protocol MainTextViewDelegate <NSObject>
 
+@required
+- (void)highlightSelectedGoalAtRow:(NSInteger)row;
+
+@end
 
 @interface AWMainTextView : NSTextView <NSTextViewDelegate, NSApplicationDelegate> {
     BOOL initialize;
@@ -51,9 +57,11 @@
 @property (nonatomic) AgdaGoal * selectedGoal;
 @property (nonatomic) AgdaGoal * lastSelectedGoal;
 
+@property (nonatomic) id <MainTextViewDelegate> mainTextViewDelegate;
 @property (nonatomic) id parentViewController;
 
 -(void) applyUnicodeTransformation;
+- (void) clearHighligting;
 
 
 

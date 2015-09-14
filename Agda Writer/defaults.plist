@@ -5,11 +5,11 @@
 	<key>defaultFont</key>
 	<dict>
 		<key>name</key>
-		<string>Helvetica</string>
+		<string>Menlo</string>
 		<key>size</key>
-		<integer>13</integer>
+		<integer>14</integer>
 	</dict>
 	<key>agdaLaunchPath</key>
-	<string>~/Library/Haskell/bin/agda</string>
+	<string></string>
 </dict>
 </plist>

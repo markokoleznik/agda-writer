@@ -12,5 +12,17 @@
 @interface AWHelper : NSObject
 
 + (NSFont *)defaultFontInAgda;
++ (void) saveDefaultFont:(NSFont *)font;
++ (void) setUserDefaults;
++ (BOOL) isShowingNotifications;
++ (void) setShowingNotifications:(BOOL)isShowing;
++ (NSDictionary *) keyBindings;
++ (void) saveKeyBindings: (NSDictionary *)keyBindings;
++ (void) savePathToLibraries: (NSString *)path;
++ (NSString *)pathToLibraries;
++ (CGFloat) delayForAutocomplete;
+
++ (NSString *) helpForExternalLibraries;
+
 
 @end

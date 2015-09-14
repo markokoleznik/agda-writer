@@ -16,5 +16,7 @@
 
 @property (nonatomic) id parentViewController;
 
+-(void)selectRow:(NSInteger)row highlightGoal:(BOOL)highlight;
+
 
 @end

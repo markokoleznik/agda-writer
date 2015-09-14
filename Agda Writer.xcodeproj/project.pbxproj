@@ -23,9 +23,7 @@
 		D531F13D1B57DFA5002E7E0F /* AWColors.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F13A1B57DFA5002E7E0F /* AWColors.m */; };
 		D531F13E1B57DFA5002E7E0F /* AWHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F13C1B57DFA5002E7E0F /* AWHelper.m */; };
 		D531F1431B57E001002E7E0F /* AWAgdaBufferWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1421B57E001002E7E0F /* AWAgdaBufferWindow.m */; };
-		D531F1471B57E020002E7E0F /* PrefrencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1461B57E020002E7E0F /* PrefrencesController.m */; };
 		D531F1511B57E548002E7E0F /* AWMainSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1501B57E548002E7E0F /* AWMainSplitView.m */; };
-		D531F1581B57E555002E7E0F /* AWLineNumbersTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1531B57E555002E7E0F /* AWLineNumbersTextView.m */; };
 		D531F1591B57E555002E7E0F /* AWMainTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1551B57E555002E7E0F /* AWMainTextView.m */; };
 		D531F15A1B57E555002E7E0F /* CustomTokenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1571B57E555002E7E0F /* CustomTokenCell.m */; };
 		D531F15F1B57E564002E7E0F /* AWContainerOutputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F15C1B57E564002E7E0F /* AWContainerOutputTextView.m */; };
@@ -38,13 +36,27 @@
 		D531F1731B57E60B002E7E0F /* load_failed.png in Resources */ = {isa = PBXBuildFile; fileRef = D531F16E1B57E60B002E7E0F /* load_failed.png */; };
 		D531F1741B57E60B002E7E0F /* successful_default.png in Resources */ = {isa = PBXBuildFile; fileRef = D531F16F1B57E60B002E7E0F /* successful_default.png */; };
 		D531F1751B57E60B002E7E0F /* load_successful.png in Resources */ = {isa = PBXBuildFile; fileRef = D531F1701B57E60B002E7E0F /* load_successful.png */; };
-		D531F1761B57E60B002E7E0F /* ok_sign.png in Resources */ = {isa = PBXBuildFile; fileRef = D531F1711B57E60B002E7E0F /* ok_sign.png */; };
 		D531F1781B5852EE002E7E0F /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = D531F1771B5852EE002E7E0F /* defaults.plist */; };
+		D534F8FA1B7383D80009D7B0 /* TODO List in Resources */ = {isa = PBXBuildFile; fileRef = D534F8F91B7383D80009D7B0 /* TODO List */; };
+		D536EEB31B63C35F00A2CBB9 /* PreferencesGeneralController.m in Sources */ = {isa = PBXBuildFile; fileRef = D536EEB21B63C35F00A2CBB9 /* PreferencesGeneralController.m */; };
+		D536EEB61B63C37700A2CBB9 /* PreferencesKeyBindingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D536EEB51B63C37700A2CBB9 /* PreferencesKeyBindingsController.m */; };
 		D538E5CA1B5EE57300B5455A /* AWInputWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D538E5C91B5EE57300B5455A /* AWInputWindow.m */; };
 		D538E5CD1B5EECA900B5455A /* MAAttachedWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D538E5CC1B5EECA900B5455A /* MAAttachedWindow.m */; };
 		D538E5D11B5EF13300B5455A /* AWInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D538E5CF1B5EF13300B5455A /* AWInputViewController.m */; };
 		D538E5D21B5EF13300B5455A /* AWInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D538E5D01B5EF13300B5455A /* AWInputViewController.xib */; };
 		D538E5D41B5FD0F300B5455A /* Key Bindings.plist in Resources */ = {isa = PBXBuildFile; fileRef = D538E5D31B5FD0F300B5455A /* Key Bindings.plist */; };
+		D5962D7F1B6230D500E9EA4A /* UnicodeTransformator.m in Sources */ = {isa = PBXBuildFile; fileRef = D5962D7E1B6230D500E9EA4A /* UnicodeTransformator.m */; };
+		D5B327EF1B78B65E00EDFC26 /* check-mark.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B327EB1B78B65E00EDFC26 /* check-mark.png */; };
+		D5B327F01B78B65E00EDFC26 /* x-mark.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B327EC1B78B65E00EDFC26 /* x-mark.png */; };
+		D5B327F11B78B65E00EDFC26 /* settings-keybindings.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B327ED1B78B65E00EDFC26 /* settings-keybindings.png */; };
+		D5B327F21B78B65E00EDFC26 /* settings-general.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B327EE1B78B65E00EDFC26 /* settings-general.png */; };
+		D5B327F61B78C63900EDFC26 /* AWPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B327F41B78C63900EDFC26 /* AWPopoverViewController.m */; };
+		D5B327F71B78C63900EDFC26 /* AWPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B327F51B78C63900EDFC26 /* AWPopoverViewController.xib */; };
+		D5B47D391B67FE19006BA849 /* MarkerLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B47D341B67FE19006BA849 /* MarkerLineNumberView.m */; };
+		D5B47D3A1B67FE19006BA849 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B47D361B67FE19006BA849 /* NoodleLineNumberMarker.m */; };
+		D5B47D3B1B67FE19006BA849 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B47D381B67FE19006BA849 /* NoodleLineNumberView.m */; };
+		D5ECB1D21B84EC8D0099CE5C /* icon_128x128.png in Resources */ = {isa = PBXBuildFile; fileRef = D5ECB1D11B84EC8D0099CE5C /* icon_128x128.png */; };
+		D5ECB1D51B84ED240099CE5C /* AWAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5ECB1D41B84ED240099CE5C /* AWAboutViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,12 +102,8 @@
 		D531F13C1B57DFA5002E7E0F /* AWHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWHelper.m; sourceTree = "<group>"; };
 		D531F1411B57E001002E7E0F /* AWAgdaBufferWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWAgdaBufferWindow.h; sourceTree = "<group>"; };
 		D531F1421B57E001002E7E0F /* AWAgdaBufferWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWAgdaBufferWindow.m; sourceTree = "<group>"; };
-		D531F1451B57E020002E7E0F /* PrefrencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefrencesController.h; sourceTree = "<group>"; };
-		D531F1461B57E020002E7E0F /* PrefrencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefrencesController.m; sourceTree = "<group>"; };
 		D531F14F1B57E548002E7E0F /* AWMainSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWMainSplitView.h; sourceTree = "<group>"; };
 		D531F1501B57E548002E7E0F /* AWMainSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWMainSplitView.m; sourceTree = "<group>"; };
-		D531F1521B57E555002E7E0F /* AWLineNumbersTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWLineNumbersTextView.h; sourceTree = "<group>"; };
-		D531F1531B57E555002E7E0F /* AWLineNumbersTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWLineNumbersTextView.m; sourceTree = "<group>"; };
 		D531F1541B57E555002E7E0F /* AWMainTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWMainTextView.h; sourceTree = "<group>"; };
 		D531F1551B57E555002E7E0F /* AWMainTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWMainTextView.m; sourceTree = "<group>"; };
 		D531F1561B57E555002E7E0F /* CustomTokenCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTokenCell.h; sourceTree = "<group>"; };
@@ -114,8 +122,12 @@
 		D531F16E1B57E60B002E7E0F /* load_failed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_failed.png; sourceTree = "<group>"; };
 		D531F16F1B57E60B002E7E0F /* successful_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = successful_default.png; sourceTree = "<group>"; };
 		D531F1701B57E60B002E7E0F /* load_successful.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_successful.png; sourceTree = "<group>"; };
-		D531F1711B57E60B002E7E0F /* ok_sign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok_sign.png; sourceTree = "<group>"; };
 		D531F1771B5852EE002E7E0F /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaults.plist; sourceTree = "<group>"; };
+		D534F8F91B7383D80009D7B0 /* TODO List */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "TODO List"; sourceTree = "<group>"; };
+		D536EEB11B63C35F00A2CBB9 /* PreferencesGeneralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesGeneralController.h; sourceTree = "<group>"; };
+		D536EEB21B63C35F00A2CBB9 /* PreferencesGeneralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesGeneralController.m; sourceTree = "<group>"; };
+		D536EEB41B63C37700A2CBB9 /* PreferencesKeyBindingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesKeyBindingsController.h; sourceTree = "<group>"; };
+		D536EEB51B63C37700A2CBB9 /* PreferencesKeyBindingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesKeyBindingsController.m; sourceTree = "<group>"; };
 		D538E5C81B5EE57300B5455A /* AWInputWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWInputWindow.h; sourceTree = "<group>"; };
 		D538E5C91B5EE57300B5455A /* AWInputWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWInputWindow.m; sourceTree = "<group>"; };
 		D538E5CB1B5EECA900B5455A /* MAAttachedWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAAttachedWindow.h; sourceTree = "<group>"; };
@@ -124,6 +136,24 @@
 		D538E5CF1B5EF13300B5455A /* AWInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWInputViewController.m; sourceTree = "<group>"; };
 		D538E5D01B5EF13300B5455A /* AWInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AWInputViewController.xib; sourceTree = "<group>"; };
 		D538E5D31B5FD0F300B5455A /* Key Bindings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Key Bindings.plist"; sourceTree = "<group>"; };
+		D5962D7D1B6230D500E9EA4A /* UnicodeTransformator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnicodeTransformator.h; sourceTree = "<group>"; };
+		D5962D7E1B6230D500E9EA4A /* UnicodeTransformator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnicodeTransformator.m; sourceTree = "<group>"; };
+		D5B327EB1B78B65E00EDFC26 /* check-mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check-mark.png"; sourceTree = "<group>"; };
+		D5B327EC1B78B65E00EDFC26 /* x-mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-mark.png"; sourceTree = "<group>"; };
+		D5B327ED1B78B65E00EDFC26 /* settings-keybindings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-keybindings.png"; sourceTree = "<group>"; };
+		D5B327EE1B78B65E00EDFC26 /* settings-general.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-general.png"; sourceTree = "<group>"; };
+		D5B327F31B78C63900EDFC26 /* AWPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWPopoverViewController.h; sourceTree = "<group>"; };
+		D5B327F41B78C63900EDFC26 /* AWPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWPopoverViewController.m; sourceTree = "<group>"; };
+		D5B327F51B78C63900EDFC26 /* AWPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AWPopoverViewController.xib; sourceTree = "<group>"; };
+		D5B47D331B67FE19006BA849 /* MarkerLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerLineNumberView.h; sourceTree = "<group>"; };
+		D5B47D341B67FE19006BA849 /* MarkerLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerLineNumberView.m; sourceTree = "<group>"; };
+		D5B47D351B67FE19006BA849 /* NoodleLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberMarker.h; sourceTree = "<group>"; };
+		D5B47D361B67FE19006BA849 /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberMarker.m; sourceTree = "<group>"; };
+		D5B47D371B67FE19006BA849 /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberView.h; sourceTree = "<group>"; };
+		D5B47D381B67FE19006BA849 /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberView.m; sourceTree = "<group>"; };
+		D5ECB1D11B84EC8D0099CE5C /* icon_128x128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_128x128.png; sourceTree = "<group>"; };
+		D5ECB1D31B84ED240099CE5C /* AWAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWAboutViewController.h; sourceTree = "<group>"; };
+		D5ECB1D41B84ED240099CE5C /* AWAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWAboutViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +211,7 @@
 		D531F0FF1B55E580002E7E0F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D534F8F91B7383D80009D7B0 /* TODO List */,
 				D531F1771B5852EE002E7E0F /* defaults.plist */,
 				D531F1001B55E580002E7E0F /* Info.plist */,
 				D531F1041B55E580002E7E0F /* main.m */,
@@ -237,6 +268,7 @@
 		D531F13F1B57DFAC002E7E0F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D5B47D3C1B67FE20006BA849 /* Noodle Line Numbers View */,
 				D538E5CB1B5EECA900B5455A /* MAAttachedWindow.h */,
 				D538E5CC1B5EECA900B5455A /* MAAttachedWindow.m */,
 				D531F1391B57DFA5002E7E0F /* AWColors.h */,
@@ -245,9 +277,9 @@
 				D531F13C1B57DFA5002E7E0F /* AWHelper.m */,
 				D538E5C81B5EE57300B5455A /* AWInputWindow.h */,
 				D538E5C91B5EE57300B5455A /* AWInputWindow.m */,
-				D538E5CE1B5EF13300B5455A /* AWInputViewController.h */,
-				D538E5CF1B5EF13300B5455A /* AWInputViewController.m */,
-				D538E5D01B5EF13300B5455A /* AWInputViewController.xib */,
+				D534F89D1B6E1B1F0009D7B0 /* Input Window */,
+				D5962D7D1B6230D500E9EA4A /* UnicodeTransformator.h */,
+				D5962D7E1B6230D500E9EA4A /* UnicodeTransformator.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -258,6 +290,8 @@
 				D531F1491B57E063002E7E0F /* Main View Controller */,
 				D531F1481B57E024002E7E0F /* Preferences */,
 				D531F1441B57E007002E7E0F /* Agda Buffer */,
+				D5ECB1D31B84ED240099CE5C /* AWAboutViewController.h */,
+				D5ECB1D41B84ED240099CE5C /* AWAboutViewController.m */,
 				D531F1061B55E580002E7E0F /* ViewController.h */,
 				D531F1071B55E580002E7E0F /* ViewController.m */,
 				D531F10E1B55E580002E7E0F /* Main.storyboard */,
@@ -279,8 +313,8 @@
 		D531F1481B57E024002E7E0F /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				D531F1451B57E020002E7E0F /* PrefrencesController.h */,
-				D531F1461B57E020002E7E0F /* PrefrencesController.m */,
+				D5B327F81B78C81E00EDFC26 /* General */,
+				D5B327F91B78C82700EDFC26 /* Key Bindings */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -307,8 +341,6 @@
 		D531F14B1B57E080002E7E0F /* Horizontal - Left */ = {
 			isa = PBXGroup;
 			children = (
-				D531F1521B57E555002E7E0F /* AWLineNumbersTextView.h */,
-				D531F1531B57E555002E7E0F /* AWLineNumbersTextView.m */,
 				D531F1541B57E555002E7E0F /* AWMainTextView.h */,
 				D531F1551B57E555002E7E0F /* AWMainTextView.m */,
 				D531F1561B57E555002E7E0F /* CustomTokenCell.h */,
@@ -360,13 +392,61 @@
 		D531F16C1B57E5F7002E7E0F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D5ECB1D11B84EC8D0099CE5C /* icon_128x128.png */,
+				D5B327EB1B78B65E00EDFC26 /* check-mark.png */,
+				D5B327EC1B78B65E00EDFC26 /* x-mark.png */,
+				D5B327ED1B78B65E00EDFC26 /* settings-keybindings.png */,
+				D5B327EE1B78B65E00EDFC26 /* settings-general.png */,
 				D531F16D1B57E60B002E7E0F /* failed_default.png */,
 				D531F16E1B57E60B002E7E0F /* load_failed.png */,
 				D531F16F1B57E60B002E7E0F /* successful_default.png */,
 				D531F1701B57E60B002E7E0F /* load_successful.png */,
-				D531F1711B57E60B002E7E0F /* ok_sign.png */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		D534F89D1B6E1B1F0009D7B0 /* Input Window */ = {
+			isa = PBXGroup;
+			children = (
+				D538E5CE1B5EF13300B5455A /* AWInputViewController.h */,
+				D538E5CF1B5EF13300B5455A /* AWInputViewController.m */,
+				D538E5D01B5EF13300B5455A /* AWInputViewController.xib */,
+			);
+			name = "Input Window";
+			sourceTree = "<group>";
+		};
+		D5B327F81B78C81E00EDFC26 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				D536EEB11B63C35F00A2CBB9 /* PreferencesGeneralController.h */,
+				D536EEB21B63C35F00A2CBB9 /* PreferencesGeneralController.m */,
+				D5B327F31B78C63900EDFC26 /* AWPopoverViewController.h */,
+				D5B327F41B78C63900EDFC26 /* AWPopoverViewController.m */,
+				D5B327F51B78C63900EDFC26 /* AWPopoverViewController.xib */,
+			);
+			name = General;
+			sourceTree = "<group>";
+		};
+		D5B327F91B78C82700EDFC26 /* Key Bindings */ = {
+			isa = PBXGroup;
+			children = (
+				D536EEB41B63C37700A2CBB9 /* PreferencesKeyBindingsController.h */,
+				D536EEB51B63C37700A2CBB9 /* PreferencesKeyBindingsController.m */,
+			);
+			name = "Key Bindings";
+			sourceTree = "<group>";
+		};
+		D5B47D3C1B67FE20006BA849 /* Noodle Line Numbers View */ = {
+			isa = PBXGroup;
+			children = (
+				D5B47D331B67FE19006BA849 /* MarkerLineNumberView.h */,
+				D5B47D341B67FE19006BA849 /* MarkerLineNumberView.m */,
+				D5B47D351B67FE19006BA849 /* NoodleLineNumberMarker.h */,
+				D5B47D361B67FE19006BA849 /* NoodleLineNumberMarker.m */,
+				D5B47D371B67FE19006BA849 /* NoodleLineNumberView.h */,
+				D5B47D381B67FE19006BA849 /* NoodleLineNumberView.m */,
+			);
+			name = "Noodle Line Numbers View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -451,13 +531,19 @@
 			files = (
 				D538E5D21B5EF13300B5455A /* AWInputViewController.xib in Resources */,
 				D538E5D41B5FD0F300B5455A /* Key Bindings.plist in Resources */,
+				D5B327EF1B78B65E00EDFC26 /* check-mark.png in Resources */,
+				D5B327F21B78B65E00EDFC26 /* settings-general.png in Resources */,
 				D531F1781B5852EE002E7E0F /* defaults.plist in Resources */,
 				D531F10D1B55E580002E7E0F /* Images.xcassets in Resources */,
+				D5B327F01B78B65E00EDFC26 /* x-mark.png in Resources */,
 				D531F1721B57E60B002E7E0F /* failed_default.png in Resources */,
 				D531F1731B57E60B002E7E0F /* load_failed.png in Resources */,
+				D5ECB1D21B84EC8D0099CE5C /* icon_128x128.png in Resources */,
 				D531F1751B57E60B002E7E0F /* load_successful.png in Resources */,
+				D5B327F11B78B65E00EDFC26 /* settings-keybindings.png in Resources */,
+				D534F8FA1B7383D80009D7B0 /* TODO List in Resources */,
 				D531F1101B55E580002E7E0F /* Main.storyboard in Resources */,
-				D531F1761B57E60B002E7E0F /* ok_sign.png in Resources */,
+				D5B327F71B78C63900EDFC26 /* AWPopoverViewController.xib in Resources */,
 				D531F1741B57E60B002E7E0F /* successful_default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,15 +563,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				D531F1271B57D7C9002E7E0F /* AWCommunitacion.m in Sources */,
+				D5ECB1D51B84ED240099CE5C /* AWAboutViewController.m in Sources */,
 				D531F1511B57E548002E7E0F /* AWMainSplitView.m in Sources */,
+				D536EEB61B63C37700A2CBB9 /* PreferencesKeyBindingsController.m in Sources */,
 				D531F1311B57DB28002E7E0F /* AWHighlighting.m in Sources */,
+				D5B327F61B78C63900EDFC26 /* AWPopoverViewController.m in Sources */,
 				D531F10B1B55E580002E7E0F /* Document.m in Sources */,
+				D5B47D3A1B67FE19006BA849 /* NoodleLineNumberMarker.m in Sources */,
+				D5B47D3B1B67FE19006BA849 /* NoodleLineNumberView.m in Sources */,
+				D536EEB31B63C35F00A2CBB9 /* PreferencesGeneralController.m in Sources */,
 				D531F13D1B57DFA5002E7E0F /* AWColors.m in Sources */,
-				D531F1471B57E020002E7E0F /* PrefrencesController.m in Sources */,
 				D531F15A1B57E555002E7E0F /* CustomTokenCell.m in Sources */,
+				D5B47D391B67FE19006BA849 /* MarkerLineNumberView.m in Sources */,
 				D531F12E1B57DB19002E7E0F /* AWAgdaActions.m in Sources */,
 				D531F1591B57E555002E7E0F /* AWMainTextView.m in Sources */,
 				D538E5D11B5EF13300B5455A /* AWInputViewController.m in Sources */,
+				D5962D7F1B6230D500E9EA4A /* UnicodeTransformator.m in Sources */,
 				D538E5CD1B5EECA900B5455A /* MAAttachedWindow.m in Sources */,
 				D531F1651B57E571002E7E0F /* AWStatusTextView.m in Sources */,
 				D531F13E1B57DFA5002E7E0F /* AWHelper.m in Sources */,
@@ -499,7 +592,6 @@
 				D531F1031B55E580002E7E0F /* AppDelegate.m in Sources */,
 				D538E5CA1B5EE57300B5455A /* AWInputWindow.m in Sources */,
 				D531F1601B57E564002E7E0F /* AWGoalsTableController.m in Sources */,
-				D531F1581B57E555002E7E0F /* AWLineNumbersTextView.m in Sources */,
 				D531F1371B57DF6F002E7E0F /* AWToastWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

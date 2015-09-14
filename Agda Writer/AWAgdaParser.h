@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
+#import "CustomTokenCell.h"
+
 @interface AWAgdaParser : NSObject
 
 -(void) parseResponse:(NSString *)response;
@@ -25,4 +27,11 @@
  @return NSArray                Array contains objects of type NSDictionary. Form: @{type : @[range]}
  */
 +(NSArray *) parseHighlighting:(NSString *)highlighting;
++ (NSRange) rangeFromLineNumber:(NSUInteger)lineNumber
+                   andLineRange:(NSRange) lineRange
+                         string:(NSString *)string;
++(NSInteger) parseGotoAction:(NSString *)reply;
++ (NSDictionary *)parsedLineOfHighligting:(NSString *)line;
+
++ (NSMutableAttributedString *) parseRangesAndAddAttachments:(NSAttributedString *)reply parentViewController:(id)parentViewController;
 @end

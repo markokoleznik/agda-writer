@@ -53,10 +53,11 @@
     [super saveToURL:url ofType:typeName forSaveOperation:saveOperation delegate:delegate didSaveSelector:didSaveSelector contextInfo:contextInfo];
 }
 
+
 -(BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
 {
 //    NSLog(@"%@", [self.mainTextView string]);
-    NSLog(@"URL: %@", url);
+//    NSLog(@"URL: %@", url);
 
     NSError * error;
     BOOL success = [self.mainTextView.string writeToURL:url atomically:NO encoding:NSUTF8StringEncoding error:&error];

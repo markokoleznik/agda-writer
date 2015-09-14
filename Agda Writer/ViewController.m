@@ -9,12 +9,18 @@
 #import "ViewController.h"
 #import "Document.h"
 
-
 #import "AWAgdaParser.h"
 #import "AWNotifications.h"
 #import "AppDelegate.h"
+#import "AWHelper.h"
 
-@implementation ViewController
+#import "NoodleLineNumberView.h"
+#import "NoodleLineNumberMarker.h"
+#import "MarkerLineNumberView.h"
+
+@implementation ViewController {
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,14 +30,16 @@
     self.mainTextView.parentViewController = self;
     self.goalsTableController.parentViewController = self;
     self.statusTextView.parentViewController = self;
+    self.mainTextView.mainTextViewDelegate = self;
     
-    
-    [self setUserDefaults];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(synchronizedViewContentBoundsDidChange:)
-                                                 name:NSViewBoundsDidChangeNotification
-                                               object:[self.mainTextView.enclosingScrollView contentView]];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeController:) name:REMOVE_CONTROLLER object:nil];
+    self.lineNumberView = [[MarkerLineNumberView alloc] initWithScrollView:self.mainScrollView];
+    [self.mainScrollView setVerticalRulerView:self.lineNumberView];
+    [self.mainScrollView setHasHorizontalRuler:NO];
+    [self.mainScrollView setHasVerticalRuler:YES];
+    [self.mainScrollView setRulersVisible:YES];
+    [self.lineNumberView setBackgroundColor:[NSColor whiteColor]];
+    [self.lineNumberView setFont:[NSFont systemFontOfSize:[NSFont smallSystemFontSize]]];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaBufferDataAvaliable:) name:AWAgdaBufferDataAvaliable object:nil];
     
     // Add this class as observer, when font (in Prefrences) is changed. It might be reusable in other classes as well.
@@ -41,103 +49,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(executeActions:) name:AWExecuteActions object:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaVersionAvaliable:) name:AWAgdaVersionAvaliable object:nil];
     
-    
-    
-    
-    
-}
-
-
-- (void)synchronizedViewContentBoundsDidChange:(NSNotification *)notification
-{
-//    // get the changed content view from the notification
-//    NSClipView *changedContentView = [notification object];
-//    
-//    // get the origin of the NSClipView of the scroll view that
-//    // we're watching
-//    NSPoint changedBoundsOrigin = [changedContentView documentVisibleRect].origin;;
-//    
-//    // get our current origin
-//    NSPoint curOffset = [[self contentView] bounds].origin;
-//    NSPoint newOffset = curOffset;
-//    
-//    // scrolling is synchronized in the vertical plane
-//    // so only modify the y component of the offset
-//    newOffset.y = changedBoundsOrigin.y;
-//    
-//    // if our synced position is different from our current
-//    // position, reposition our content view
-//    if (!NSEqualPoints(curOffset, changedBoundsOrigin))
-//    {
-//        // note that a scroll view watching this one will
-//        // get notified here
-//        [[self.lineNumbersView.enclosingScrollView contentView] scrollToPoint:newOffset];
-//    }
-}
-
-- (void) setUserDefaults
-{
-    
-    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-    // Default font will be Helvetica, 12pt.
-    if (![ud objectForKey:FONT_SIZE_KEY]) {
-        [ud setObject:[NSNumber numberWithInt:12] forKey:FONT_SIZE_KEY]; // Default value
-    }
-    if (![ud stringForKey:FONT_FAMILY_KEY]) {
-        [ud setObject:@"Menlo" forKey:FONT_FAMILY_KEY]; // Default value
-    }
-    // Write changes to disk.
-    [ud synchronize];
-    
-    // Both keys/values are in NSUserDefaults
-    NSNumber * fontSize = (NSNumber *)[ud objectForKey:FONT_SIZE_KEY];
-    NSNotification * notif1 = [[NSNotification alloc] initWithName:fontSizeChanged object:fontSize userInfo:nil];
-    
-    NSString *fontFamily = (NSString *)[ud stringForKey:FONT_FAMILY_KEY];
-    NSNotification * notif2 = [[NSNotification alloc] initWithName:fontFamilyChanged object:fontFamily userInfo:nil];
-    
-    NSFont * defaultFont = [NSFont fontWithName:@"Menlo" size:14];
-    [self.mainTextView setFont:defaultFont];
-    [self.statusTextView setFont:defaultFont];
-    [self.goalsTableController.goalsTable setFont:defaultFont];
-    
-    [self changeFontSizeFromNotification:notif1];
-    [self changeFontFamilyFromNotification:notif2];
-    
-}
-
-
--(BOOL)textView:(NSTextView *)textView shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(NSString *)replacementString
-{
-    [AWNotifications notifyTextChangedInRange:affectedCharRange replacementString:replacementString];
-    
-    return YES;
 }
 
 
 
-- (IBAction)hideOutputs:(id)sender {
-    
-    self.toastView = [[AWToastWindow alloc] initWithToastType:ToastTypeLoadSuccessful];
-    [self.toastView show];
-    
-    
-}
-
-- (void)closeToast
-{
-    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-        [context setDuration:0.5];
-        [self.toastView.animator setAlphaValue:0.0];
-    } completionHandler:^{
-        //        [self.toastView ];
-    }];
-    
-}
-
-- (IBAction)AddToken:(NSButton *)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"AW.addToken" object:nil];
-}
 
 #pragma mark -
 #pragma mark Agda Actions
@@ -146,11 +61,14 @@
 - (IBAction)actionLoad:(id)sender {
     NSString * fullPath = [document filePath].path;
     
+    // Clear status window
+    [self.statusTextView setString:@""];
+    
     // save
     [document saveDocument:self];
     
     if (fullPath) {
-        NSString * message = [AWAgdaActions actionLoadWithFilePath:fullPath andIncludeDir:@""];
+        NSString * message = [AWAgdaActions actionLoadWithFilePath:fullPath];
         AppDelegate * appDelegate = (AppDelegate *)[NSApp delegate];
         [appDelegate.communicator writeDataToAgda:message sender:self];
     }
@@ -158,7 +76,19 @@
 }
 
 - (IBAction)actionQuitAndRestartAgda:(NSMenuItem *)sender {
-    [self showNotImplementedAlert];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator clearPartialResponse];
+    [appDelegate.communicator quitAndRestartConnectionToAgda];
+    [self.mainTextView clearHighligting];
+}
+
+- (IBAction)actionCompile:(id)sender {
+    NSString * fullPath = [document filePath].path;
+    [document saveDocument:self];
+    NSString * message = [AWAgdaActions actionCompileWithFilePath:fullPath];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator writeDataToAgda:message sender:self];
+    
 }
 
 - (IBAction)actionQuit:(NSMenuItem *)sender {
@@ -169,11 +99,11 @@
 
 - (IBAction)actionGive:(NSMenuItem *)sender {
     
-    
+    [self.mainTextView clearHighligting];
     NSString * fullPath = [document filePath].path;
     [document saveDocument:self];
     AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionGiveWithFilePath:fullPath goalIndex:goal.agdaGoalIndex startCharIndex:goal.startCharIndex startRow:goal.startRow startColumn:goal.startRow endCharIndex:goal.endCharIndex endRow:goal.endRow endColumn:goal.endColumn content:goal.content];
+    NSString * message = [AWAgdaActions actionGiveWithFilePath:fullPath goal:goal];
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
 }
@@ -183,7 +113,7 @@
     NSString * fullPath = [document filePath].path;
     [document saveDocument:self];
     AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionRefineWithFilePath:fullPath goalIndex:goal.agdaGoalIndex startCharIndex:goal.startCharIndex startRow:goal.startRow startColumn:goal.startRow endCharIndex:goal.endCharIndex endRow:goal.endRow endColumn:goal.endColumn content:goal.content];
+    NSString * message = [AWAgdaActions actionRefineWithFilePath:fullPath goal:goal];
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
 }
@@ -192,7 +122,7 @@
     NSString * fullPath = [document filePath].path;
     [document saveDocument:self];
     AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionAutoWithFilePath:fullPath goalIndex:goal.agdaGoalIndex startCharIndex:goal.startCharIndex startRow:goal.startRow startColumn:goal.startColumn endCharIndex:goal.endCharIndex endRow:goal.endRow endColumn:goal.endColumn content:goal.content];
+    NSString * message = [AWAgdaActions actionAutoWithFilePath:fullPath goal:goal];
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
 }
@@ -201,92 +131,256 @@
     NSString * fullPath = [document filePath].path;
     [document saveDocument:self];
     AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionCaseWithFilePath:fullPath goalIndex:goal.agdaGoalIndex startCharIndex:goal.startCharIndex startRow:goal.startRow startColumn:goal.startColumn endCharIndex:goal.endCharIndex endRow:goal.endRow endColumn:goal.endColumn content:goal.content];
+    NSString * message = [AWAgdaActions actionCaseWithFilePath:fullPath goal:goal];
     self.mainTextView.lastSelectedGoal = goal;
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
 }
 
-- (IBAction)actionGoalType:(NSMenuItem *)sender {
+- (IBAction)actionGoalTypeSimplified:(id)sender {
+    [self actionGoalType:AWNormalisationLevelSimplified];
+}
+- (IBAction)actionGoalTypeNormalised:(id)sender {
+    [self actionGoalType:AWNormalisationLevelNormalised];
+}
+- (IBAction)actionGoalTypeInstantiated:(id)sender {
+    [self actionGoalType:AWNormalisationLevelInstantiated];
+}
+- (void)actionGoalType:(AWNormalisationLevel) normalisationLevel {
     NSString * fullPath = [document filePath].path;
     [document saveDocument:self];
     AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionGoalTypeWithFilePath:fullPath goalIndex:goal.agdaGoalIndex];
-    self.mainTextView.lastSelectedGoal = goal;
+    NSString * message = [AWAgdaActions actionGoalTypeWithFilePath:fullPath goal:goal normalisationLevel:normalisationLevel];
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
 }
 
-- (IBAction)actionContextEnvironment:(NSMenuItem *)sender {
+// Type and Context
+- (IBAction)actionGoalTypeAndContextSimplified:(id)sender {
+    [self actionGoalTypeAndContext:AWNormalisationLevelSimplified];
+}
+- (IBAction)actionGoalTypeAndContextNormalised:(id)sender {
+    [self actionGoalTypeAndContext:AWNormalisationLevelNormalised];
+}
+- (IBAction)actionGoalTypeAndContextInstantiated:(id)sender {
+    [self actionGoalTypeAndContext:AWNormalisationLevelInstantiated];
+}
+- (void)actionGoalTypeAndContext: (AWNormalisationLevel) normalisationLevel {
     NSString * fullPath = [document filePath].path;
     [document saveDocument:self];
     AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionContextWithFilePath:fullPath goalIndex:goal.agdaGoalIndex];
-    self.mainTextView.lastSelectedGoal = goal;
+    NSString * message = [AWAgdaActions actionGoalTypeAndContextWithFilePath:fullPath goal:goal normalisationLevel:normalisationLevel];
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
 }
 
-- (IBAction)actionGoalTypeAndContext:(NSMenuItem *)sender {
+
+// Type and Inffered Context
+- (IBAction)actionGoalTypeAndInfferedContextSimplified:(id)sender {
+    [self actionGoalTypeAndInfferedContext:AWNormalisationLevelSimplified];
+}
+- (IBAction)actionGoalTypeAndInfferedContextNormalised:(id)sender {
+    [self actionGoalTypeAndInfferedContext:AWNormalisationLevelNormalised];
+}
+- (IBAction)actionGoalTypeAndInfferedContextInstantiated:(id)sender {
+    [self actionGoalTypeAndInfferedContext:AWNormalisationLevelInstantiated];
+}
+-(void) actionGoalTypeAndInfferedContext:(AWNormalisationLevel) normalisationLevel {
     NSString * fullPath = [document filePath].path;
     [document saveDocument:self];
     AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionGoalTypeAndContextWithFilePath:fullPath goalIndex:goal.agdaGoalIndex];
-    self.mainTextView.lastSelectedGoal = goal;
+    if (goal) {
+        NSString * message = [AWAgdaActions actionGoalTypeAndInfferedContextWithFilePath:fullPath goal:goal normalisationLevel:normalisationLevel];
+        AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+        [appDelegate.communicator writeDataToAgda:message sender:self];
+    }
+    
+}
+
+- (IBAction)actionShowConstraints:(id)sender {
+    NSString * fullPath = [document filePath].path;
+    [document saveDocument:self];
+    NSString * message = [AWAgdaActions actionShowConstraintsWithFilePath:fullPath];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator writeDataToAgda:message sender:self];
+}
+- (IBAction)actionShowMetas:(id)sender {
+    NSString * fullPath = [document filePath].path;
+    [document saveDocument:self];
+    NSString * message = [AWAgdaActions actionShowMetasWithFilePath:fullPath];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator writeDataToAgda:message sender:self];
+}
+// Module Contents
+- (IBAction)actionShowModuleContentsSimplified:(id)sender {
+    [self actionShowModuleContents:AWNormalisationLevelSimplified];
+}
+- (IBAction)actionShowModuleContentsNormalised:(id)sender {
+    [self actionShowModuleContents:AWNormalisationLevelNormalised];
+}
+- (IBAction)actionShowModuleContentsInstantiated:(id)sender {
+    [self actionShowModuleContents:AWNormalisationLevelInstantiated];
+}
+- (void)actionShowModuleContents:(AWNormalisationLevel) normalisationLevel {
+    [self openInputViewWithType:AWInputViewTypeShowModuleContents normalisationLevel:normalisationLevel];
+    
+}
+// Implicit Arguments
+- (IBAction)actionImplicitArguments:(id)sender {
+    NSString * fullPath = [document filePath].path;
+    [document saveDocument:self];
+    NSString * message = [AWAgdaActions actionImplicitArgumentsWithFilePath:fullPath];
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
 }
 
-- (IBAction)actionGoalTypeAndInferredType:(NSMenuItem *)sender {
-    [document saveDocument:self];
+// Infer
+- (IBAction)actionInferSimplified:(id)sender {
+    [self actionInfer:AWNormalisationLevelSimplified];
+}
+- (IBAction)actionInferNormalised:(id)sender {
+    [self actionInfer:AWNormalisationLevelNormalised];
+}
+- (IBAction)actionInferInstantiated:(id)sender {
+    [self actionInfer:AWNormalisationLevelInstantiated];
+}
+-(void)actionInfer:(AWNormalisationLevel)normalisationLevel {
+    [self openInputViewWithType:AWInputViewTypeInfer normalisationLevel:normalisationLevel];
+
+}
+
+// Togle Implicit Arguments
+- (IBAction)actionToggleImplicitArguments:(id)sender {
     NSString * fullPath = [document filePath].path;
-    AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionGoalTypeAndInferredTypeWithFilePath:fullPath goalIndex:goal.agdaGoalIndex content:goal.content];
-    self.mainTextView.lastSelectedGoal = goal;
+    [document saveDocument:self];
+    NSString * message = [AWAgdaActions actionToggleImplicitArgumentsWithFilePath:fullPath];
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
 }
+
+// Solve All Constraints
+- (IBAction)actionSolveAllConstraints:(id)sender {
+    NSString * fullPath = [document filePath].path;
+    [document saveDocument:self];
+    NSString * message = [AWAgdaActions actionSolveAllConstraints:fullPath];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator writeDataToAgda:message sender:self];
+}
+
+// Why in Scope?
+- (IBAction)actionWhyInScope:(id)sender {
+    [self openInputViewWithType:AWInputViewTypeWhyInScope normalisationLevel:AWNormalisationLevelNone];
+}
+
+// Context
+- (IBAction)actionContextSimplified:(id)sender {
+    [self actionContext:AWNormalisationLevelSimplified];
+}
+- (IBAction)actionContextNormalised:(id)sender {
+    [self actionContext:AWNormalisationLevelNormalised];
+}
+- (IBAction)actionContextInstantiated:(id)sender {
+    [self actionContext:AWNormalisationLevelInstantiated];
+}
+-(void)actionContext:(AWNormalisationLevel)normalisationLevel {
+    NSString * fullPath = [document filePath].path;
+    [document saveDocument:self];
+    AgdaGoal * goal = self.mainTextView.selectedGoal;
+    NSString * message = [AWAgdaActions actionContextWithFilePath:fullPath goal:goal normalisationLevel:normalisationLevel];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator writeDataToAgda:message sender:self];
+    
+}
+
+// Show Version
+- (IBAction)actionShowVersion:(id)sender {
+    NSString * fullPath = [document filePath].path;
+    NSString * message = [AWAgdaActions actionShowVersionWithFilePath:fullPath];
+    AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appDelegate.communicator writeDataToAgda:message sender:self];
+
+}
+
 
 - (IBAction)actionComputeNormalForm:(NSMenuItem *)sender {
-    [self showNotImplementedAlert];
+    [self openInputViewWithType:AWInputViewTypeComputeNormalForm normalisationLevel:AWNormalisationLevelNone];
 }
 
-- (IBAction)actionNormalize:(id)sender {
-    
-    self.inputViewController = [[AWInputViewController alloc] initWithNibName:@"AWInputViewController" bundle:nil];
-    self.inputWindow = [[MAAttachedWindow alloc] initWithView:self.inputViewController.view attachedToPoint:NSMakePoint(0, 0)];
-    [self.inputWindow setHasArrow:0];
-    [self.inputWindow center];
+- (void)saveDocument:(id)sender
+{
+    [document saveDocument:self];
+}
+
+
+- (void)openInputViewWithType:(AWInputViewType)inputType normalisationLevel:(AWNormalisationLevel)level {
+    if (self.inputWindow) {
+        return;
+    }
+    // Check if normalization is goal specific
+    AgdaGoal * goal = self.mainTextView.selectedGoal;
+    if (goal && goal.rangeOfContent.location != NSNotFound) {
+        // We have goal
+        [self.mainTextView scrollRangeToVisible:goal.rangeOfContent];
+        NSRect rect = [self.mainTextView firstRectForCharacterRange:goal.rangeOfContent actualRange:nil];
+        self.inputViewController = [[AWInputViewController alloc] initWithInputType:inputType global:NO rect:rect];
+        
+        self.inputWindow = [[MAAttachedWindow alloc] initWithView:self.inputViewController.view attachedToPoint:self.inputViewController.point atDistance:10];
+    }
+    else {
+        self.inputViewController = [[AWInputViewController alloc] initWithInputType:inputType global:YES rect:NSZeroRect];
+        self.inputWindow = [[MAAttachedWindow alloc] initWithView:self.inputViewController.view attachedToPoint:self.inputViewController.point];
+        [self.inputWindow setHasArrow:0];
+        [self.inputWindow center];
+    }
     
     self.inputViewController.delegate = self;
-    
-    
+    self.inputViewController.normalisationLevel = level;
     [self.inputWindow makeKeyWindow];
-    
     [self.inputWindow makeKeyAndOrderFront:self];
     [NSApp activateIgnoringOtherApps:YES];
-    
 }
 
--(void)normalizeInputDidEndEditing:(NSString *)content
+
+-(void)inputDidEndEditing:(NSString *)content withType:(AWInputViewType)type normalisationLevel:(AWNormalisationLevel)level
 {
-//    [document saveDocument:self];
     NSString * fullPath = [document filePath].path;
     AgdaGoal * goal = self.mainTextView.selectedGoal;
-    NSString * message = [AWAgdaActions actionNormalizeWithGoal:goal filePath:fullPath content:content];
+    NSString * message;
+    switch (type) {
+        case AWInputViewTypeComputeNormalForm:
+            message = [AWAgdaActions actionComputeNormalFormWithFilePath:fullPath goal:goal content:content];
+            break;
+        case AWInputViewTypeInfer:
+            message = [AWAgdaActions actionInferWithFilePath:fullPath goal:goal normalisationLevel:level content:content];
+        case AWInputViewTypeShowModuleContents:
+            message = [AWAgdaActions actionShowModuleContentsFilePath:fullPath goal:goal normalisationLevel:level content:content];
+            break;
+        case AWInputViewTypeWhyInScope:
+            message = [AWAgdaActions actionWhyInScopeWithFilePath:fullPath goal:goal content:content];
+        default:
+            break;
+    }
+    
+    
+    // append input to status window
+    [self.statusTextView.textStorage.mutableString appendFormat:@"Input:\n%@\n",content];
+    
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     [appDelegate.communicator writeDataToAgda:message sender:self];
     
 //    [self.inputWindow orderOut:self];
+    [self closeWindow];
+}
+-(void)closeWindow
+{
     [self.inputWindow close];
-    
     self.inputWindow = nil;
 }
 #pragma mark -
 -(void)showNotImplementedAlert
 {
     NSAlert * alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:@"I will patiently wait for a lazy developer to implement this..."];
+    [alert addButtonWithTitle:@"Well, OK"];
     [alert setMessageText:@"This method is not yet implemented!"];
     [alert setAlertStyle:NSWarningAlertStyle];
     if ([alert runModal] == NSAlertFirstButtonReturn) {
@@ -305,23 +399,15 @@
     // When "fontSizeChanged" notification is recieved, change font to our editor
     if ([notification.object isKindOfClass:[NSNumber class]]) {
         
-        
-        NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-        
         NSNumber *fontSize = (NSNumber *) notification.object;
-        NSFont *font = self.mainTextView.textStorage.font;
-        if (!font) {
-            NSString * fontFamily = [ud stringForKey:FONT_FAMILY_KEY];
-            font = [NSFont fontWithName:fontFamily size:[fontSize floatValue]];
-        }
+        NSFont *font = [AWHelper defaultFontInAgda];
         font = [[NSFontManager sharedFontManager] convertFont:font toSize:[fontSize floatValue]];
-        //        [self.mainTextView.textStorage addAttribute:@"NSFontAttributeName" value:font range:NSMakeRange(0, self.mainTextView.textStorage.string.length)];
+        [self.mainTextView.textStorage addAttribute:@"NSFontAttributeName" value:font range:NSMakeRange(0, self.mainTextView.textStorage.string.length)];
         [self.mainTextView.textStorage setFont:font];
         [self.lineNumbersView setFont:font];
         
-        // Save changes to NSUserDefaults!
-        [ud setObject:fontSize forKey:FONT_SIZE_KEY];
-        [ud synchronize];
+//         Save changes to NSUserDefaults!
+        [AWHelper saveDefaultFont:font];
         
     }
 }
@@ -329,22 +415,15 @@
 {
     if ([notification.object isKindOfClass:[NSString class]]) {
         
-        NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-        
         NSString *fontFamily = (NSString *) notification.object;
-        NSFont *font = self.mainTextView.textStorage.font;
+        NSFont *font = [AWHelper defaultFontInAgda];
         font = [[NSFontManager sharedFontManager] convertFont:font toFamily:fontFamily];
-        if (!font) {
-            NSNumber * fontSize = [ud objectForKey:FONT_SIZE_KEY];
-            font = [NSFont fontWithName:fontFamily size:[fontSize floatValue]];
-        }
-        //        [self.mainTextView.textStorage addAttribute:@"NSFontAttributeName" value:font range:NSMakeRange(0, self.mainTextView.textStorage.string.length)];
+        [self.mainTextView.textStorage addAttribute:@"NSFontAttributeName" value:font range:NSMakeRange(0, self.mainTextView.textStorage.string.length)];
         [self.mainTextView.textStorage setFont:font];
         [self.lineNumbersView setFont:font];
         
         // Save changes to NSUserDefaults!
-        [ud setObject:fontFamily forKey:FONT_FAMILY_KEY];
-        [ud synchronize];
+        [AWHelper saveDefaultFont:font];
     }
 }
 
@@ -361,95 +440,26 @@
     }
 }
 
-- (void)textViewDidChangeSelection:(NSNotification *)notification
-{
-    // Called, when we select text
-    
-    //    return;
-    
-    // Check for selected range, and put rectangle around it.
-    NSRange selectedText = [self.mainTextView selectedRange];
-    NSRect rectangle = [self.mainTextView firstRectForCharacterRange:selectedText actualRange:nil];
-    
-    
-    //    int location = (int)selectedText.location;
-    int lenght = (int) selectedText.length;
-    if (lenght > 0) {
-        //        [self.numberLabel setStringValue:[NSString stringWithFormat:@"%i", lenght]];
-        
-        [self.mainTextView addToolTipRect:NSMakeRect(100, 100, 300, 300) owner:self userData:nil];
-        
-        // Open help window
-        [self showHelpWindowAtRect:rectangle];
-    }
-    else
-    {
-        // Remove window!
-        //        [self.numberLabel setStringValue:@""];
-//        for (NSWindow *window in self.childWindows) {
-//            if ([window.identifier isEqualToString:@"Helper"]) {
-//                [self removeChildWindow:window];
-//                self.isHelperWindowOpened = NO;
-//            }
-//        }
-    }
-}
 
-
-
--(void) showHelpWindowAtRect: (NSRect) rect
-{
-    
-    
-}
 -(void)agdaVersionAvaliable:(NSNotification *) notification
 {
     if ([notification.object isKindOfClass:[NSString class]]) {
         // Show agda version
-        NSString * agdaVersion = notification.object;
-        if (agdaVersion) {
-            NSString * version = [agdaVersion componentsSeparatedByString:@" "][2];
-            version = [version substringToIndex:version.length - 1];
+//        NSString * agdaVersion = notification.object;
+//        if (agdaVersion) {
+//            NSString * version = [agdaVersion componentsSeparatedByString:@" "][2];
+//            version = [version substringToIndex:version.length - 1];
 //            [self.agdaVersion setStringValue:[NSString stringWithFormat:@"Agda is now running... Version: %@", version]];
-        }
+//        }
     }
 }
 
 -(void)executeActions:(NSNotification *)actions
 {
-    NSDate * date1 = [NSDate date];
     if (actions.object == self) {
         [AWAgdaActions executeArrayOfActions:(NSArray *)actions.userInfo[@"actions"] sender:self];
     }
-    
-    
-    NSDate * date2 = [NSDate date];
-    NSLog(@"Running time: %f", [date2 timeIntervalSinceDate:date1]);
 }
-
-#pragma mark - Table of goals
-
-- (NSView *)tableView:(NSTableView *)tableView
-   viewForTableColumn:(NSTableColumn *)tableColumn
-                  row:(NSInteger)row {
-    
-    NSTableCellView *result = [tableView makeViewWithIdentifier:@"GoalType" owner:self];
-    
-    if (result) {
-        // Set the stringValue of the cell's text field to the nameArray value at row
-        result.textField.stringValue = [NSString stringWithFormat:@"value %li",row];
-    }
-    
-    
-    // Return cell
-    return result;
-}
-
--(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
-{
-    return 2;
-}
-
 
 
 #pragma mark - Dealloc
@@ -475,7 +485,9 @@
     document.mainTextView = self.mainTextView;
     
     if (document.contentString) {
-        [self.mainTextView setString:document.contentString];
+//        NSLog(@"%@", document.contentString);
+        
+        [self.mainTextView.textStorage setAttributedString:[[NSAttributedString alloc] initWithString:document.contentString attributes:@{NSFontAttributeName : [AWHelper defaultFontInAgda]}]];
     }
     
     // Update the view, if already loaded.
@@ -483,5 +495,42 @@
 
 - (IBAction)applyUnicodeTransformation:(id)sender {
     [self.mainTextView applyUnicodeTransformation];
+}
+
+- (IBAction)biggerText:(id)sender {
+    NSFont *font = self.mainTextView.textStorage.font;
+    font = [[NSFontManager sharedFontManager] convertFont:font toSize:(font.pointSize + 1)];
+
+    [self.mainTextView.textStorage setFont:font];
+    [self.mainTextView setTypingAttributes:@{NSFontAttributeName : font}];
+}
+
+- (IBAction)smallerText:(id)sender {
+    NSFont *font = self.mainTextView.textStorage.font;
+    CGFloat desiredSize = font.pointSize - 1;
+    if (desiredSize > 8) {
+        font = [[NSFontManager sharedFontManager] convertFont:font toSize:(font.pointSize - 1)];
+        [self.mainTextView.textStorage setFont:font];
+        [self.mainTextView setTypingAttributes:@{NSFontAttributeName : font}];
+    }
+    
+}
+
+-(BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+    if (menuItem.tag == 1 && !self.mainTextView.selectedGoal) {
+        return NO;
+    }
+    return YES;
+}
+
+-(void)highlightSelectedGoalAtRow:(NSInteger)row
+{
+    if (row == -1) {
+        [self.goalsTableController.goalsTable deselectAll:self];
+    }
+    else {
+        [self.goalsTableController selectRow:row highlightGoal:NO];
+    }
+    
 }
 @end

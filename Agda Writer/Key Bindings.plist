@@ -2,27 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>lambda</key>
-	<string>λ</string>
-	<key>alpha</key>
-	<string>α</string>
-	<key>omega</key>
-	<string>ω</string>
 	<key>-&gt;</key>
 	<string>→</string>
 	<key>\to</key>
 	<string>→</string>
 	<key>&lt;=&gt;</key>
-	<string>⟺</string>
+	<string>⇔</string>
 	<key>=&gt;</key>
-	<string>⟹</string>
+	<string>⇒</string>
 	<key>&lt;=</key>
-	<string>⟸</string>
+	<string>⇐</string>
 	<key>&lt;-&gt;</key>
 	<string>⟷</string>
 	<key>&lt;-</key>
 	<string>←</string>
-	<key>N</key>
+	<key>\bn</key>
 	<string>ℕ</string>
 	<key>\le</key>
 	<string>≤</string>
@@ -188,64 +182,6 @@
 	<string>⨁</string>
 	<key>\bigotimes</key>
 	<string>⨂</string>
-	<key>^0</key>
-	<string>⁰</string>
-	<key>^1</key>
-	<string>¹</string>
-	<key>^2</key>
-	<string>²</string>
-	<key>^3</key>
-	<string>³</string>
-	<key>^a</key>
-	<string>ᵃ</string>
-	<key>^b</key>
-	<string>ᵇ</string>
-	<key>^c</key>
-	<string>ᶜ</string>
-	<key>^A</key>
-	<string>ᴬ</string>
-	<key>^B</key>
-	<string>ᴮ</string>
-	<key>^+</key>
-	<string>⁺</string>
-	<key>^-</key>
-	<string>⁻</string>
-	<key>^=</key>
-	<string>⁼</string>
-	<key>^(</key>
-	<string>⁽</string>
-	<key>^)</key>
-	<string>⁾</string>
-	<key>^\alpha</key>
-	<string>ᵅ</string>
-	<key>^\beta</key>
-	<string>ᵝ</string>
-	<key>^\gamma</key>
-	<string>ᵞ</string>
-	<key>_0</key>
-	<string>₀</string>
-	<key>_1</key>
-	<string>₁</string>
-	<key>_2</key>
-	<string>₂</string>
-	<key>_3</key>
-	<string>₃</string>
-	<key>_a</key>
-	<string>ₐ</string>
-	<key>_+</key>
-	<string>₊</string>
-	<key>_-</key>
-	<string>₋</string>
-	<key>_=</key>
-	<string>₌</string>
-	<key>_(</key>
-	<string>₍</string>
-	<key>_)</key>
-	<string>₎</string>
-	<key>_\beta</key>
-	<string>ᵦ</string>
-	<key>_\gamma</key>
-	<string>ᵧ</string>
 	<key>\rightarrow</key>
 	<string>→</string>
 	<key>\leftarrow</key>
@@ -394,5 +330,45 @@
 	<string>ς</string>
 	<key>\vartheta</key>
 	<string>ϑ</string>
+	<key>_0</key>
+	<string>₀</string>
+	<key>_1</key>
+	<string>₁</string>
+	<key>_2</key>
+	<string>₂</string>
+	<key>_3</key>
+	<string>₃</string>
+	<key>_4</key>
+	<string>₄</string>
+	<key>_5</key>
+	<string>₅</string>
+	<key>_6</key>
+	<string>₆</string>
+	<key>_7</key>
+	<string>₇</string>
+	<key>_8</key>
+	<string>₈</string>
+	<key>_9</key>
+	<string>₉</string>
+	<key>^0</key>
+	<string>⁰</string>
+	<key>^1</key>
+	<string>¹</string>
+	<key>^2</key>
+	<string>²</string>
+	<key>^3</key>
+	<string>³</string>
+	<key>^4</key>
+	<string>⁴</string>
+	<key>^5</key>
+	<string>⁵</string>
+	<key>^6</key>
+	<string>⁶</string>
+	<key>^7</key>
+	<string>⁷</string>
+	<key>^8</key>
+	<string>⁸</string>
+	<key>^9</key>
+	<string>⁹</string>
 </dict>
 </plist>

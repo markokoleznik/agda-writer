@@ -27,6 +27,8 @@ extern NSString * const AWAgdaGaveAction;
 extern NSString * const AWAgdaMakeCaseAction;
 extern NSString * const AWAgdaHighlightCode;
 extern NSString * const AWAgdaClearHighlighting;
+extern NSString * const AWAgdaGoto;
+extern NSString * const AWSelectAgdaRange;
 
 typedef NS_ENUM(NSInteger, KeyPressed) {
     AWEnterPressed,
@@ -42,7 +44,7 @@ typedef NS_ENUM(NSInteger, KeyPressed) {
 + (void) notifyTextChangedInRange: (NSRange) affectedRange replacementString: (NSString *) replacementString;
 + (void) notifyAgdaReplied:(NSString *)reply sender:(id)sender;
 + (void) notifyExecuteActions:(NSArray *)actions sender:(NSViewController *)sender;
-+ (void) notifyAgdaBufferDataAvaliable:(NSString *)buffer sender:(id)sender;
++ (void) notifyAgdaBufferDataAvaliable:(NSAttributedString *)buffer sender:(id)sender;
 + (void) notifyAgdaVersion:(NSString *)version;
 + (void) notifyAllGoals: (NSString *)allGoals  sender:(id)sender;
 + (void) notifyPossibleAgdaPathFound: (NSString *)agdaPaths;
@@ -50,10 +52,13 @@ typedef NS_ENUM(NSInteger, KeyPressed) {
 + (void) notifyMakeCaseAction:(NSString *)makeCaseActions sender:(id)sender;
 + (void) notifyHighlightCode:(NSArray *)array sender:(id)sender;
 + (void) notifyClearHighlightingWithSender:(id)sender;
++ (void) notifyAgdaGotoIndex:(NSInteger)index sender:(id)sender;
 
 + (void) notifyPlaceInsertionPointAtCharIndex:(NSUInteger) charIndex;
 
 + (void) notifyOpenPreferences;
+
++ (void) notifySelectAgdaRange:(NSString *)agdaRange sender:(id)sender;
 
 + (NSDictionary *) dictionaryOfDefaults;
 + (NSString *) agdaLaunchPath;

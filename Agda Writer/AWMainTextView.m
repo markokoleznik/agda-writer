@@ -13,6 +13,8 @@
 #import "AWHelper.h"
 #import "AWHighlighting.h"
 
+
+
 @implementation AgdaGoal
 
 
@@ -25,47 +27,28 @@
 
 -(void)awakeFromNib
 {
-//    NSLog(@"%@", self.description);
     if (!initialize) {
+        [self setAutomaticDashSubstitutionEnabled:NO];
         [self toggleAutomaticDashSubstitution:NO];
         [self toggleContinuousSpellChecking:NO];
-        
         [self setContinuousSpellCheckingEnabled:NO];
         self.delegate = self;
-//        [NSApplication sharedApplication].delegate = self;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addToken:) name:@"AW.addToken" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChangedInRangeWithReplacementString:) name:@"textChangedInRangeWithReplacementString" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allGoalsAction:) name:AWAllGoals object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(placeInsertionPointAtCharIndex:) name:AWPlaceInsertionPointAtCharIndex object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaGaveAction:) name:AWAgdaGaveAction object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeCaseAction:) name:AWAgdaMakeCaseAction object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(highlightCode:) name:AWAgdaHighlightCode object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearHighlighting:) name:AWAgdaClearHighlighting object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agdaGotoIndex:) name:AWAgdaGoto object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectAgdaRange:) name:AWSelectAgdaRange object:nil];
         
         
         initialize = YES;
-        
-        mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:self.textStorage.string];
-        // Set Attributes for attributed string
-        NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-        defaultAttributes = @{
-                              NSForegroundColorAttributeName : [NSColor blackColor],
-                              NSFontAttributeName : [NSFont fontWithName:[ud objectForKey:FONT_FAMILY_KEY] size:[[ud objectForKey:FONT_SIZE_KEY] doubleValue]],
-                              NSBackgroundColorAttributeName : [NSColor whiteColor]
-                              };
-        
-        goalsAttributes = @{
-                            NSForegroundColorAttributeName : [NSColor blueColor],
-                            NSBackgroundColorAttributeName : [NSColor colorWithRed:1.0 green:1.0 blue:0.0 alpha:0.5],
-                            };
-        
-        [mutableAttributedString addAttributes:defaultAttributes range:NSMakeRange(0, mutableAttributedString.length)];
-
-        
-//        [self openLastDocument];
-        
-        
+        [self setTypingAttributes:@{NSFontAttributeName : [AWHelper defaultFontInAgda]}];
         mutableSetOfActionNames = [[NSMutableSet alloc] init];
+        
+        [self setTextContainerInset:NSMakeSize( 0.0, 5.0 )];
+        
         
 
     }
@@ -73,6 +56,8 @@
     
     
 }
+
+
 
 
 - (AgdaGoal *)selectedGoal
@@ -91,23 +76,35 @@
     NSDictionary * dict = [AWAgdaParser goalIndexAndRange:self.selectedRange textStorage:self.textStorage];
     if (dict) {
         _selectedGoal = [[AgdaGoal alloc] init];
+        _selectedGoal.rangeOfContent = NSMakeRange(NSNotFound, 0);
         NSRange foundRange = NSRangeFromString(dict[@"foundRange"]);
         _selectedGoal.goalIndex = [dict[@"goalIndex"] integerValue];
         _selectedGoal.agdaGoalIndex = [goalsIndexesArray[_selectedGoal.goalIndex][@"goalIndex"] integerValue];
-        _selectedGoal.startCharIndex = foundRange.location;
-        _selectedGoal.endCharIndex = foundRange.location + foundRange.length;
+        _selectedGoal.startCharIndex = foundRange.location + 3;
+        _selectedGoal.endCharIndex = foundRange.location + foundRange.length - 1;
         
         NSArray * lines = [string componentsSeparatedByString:@"\n"];
         for (NSInteger i = 0; i < lines.count; i++) {
             NSString * line = lines[i];
-            if (numberOfChars + line.length >= foundRange.location + foundRange.length) {
+            if (numberOfChars + line.length >= foundRange.location) {
                 _selectedGoal.startRow = i + 1;
+                // Where is end row?
+                // sum all of the new lines.
                 _selectedGoal.endRow = i + 1;
-                _selectedGoal.startColumn = foundRange.location - numberOfChars;
-                _selectedGoal.endColumn = foundRange.location + foundRange.length - numberOfChars;
-                _selectedGoal.content = [string substringWithRange:NSMakeRange(foundRange.location + 2, foundRange.length - 4)];
+                _selectedGoal.startColumn = foundRange.location - numberOfChars + 3;
+                _selectedGoal.endColumn = foundRange.location + foundRange.length - numberOfChars - 1;
+                _selectedGoal.rangeOfContent = NSMakeRange(foundRange.location + 2, foundRange.length - 4);
+                _selectedGoal.content = [string substringWithRange:_selectedGoal.rangeOfContent];
+                
+                NSArray * contentSeparatedWithNewLines = [_selectedGoal.content componentsSeparatedByString:@"\n"];
+                if (contentSeparatedWithNewLines.count > 1) {
+                    _selectedGoal.endRow = (i + 1) + (contentSeparatedWithNewLines.count - 1);
+                    NSString * lastComponent = contentSeparatedWithNewLines[contentSeparatedWithNewLines.count - 1];
+                    _selectedGoal.endColumn = lastComponent.length;
+                }
+                
                 _selectedGoal.content = [_selectedGoal.content stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
-//                _selectedGoal.content = [_selectedGoal.content stringByReplacingOccurrencesOfString:@"\\" withString:@"'\\"];
+                _selectedGoal.content = [_selectedGoal.content stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
                 
                 // Compute number of empty spaces in this line
                 // i.e. where code begins, indentation if you prefer :)
@@ -134,52 +131,86 @@
 -(void)paste:(id)sender
 {
     [super pasteAsPlainText:sender];
-    NSLog(@"Pasting");
-}
-
-- (void)insertAttachmentCell:(NSTextAttachmentCell *)cell toTextView:(NSTextView *)textView
-{
-    NSTextAttachment *attachment = [NSTextAttachment new];
-    [attachment setAttachmentCell:cell];
-    [textView insertText:[NSAttributedString attributedStringWithAttachment:attachment]];
 }
 
 
--(void)textViewDidChangeSelection:(NSNotification *)notification
+- (void) transformLastWordToUnicode
 {
-//    NSLog(@"%@", notification.userInfo);
+    NSRange rangeOfCurrentWord = [self rangeOfCurrentWord];
+
+    if (rangeOfCurrentWord.location != NSNotFound) {
+        NSString * currentWord = [self.string substringWithRange:rangeOfCurrentWord];
+//        NSLog(@"Current word: %@", currentWord);
+        NSDictionary * keyBindings = [AWHelper keyBindings];
+        NSString * replacementString = [keyBindings objectForKey:currentWord];
+        if (replacementString) {
+            
+            BOOL shouldReplace = [self shouldChangeTextInRange:rangeOfCurrentWord replacementString:replacementString];
+            if (shouldReplace) {
+                [self setTypingAttributes:@{NSFontAttributeName : [AWHelper defaultFontInAgda]}];
+                [self replaceCharactersInRange:rangeOfCurrentWord withString:replacementString];
+                
+            }
+            
+        }
+    }
     
-//    NSRange range = [notification.userInfo[@"NSOldSelectedCharacterRange"] rangeValue];
-//    NSLog(@"Selected range: (%li, %li)", range.location, range.length);
-    
+}
+
+-(NSMenu *)textView:(NSTextView *)view menu:(NSMenu *)menu forEvent:(NSEvent *)event atIndex:(NSUInteger)charIndex
+{
+    NSMutableArray * itemsToRemove = [[NSMutableArray alloc] init];
+    for (NSMenuItem * item in menu.itemArray) {
+        if ([item.title isEqualToString:@"Cut"] ||
+            [item.title isEqualToString:@"Copy"] ||
+            [item.title isEqualToString:@"Paste"] ||
+            [item.title isEqualToString:@"SearchWithGoogle"]) {
+        }
+        else {
+            [itemsToRemove addObject:item];
+        }
+    }
+    for (NSMenuItem * itemToRemove in itemsToRemove) {
+        [menu removeItem:itemToRemove];
+    }
+    return menu;
+}
+
+-(BOOL)shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(NSString *)replacementString
+{
+    if ([replacementString isEqualToString:@"—"]) {
+        [self setAutomaticDashSubstitutionEnabled:NO];
+        return NO;
+    }
+    return [super shouldChangeTextInRange:affectedCharRange replacementString:replacementString];
 }
 
 -(void)keyUp:(NSEvent *)theEvent
 {
 //    NSLog(@"Key pressed: %@", theEvent);
+    [super keyUp:theEvent];
     if (([theEvent.characters isEqualToString:@" "])) {
-        NSRange rangeOfCurrentWord = [self rangeOfCurrentWord];
-        if (rangeOfCurrentWord.location != NSNotFound) {
-            NSString * currentWord = [self.string substringWithRange:rangeOfCurrentWord];
-            NSDictionary * keyBindings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Key Bindings" withExtension:@"plist"]];
-            NSString * replacementString = [keyBindings objectForKey:currentWord];
-            if (replacementString) {
-                [self.textStorage replaceCharactersInRange:rangeOfCurrentWord withString:replacementString];
-            }
-        }
+        [self transformLastWordToUnicode];
         return;
         
     }
-    else if (theEvent.keyCode == 51) { // delete
+    else if (theEvent.keyCode == 51 || [@[@123, @124, @125, @126, @53] containsObject:[NSNumber numberWithInteger:theEvent.keyCode]]) {
+        // delete, up, down, left, right
         return;
     }
-    
+    else if (theEvent.keyCode == 36 || theEvent.keyCode == 48) {
+        // enter or tab is pressed
+        [self transformLastWordToUnicode];
+        
+    }
     if (!autocompleteTriggered) {
-        [self performSelector:@selector(complete:) withObject:nil afterDelay:0.5];
+        [self performSelector:@selector(complete:) withObject:nil afterDelay:[AWHelper delayForAutocomplete]];
         autocompleteTriggered = YES;
     }
     
 }
+
+
 
 -(void)applyUnicodeTransformation
 {
@@ -190,7 +221,7 @@
     for (NSString * line in lines) {
         [words addObjectsFromArray:[line componentsSeparatedByString:@" "]];
     }
-    NSDictionary * keyBindings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Key Bindings" withExtension:@"plist"]];
+    NSDictionary * keyBindings = [AWHelper keyBindings];
     for (NSString * word in words) {
         NSString * replacementString = [keyBindings objectForKey:word];
         if (replacementString) {
@@ -199,11 +230,15 @@
     }
 }
 
+
+
 -(void)complete:(id)sender
 {
     [super complete:sender];
     autocompleteTriggered = NO;
 }
+
+
 
 -(NSArray *)textView:(NSTextView *)textView completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
 {
@@ -211,11 +246,15 @@
     if (charRange.location == 0) {
         return @[];
     }
+    // Don't harass user if he writes '='
+    if ([partialWord isEqualToString:@"="] ||
+        [partialWord isEqualToString:@"_"]) {
+        return @[];
+    }
     if (charRange.location - 1 > 0 && [self.string characterAtIndex:charRange.location - 1] == '\\') {
         partialWord = [self.string substringWithRange:NSMakeRange(charRange.location - 1, charRange.length + 1)];
     }
-    NSDate * startDate = [NSDate date];
-    NSDictionary * keyBindings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Key Bindings" withExtension:@"plist"]];
+    NSDictionary * keyBindings = [AWHelper keyBindings];
     
     
     NSMutableArray * mutableArray = [[NSMutableArray alloc] init];
@@ -249,7 +288,7 @@
         return @[];
     }
     
-    NSLog(@"elapsed time: %f seconds", [[NSDate date] timeIntervalSinceDate:startDate]);
+//    NSLog(@"elapsed time: %f seconds", [[NSDate date] timeIntervalSinceDate:startDate]);
     
     return mutableArray;
 }
@@ -258,10 +297,18 @@
 {
     NSRange word = NSMakeRange(NSNotFound, 0);
     
-    NSInteger i = self.selectedRange.location - 2;
-    NSInteger j = self.selectedRange.location - 2;
+    NSInteger i = self.selectedRange.location - 1;
+    NSInteger j = self.selectedRange.location - 1;
     while (i > 0) {
-        if ([self.string characterAtIndex:i] == ' ' || [self.string characterAtIndex:i] == '\n') {
+        
+        
+        
+        if (i == j && ([self.string characterAtIndex:i] == ' ' || [self.string characterAtIndex:i] == '\n' || [[self.string substringWithRange:NSMakeRange(i, 1)] isEqualToString:@"\t"])) {
+            i--;
+            j--;
+            continue;
+        }
+        if ([self.string characterAtIndex:i] == ' ' || [self.string characterAtIndex:i] == '\n' || [[self.string substringWithRange:NSMakeRange(i, 1)] isEqualToString:@"\t"]) {
             word = NSMakeRange(i + 1, j - i);
             
             break;
@@ -274,7 +321,13 @@
         i--;
     }
     if (word.location != NSNotFound) {
-        NSLog(@"%@", [self.string substringWithRange:word]);
+        if (word.length > 1 && [self.string characterAtIndex:word.location] == '(') {
+            word = NSMakeRange(word.location + 1, word.length - 1);
+        }
+        if (word.length > 1 && [self.string characterAtIndex:word.location + word.length - 1] == ')') {
+            word = NSMakeRange(word.location, word.length - 1);
+        }
+//        NSLog(@"%@", [self.string substringWithRange:word]);
     }
     
     return word;
@@ -282,21 +335,34 @@
 
 - (BOOL)textView:(NSTextView *)textView shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(NSString *)replacementString
 {
+    if (affectedCharRange.location > 0) {
+        NSRange newRange = NSMakeRange(affectedCharRange.location - 1, 1);
+        NSString * substring = [self.string substringWithRange:newRange];
+        if ([substring isEqualToString:@"_"] || [substring isEqualToString:@"^"]) {
+            // underscore action
+            substring = [substring stringByAppendingString:replacementString];
+            if (substring.length == 2) {
+                BOOL foundAction = [self transformToSubscriptCharacter:substring atRange:newRange];
+                if (foundAction) {
+                    return NO;
+                }
+            }
+            
+        }
+    }
 
     // Find how many spaces are in previous line.
     if ([replacementString isEqualToString:@"\n"]) {
+        if (self.string.length > affectedCharRange.location + affectedCharRange.length) {
+            if ([self.string characterAtIndex:affectedCharRange.location] != '\n') {
+                return YES;
+            }
+        }
         BOOL shouldBreak = NO;
         NSInteger numberOfSpaces = 0;
         for (NSInteger i = affectedCharRange.location - 1; i > 0; i--) {
-            if ([self.string characterAtIndex:i] == '\n') {
+            if ([self.string characterAtIndex:i] == '\n' || i == 0) {
                 // we found previous line!
-                if (i + 3 < self.textStorage.string.length && [[self.string substringWithRange:NSMakeRange(i + 1, 2)] isEqualToString:@"{-"]) {
-                    // begin multiline comment
-                    [self.textStorage.mutableString insertString:@"   \n-}" atIndex:i + 3];
-                    [self setSelectedRange:NSMakeRange(i + 6, 0)];
-                    shouldBreak = YES;
-                    break;
-                }
                 for (NSInteger j = i + 1; j < self.string.length; j++) {
                     if ([self.string characterAtIndex:j] != ' ') {
                         numberOfSpaces = j - i - 1;
@@ -310,24 +376,46 @@
                 break;
             }
         }
-        [self replaceCharactersInRange:affectedCharRange withString:[self whitespaces:numberOfSpaces]];
-        
+        if ([self shouldChangeTextInRange:affectedCharRange replacementString:[self whitespaces:numberOfSpaces]]) {
+            [self replaceCharactersInRange:affectedCharRange withString:[self whitespaces:numberOfSpaces]];
+            
+        }
         
     }
+//
+//    if (affectedCharRange.location > 1) {
+//        
+//    }
     
     return YES;
 }
 
--(void)setString:(NSString *)string
+- (BOOL) transformToSubscriptCharacter:(NSString *)action atRange:(NSRange)range
 {
-    // Overrride this method to set Attributed string!
-    [super setString:string];
-    mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:self.textStorage.string];
-    [mutableAttributedString addAttributes:defaultAttributes range:NSMakeRange(0, mutableAttributedString.length)];
-    [[self textStorage] setAttributedString:mutableAttributedString];
+    NSDictionary * keyBindings = [AWHelper keyBindings];
+    NSString * replacementString = [keyBindings objectForKey:action];
+    if (replacementString) {
+        BOOL shouldReplace = [self shouldChangeTextInRange:range replacementString:replacementString];
+        if (shouldReplace) {
+            [self replaceCharactersInRange:range withString:replacementString];
+            return YES;
+        }
+        
+    }
+    return NO;
 }
 
-
+-(void)textViewDidChangeSelection:(NSNotification *)notification
+{
+    AgdaGoal * goal = self.selectedGoal;
+    if (goal) {
+        NSLog(@"User is inside of a goal.");
+        [self.mainTextViewDelegate highlightSelectedGoalAtRow:goal.goalIndex];
+    }
+    if (!goal) {
+        [self.mainTextViewDelegate highlightSelectedGoalAtRow:-1];
+    }
+}
 
 -(BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
 {
@@ -349,57 +437,6 @@
 
 }
 
-- (void) textChangedInRangeWithReplacementString:(NSNotification *) notification
-{
-    NSDictionary * dictionary = notification.object;
-    NSRange range = [dictionary[@"range"] rangeValue];
-    NSString * replacementString = dictionary[@"replacementString"];
-    NSLog(@"range: (%li, %li), replacementString: %@", range.location, range.location + range.length, replacementString);
-    
-    if ([replacementString isEqualToString:@"/"]) {
-        NSDate * regexStart = [NSDate date];
-        [self asynchronouslyFindRangesOfCommentsWithCompletion:^(NSArray * matches) {
-            
-            NSDate *methodStart = [NSDate date];
-            
-            NSLog(@"number of matches %li", matches.count);
-            [self setTextColor:[NSColor blackColor]];
-            [self.textStorage beginEditing];
-            
-            for (NSTextCheckingResult * result in matches) {
-                [self setTextColor:[NSColor colorWithRed:94.0/255.0 green:126.0/255.0 blue:28.0/255.0 alpha:1.0] range:result.range];
-            }
-            
-            [self.textStorage endEditing];
-            NSDate *methodFinish = [NSDate date];
-            NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
-            NSLog(@"regex execution time: %f s, execution time for coloring: %f s", [methodStart timeIntervalSinceDate:regexStart], executionTime);
-        }];
-    }
-    
-    
-    
-}
-
-- (void)asynchronouslyFindRangesOfCommentsWithCompletion:(void (^)(NSArray *))matches;
-{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        
-        // Asynchronously find all ranges with regex
-        // Regex pattern: //.*
-        // Finds all strings that begins with // and returns its range to the end of the line.
-        
-        NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:@"//.*" options:0 error:nil];
-        NSArray * results = [regex matchesInString:self.textStorage.string options:0 range:NSMakeRange(0, self.textStorage.length)];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (matches) {
-                
-                matches(results);
-            }
-        });
-    });
-}
 
 - (void)asynchronouslyFindRangesOfQuestionMarksWithCompletion:(void (^)(NSArray *))matches;
 {
@@ -435,32 +472,8 @@
     });
 }
 
-- (void) setDefaultText
-{
-    NSDate *currDate = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"dd. MM. YY."];
-    NSString *dateString = [dateFormatter stringFromDate:currDate];
-    
-    
-    NSString * welcomeString = @"";
-    welcomeString = [welcomeString stringByAppendingString:@"--  \n"];
-    welcomeString = [welcomeString stringByAppendingFormat:@"--  Created by %@ on %@ \n", NSFullUserName(), dateString];
-    welcomeString = [welcomeString stringByAppendingString:@"--  \n"];
-    [self setString: welcomeString];
-    
-    
 
-}
 
-- (NSRange) replaceQuestionMarkInRange:(NSRange)range WithType:(NSString *)type
-{
-    [self replaceCharactersInRange:range withString:type];
-    [mutableAttributedString replaceCharactersInRange:range withString:type];
-    
-    NSRange newRange = NSMakeRange(range.location, type.length);
-    return newRange;
-}
 
 
 
@@ -476,31 +489,77 @@
         if ([content hasPrefix:@"\""] && [content hasSuffix:@"\""]) {
             content = [content substringWithRange:NSMakeRange(1, content.length - 2)];
         }
+        content = [content stringByReplacingOccurrencesOfString:@"\\n" withString:@""];
         
         // Replace given goal with content that Agda gave.
-        NSLog(@"Agda gave action: goal index: %li, content: %@", goalIndex, content);
+//        NSLog(@"Agda gave action: goal index: %li, content: %@", goalIndex, content);
         NSInteger i = 0;
         for (NSDictionary * dict in goalsIndexesArray) {
             if ([dict[@"goalIndex"] integerValue] == goalIndex) {
                 goalIndex = i;
+                break;
             }
             i++;
         }
         NSRange rangeOfGoal = [AWAgdaParser goalAtIndex:goalIndex textStorage:self.textStorage];
         if (rangeOfGoal.location + rangeOfGoal.length <= self.string.length) {
-            [self.textStorage replaceCharactersInRange:rangeOfGoal withString:content];
+            if ([self shouldChangeTextInRange:rangeOfGoal replacementString:content]) {
+
+                [self.textStorage replaceCharactersInRange:rangeOfGoal withString:content];
+            }
+            
         }
         
         
         // Save document!
+        // HACK: Force save document after 1 second.
+        // This prevents UI to "freeze" when saving.
         if ([self.parentViewController respondsToSelector:@selector(saveDocument:)]) {
-            [self.parentViewController saveDocument:self];
+            [self.parentViewController performSelector:@selector(saveDocument:) withObject:nil afterDelay:1.0];
+        }
+    }
+}
+
+-(void)selectAgdaRange:(NSNotification *)notification {
+    if (notification.object != self.parentViewController) {
+        return;
+    }
+    NSDictionary * dict = notification.userInfo;
+    NSString * agdaRange = dict[@"agdaRange"];
+    NSArray * components = [agdaRange componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@",-"]];
+    if (components.count == 3) {
+        NSInteger lineNumber = [components[0] integerValue];
+        NSInteger startRange = [components[1] integerValue];
+        NSInteger endRange = [components[2] integerValue];
+        NSRange lineRange = NSMakeRange(startRange, endRange - startRange);
+    
+        NSRange actualRange = [AWAgdaParser rangeFromLineNumber:lineNumber andLineRange:lineRange   string:self.string];
+        
+        [self.window makeFirstResponder:self];
+        
+        if (self.string.length > actualRange.location + actualRange.length) {
+            [self scrollRangeToVisible:actualRange];
+            [self showFindIndicatorForRange:actualRange];
+            [self setSelectedRange:actualRange];
         }
         
         
     }
 }
 
+
+-(void)agdaGotoIndex:(NSNotification *)notification {
+    if (notification.object != self.parentViewController) {
+        return;
+    }
+    if ([notification.userInfo isKindOfClass:[NSDictionary class]]) {
+        NSDictionary * dict = notification.userInfo;
+        NSInteger index = [dict[@"index"] integerValue];
+        [self scrollRangeToVisible:NSMakeRange(index - 1, 0)];
+        [self setSelectedRange:NSMakeRange(index - 1, 0)];
+    }
+    
+}
 
 
 -(void) allGoalsAction:(NSNotification *)notification
@@ -532,9 +591,10 @@
             if (foundRange.location != NSNotFound) {
                 // found an occurrence of the substring!
     
-                NSAttributedString * attrString = [[NSAttributedString alloc] initWithString:@"{!!}" attributes:nil];
-                [self insertText:attrString replacementRange:NSMakeRange(foundRange.location + 1, foundRange.length - 1)];
-                
+
+                if ([self shouldChangeTextInRange:NSMakeRange(foundRange.location + 1, foundRange.length - 1) replacementString:@"{!!}"]) {
+                    [self replaceCharactersInRange:NSMakeRange(foundRange.location + 1, foundRange.length - 1) withString:@"{!!}"];
+                }
                 NSDictionary * goal = [AWAgdaParser goalIndexAndRange:NSMakeRange(foundRange.location + 2, 0) textStorage:self.textStorage];
                 
                 if (i == 0) {
@@ -580,7 +640,11 @@
                 AgdaGoal * currentGoal = self.lastSelectedGoal;
                 if (currentGoal) {
                     // Replace old line with new one
-                    [self.textStorage replaceCharactersInRange:currentGoal.rangeOfCurrentLine withString:@""];
+                    if ([self shouldChangeTextInRange:currentGoal.rangeOfCurrentLine replacementString:@""]) {
+                        [self replaceCharactersInRange:currentGoal.rangeOfCurrentLine withString:@""];
+                    }
+                    
+                    
                     
                     NSMutableString * caseActionString = [NSMutableString new];
                     for (NSInteger i = 0; i < actions.count; i++) {
@@ -589,17 +653,24 @@
                         [caseActionString appendString:@"\n"];
                     }
                     // Delete last "newline"
-                    [caseActionString deleteCharactersInRange:NSMakeRange(caseActionString.length - 1, 1)];
-                    [self.textStorage insertAttributedString:[[NSAttributedString alloc] initWithString:caseActionString attributes:@{NSFontAttributeName: [AWHelper defaultFontInAgda]}] atIndex:currentGoal.rangeOfCurrentLine.location];
                     
+                    [caseActionString deleteCharactersInRange:NSMakeRange(caseActionString.length - 1, 1)];
+                    
+//                    [self.textStorage insertAttributedString:[[NSAttributedString alloc] initWithString:caseActionString attributes:@{NSFontAttributeName: [AWHelper defaultFontInAgda]}] atIndex:currentGoal.rangeOfCurrentLine.location];
+                    if ([self shouldChangeTextInRange:NSMakeRange(currentGoal.rangeOfCurrentLine.location, 0) replacementString:caseActionString]) {
+                        [self replaceCharactersInRange:NSMakeRange(currentGoal.rangeOfCurrentLine.location, 0) withString:caseActionString];
+                    }
+
                     [self replaceQuestionMarksWithGoals];
                     
-                    // TODO: reorder goals
                     
                 }
             }
         }
     }
+//    if ([self.parentViewController respondsToSelector:@selector(saveDocument:)]) {
+//        [self.parentViewController performSelector:@selector(saveDocument:)];
+//    }
 }
 
 - (void)replaceQuestionMarksWithGoals
@@ -607,33 +678,14 @@
     [self asynchronouslyFindRangesOfQuestionMarksWithCompletion:^(NSArray * matches) {
         for (NSInteger i = 0; i < matches.count; i++) {
             NSRange foundRange = NSRangeFromString(matches[i]);
-            [self.textStorage replaceCharactersInRange:foundRange withString:@"{!!}"];
+            if ([self shouldChangeTextInRange:foundRange replacementString:@"{!!}"]) {
+                [self replaceCharactersInRange:foundRange withString:@"{!!}"];
+            }
+            
         }
     }];
 }
 
--(void) addTokenAtRange:(NSRange)range withGoalName:(NSString *)goalName
-{
-    NSTextAttachment * attachment = [[NSTextAttachment alloc] initWithFileWrapper:nil];
-    NSMutableAttributedString * text = [NSMutableAttributedString new];
-    CustomTokenCell * tokenCell = [[CustomTokenCell alloc] init];
-    [tokenCell setTitle:goalName];
-    
-    [attachment setAttachmentCell:tokenCell];
-    [text appendAttributedString:[NSAttributedString attributedStringWithAttachment:attachment]];
-    [self insertText:text replacementRange: NSMakeRange(range.location + 1, range.length - 1)];
-
-}
-
-- (void) addToken:(NSNotification *)notification
-{
-    // Test only!
-    NSTextAttachment * attachment = [[NSTextAttachment alloc] initWithFileWrapper:nil];
-    CustomTokenCell * tokenCell = [[CustomTokenCell alloc] init];
-    [tokenCell setTitle:@"Here is some token!"];
-    [attachment setAttachmentCell:tokenCell];
-    [self insertText:[NSAttributedString attributedStringWithAttachment:attachment]];
-}
 
 - (void) placeInsertionPointAtCharIndex:(NSNotification *) notification
 {
@@ -648,15 +700,12 @@
         NSArray * array = notification.userInfo[@"actions"];
         for (NSDictionary * dict in array) {
             NSString * actionName = dict.allKeys[0];
-            //            NSLog(@"action name: %@", actionName);
-            //            [mutableSetOfActionNames addObject:actionName];
             NSArray * args = dict[actionName];
             if (args.count > 0) {
                 NSRange range = NSRangeFromString(args[0]);
                 [AWHighlighting highlightCodeAtRange:range actionName:actionName textView:self];
             }
         }
-//        NSLog(@"%@", mutableSetOfActionNames);
     }
 
 }
@@ -664,14 +713,15 @@
 - (void)clearHighlighting:(NSNotification *) notification
 {
     if (notification.object == self.parentViewController) {
-        [self.layoutManager addTemporaryAttributes:[NSDictionary dictionaryWithObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName] forCharacterRange:NSMakeRange(0, self.string.length)];
+        [self clearHighligting];
     }
     
 }
 
-
-
-
+- (void) clearHighligting
+{
+    [self.layoutManager addTemporaryAttributes:[NSDictionary dictionaryWithObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName] forCharacterRange:NSMakeRange(0, self.string.length)];
+}
 
 
 -(void)dealloc
