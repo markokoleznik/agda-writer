@@ -19,11 +19,18 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-    
     // check for agda!
     if ([[AWNotifications agdaLaunchPath] isEqualToString:@""]) {
         // agda path is not yet set
-        NSArray * reasonablePlacesForAgda = @[@"~/.cabal/bin/agda", @"~/Library/Haskell/bin/agda", @"/Library/Haskell/bin/agda"];
+        
+        
+        
+        NSArray * reasonablePlacesForAgda =
+        @[
+            @"~/.cabal/bin/agda",
+            @"~/Library/Haskell/bin/agda",
+            @"/Library/Haskell/bin/agda"
+        ];
         for (NSString * path in reasonablePlacesForAgda) {
             
             if ([self isAgdaAvaliableAtPath:path]) {
