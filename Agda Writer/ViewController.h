@@ -22,7 +22,7 @@
 
 @class AgdaGoal, NoodleLineNumberView;
 
-@interface ViewController : NSViewController <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate, AWInputDelegate>
+@interface ViewController : NSViewController <NSApplicationDelegate, NSTextViewDelegate, NSTextDelegate, AWInputDelegate, MainTextViewDelegate>
 {
     Document * document;
 }
@@ -123,6 +123,7 @@
 @property NoodleLineNumberView * lineNumberView;
 
 @property (weak) IBOutlet NSScrollView *mainScrollView;
+
 
 @end
 

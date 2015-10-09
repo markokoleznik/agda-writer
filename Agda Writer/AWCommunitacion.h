@@ -45,6 +45,7 @@
 - (void) openConnectionToAgda;
 - (void) closeConnectionToAgda;
 - (void) quitAndRestartConnectionToAgda;
+- (void) clearPartialResponse;
 
 
 @end

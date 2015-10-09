@@ -8,7 +8,10 @@ Works with OS X 10.9 (Mavericks) or later.
 # Features
 - Handy shortcuts for actions
 - Customizable Unicode (Latex-like) input with autocompletion
-- Same color pallete as in Emacs
+- Same color palette as in Emacs
 - Independent Buffer window, so you can always know what is going on
 - ...
 - Well, it's not Emacs :D
+
+# License
+agda-writer is Licensed under MIT License Agreement.

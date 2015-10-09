@@ -42,8 +42,45 @@
 //`comment'                Comments.")
 
 
-#define darkRedColor [NSColor colorWithRed:160.0/COLOR_MAX_VALUE green:16.0/COLOR_MAX_VALUE blue:26.0/COLOR_MAX_VALUE alpha:1.0]
-#define orangeColor [NSColor colorWithRed:192.0/COLOR_MAX_VALUE green:81.0/COLOR_MAX_VALUE blue:6.0/COLOR_MAX_VALUE alpha:1.0]
+
+//https://github.com/agda/agda/blob/e49365f6e45442618010069c2dcc5917d0272083/src/data/Agda.css
+///* Aspects. */
+//.Comment       { color: #B22222 } R: 178 G: 34 B: 34
+//.Keyword       { color: #CD6600 } 205,102,0
+//.String        { color: #B22222 } 178,34,34 !
+//.Number        { color: #A020F0 } 160,32,240
+//.Symbol        { color: #404040 } 64,64,64
+//.PrimitiveType { color: #0000CD } 0,0,205
+//.Operator      {}
+//
+///* NameKinds. */
+//.Bound                  { color: black   }
+//.InductiveConstructor   { color: #008B00 } 0,139,0
+//.CoinductiveConstructor { color: #8B7500 } 139,117,0
+//.Datatype               { color: #0000CD } 0,0,205 !
+//.Field                  { color: #EE1289 } 238,18,137
+//.Function               { color: #0000CD } 0,0,205 !
+//.Module                 { color: #A020F0 } 160,32,240 !
+//.Postulate              { color: #0000CD } !
+//.Primitive              { color: #0000CD } !
+//.Record                 { color: #0000CD } !
+//
+///* OtherAspects. */
+//.DottedPattern      {}
+//.UnsolvedMeta       { color: black; background: yellow         }
+//.UnsolvedConstraint { color: black; background: yellow         }
+//.TerminationProblem { color: black; background: #FFA07A        } 255,160,122
+//.IncompletePattern  { color: black; background: #F5DEB3        } 245,222,179
+//.Error              { color: red;   text-decoration: underline }
+//.TypeChecks         { color: black; background: #ADD8E6        } 173,216,230
+//
+///* Standard attributes. */
+//a { text-decoration: none }
+//a[href]:hover { background-color: #B4EEB4 }
+
+
+#define darkRedColor [NSColor colorWithRed:178.0/COLOR_MAX_VALUE green:34.0/COLOR_MAX_VALUE blue:34.0/COLOR_MAX_VALUE alpha:1.0]
+#define orangeColor [NSColor colorWithRed:205.0/COLOR_MAX_VALUE green:102.0/COLOR_MAX_VALUE blue:0.0/COLOR_MAX_VALUE alpha:1.0]
 #define purpleColor [NSColor colorWithRed:172.0/COLOR_MAX_VALUE green:2.0/COLOR_MAX_VALUE blue:128.0/COLOR_MAX_VALUE alpha:1.0]
 #define blueColor [NSColor colorWithRed:0.0/COLOR_MAX_VALUE green:1.0/COLOR_MAX_VALUE blue:193.0/COLOR_MAX_VALUE alpha:1.0]
 #define darkGreyColor [NSColor colorWithRed:49.0/COLOR_MAX_VALUE green:49.0/COLOR_MAX_VALUE blue:49.0/COLOR_MAX_VALUE alpha:1.0]
@@ -191,7 +228,7 @@ NSString * const AWinductiveconstructorOperator = @"inductiveconstructor operato
         color = darkGreyColor;
     }
     else {
-        NSLog(@"TYPE NOT FOUND!\n%@", type);
+        NSLog(@"AWColors.m : TYPE NOT FOUND!\n%@", type);
         color = defaultColor;
     }
     

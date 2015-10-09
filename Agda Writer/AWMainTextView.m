@@ -405,7 +405,17 @@
     return NO;
 }
 
-
+-(void)textViewDidChangeSelection:(NSNotification *)notification
+{
+    AgdaGoal * goal = self.selectedGoal;
+    if (goal) {
+        NSLog(@"User is inside of a goal.");
+        [self.mainTextViewDelegate highlightSelectedGoalAtRow:goal.goalIndex];
+    }
+    if (!goal) {
+        [self.mainTextViewDelegate highlightSelectedGoalAtRow:-1];
+    }
+}
 
 -(BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
 {
@@ -712,10 +722,6 @@
 {
     [self.layoutManager addTemporaryAttributes:[NSDictionary dictionaryWithObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName] forCharacterRange:NSMakeRange(0, self.string.length)];
 }
-
-
-
-
 
 
 -(void)dealloc

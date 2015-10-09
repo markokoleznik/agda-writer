@@ -54,9 +54,8 @@
     
     // We have agda action.
     action = [action substringWithRange:NSMakeRange(1, action.length - 2)];
-    
-    NSArray * actions = [[NSArray alloc] init];
-    actions = [self executeParser:action];
+
+    NSArray * actions = [self executeParser:action];
     if (actions.count > 0) {
         dict = @{actions[0]: [actions subarrayWithRange:NSMakeRange(1, actions.count - 1)]};
     }
@@ -413,7 +412,6 @@
 }
 
 +(NSInteger) parseGotoAction:(NSString *)reply {
-    NSInteger index;
     
     if ([reply hasSuffix:@")"]) {
         NSArray * components = [reply componentsSeparatedByString:@" . "];
@@ -422,7 +420,7 @@
         return [lastComponent integerValue];
     }
     
-    return index;
+    return 0;
 }
 
 + (NSMutableAttributedString *)parseRangesAndAddAttachments:(NSAttributedString *)reply parentViewController:(id)parentViewController;

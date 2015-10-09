@@ -1,9 +1,91 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <scenes>
+        <!--Window Controller-->
+        <scene sceneID="833-7k-kaB">
+            <objects>
+                <windowController id="WYd-BO-iMx" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="RN3-pO-Be8">
+                        <windowStyleMask key="styleMask" titled="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="142"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                <color key="value" red="0.9960784912109375" green="0.9960784912109375" blue="0.99215692281723022" alpha="1" colorSpace="deviceRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </window>
+                    <connections>
+                        <segue destination="QZl-jG-1p1" kind="relationship" relationship="window.shadowedContentViewController" id="W2G-hb-bbP"/>
+                    </connections>
+                </windowController>
+                <customObject id="WQe-pr-0Zl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="73" y="-1254"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="OI6-Lp-Z83">
+            <objects>
+                <viewController title="About" id="QZl-jG-1p1" customClass="AWAboutViewController" sceneMemberID="viewController">
+                    <view key="view" id="3Ir-4V-PcP">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="176"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ixD-Gv-Vco">
+                                <rect key="frame" x="30" y="39" width="98" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="98" id="5G0-Qd-stp"/>
+                                    <constraint firstAttribute="height" constant="99" id="wMh-fc-n6N"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="icon_128x128" id="C4e-jd-Naw"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vam-Cp-GZd">
+                                <rect key="frame" x="161" y="112" width="178" height="44"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Agda Writer" id="xHT-bp-tsa">
+                                    <font key="font" size="36" name="HelveticaNeue-Thin"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sb0-yv-3lE">
+                                <rect key="frame" x="161" y="97" width="73" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Version 1.0" id="khh-gs-5UG">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w08-qu-c51">
+                                <rect key="frame" x="161" y="0.0" width="292" height="20"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Includes MAAtachedWindow code by Matt Gemmell." id="Kf5-A7-NnC">
+                                    <font key="font" metaFont="system" size="10"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="ixD-Gv-Vco" secondAttribute="centerY" constant="0.5" id="Fvn-P6-RwZ"/>
+                            <constraint firstItem="ixD-Gv-Vco" firstAttribute="leading" secondItem="3Ir-4V-PcP" secondAttribute="leading" constant="30" id="GkI-pI-sPk"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                <color key="value" red="0.99215692281723022" green="0.9960784912109375" blue="0.9960784912109375" alpha="1" colorSpace="deviceRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <connections>
+                        <outlet property="attributionForMattGemmell" destination="w08-qu-c51" id="wOn-Rb-JK5"/>
+                    </connections>
+                </viewController>
+                <customObject id="8md-h1-QuB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="781" y="-1262"/>
+        </scene>
         <!--Window Controller-->
         <scene sceneID="q3W-2j-nct">
             <objects>
@@ -74,29 +156,6 @@
             </objects>
             <point key="canvasLocation" x="731" y="-673"/>
         </scene>
-        <!--Other-->
-        <scene sceneID="wed-pv-zhB">
-            <objects>
-                <viewController title="Other" id="Bje-fx-GFA" sceneMemberID="viewController">
-                    <view key="view" id="KIm-9j-1mt">
-                        <rect key="frame" x="0.0" y="0.0" width="827" height="436"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kcr-ci-9Lx">
-                                <rect key="frame" x="346" y="263" width="38" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="flG-BY-jnT">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                        </subviews>
-                    </view>
-                </viewController>
-                <customObject id="bMz-o9-qmS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1554.5" y="456"/>
-        </scene>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
             <objects>
@@ -111,6 +170,7 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
+                                                <segue destination="WYd-BO-iMx" kind="modal" id="un5-2P-Znz"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
@@ -711,7 +771,6 @@
                     <tabViewItems>
                         <tabViewItem identifier="" image="settings-general" id="7cB-XY-G36"/>
                         <tabViewItem identifier="" image="settings-keybindings" id="14m-F7-FdD"/>
-                        <tabViewItem id="AQg-T4-MDC"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="oI2-5H-gov">
                         <rect key="frame" x="0.0" y="-154" width="254" height="159"/>
@@ -722,7 +781,6 @@
                     <connections>
                         <segue destination="izb-Gj-tQA" kind="relationship" relationship="tabItems" id="ww2-OX-nsn"/>
                         <segue destination="aRD-IB-1Sm" kind="relationship" relationship="tabItems" id="oec-HH-s6P"/>
-                        <segue destination="Bje-fx-GFA" kind="relationship" relationship="tabItems" id="Awp-Cp-dHb"/>
                     </connections>
                 </tabViewController>
                 <customObject id="Vr2-fl-IKn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1184,7 +1242,7 @@
                                                                     <rect key="frame" x="1" y="17" width="238" height="117"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="36" rowSizeStyle="large" headerView="iQe-Ux-txo" viewBased="YES" id="3sU-Ql-VTQ">
+                                                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="36" rowSizeStyle="large" headerView="iQe-Ux-txo" viewBased="YES" id="3sU-Ql-VTQ">
                                                                             <rect key="frame" x="0.0" y="0.0" width="5010" height="0.0"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <size key="intercellSpacing" width="10" height="2"/>
@@ -1343,6 +1401,7 @@
     </scenes>
     <resources>
         <image name="check-mark" width="24" height="24"/>
+        <image name="icon_128x128" width="128" height="128"/>
         <image name="settings-general" width="64" height="64"/>
         <image name="settings-keybindings" width="64" height="64"/>
         <image name="x-mark" width="24" height="24"/>

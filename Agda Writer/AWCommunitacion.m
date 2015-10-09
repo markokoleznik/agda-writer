@@ -317,6 +317,10 @@
 }
 
 
+- (void) clearPartialResponse {
+    partialAgdaResponse = [[NSMutableString alloc] init];
+}
+
 
 #pragma mark -
 
