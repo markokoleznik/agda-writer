@@ -1,17 +1,17 @@
-agda-writer
-===========
+# agda-writer
+A Graphical User Interface for Agda for OS X Systems.
+Works with OS X 10.9 (Mavericks) or later.
 
-A simple GUI for Agda
+# Prerequisites
+- Installed Agda
 
-Functionalities:
-- Autolayout
-- Built for Mac OS X 10.9 (Mavericks) and 10.10 (Yosemite)
-
-
-TODO list:
-- Prepare new app icon **(Completed)**
-- If user hasn't set path to Agda yet, try to find it (async), or ask him to enter path manually **(Completed)**
-- Make empty boxes for unfinished "types" **(Partialy completed)**
-- Implement LaTeX typing support (or use third-party solution)
-- Reimplement Autolayout
+# Features
+- Handy shortcuts for actions
+- Customizable Unicode (Latex-like) input with autocompletion
+- Same color palette as in Emacs
+- Independent Buffer window, so you can always know what is going on
 - ...
+- Well, it's not Emacs :D
+
+# License
+agda-writer is Licensed under MIT License Agreement.
