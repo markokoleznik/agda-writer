@@ -108,10 +108,8 @@
                 
                 // Compute number of empty spaces in this line
                 // i.e. where code begins, indentation if you prefer :)
-                NSInteger numberOfWhiteSpaces = 0;
                 for (NSInteger j = 0; j < line.length; j++) {
                     if ([line characterAtIndex:j] != ' ') {
-                        numberOfWhiteSpaces = j + 1;
                         _selectedGoal.numberOfEmptySpaces = j;
                         _selectedGoal.rangeOfCurrentLine = NSMakeRange(numberOfChars, line.length);
                         break;

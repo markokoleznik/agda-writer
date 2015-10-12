@@ -59,12 +59,12 @@
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
-    [self drawWithFrame:cellFrame inView:controlView characterIndex:NSNotFound layoutManager:nil];
+//    [self drawWithFrame:cellFrame inView:controlView characterIndex:NSNotFound layoutManager:nil];
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView characterIndex:(NSUInteger)charIndex
 {
-    [self drawWithFrame:cellFrame inView:controlView characterIndex:charIndex layoutManager:nil];
+//    [self drawWithFrame:cellFrame inView:controlView characterIndex:charIndex layoutManager:nil];
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView characterIndex:(NSUInteger)charIndex layoutManager:(NSLayoutManager *)layoutManager
