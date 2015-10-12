@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
     </dependencies>
     <scenes>
@@ -848,6 +847,11 @@
                                 </textFieldCell>
                                 <connections>
                                     <action selector="pathSelected:" target="izb-Gj-tQA" id="LgX-XA-ukR"/>
+                                    <binding destination="xp5-Sa-wkr" name="enabled" keyPath="values.useBundledAgda" id="l0g-jr-wnq">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                     <outlet property="delegate" destination="izb-Gj-tQA" id="vTx-24-fBP"/>
                                 </connections>
                             </textField>
@@ -1013,6 +1017,17 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="showHelpForExternalLibraries:" target="izb-Gj-tQA" id="hZ2-iF-MuZ"/>
+                                </connections>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e53-nj-kuj">
+                                <rect key="frame" x="329" y="310" width="134" height="18"/>
+                                <animations/>
+                                <buttonCell key="cell" type="check" title="Use Bundled Agda" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="trE-1v-AIb">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="xp5-Sa-wkr" name="value" keyPath="values.useBundledAgda" id="VGh-C6-O25"/>
                                 </connections>
                             </button>
                         </subviews>

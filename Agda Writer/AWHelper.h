@@ -24,5 +24,7 @@
 
 + (NSString *) helpForExternalLibraries;
 
++ (NSString *) pathToBundledAgda;
++ (NSString *) pathToBundledAgdaPrimitive;
 
 @end

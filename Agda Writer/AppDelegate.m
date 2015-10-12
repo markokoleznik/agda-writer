@@ -19,11 +19,12 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+    
     // check for agda!
     if ([[AWNotifications agdaLaunchPath] isEqualToString:@""]) {
         // agda path is not yet set
         
-        
+        BOOL isPathToAgdaSet = NO;
         
         NSArray * reasonablePlacesForAgda =
         @[
@@ -35,8 +36,17 @@
             
             if ([self isAgdaAvaliableAtPath:path]) {
                 [AWNotifications setAgdaLaunchPath:path];
+                isPathToAgdaSet = YES;
+                [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"useBundledAgda"];
                 break;
             }
+        }
+        
+        
+        if (!isPathToAgdaSet) {
+            // If everything fails, load agda from Agda Writer's folder.
+            // Don't forget to use custom dictionary with appropriate arguments (dictionary).
+            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"useBundledAgda"];
         }
     }
     

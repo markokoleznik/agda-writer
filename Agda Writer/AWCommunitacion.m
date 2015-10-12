@@ -10,6 +10,7 @@
 #import "AWNotifications.h"
 #import "AWAgdaParser.h"
 #import "AWAgdaActions.h"
+#import "AWHelper.h"
 
 @implementation AWCommunitacion
 
@@ -196,12 +197,26 @@
         [task setStandardOutput: [NSPipe pipe]];
         [task setStandardInput: [NSPipe pipe]];
         [task setStandardError: [task standardOutput]];
-        [task setEnvironment:@{@"Agda_datadir" : @"/Users/andrej/Documents/agda-writer/agda/Agda-2.4.0.2",
-                               @"DYLD_FALLBACK_LIBRARY_PATH" : @"/Users/andrej/Documents/agda-writer/agda"}];
+        BOOL useBundledAgda = [[NSUserDefaults standardUserDefaults] boolForKey:@"useBundledAgda"];
+        if (useBundledAgda) {
+            NSDictionary * environmentDictionary = @{
+                                                     @"Agda_datadir" : [AWHelper pathToBundledAgdaPrimitive],
+                                                     @"DYLD_FALLBACK_LIBRARY_PATH" : [AWHelper pathToBundledAgda]
+                                                    };
+            [task setLaunchPath:[AWHelper pathToBundledAgda]];
+            [task setEnvironment:environmentDictionary];
+        }
+        else {
+            [task setLaunchPath:[AWNotifications agdaLaunchPath]];
+        }
+//        [task setEnvironment:@{@"Agda_datadir" : @"/Users/andrej/Documents/agda-writer/agda/Agda-2.4.0.2",
+//                               @"DYLD_FALLBACK_LIBRARY_PATH" : @"/Users/andrej/Documents/agda-writer/agda"}];
         
-        [task setLaunchPath:[AWNotifications agdaLaunchPath]];
-//        [task setLaunchPath:@"/Users/markokoleznik/Library/Haskell/bin/agda"];
+        
         [task setArguments:@[@"--interaction"]];
+        
+        NSLog(@"Agda launch path:\n%@", task.launchPath);
+        
         [[[task standardOutput] fileHandleForReading] waitForDataInBackgroundAndNotify];
         
         // Add observer
