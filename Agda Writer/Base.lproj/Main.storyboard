@@ -1316,7 +1316,7 @@
                                                                             <tableColumns>
                                                                                 <tableColumn identifier="GoalType" width="5000" minWidth="40" maxWidth="5000" id="wFR-ne-Fiy">
                                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Goals">
-                                                                                        <font key="font" metaFont="systemMedium" size="11"/>
+                                                                                        <font key="font" metaFont="smallSystem"/>
                                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                                     </tableHeaderCell>
