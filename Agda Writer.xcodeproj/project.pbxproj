@@ -504,7 +504,7 @@
 				TargetAttributes = {
 					D531F0FB1B55E580002E7E0F = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 5JUXYAUN8A;
+						DevelopmentTeam = K2Y4FHQG2B;
 					};
 					D531F1141B55E580002E7E0F = {
 						CreatedOnToolsVersion = 6.4;
@@ -724,6 +724,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Agda Writer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.koleznik.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -736,6 +737,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Agda Writer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.koleznik.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
