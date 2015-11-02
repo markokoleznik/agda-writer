@@ -22,7 +22,7 @@ SOFTWARE.
 
 --------------------------------------------------------------------------------
 
-The file agda-writer/blob/master/Agda%20Writer/agda/agda is licences as follows:
+The file agda-writer/blob/master/Agda%20Writer/agda/agda is licenced as follows:
 
 Copyright (c) 2005-2015 Ulf Norell, Andreas Abel, Nils Anders
 Danielsson, Andrés Sicard-Ramírez, Dominique Devriese, Péter
