@@ -35,4 +35,5 @@ Agda Writer.xcodeproj/xcuserdata/markokoleznik.xcuserdatad/xcdebugger/Breakpoint
 
 .DS_Store
 
-Agda Writer.xcodeproj/project.xcworkspace/xcuserdata/markokoleznik.xcuserdatad/UserInterfaceState.xcuserstate
+*.xcuserstate
+>>>>>>> master
