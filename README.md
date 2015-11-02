@@ -21,4 +21,4 @@ Works with OS X 10.9 (Mavericks) or later.
 It works without downloading & compiling Agda first. Just run the program and you are ready.
 
 # License
-agda-writer is Licensed under MIT License Agreement.
+Agda Writer is Licensed under MIT License Agreement.
