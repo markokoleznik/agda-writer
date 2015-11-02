@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>defaultFont</key>
+	<dict>
+		<key>name</key>
+		<string>Menlo</string>
+		<key>size</key>
+		<integer>14</integer>
+	</dict>
+	<key>agdaLaunchPath</key>
+	<string></string>
+</dict>
+</plist>
