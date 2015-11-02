@@ -52,6 +52,16 @@
                ReferencedContainer = "container:Agda Writer.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D5E81AFF1BE225FC0027076D"
+               BuildableName = "Agda WriterUITests.xctest"
+               BlueprintName = "Agda WriterUITests"
+               ReferencedContainer = "container:Agda Writer.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

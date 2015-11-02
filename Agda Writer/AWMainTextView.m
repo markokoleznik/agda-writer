@@ -28,6 +28,10 @@
 -(void)awakeFromNib
 {
     if (!initialize) {
+//        self.textView.automaticQuoteSubstitutionEnabled = NO;
+//        self.textView.automaticDashSubstitutionEnabled = NO;
+//        self.textView.automaticTextReplacementEnabled = NO;
+        [self setAutomaticQuoteSubstitutionEnabled:NO];
         [self setAutomaticDashSubstitutionEnabled:NO];
         [self toggleAutomaticDashSubstitution:NO];
         [self toggleContinuousSpellChecking:NO];
@@ -103,7 +107,9 @@
                     _selectedGoal.endColumn = lastComponent.length;
                 }
                 
-                _selectedGoal.content = [_selectedGoal.content stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+                _selectedGoal.content = [_selectedGoal.content
+                                         stringByReplacingOccurrencesOfString:@"\\"
+                                         withString:@"\\\\"];
                 _selectedGoal.content = [_selectedGoal.content stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
                 
                 // Compute number of empty spaces in this line

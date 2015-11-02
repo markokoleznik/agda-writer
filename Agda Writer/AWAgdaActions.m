@@ -292,7 +292,7 @@
         }
         else if ([actions[0] isEqualToString:@"\"*Goal type etc.*\""])
         {
-            //TODO: implement*Context*
+            //TODO: implement *Context*
         }
         else if ([actions[0] isEqualToString:@"\"*Context*\""])
         {
