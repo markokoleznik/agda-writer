@@ -560,7 +560,10 @@
         NSDictionary * dict = notification.userInfo;
         NSInteger index = [dict[@"index"] integerValue];
         [self scrollRangeToVisible:NSMakeRange(index - 1, 0)];
-        [self setSelectedRange:NSMakeRange(index - 1, 0)];
+        if (self.textStorage.length > index - 1) {
+            [self setSelectedRange:NSMakeRange(index - 1, 0)];
+        }
+        
     }
     
 }
