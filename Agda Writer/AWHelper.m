@@ -58,6 +58,11 @@
     if (!delayForAutocomplete) {
         [ud setObject:[NSNumber numberWithFloat:0.5f] forKey:@"delayForAutocomplete"];
     }
+    NSNumber * numberOfSpacesRepresentingTab = [ud objectForKey:@"numberOfSpacesRepresentingTab"];
+    if (!numberOfSpacesRepresentingTab) {
+        [ud setInteger:2 forKey:@"numberOfSpacesRepresentingTab"];
+    }
+//    [ud removeObjectForKey:@"numberOfSpacesRepresentingTab"];
     [ud synchronize];
     
 }

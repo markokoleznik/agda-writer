@@ -955,7 +955,7 @@
                                 </connections>
                             </popUpButton>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bwx-FR-bep">
-                                <rect key="frame" x="331" y="173" width="329" height="22"/>
+                                <rect key="frame" x="331" y="208" width="329" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="HZ2-gF-j55"/>
                                     <constraint firstAttribute="width" constant="329" id="Wjo-ya-uza"/>
@@ -972,7 +972,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TNu-SL-ddx">
-                                <rect key="frame" x="211" y="176" width="114" height="17"/>
+                                <rect key="frame" x="211" y="211" width="114" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="DAx-wH-3I2"/>
                                     <constraint firstAttribute="height" constant="17" id="Ghz-dL-Dsx"/>
@@ -1019,7 +1019,7 @@
                                 </connections>
                             </slider>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ud8-Rl-pbx">
-                                <rect key="frame" x="666" y="171" width="25" height="25"/>
+                                <rect key="frame" x="666" y="206" width="25" height="25"/>
                                 <animations/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Dcm-w2-was">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1040,6 +1040,35 @@
                                     <binding destination="xp5-Sa-wkr" name="value" keyPath="values.useBundledAgda" id="VGh-C6-O25"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m3C-io-KzO">
+                                <rect key="frame" x="75" y="156" width="250" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Number of spaces when Tab is pressed :" id="brp-5u-7wN">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QHg-Ro-1gs">
+                                <rect key="frame" x="353" y="156" width="37" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="xWW-5R-44c">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="xp5-Sa-wkr" name="value" keyPath="values.numberOfSpacesRepresentingTab" id="ltp-Wv-SgQ"/>
+                                </connections>
+                            </textField>
+                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cwZ-e3-sbK">
+                                <rect key="frame" x="417" y="151" width="245" height="27"/>
+                                <animations/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="10" doubleValue="2" tickMarkPosition="below" numberOfTickMarks="10" allowsTickMarkValuesOnly="YES" sliderType="linear" id="Jcw-ym-y48"/>
+                                <connections>
+                                    <binding destination="xp5-Sa-wkr" name="value" keyPath="values.numberOfSpacesRepresentingTab" id="Yi9-lY-0Is"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <constraints>
                             <constraint firstItem="uC9-3W-1j9" firstAttribute="leading" secondItem="nta-dI-OOZ" secondAttribute="leading" constant="137" id="01j-fH-38d"/>
@@ -1047,7 +1076,7 @@
                             <constraint firstItem="X8a-Kz-gcP" firstAttribute="leading" secondItem="nta-dI-OOZ" secondAttribute="leading" constant="137" id="2uQ-8E-NK7"/>
                             <constraint firstItem="bwx-FR-bep" firstAttribute="leading" secondItem="TNu-SL-ddx" secondAttribute="trailing" constant="8" id="5QB-rl-Hb9"/>
                             <constraint firstItem="cA3-yM-NON" firstAttribute="top" secondItem="Ieq-mv-J8i" secondAttribute="bottom" constant="16" id="8Vm-ax-XCl"/>
-                            <constraint firstItem="TNu-SL-ddx" firstAttribute="top" secondItem="l5T-uS-fxQ" secondAttribute="bottom" constant="94" id="8mp-bw-go6"/>
+                            <constraint firstItem="TNu-SL-ddx" firstAttribute="top" secondItem="l5T-uS-fxQ" secondAttribute="bottom" constant="59" id="8mp-bw-go6"/>
                             <constraint firstItem="XsG-GS-rWA" firstAttribute="leading" secondItem="fql-Zp-z1I" secondAttribute="trailing" constant="10" id="Chp-j7-Wfa"/>
                             <constraint firstItem="oGV-nR-wD5" firstAttribute="centerY" secondItem="XsG-GS-rWA" secondAttribute="centerY" id="D6a-gI-UCl"/>
                             <constraint firstItem="fql-Zp-z1I" firstAttribute="leading" secondItem="Esg-d8-tE7" secondAttribute="trailing" constant="13" id="FGk-MX-rZV"/>
@@ -1059,7 +1088,7 @@
                             <constraint firstItem="vNW-0C-AWR" firstAttribute="leading" secondItem="l5T-uS-fxQ" secondAttribute="trailing" constant="8" id="Phw-f9-TXI"/>
                             <constraint firstItem="cA3-yM-NON" firstAttribute="top" secondItem="Ieq-mv-J8i" secondAttribute="bottom" constant="16" id="Vno-6D-PZb"/>
                             <constraint firstItem="uC9-3W-1j9" firstAttribute="top" secondItem="X8a-Kz-gcP" secondAttribute="bottom" constant="16" id="Wds-Zd-xFU"/>
-                            <constraint firstItem="bwx-FR-bep" firstAttribute="top" secondItem="Esg-d8-tE7" secondAttribute="bottom" constant="58" id="Xoz-24-eoj"/>
+                            <constraint firstItem="bwx-FR-bep" firstAttribute="top" secondItem="Esg-d8-tE7" secondAttribute="bottom" constant="23" id="Xoz-24-eoj"/>
                             <constraint firstItem="oGV-nR-wD5" firstAttribute="leading" secondItem="0zH-Wc-KBH" secondAttribute="leading" id="YM0-up-DL2"/>
                             <constraint firstItem="vNW-0C-AWR" firstAttribute="top" secondItem="cA3-yM-NON" secondAttribute="bottom" constant="54" id="aan-EA-sYu"/>
                             <constraint firstItem="TNu-SL-ddx" firstAttribute="leading" secondItem="nta-dI-OOZ" secondAttribute="leading" constant="213" id="afQ-Nr-chA"/>
@@ -1203,7 +1232,7 @@
                                 </clipView>
                                 <animations/>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="zAj-pi-Nd7">
-                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                    <rect key="frame" x="1" y="333" width="785" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </scroller>
@@ -1370,7 +1399,7 @@
                                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                 </clipView>
                                                                 <animations/>
-                                                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="anT-Q0-bnr">
+                                                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.0015021459227467812" horizontal="YES" id="anT-Q0-bnr">
                                                                     <rect key="frame" x="1" y="182" width="350" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <animations/>

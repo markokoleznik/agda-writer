@@ -222,7 +222,7 @@
 
 -(void) replaceTabWithWhitespaces
 {
-    NSInteger numberOfSpacesRepresentedByTab = 2;
+    NSInteger numberOfSpacesRepresentedByTab = [[NSUserDefaults standardUserDefaults] integerForKey:@"numberOfSpacesRepresentingTab"];
     if (self.selectedRange.location != NSNotFound) {
         BOOL shouldReplace = [self shouldChangeTextInRange:self.selectedRange replacementString:[self whitespaces:numberOfSpacesRepresentedByTab]];
         if (shouldReplace) {
