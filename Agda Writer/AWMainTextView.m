@@ -686,16 +686,16 @@
                     [self replaceQuestionMarksWithGoals];
                     
                     // Reload file after case splitting.
-                    [self.mainTextViewDelegate reloadFile];
-                    
-                    
+                    // Use 0 delay to unblock main thread.
+                    [self performSelector:@selector(delegateToReloadFile) withObject:nil afterDelay:0.0];
                 }
             }
         }
     }
-//    if ([self.parentViewController respondsToSelector:@selector(saveDocument:)]) {
-//        [self.parentViewController performSelector:@selector(saveDocument:)];
-//    }
+}
+
+- (void) delegateToReloadFile {
+    [self.mainTextViewDelegate reloadFile];
 }
 
 - (void)replaceQuestionMarksWithGoals
