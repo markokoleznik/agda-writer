@@ -197,7 +197,7 @@
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
                                             <connections>
-                                                <segue destination="ReN-Yh-ccc" kind="modal" id="NG3-ua-X9o"/>
+                                                <segue destination="ReN-Yh-ccc" kind="modal" identifier="SettingsTabView" id="NG3-ua-X9o"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
