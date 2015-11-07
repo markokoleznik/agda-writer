@@ -535,4 +535,8 @@
     }
     
 }
+
+-(void)reloadFile {
+    [self actionLoad:nil];
+}
 @end

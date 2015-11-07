@@ -663,12 +663,14 @@
                     
                     [caseActionString deleteCharactersInRange:NSMakeRange(caseActionString.length - 1, 1)];
                     
-//                    [self.textStorage insertAttributedString:[[NSAttributedString alloc] initWithString:caseActionString attributes:@{NSFontAttributeName: [AWHelper defaultFontInAgda]}] atIndex:currentGoal.rangeOfCurrentLine.location];
                     if ([self shouldChangeTextInRange:NSMakeRange(currentGoal.rangeOfCurrentLine.location, 0) replacementString:caseActionString]) {
                         [self replaceCharactersInRange:NSMakeRange(currentGoal.rangeOfCurrentLine.location, 0) withString:caseActionString];
                     }
 
                     [self replaceQuestionMarksWithGoals];
+                    
+                    // Reload file after case splitting.
+                    [self.mainTextViewDelegate reloadFile];
                     
                     
                 }
