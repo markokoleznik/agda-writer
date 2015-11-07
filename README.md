@@ -1,6 +1,6 @@
 # Agda Writer
 A Graphical User Interface for Agda for OS X Systems.
-Works with OS X 10.9 (Mavericks) or later.
+Works with OS X 10.10 (Yosemite) or later.
 
 # Installation
 You can find compiled program under Releases (.zip attachment). Just unzip it, move it to desired folder (ie. Applications) and run the program.
