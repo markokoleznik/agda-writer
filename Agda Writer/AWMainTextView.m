@@ -186,6 +186,9 @@
         [self setAutomaticDashSubstitutionEnabled:NO];
         return NO;
     }
+    if ([replacementString isEqualToString:@"\t"]) {
+        return NO;
+    }
     return [super shouldChangeTextInRange:affectedCharRange replacementString:replacementString];
 }
 
@@ -205,6 +208,9 @@
     else if (theEvent.keyCode == 36 || theEvent.keyCode == 48) {
         // enter or tab is pressed
         [self transformLastWordToUnicode];
+        if (theEvent.keyCode == 48) {
+            [self replaceTabWithWhitespaces];
+        }
         
     }
     if (!autocompleteTriggered) {
@@ -214,7 +220,17 @@
     
 }
 
-
+-(void) replaceTabWithWhitespaces
+{
+    NSInteger numberOfSpacesRepresentedByTab = 2;
+    if (self.selectedRange.location != NSNotFound) {
+        BOOL shouldReplace = [self shouldChangeTextInRange:self.selectedRange replacementString:[self whitespaces:numberOfSpacesRepresentedByTab]];
+        if (shouldReplace) {
+            [self setTypingAttributes:@{NSFontAttributeName : [AWHelper defaultFontInAgda]}];
+            [self replaceCharactersInRange:self.selectedRange withString:[self whitespaces:numberOfSpacesRepresentedByTab]];
+        }
+    }
+}
 
 -(void)applyUnicodeTransformation
 {
