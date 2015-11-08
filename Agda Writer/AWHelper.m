@@ -58,6 +58,11 @@
     if (!delayForAutocomplete) {
         [ud setObject:[NSNumber numberWithFloat:0.5f] forKey:@"delayForAutocomplete"];
     }
+    NSNumber * numberOfSpacesRepresentingTab = [ud objectForKey:@"numberOfSpacesRepresentingTab"];
+    if (!numberOfSpacesRepresentingTab) {
+        [ud setInteger:2 forKey:@"numberOfSpacesRepresentingTab"];
+    }
+//    [ud removeObjectForKey:@"numberOfSpacesRepresentingTab"];
     [ud synchronize];
     
 }
@@ -111,6 +116,14 @@
 
 + (NSString *) helpForExternalLibraries {
     return @"Explanation: Libraries, which you can import when loading a file, for example stdlib. If you want to use multiple libraries, separate them with comma (,)\n\nUsage: You should put full path, ~ stands for relative to current work path.\n\nExample: /Users/username/AgdaLibs";
+}
+
++ (NSString *) pathToBundledAgda {
+    return [[NSBundle mainBundle] pathForResource:@"agda" ofType:@""];
+}
++ (NSString *) pathToBundledAgdaPrimitive {
+    NSString * pathToAgdaDirectory = [NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] resourcePath], @"/Agda-2.4.2.2"];;
+    return pathToAgdaDirectory;
 }
 
 @end

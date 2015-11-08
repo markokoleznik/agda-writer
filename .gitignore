@@ -34,3 +34,5 @@ Agda Writer.xcodeproj/xcuserdata/markokoleznik.xcuserdatad/xcdebugger/Breakpoint
 *.xcbkptlist
 
 .DS_Store
+
+*.xcuserstate

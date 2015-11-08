@@ -42,10 +42,9 @@
 - (void) writeDataToAgda:(NSString *) message sender:(NSViewController *)sender;
 - (void) searchForAgda;
 - (BOOL) isAgdaAvaliableAtPath:(NSString *)path;
-- (void) openConnectionToAgda;
 - (void) closeConnectionToAgda;
 - (void) quitAndRestartConnectionToAgda;
 - (void) clearPartialResponse;
-
+- (void) openConnectionToAgda;
 
 @end

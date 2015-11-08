@@ -10,6 +10,7 @@
 #import "AWNotifications.h"
 #import "AWAgdaParser.h"
 #import "AWAgdaActions.h"
+#import "AWHelper.h"
 
 @implementation AWCommunitacion
 
@@ -115,7 +116,7 @@
             [alert setMessageText:@"Task can't be launched!\nCheck your path in Settings."];
             [alert setAlertStyle:NSWarningAlertStyle];
             if ([alert runModal] == NSAlertFirstButtonReturn) {
-                NSLog(@"Open preferences");
+//                NSLog(@"Open preferences");
                 [AWNotifications notifyOpenPreferences];
             }
         }
@@ -133,7 +134,7 @@
         [alert setMessageText:@"Task can't be launched!\nCheck your path in Settings."];
         [alert setAlertStyle:NSWarningAlertStyle];
         if ([alert runModal] == NSAlertFirstButtonReturn) {
-            NSLog(@"Open preferences");
+//            NSLog(@"Open preferences");
             [AWNotifications notifyOpenPreferences];
         }
     }
@@ -196,10 +197,26 @@
         [task setStandardOutput: [NSPipe pipe]];
         [task setStandardInput: [NSPipe pipe]];
         [task setStandardError: [task standardOutput]];
+        BOOL useBundledAgda = [[NSUserDefaults standardUserDefaults] boolForKey:@"useBundledAgda"];
+        if (useBundledAgda) {
+            NSDictionary * environmentDictionary = @{
+                                                     @"Agda_datadir" : [AWHelper pathToBundledAgdaPrimitive],
+                                                     @"DYLD_FALLBACK_LIBRARY_PATH" : [AWHelper pathToBundledAgda]
+                                                    };
+            [task setLaunchPath:[AWHelper pathToBundledAgda]];
+            [task setEnvironment:environmentDictionary];
+        }
+        else {
+            [task setLaunchPath:[AWNotifications agdaLaunchPath]];
+        }
+//        [task setEnvironment:@{@"Agda_datadir" : @"/Users/andrej/Documents/agda-writer/agda/Agda-2.4.0.2",
+//                               @"DYLD_FALLBACK_LIBRARY_PATH" : @"/Users/andrej/Documents/agda-writer/agda"}];
         
-        [task setLaunchPath:[AWNotifications agdaLaunchPath]];
-//        [task setLaunchPath:@"/Users/markokoleznik/Library/Haskell/bin/agda"];
+        
         [task setArguments:@[@"--interaction"]];
+        
+        NSLog(@"Agda launch path:\n%@", task.launchPath);
+        
         [[[task standardOutput] fileHandleForReading] waitForDataInBackgroundAndNotify];
         
         // Add observer
@@ -264,7 +281,7 @@
     NSString * avaliableString = [[NSString alloc] initWithData:avaliableData encoding:NSUTF8StringEncoding];
     dispatch_sync(dispatch_get_main_queue(), ^{
         // Handle avaliable data on main thread
-        NSLog(@"%@", avaliableString);
+//        NSLog(@"%@", avaliableString);
         // Append partial string and perform action if possible
         // if possible, cut this part of the string.
         if (avaliableString) {
@@ -298,7 +315,7 @@
         [self openConnectionToAgda];
     }
     // Add output to buffer!
-    NSLog(@"%@", message);
+//    NSLog(@"%@", message);
     [AWNotifications notifyAgdaReplied:message sender:sender];
     
     self.activeViewController = sender;

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D524F8891BCB9CB200785995 /* agda in Resources */ = {isa = PBXBuildFile; fileRef = D524F8881BCB9CB200785995 /* agda */; };
+		D524F8B01BCBAAAA00785995 /* Agda-2.4.2.2 in Resources */ = {isa = PBXBuildFile; fileRef = D524F8AF1BCBAAAA00785995 /* Agda-2.4.2.2 */; };
 		D531F1031B55E580002E7E0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1021B55E580002E7E0F /* AppDelegate.m */; };
 		D531F1051B55E580002E7E0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1041B55E580002E7E0F /* main.m */; };
 		D531F1081B55E580002E7E0F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1071B55E580002E7E0F /* ViewController.m */; };
@@ -70,6 +72,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D524F8881BCB9CB200785995 /* agda */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = agda; path = agda/agda; sourceTree = "<group>"; };
+		D524F8AF1BCBAAAA00785995 /* Agda-2.4.2.2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Agda-2.4.2.2"; path = "agda/Agda-2.4.2.2"; sourceTree = "<group>"; };
 		D531F0FC1B55E580002E7E0F /* Agda Writer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agda Writer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D531F1001B55E580002E7E0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D531F1011B55E580002E7E0F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -151,6 +155,8 @@
 		D5B47D361B67FE19006BA849 /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberMarker.m; sourceTree = "<group>"; };
 		D5B47D371B67FE19006BA849 /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberView.h; sourceTree = "<group>"; };
 		D5B47D381B67FE19006BA849 /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberView.m; sourceTree = "<group>"; };
+		D5E81B021BE225FC0027076D /* Agda_WriterUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Agda_WriterUITests.m; sourceTree = "<group>"; };
+		D5E81B041BE225FC0027076D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5ECB1D11B84EC8D0099CE5C /* icon_128x128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_128x128.png; sourceTree = "<group>"; };
 		D5ECB1D31B84ED240099CE5C /* AWAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWAboutViewController.h; sourceTree = "<group>"; };
 		D5ECB1D41B84ED240099CE5C /* AWAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWAboutViewController.m; sourceTree = "<group>"; };
@@ -179,6 +185,7 @@
 			children = (
 				D531F0FE1B55E580002E7E0F /* Agda Writer */,
 				D531F1181B55E580002E7E0F /* Agda WriterTests */,
+				D5E81B011BE225FC0027076D /* Agda WriterUITests */,
 				D531F0FD1B55E580002E7E0F /* Products */,
 				D531F16B1B57E5E5002E7E0F /* Images */,
 			);
@@ -211,6 +218,8 @@
 		D531F0FF1B55E580002E7E0F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D524F8AF1BCBAAAA00785995 /* Agda-2.4.2.2 */,
+				D524F8881BCB9CB200785995 /* agda */,
 				D534F8F91B7383D80009D7B0 /* TODO List */,
 				D531F1771B5852EE002E7E0F /* defaults.plist */,
 				D531F1001B55E580002E7E0F /* Info.plist */,
@@ -449,6 +458,15 @@
 			name = "Noodle Line Numbers View";
 			sourceTree = "<group>";
 		};
+		D5E81B011BE225FC0027076D /* Agda WriterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D5E81B021BE225FC0027076D /* Agda_WriterUITests.m */,
+				D5E81B041BE225FC0027076D /* Info.plist */,
+			);
+			path = "Agda WriterUITests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -493,11 +511,12 @@
 		D531F0F41B55E580002E7E0F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = koleznik.net;
 				TargetAttributes = {
 					D531F0FB1B55E580002E7E0F = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = K2Y4FHQG2B;
 					};
 					D531F1141B55E580002E7E0F = {
 						CreatedOnToolsVersion = 6.4;
@@ -529,6 +548,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D524F8891BCB9CB200785995 /* agda in Resources */,
 				D538E5D21B5EF13300B5455A /* AWInputViewController.xib in Resources */,
 				D538E5D41B5FD0F300B5455A /* Key Bindings.plist in Resources */,
 				D5B327EF1B78B65E00EDFC26 /* check-mark.png in Resources */,
@@ -538,6 +558,7 @@
 				D5B327F01B78B65E00EDFC26 /* x-mark.png in Resources */,
 				D531F1721B57E60B002E7E0F /* failed_default.png in Resources */,
 				D531F1731B57E60B002E7E0F /* load_failed.png in Resources */,
+				D524F8B01BCBAAAA00785995 /* Agda-2.4.2.2 in Resources */,
 				D5ECB1D21B84EC8D0099CE5C /* icon_128x128.png in Resources */,
 				D531F1751B57E60B002E7E0F /* load_successful.png in Resources */,
 				D5B327F11B78B65E00EDFC26 /* settings-keybindings.png in Resources */,
@@ -649,6 +670,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -714,6 +736,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Agda Writer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.koleznik.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -725,6 +749,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Agda Writer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.koleznik.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -744,6 +770,7 @@
 				);
 				INFOPLIST_FILE = "Agda WriterTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.koleznik.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Agda Writer.app/Contents/MacOS/Agda Writer";
 			};
@@ -760,6 +787,7 @@
 				);
 				INFOPLIST_FILE = "Agda WriterTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.koleznik.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Agda Writer.app/Contents/MacOS/Agda Writer";
 			};

@@ -25,6 +25,14 @@
     [attribution appendAttributedString:[[NSAttributedString alloc] initWithString:@"."]];
     [self.attributionForMattGemmell setAttributedStringValue:attribution];
 
+//    Includes Agda 2.4.2.2, avaliable here.
+    [self.attributionForAgda setAllowsEditingTextAttributes: YES];
+    [self.attributionForAgda setSelectable: YES];
+    NSMutableAttributedString * attributionForAgdaString = [[NSMutableAttributedString alloc] initWithString:@"Includes Agda 2.4.2.2, avaliable "];
+    NSURL * urlToAgda = [NSURL URLWithString:@"http://wiki.portal.chalmers.se/agda/pmwiki.php"];
+    [attributionForAgdaString appendAttributedString:[self hyperlinkFromString:@"here" withURL:urlToAgda]];
+    [attributionForAgdaString appendAttributedString:[[NSAttributedString alloc] initWithString:@"."]];
+    [self.attributionForAgda setAttributedStringValue:attributionForAgdaString];
     
     
 }
