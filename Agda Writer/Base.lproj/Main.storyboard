@@ -631,19 +631,19 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Infer" id="sVD-8h-9Nb">
                                                 <items>
-                                                    <menuItem title="Simplified" tag="1" id="7zM-kB-y8N">
+                                                    <menuItem title="Simplified" id="7zM-kB-y8N">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="actionInferSimplified:" target="Ady-hI-5gd" id="Deo-c7-0ig"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Normalised" tag="1" id="qyI-I5-cKh">
+                                                    <menuItem title="Normalised" id="qyI-I5-cKh">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="actionInferNormalised:" target="Ady-hI-5gd" id="eKs-pe-Wd3"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Instantiated" tag="1" id="Adn-Li-i1I">
+                                                    <menuItem title="Instantiated" id="Adn-Li-i1I">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="actionInferInstantiated:" target="Ady-hI-5gd" id="MbZ-V2-tMj"/>
@@ -1399,7 +1399,7 @@
                                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                 </clipView>
                                                                 <animations/>
-                                                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.0015021459227467812" horizontal="YES" id="anT-Q0-bnr">
+                                                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="anT-Q0-bnr">
                                                                     <rect key="frame" x="1" y="182" width="350" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <animations/>

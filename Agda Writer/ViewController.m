@@ -352,6 +352,7 @@
             break;
         case AWInputViewTypeInfer:
             message = [AWAgdaActions actionInferWithFilePath:fullPath goal:goal normalisationLevel:level content:content];
+            break;
         case AWInputViewTypeShowModuleContents:
             message = [AWAgdaActions actionShowModuleContentsFilePath:fullPath goal:goal normalisationLevel:level content:content];
             break;
