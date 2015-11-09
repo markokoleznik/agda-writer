@@ -328,7 +328,7 @@
             j--;
             continue;
         }
-        if ([self.string characterAtIndex:i] == ' ' || [self.string characterAtIndex:i] == '\n' || [[self.string substringWithRange:NSMakeRange(i, 1)] isEqualToString:@"\t"]) {
+        if ([self.string characterAtIndex:i] == ' ' || [self.string characterAtIndex:i] == '\n' || [[self.string substringWithRange:NSMakeRange(i, 1)] isEqualToString:@"\t"] || [self.string characterAtIndex:i] == '!') {
             word = NSMakeRange(i + 1, j - i);
             
             break;
