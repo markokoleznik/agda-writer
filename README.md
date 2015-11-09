@@ -25,3 +25,4 @@ It works without downloading & compiling Agda first. Just run the program and yo
 
 # License
 Agda Writer is Licensed under MIT License Agreement.
+See Licence.md for more details.
