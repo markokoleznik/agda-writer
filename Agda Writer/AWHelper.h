@@ -20,6 +20,7 @@
 + (void) saveKeyBindings: (NSDictionary *)keyBindings;
 + (void) savePathToLibraries: (NSString *)path;
 + (NSString *)pathToLibraries;
++ (NSString *)pathToLibrariesToAgda;
 + (CGFloat) delayForAutocomplete;
 
 + (NSString *) helpForExternalLibraries;

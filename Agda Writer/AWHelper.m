@@ -109,13 +109,25 @@
     }
 }
 
++ (NSString *)pathToLibrariesToAgda
+{
+    NSString * pathToLibraries = [self pathToLibraries];
+    NSArray * arrayOfPaths = [[pathToLibraries copy] componentsSeparatedByString:@", "];
+    NSString * pathString = @"";
+    for (NSString * path in arrayOfPaths) {
+        pathString = [pathString stringByAppendingFormat:@"%@\", \"", path];
+    }
+    pathString = [pathString substringToIndex:pathString.length - 4];
+    return pathString;
+}
+
 +(CGFloat)delayForAutocomplete {
     NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
     return [[ud objectForKey:@"delayForAutocomplete"] floatValue];
 }
 
 + (NSString *) helpForExternalLibraries {
-    return @"Explanation: Libraries, which you can import when loading a file, for example stdlib. If you want to use multiple libraries, separate them with comma (,)\n\nUsage: You should put full path, ~ stands for relative to current work path.\n\nExample: /Users/username/AgdaLibs";
+    return @"Explanation: Libraries, which you can import when loading a file, for example stdlib. If you want to use multiple libraries, separate them with comma (,)\n\nUsage: You should put full path, ~ stands for relative to current work path.\n\nExample:\n/Users/username/AgdaLibs\n/Users/libs/lib1, /Users/agda/lib2";
 }
 
 + (NSString *) pathToBundledAgda {

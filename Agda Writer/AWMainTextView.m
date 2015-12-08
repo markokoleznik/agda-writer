@@ -429,7 +429,7 @@
 {
     AgdaGoal * goal = self.selectedGoal;
     if (goal) {
-        NSLog(@"User is inside of a goal.");
+//        NSLog(@"User is inside of a goal.");
         [self.mainTextViewDelegate highlightSelectedGoalAtRow:goal.goalIndex];
     }
     if (!goal) {

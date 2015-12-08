@@ -21,10 +21,10 @@
 
 +(NSString *)actionLoadWithFilePath:(NSString *)filePath
 {
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_load \"%@\" [\".\", \"%@\"])",filePath, filePath, [AWHelper pathToLibraries]];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_load \"%@\" [\".\", \"%@\"])",filePath, filePath, [AWHelper pathToLibrariesToAgda]];
 }
 +(NSString *)actionCompileWithFilePath:(NSString *)filePath {
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_compile MAlonzo \"%@\" [\".\", \"%@\"])",filePath, filePath, [AWHelper pathToLibraries]];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_compile MAlonzo \"%@\" [\".\", \"%@\"])",filePath, filePath, [AWHelper pathToLibrariesToAgda]];
 }
 +(NSString *)actionGiveWithFilePath:(NSString *)filePath goal:(AgdaGoal *)goal
 {
