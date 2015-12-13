@@ -352,6 +352,7 @@
             break;
         case AWInputViewTypeInfer:
             message = [AWAgdaActions actionInferWithFilePath:fullPath goal:goal normalisationLevel:level content:content];
+            break;
         case AWInputViewTypeShowModuleContents:
             message = [AWAgdaActions actionShowModuleContentsFilePath:fullPath goal:goal normalisationLevel:level content:content];
             break;
@@ -418,6 +419,8 @@
         NSString *fontFamily = (NSString *) notification.object;
         NSFont *font = [AWHelper defaultFontInAgda];
         font = [[NSFontManager sharedFontManager] convertFont:font toFamily:fontFamily];
+        font = [[NSFontManager sharedFontManager] convertFont:font toNotHaveTrait:NSBoldFontMask];
+        font = [[NSFontManager sharedFontManager] convertFont:font toNotHaveTrait:NSItalicFontMask];
         [self.mainTextView.textStorage addAttribute:@"NSFontAttributeName" value:font range:NSMakeRange(0, self.mainTextView.textStorage.string.length)];
         [self.mainTextView.textStorage setFont:font];
         [self.lineNumbersView setFont:font];
@@ -532,5 +535,9 @@
         [self.goalsTableController selectRow:row highlightGoal:NO];
     }
     
+}
+
+-(void)reloadFile {
+    [self actionLoad:nil];
 }
 @end

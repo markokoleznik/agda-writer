@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D524F8891BCB9CB200785995 /* agda in Resources */ = {isa = PBXBuildFile; fileRef = D524F8881BCB9CB200785995 /* agda */; settings = {ASSET_TAGS = (); }; };
-		D524F8B01BCBAAAA00785995 /* Agda-2.4.2.2 in Resources */ = {isa = PBXBuildFile; fileRef = D524F8AF1BCBAAAA00785995 /* Agda-2.4.2.2 */; settings = {ASSET_TAGS = (); }; };
+		D524F8891BCB9CB200785995 /* agda in Resources */ = {isa = PBXBuildFile; fileRef = D524F8881BCB9CB200785995 /* agda */; };
+		D524F8B01BCBAAAA00785995 /* Agda-2.4.2.2 in Resources */ = {isa = PBXBuildFile; fileRef = D524F8AF1BCBAAAA00785995 /* Agda-2.4.2.2 */; };
 		D531F1031B55E580002E7E0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1021B55E580002E7E0F /* AppDelegate.m */; };
 		D531F1051B55E580002E7E0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1041B55E580002E7E0F /* main.m */; };
 		D531F1081B55E580002E7E0F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D531F1071B55E580002E7E0F /* ViewController.m */; };
@@ -155,6 +155,8 @@
 		D5B47D361B67FE19006BA849 /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberMarker.m; sourceTree = "<group>"; };
 		D5B47D371B67FE19006BA849 /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberView.h; sourceTree = "<group>"; };
 		D5B47D381B67FE19006BA849 /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberView.m; sourceTree = "<group>"; };
+		D5E81B021BE225FC0027076D /* Agda_WriterUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Agda_WriterUITests.m; sourceTree = "<group>"; };
+		D5E81B041BE225FC0027076D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5ECB1D11B84EC8D0099CE5C /* icon_128x128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_128x128.png; sourceTree = "<group>"; };
 		D5ECB1D31B84ED240099CE5C /* AWAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWAboutViewController.h; sourceTree = "<group>"; };
 		D5ECB1D41B84ED240099CE5C /* AWAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWAboutViewController.m; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				D531F0FE1B55E580002E7E0F /* Agda Writer */,
 				D531F1181B55E580002E7E0F /* Agda WriterTests */,
+				D5E81B011BE225FC0027076D /* Agda WriterUITests */,
 				D531F0FD1B55E580002E7E0F /* Products */,
 				D531F16B1B57E5E5002E7E0F /* Images */,
 			);
@@ -455,6 +458,15 @@
 			name = "Noodle Line Numbers View";
 			sourceTree = "<group>";
 		};
+		D5E81B011BE225FC0027076D /* Agda WriterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D5E81B021BE225FC0027076D /* Agda_WriterUITests.m */,
+				D5E81B041BE225FC0027076D /* Info.plist */,
+			);
+			path = "Agda WriterUITests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -504,7 +516,7 @@
 				TargetAttributes = {
 					D531F0FB1B55E580002E7E0F = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 5JUXYAUN8A;
+						DevelopmentTeam = K2Y4FHQG2B;
 					};
 					D531F1141B55E580002E7E0F = {
 						CreatedOnToolsVersion = 6.4;
@@ -724,6 +736,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Agda Writer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.koleznik.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -736,6 +749,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Agda Writer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.koleznik.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

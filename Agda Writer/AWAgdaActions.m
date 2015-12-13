@@ -21,10 +21,10 @@
 
 +(NSString *)actionLoadWithFilePath:(NSString *)filePath
 {
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_load \"%@\" [\".\", \"%@\"])",filePath, filePath, [AWHelper pathToLibraries]];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_load \"%@\" [\".\", \"%@\"])",filePath, filePath, [AWHelper pathToLibrariesToAgda]];
 }
 +(NSString *)actionCompileWithFilePath:(NSString *)filePath {
-    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_compile MAlonzo \"%@\" [\".\", \"%@\"])",filePath, filePath, [AWHelper pathToLibraries]];
+    return [NSString stringWithFormat:@"IOTCM \"%@\" NonInteractive Indirect (Cmd_compile MAlonzo \"%@\" [\".\", \"%@\"])",filePath, filePath, [AWHelper pathToLibrariesToAgda]];
 }
 +(NSString *)actionGiveWithFilePath:(NSString *)filePath goal:(AgdaGoal *)goal
 {
@@ -205,7 +205,7 @@
             // Once you do this, test if direct highlighting is faster that indirect
             // direct: from strandard output pipe
             // indirect: read from disk and delete file afterwards.
-            NSLog(@"add annotations:\n%@", actions);
+//            NSLog(@"add annotations:\n%@", actions);
             [self executeHighlightAddAnnotations:actions sender:sender];
             
         }
@@ -292,7 +292,7 @@
         }
         else if ([actions[0] isEqualToString:@"\"*Goal type etc.*\""])
         {
-            //TODO: implement*Context*
+            //TODO: implement *Context*
         }
         else if ([actions[0] isEqualToString:@"\"*Context*\""])
         {

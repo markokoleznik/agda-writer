@@ -1,9 +1,16 @@
-# agda-writer
+# Agda Writer
 A Graphical User Interface for Agda for OS X Systems.
-Works with OS X 10.9 (Mavericks) or later.
+Works with OS X 10.10 (Yosemite) or later.
 
-# Prerequisites
-- Installed Agda
+# Installation
+You can find compiled program under Releases (.zip attachment). Just unzip it, move it to desired folder (ie. Applications) and run the program.
+
+# Agda Writer in Action
+## Loading a File
+![Alt Text](https://github.com/markokoleznik/agda-writer/blob/master/Agda%20Writer/ReadmeMarkdown/ex01.gif)
+
+## Normalizing an expression
+![Alt Text](https://github.com/markokoleznik/agda-writer/blob/master/Agda%20Writer/ReadmeMarkdown/ex02.gif)
 
 # Features
 - Handy shortcuts for actions
@@ -13,5 +20,9 @@ Works with OS X 10.9 (Mavericks) or later.
 - ...
 - Well, it's not Emacs :D
 
+# Awesome Features
+It works without downloading & compiling Agda first. Just run the program and you are ready.
+
 # License
-agda-writer is Licensed under MIT License Agreement.
+Agda Writer is Licensed under MIT License Agreement.
+See Licence.md for more details.

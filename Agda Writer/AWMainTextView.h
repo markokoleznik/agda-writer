@@ -39,6 +39,7 @@
 
 @required
 - (void)highlightSelectedGoalAtRow:(NSInteger)row;
+- (void)reloadFile;
 
 @end
 

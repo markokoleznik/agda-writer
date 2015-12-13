@@ -116,7 +116,7 @@
             [alert setMessageText:@"Task can't be launched!\nCheck your path in Settings."];
             [alert setAlertStyle:NSWarningAlertStyle];
             if ([alert runModal] == NSAlertFirstButtonReturn) {
-                NSLog(@"Open preferences");
+//                NSLog(@"Open preferences");
                 [AWNotifications notifyOpenPreferences];
             }
         }
@@ -134,7 +134,7 @@
         [alert setMessageText:@"Task can't be launched!\nCheck your path in Settings."];
         [alert setAlertStyle:NSWarningAlertStyle];
         if ([alert runModal] == NSAlertFirstButtonReturn) {
-            NSLog(@"Open preferences");
+//            NSLog(@"Open preferences");
             [AWNotifications notifyOpenPreferences];
         }
     }
@@ -281,7 +281,7 @@
     NSString * avaliableString = [[NSString alloc] initWithData:avaliableData encoding:NSUTF8StringEncoding];
     dispatch_sync(dispatch_get_main_queue(), ^{
         // Handle avaliable data on main thread
-        NSLog(@"%@", avaliableString);
+//        NSLog(@"%@", avaliableString);
         // Append partial string and perform action if possible
         // if possible, cut this part of the string.
         if (avaliableString) {
@@ -315,7 +315,7 @@
         [self openConnectionToAgda];
     }
     // Add output to buffer!
-    NSLog(@"%@", message);
+//    NSLog(@"%@", message);
     [AWNotifications notifyAgdaReplied:message sender:sender];
     
     self.activeViewController = sender;

@@ -28,6 +28,10 @@
 -(void)awakeFromNib
 {
     if (!initialize) {
+//        self.textView.automaticQuoteSubstitutionEnabled = NO;
+//        self.textView.automaticDashSubstitutionEnabled = NO;
+//        self.textView.automaticTextReplacementEnabled = NO;
+        [self setAutomaticQuoteSubstitutionEnabled:NO];
         [self setAutomaticDashSubstitutionEnabled:NO];
         [self toggleAutomaticDashSubstitution:NO];
         [self toggleContinuousSpellChecking:NO];
@@ -103,7 +107,9 @@
                     _selectedGoal.endColumn = lastComponent.length;
                 }
                 
-                _selectedGoal.content = [_selectedGoal.content stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+                _selectedGoal.content = [_selectedGoal.content
+                                         stringByReplacingOccurrencesOfString:@"\\"
+                                         withString:@"\\\\"];
                 _selectedGoal.content = [_selectedGoal.content stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
                 
                 // Compute number of empty spaces in this line
@@ -180,6 +186,9 @@
         [self setAutomaticDashSubstitutionEnabled:NO];
         return NO;
     }
+    if ([replacementString isEqualToString:@"\t"]) {
+        return NO;
+    }
     return [super shouldChangeTextInRange:affectedCharRange replacementString:replacementString];
 }
 
@@ -199,6 +208,9 @@
     else if (theEvent.keyCode == 36 || theEvent.keyCode == 48) {
         // enter or tab is pressed
         [self transformLastWordToUnicode];
+        if (theEvent.keyCode == 48) {
+            [self replaceTabWithWhitespaces];
+        }
         
     }
     if (!autocompleteTriggered) {
@@ -208,7 +220,17 @@
     
 }
 
-
+-(void) replaceTabWithWhitespaces
+{
+    NSInteger numberOfSpacesRepresentedByTab = [[NSUserDefaults standardUserDefaults] integerForKey:@"numberOfSpacesRepresentingTab"];
+    if (self.selectedRange.location != NSNotFound) {
+        BOOL shouldReplace = [self shouldChangeTextInRange:self.selectedRange replacementString:[self whitespaces:numberOfSpacesRepresentedByTab]];
+        if (shouldReplace) {
+            [self setTypingAttributes:@{NSFontAttributeName : [AWHelper defaultFontInAgda]}];
+            [self replaceCharactersInRange:self.selectedRange withString:[self whitespaces:numberOfSpacesRepresentedByTab]];
+        }
+    }
+}
 
 -(void)applyUnicodeTransformation
 {
@@ -306,7 +328,7 @@
             j--;
             continue;
         }
-        if ([self.string characterAtIndex:i] == ' ' || [self.string characterAtIndex:i] == '\n' || [[self.string substringWithRange:NSMakeRange(i, 1)] isEqualToString:@"\t"]) {
+        if ([self.string characterAtIndex:i] == ' ' || [self.string characterAtIndex:i] == '\n' || [[self.string substringWithRange:NSMakeRange(i, 1)] isEqualToString:@"\t"] || [self.string characterAtIndex:i] == '!') {
             word = NSMakeRange(i + 1, j - i);
             
             break;
@@ -407,7 +429,7 @@
 {
     AgdaGoal * goal = self.selectedGoal;
     if (goal) {
-        NSLog(@"User is inside of a goal.");
+//        NSLog(@"User is inside of a goal.");
         [self.mainTextViewDelegate highlightSelectedGoalAtRow:goal.goalIndex];
     }
     if (!goal) {
@@ -554,7 +576,10 @@
         NSDictionary * dict = notification.userInfo;
         NSInteger index = [dict[@"index"] integerValue];
         [self scrollRangeToVisible:NSMakeRange(index - 1, 0)];
-        [self setSelectedRange:NSMakeRange(index - 1, 0)];
+        if (self.textStorage.length > index - 1) {
+            [self setSelectedRange:NSMakeRange(index - 1, 0)];
+        }
+        
     }
     
 }
@@ -654,21 +679,23 @@
                     
                     [caseActionString deleteCharactersInRange:NSMakeRange(caseActionString.length - 1, 1)];
                     
-//                    [self.textStorage insertAttributedString:[[NSAttributedString alloc] initWithString:caseActionString attributes:@{NSFontAttributeName: [AWHelper defaultFontInAgda]}] atIndex:currentGoal.rangeOfCurrentLine.location];
                     if ([self shouldChangeTextInRange:NSMakeRange(currentGoal.rangeOfCurrentLine.location, 0) replacementString:caseActionString]) {
                         [self replaceCharactersInRange:NSMakeRange(currentGoal.rangeOfCurrentLine.location, 0) withString:caseActionString];
                     }
 
                     [self replaceQuestionMarksWithGoals];
                     
-                    
+                    // Reload file after case splitting.
+                    // Use 0 delay to unblock main thread.
+                    [self performSelector:@selector(delegateToReloadFile) withObject:nil afterDelay:0.0];
                 }
             }
         }
     }
-//    if ([self.parentViewController respondsToSelector:@selector(saveDocument:)]) {
-//        [self.parentViewController performSelector:@selector(saveDocument:)];
-//    }
+}
+
+- (void) delegateToReloadFile {
+    [self.mainTextViewDelegate reloadFile];
 }
 
 - (void)replaceQuestionMarksWithGoals

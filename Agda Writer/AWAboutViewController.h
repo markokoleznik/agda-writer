@@ -10,5 +10,7 @@
 
 @interface AWAboutViewController : NSViewController
 @property (strong) IBOutlet NSTextField *attributionForMattGemmell;
+@property (strong) IBOutlet NSTextField *attributionForAgda;
+
 
 @end
