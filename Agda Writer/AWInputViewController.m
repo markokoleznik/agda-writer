@@ -20,6 +20,7 @@
     AWInputViewType _type;
     BOOL _isGlobal;
     NSRect _rect;
+    BOOL _autoCompleteTriggered;
     
 }
 
@@ -28,6 +29,8 @@
     
     self.inputTextField.delegate = self;
     [self.inputTextField setFont:[AWHelper defaultFontInAgda]];
+    
+    _autoCompleteTriggered = NO;
     
     
     if (_isGlobal) {
@@ -101,9 +104,28 @@
     return self;
 }
 
+-(void)controlTextDidChange:(NSNotification *)obj
+{
+    if (_autoCompleteTriggered) {
+        return;
+    }
+    else {
+        _autoCompleteTriggered = YES;
+        [[[obj userInfo] objectForKey:@"NSFieldEditor"] complete:nil];
+        
+    }
+    
+}
+
+
+
 -(void)keyUp:(NSEvent *)theEvent
 {
     [super keyUp:theEvent];
+
+    if (_autoCompleteTriggered) {
+        _autoCompleteTriggered = NO;
+    }
     if (theEvent.keyCode == 53) {
         // escape pressed, close window
         [self.delegate closeWindow];
@@ -120,7 +142,52 @@
 
 -(NSArray *)control:(NSControl *)control textView:(NSTextView *)textView completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
 {
-    return @[];
+    NSString * partialWord = [self.inputTextField.stringValue substringWithRange:charRange];
+    if (charRange.location == 0) {
+        return @[];
+    }
+    // Don't harass user if he writes '='
+    if ([partialWord isEqualToString:@"="] ||
+        [partialWord isEqualToString:@"_"]) {
+        return @[];
+    }
+    NSDictionary * keyBindings = [AWHelper keyBindings];
+    
+    
+    NSMutableArray * mutableArray = [[NSMutableArray alloc] init];
+    NSArray * filteredArray = [keyBindings.allKeys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        NSString * name = (NSString *)evaluatedObject;
+        if ([name hasPrefix:@"\\"]) {
+            name = [name substringFromIndex:1];
+        }
+        return [name hasPrefix:partialWord];
+    }]];
+    
+    for (NSString * name in filteredArray) {
+        if ([name hasPrefix:@"\\"]) {
+            [mutableArray addObject:[name substringFromIndex:1]];
+        }
+        else {
+            [mutableArray addObject:name];
+        }
+    }
+    
+    [mutableArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString * name1 = (NSString *)obj1;
+        NSString * name2 = (NSString *)obj2;
+        if ([name1 hasPrefix:@"\\"]) {
+            name1 = [name1 substringFromIndex:1];
+        }
+        if ([name2 hasPrefix:@"\\"]) {
+            name2 = [name2 substringFromIndex:1];
+        }
+        return [name1 compare:name2];
+    }];
+    
+    if (filteredArray.count == 1 && [filteredArray[0] isEqualToString:partialWord]) {
+        return @[];
+    }
+    return mutableArray;
 }
 
 

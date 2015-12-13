@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AWInputViewController">
@@ -22,6 +22,7 @@
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="qdx-Vu-KWR"/>
                     </constraints>
+                    <animations/>
                     <textFieldCell key="cell" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Type Expression here..." drawsBackground="YES" id="0xr-un-bK3">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -34,6 +35,7 @@
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="162" id="3IN-OZ-mXg"/>
                         <constraint firstAttribute="height" constant="23" id="e6b-77-XjS"/>
                     </constraints>
+                    <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Normalize expression:" id="OX8-iH-kFK">
                         <font key="font" metaFont="systemBold" size="14"/>
                         <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
@@ -49,11 +51,13 @@
                 <constraint firstItem="ODC-6n-7ya" firstAttribute="top" secondItem="IT0-cg-XYW" secondAttribute="bottom" constant="4" id="jKh-9O-6Ws"/>
                 <constraint firstItem="IT0-cg-XYW" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="22" id="smU-32-xV4"/>
             </constraints>
-            <point key="canvasLocation" x="300" y="291.5"/>
+            <animations/>
+            <point key="canvasLocation" x="300" y="291"/>
         </customView>
         <button verticalHuggingPriority="750" id="BIa-nM-8z0">
             <rect key="frame" x="0.0" y="0.0" width="82" height="32"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <animations/>
             <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sip-d2-fGP">
                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                 <font key="font" metaFont="system"/>
